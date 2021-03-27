@@ -4,7 +4,6 @@ package com.example.team31
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-import com.bumptech.glide.Glide
 import com.bumptech.glide.Glide.*
 import de.hdodenhof.circleimageview.CircleImageView
 

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Team31</string>
+    <string name="title_overview">Oversikt</string>
+    <string name="title_employees">Ansatte</string>
+    <string name="title_settings">Instillinger</string>
+    <string name="title_profile">Profil</string>
+
 </resources>

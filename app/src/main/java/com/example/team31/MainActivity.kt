@@ -54,19 +54,24 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Feil passord", Toast.LENGTH_SHORT).show()
                 }
             }
-
             else {
                 Toast.makeText(this, "Du er ikke registrert hos oss. Registrer deg nå!", Toast.LENGTH_LONG).show()
             }
-
-
             hideKeyboard()
         }
 
     }
-
+    // starter Infoskjerm
+    /*
     fun startActivity2(i:Bruker){
         val intent = Intent(this, InfoSkjerm::class.java)
+        intent.putExtra("User", i as Serializable)
+        startActivity(intent)
+    }*/
+
+    //Starter AdminActivity
+    fun startActivity2(i:Bruker){
+        val intent = Intent(this, AdminActivity::class.java)
         intent.putExtra("User", i as Serializable)
         startActivity(intent)
     }

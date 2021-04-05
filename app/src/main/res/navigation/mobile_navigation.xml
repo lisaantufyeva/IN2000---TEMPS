@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation.xml"
+    app:startDestination="@+id/navigation_overview">
+
+
+    <fragment
+        android:id="@+id/navigation_overview"
+        android:name="com.example.team31.ui.overview.OverviewFragment"
+        android:label="@string/title_overview"
+        tools:layout="@layout/overview_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_employees"
+        android:name="com.example.team31.ui.employees.EmployeesFragment"
+        android:label="@string/title_employees"
+        tools:layout="@layout/employees_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.team31.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/settings_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.team31.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/profile_fragment" />
+
+</navigation>

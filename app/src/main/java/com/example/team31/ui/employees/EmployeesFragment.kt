@@ -24,8 +24,8 @@ class EmployeesFragment : Fragment() {
     ): View? {
         employeesViewModel =
             ViewModelProvider(this).get(EmployeesViewModel::class.java)
-        val root = inflater.inflate(R.layout.overview_fragment, container, false)
-        val textView: TextView = root.findViewById(R.id.text_overview)
+        val root = inflater.inflate(R.layout.employees_fragment, container, false)
+        val textView: TextView = root.findViewById(R.id.text_employees)
         employeesViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })

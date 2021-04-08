@@ -4,5 +4,9 @@
     <string name="title_employees">Ansatte</string>
     <string name="title_settings">Instillinger</string>
     <string name="title_profile">Profil</string>
+    <string name="calendar_date">date</string>
+    <string name="degrees">Degrees</string>
+    <string name="weather_icon">weather ikon</string>
+    <string name="date">Date</string>
 
 </resources>

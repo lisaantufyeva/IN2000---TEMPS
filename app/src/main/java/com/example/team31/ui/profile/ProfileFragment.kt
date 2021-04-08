@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.team31.R
+import com.example.team31.databinding.ProfileFragmentBinding
 
 class ProfileFragment : Fragment() {
 
@@ -16,6 +17,8 @@ class ProfileFragment : Fragment() {
     companion object {
         fun newInstance() = OverviewFragment()
     }*/
+
+    //private var _binding: ProfileFragmentBinding? = null
 
     private lateinit var profileViewModel: ProfileViewModel
 
@@ -25,8 +28,8 @@ class ProfileFragment : Fragment() {
     ): View? {
         profileViewModel =
             ViewModelProvider(this).get(ProfileViewModel::class.java)
-        val root = inflater.inflate(R.layout.overview_fragment, container, false)
-        val textView: TextView = root.findViewById(R.id.text_overview)
+        val root = inflater.inflate(R.layout.profile_fragment, container, false)
+        val textView: TextView = root.findViewById(R.id.text_profile)
         profileViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })

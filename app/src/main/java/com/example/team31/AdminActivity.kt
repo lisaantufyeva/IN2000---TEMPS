@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 
 
 class AdminActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin)
@@ -23,6 +24,7 @@ class AdminActivity : AppCompatActivity() {
             R.id.navigation_overview, R.id.navigation_employees, R.id.navigation_settings, R.id.navigation_profile))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
 
     }
 }

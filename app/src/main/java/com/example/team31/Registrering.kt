@@ -18,11 +18,6 @@ class Registrering : AppCompatActivity() {
 
         val knapp = findViewById<Button>(R.id.registrer_knapp)
 
-        //val liste = mutableListOf<Bruker>()
-
-        //val bruker1 = Bruker("1","greg@gmail.com", "passord",null, "Gregor Askjer" )
-        //liste.add(bruker1)
-
         knapp.setOnClickListener {
             val passord1 = findViewById<TextView>(R.id.passord1)
             val passord2 = findViewById<TextView>(R.id.passord2)

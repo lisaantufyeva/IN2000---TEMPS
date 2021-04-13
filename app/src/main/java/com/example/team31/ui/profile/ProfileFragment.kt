@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.team31.R
-import com.example.team31.databinding.ProfileFragmentBinding
+//import com.example.team31.databinding.ProfileFragmentBinding
 
 class ProfileFragment : Fragment() {
 

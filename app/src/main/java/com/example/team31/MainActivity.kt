@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
     //Starter AdminActivity
     fun startActivity2(i:Bruker){
-        val intent = Intent(this, AdminActivity::class.java)
+        val intent = Intent(applicationContext, AdminActivity::class.java)
         intent.putExtra("User", i as Serializable)
         startActivity(intent)
     }

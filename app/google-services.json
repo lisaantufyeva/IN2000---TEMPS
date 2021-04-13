@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "923917012757",
+    "firebase_url": "https://temps-f6497-default-rtdb.firebaseio.com",
+    "project_id": "temps-f6497",
+    "storage_bucket": "temps-f6497.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923917012757:android:9038c35e7502ef8ce5e31c",
+        "android_client_info": {
+          "package_name": "com.example.login2000"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923917012757-a4fjq78n1lvfp7i3a6l7874ps66fmj8h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBo2S4z7uS40F-_8ztCh8OKtsGER0oT1g8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923917012757-a4fjq78n1lvfp7i3a6l7874ps66fmj8h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

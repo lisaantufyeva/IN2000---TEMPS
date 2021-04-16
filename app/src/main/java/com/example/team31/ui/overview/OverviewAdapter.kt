@@ -6,9 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team31.R
-import com.example.team31.data.api.ForecastDto
 
-class OverviewAdapter(val forecastList: MutableList<Forecast>):
+class OverviewAdapter(val forecastList: List<RefinedForecast>):
     RecyclerView.Adapter<OverviewAdapter.OverviewAdapterHolder>() {
 
     class OverviewAdapterHolder(itemView: View): RecyclerView.ViewHolder(itemView){

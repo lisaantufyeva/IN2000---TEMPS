@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.team31.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
@@ -28,7 +27,7 @@ class OverviewFragment : Fragment(), OverviewContract.View {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
 
-    ): View? {
+    ): View {
 
         val root: View = inflater.inflate(R.layout.overview_fragment, container, false)
         presenter = OverviewPresenter(root.context, OverviewModel())
@@ -41,7 +40,7 @@ class OverviewFragment : Fragment(), OverviewContract.View {
         return root
     }
 
-     fun display(root: View, list: MutableList<Forecast>){
+     fun display(root: View, list: List<RefinedForecast>){
         recyclerView = root.findViewById(R.id.recyclerview)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(root.context)

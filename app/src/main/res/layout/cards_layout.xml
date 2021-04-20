@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -24,18 +25,18 @@
 
             <TextView
                 android:id="@+id/date"
-                android:layout_width="313dp"
-                android:layout_height="47dp"
+                android:layout_width="226dp"
+                android:layout_height="43dp"
                 android:text="@string/date"
                 android:textColor="#282F3E"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.078"
+                app:layout_constraintHorizontal_bias="0.044"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.141" />
+                app:layout_constraintVertical_bias="0.085" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -48,22 +49,38 @@
                 app:layout_constraintHorizontal_bias="0.044"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/date"
-                app:layout_constraintVertical_bias="0.304" />
+                app:layout_constraintVertical_bias="0.272" />
 
             <TextView
                 android:id="@+id/temp"
-                android:layout_width="214dp"
-                android:layout_height="37dp"
+                android:layout_width="86dp"
+                android:layout_height="43dp"
                 android:text="@string/degrees"
                 android:textColor="#282F3E"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.194"
+                app:layout_constraintHorizontal_bias="0.065"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.742" />
+                app:layout_constraintVertical_bias="0.717" />
+
+            <Button
+                android:id="@+id/staff_button"
+                android:layout_width="226dp"
+                android:layout_height="45dp"
+                android:backgroundTint="#FCBA5F"
+                android:text="@string/lav_bemanning"
+                android:textColor="#282F3E"
+                android:textSize="15sp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.625"
+                app:layout_constraintStart_toEndOf="@+id/temp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.735" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

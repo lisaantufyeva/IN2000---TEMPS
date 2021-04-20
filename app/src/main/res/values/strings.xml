@@ -8,5 +8,6 @@
     <string name="degrees">Degrees</string>
     <string name="weather_icon">weather ikon</string>
     <string name="date">Date</string>
+    <string name="lav_bemanning">Lav bemanning</string>
 
 </resources>

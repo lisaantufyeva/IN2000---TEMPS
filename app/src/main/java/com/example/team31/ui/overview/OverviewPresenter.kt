@@ -2,14 +2,20 @@ package com.example.team31.ui.overview
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.Network
+import android.net.NetworkInfo
 import android.util.Log
 import com.example.team31.data.api.ForecastDto
 import com.example.team31.data.api.LocationForecastApi
 import kotlinx.coroutines.*
+import okhttp3.Cache
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 import kotlin.coroutines.CoroutineContext
 
 class OverviewPresenter(
@@ -31,6 +37,7 @@ class OverviewPresenter(
 
     suspend fun getForecastList(): List<RefinedForecast> {
         var forecastList: List<RefinedForecast>
+
         val retrofit = Retrofit.Builder()
             .baseUrl("https://in2000-apiproxy.ifi.uio.no/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -56,6 +63,8 @@ class OverviewPresenter(
     job.cancel()
     }*/
 }
+
+//returns a list of Forecast objects with refined date format
 fun createForecast(result: ForecastDto): List<RefinedForecast>{
     val list = mutableListOf<Forecast>()
     for (i in result.properties.timeseries){
@@ -85,7 +94,7 @@ fun filterForecastList(list: MutableList<Forecast>):List<Forecast>{
 // takes in time:Date object and returns date:String
 fun formatDate(time:Date): String {
     val parser = SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy")
-    val formatter = SimpleDateFormat("EEEE dd. MMMM")
+    val formatter = SimpleDateFormat("EEEE dd. MMMM", Locale("no", "NO"))
 
     return formatter.format(parser.parse(time.toString()))
 }
@@ -97,7 +106,48 @@ fun parseDate(time: String): Date {
     return parser.parse(time)
 }
 
+fun checkLowStaffing(forecast: RefinedForecast, max: Double):Boolean{
+    println("check low staffing:" +  forecast.temp.toDouble())
+    return (forecast.temp.toDouble() >= max)
+}
 
 data class Forecast(val time: Date, val temp: String, val symbol: String?)
 
 data class RefinedForecast(val time: String, val temp: String, val symbol: String?)
+
+/*
+fun hasNetwork(context: Context):Boolean?{
+    var isConnected:Boolean? = false
+    val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val activeNetwork:NetworkInfo? = connectivityManager.activeNetworkInfo
+    if(activeNetwork != null && activeNetwork.isConnected)
+        isConnected = true
+    return isConnected
+}*/
+
+/*
+
+
+
+      val cacheSize = (5*1024*1024).toLong()
+      val myCache = Cache(overviewView?.cacheDir, cacheSize)
+
+      val okHttpClient = OkHttpClient.Builder()
+              .callTimeout(60, TimeUnit.MINUTES)
+              .build()
+
+
+              .cache(myCache)
+              .addInterceptor{chain->
+                  var request = chain.request()
+                  request = if (overviewView?.let { hasNetwork(it) }!!)
+                      request.newBuilder().header("Cache-Control", "public, max-age =" + 60*60).build()
+                  else
+                      request.newBuilder().header("Cache-Control", "public, only-if-cached, max-stale =" + 60*60*24*7).build()
+                  chain.proceed(request)
+
+              }
+              .build()*/
+
+
+

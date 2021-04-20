@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -35,6 +36,7 @@ class OverviewFragment : Fragment(), OverviewContract.View {
         CoroutineScope(Dispatchers.Main).launch {
             val response = presenter.getForecastList()
             display(root, response)
+
         }
 
         return root
@@ -44,7 +46,7 @@ class OverviewFragment : Fragment(), OverviewContract.View {
         recyclerView = root.findViewById(R.id.recyclerview)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(root.context)
-        recyclerView.adapter = OverviewAdapter(list)
+        recyclerView.adapter = OverviewAdapter(list, root.context)
     }
 
 

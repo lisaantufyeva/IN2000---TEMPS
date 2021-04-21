@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:paddingBottom="56dp"
-    tools:context=".ui.overview.OverviewFragment">
+    tools:context=".ui.overview.week_overview.OverviewFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"

@@ -1,4 +1,4 @@
-package com.example.team31.ui.overview
+package com.example.team31.ui.overview.week_overview
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 
@@ -40,10 +41,13 @@ class OverviewAdapter(val forecastList: List<RefinedForecast>, val context: Cont
         val drawable = context.resources.getDrawable(iconId)
         holder.icon.setImageDrawable(drawable)
 
-        if (checkLowStaffing(forecastList[position], 15.0)){
+        if (checkLowStaffing(forecastList[position], 10.0)){
             holder.staffButton.isVisible = true
         }
+        holder.staffButton.setOnClickListener {
+            Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show()
 
+        }
 
     }
     override fun getItemCount() = forecastList.size

@@ -1,6 +1,5 @@
-package com.example.team31.ui.overview
+package com.example.team31.ui.overview.week_overview
 
-import android.os.Handler
 import java.util.*
 
 class OverviewModel: OverviewContract.Model {

@@ -1,21 +1,15 @@
-package com.example.team31.ui.overview
+package com.example.team31.ui.overview.week_overview
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.Network
-import android.net.NetworkInfo
 import android.util.Log
 import com.example.team31.data.api.ForecastDto
 import com.example.team31.data.api.LocationForecastApi
 import kotlinx.coroutines.*
-import okhttp3.Cache
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.TimeUnit
 import kotlin.coroutines.CoroutineContext
 
 class OverviewPresenter(
@@ -74,7 +68,7 @@ fun createForecast(result: ForecastDto): List<RefinedForecast>{
         val forecast = Forecast(time, temp.toString(), symbol)
         list.addAll(listOf(forecast))
     }
-    return filterForecastList(list).map { forecast ->  RefinedForecast(formatDate(forecast.time), forecast.temp, forecast.symbol)}
+    return filterForecastList(list).map { forecast ->  RefinedForecast(formatDate(forecast.time), forecast.temp, forecast.symbol) }
 }
 
 

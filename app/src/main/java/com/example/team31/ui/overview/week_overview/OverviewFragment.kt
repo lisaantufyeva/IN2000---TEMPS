@@ -1,11 +1,11 @@
-package com.example.team31.ui.overview
+package com.example.team31.ui.overview.week_overview
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -35,19 +35,21 @@ class OverviewFragment : Fragment(), OverviewContract.View {
 
         CoroutineScope(Dispatchers.Main).launch {
             val response = presenter.getForecastList()
-            display(root, response)
+            displayWeatherList(root, response)
 
         }
 
         return root
     }
 
-     fun display(root: View, list: List<RefinedForecast>){
+     fun displayWeatherList(root: View, list: List<RefinedForecast>){
         recyclerView = root.findViewById(R.id.recyclerview)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(root.context)
         recyclerView.adapter = OverviewAdapter(list, root.context)
     }
+
+
 
 
     override fun onDestroy() {

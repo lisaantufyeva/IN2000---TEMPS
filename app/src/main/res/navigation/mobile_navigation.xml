@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/navigation_overview"
-        android:name="com.example.team31.ui.overview.OverviewFragment"
+        android:name="com.example.team31.ui.overview.week_overview.OverviewFragment"
         android:label="@string/title_overview"
         tools:layout="@layout/overview_fragment" />
 
@@ -29,5 +29,10 @@
         android:name="com.example.team31.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/profile_fragment" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.team31.ui.overview.detail.DetailFragment"
+        android:label="detail_fragment"
+        tools:layout="@layout/detail_fragment" />
 
 </navigation>

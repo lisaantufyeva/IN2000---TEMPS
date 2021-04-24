@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'com.google.gms.google-services'
+    id 'com.google.secrets_gradle_plugin' version '0.5'
 }
 
 android {
@@ -64,7 +65,11 @@ dependencies {
 
     //Glide-bilde
     implementation 'com.github.bumptech.glide:glide:4.12.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    //Google maps searchbar
+
+    implementation 'com.google.android.libraries.places:places:2.4.0'
+
 
     implementation 'com.google.code.gson:gson:2.8.6'
 

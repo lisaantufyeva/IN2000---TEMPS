@@ -11,9 +11,14 @@ import androidx.navigation.ui.setupWithNavController
 
 class AdminActivity : AppCompatActivity() {
 
+    private lateinit var user :Bruker
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin)
+
+        user = intent.extras!!.get("User") as Bruker
+
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
@@ -30,5 +35,9 @@ class AdminActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp()
+    }
+
+    fun getUser(): Bruker{
+        return user
     }
 }

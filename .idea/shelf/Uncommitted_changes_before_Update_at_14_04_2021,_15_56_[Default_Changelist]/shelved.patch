@@ -1,0 +1,63 @@
+Index: app/src/main/java/com/example/team31/ui/profile/ProfileViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.team31.ui.profile\n\nimport androidx.lifecycle.LiveData\nimport androidx.lifecycle.MutableLiveData\nimport androidx.lifecycle.ViewModel\n\nclass ProfileViewModel : ViewModel() {\n    private val _text = MutableLiveData<String>().apply {\n        value = \"Profile fragment\"\n    }\n\n    val text: LiveData<String> = _text\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/team31/ui/profile/ProfileViewModel.kt	(revision 49855edd0a4833e8fab85fc9888a89b25a072ffe)
++++ app/src/main/java/com/example/team31/ui/profile/ProfileViewModel.kt	(date 1618408500000)
+@@ -3,11 +3,16 @@
+ import androidx.lifecycle.LiveData
+ import androidx.lifecycle.MutableLiveData
+ import androidx.lifecycle.ViewModel
++import com.example.team31.Bruker
+ 
+ class ProfileViewModel : ViewModel() {
+     private val _text = MutableLiveData<String>().apply {
+         value = "Profile fragment"
+     }
++    //private val user = MutableLiveData<Bruker>()
++
++
++
+ 
+     val text: LiveData<String> = _text
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/team31/ui/profile/ProfileFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.team31.ui.profile\n\nimport androidx.lifecycle.ViewModelProvider\nimport android.os.Bundle\nimport androidx.lifecycle.Observer\nimport androidx.fragment.app.Fragment\nimport android.view.LayoutInflater\nimport android.view.View\nimport android.view.ViewGroup\nimport android.widget.TextView\nimport com.example.team31.R\nimport com.example.team31.databinding.ProfileFragmentBinding\n\nclass ProfileFragment : Fragment() {\n\n    /*\n    companion object {\n        fun newInstance() = OverviewFragment()\n    }*/\n\n    //private var _binding: ProfileFragmentBinding? = null\n\n    private lateinit var profileViewModel: ProfileViewModel\n\n    override fun onCreateView(\n        inflater: LayoutInflater, container: ViewGroup?,\n        savedInstanceState: Bundle?\n    ): View? {\n        profileViewModel =\n            ViewModelProvider(this).get(ProfileViewModel::class.java)\n        val root = inflater.inflate(R.layout.profile_fragment, container, false)\n        val textView: TextView = root.findViewById(R.id.text_profile)\n        profileViewModel.text.observe(viewLifecycleOwner, Observer {\n            textView.text = it\n        })\n        return root\n    }\n    /*\n    override fun onActivityCreated(savedInstanceState: Bundle?) {\n        super.onActivityCreated(savedInstanceState)\n        viewModel = ViewModelProvider(this).get(OverviewViewModel::class.java)\n\n    }*/\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/team31/ui/profile/ProfileFragment.kt	(revision 49855edd0a4833e8fab85fc9888a89b25a072ffe)
++++ app/src/main/java/com/example/team31/ui/profile/ProfileFragment.kt	(date 1618406967000)
+@@ -8,6 +8,7 @@
+ import android.view.View
+ import android.view.ViewGroup
+ import android.widget.TextView
++import com.example.team31.Bruker
+ import com.example.team31.R
+ import com.example.team31.databinding.ProfileFragmentBinding
+ 
+Index: app/src/main/java/com/example/team31/AdminActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.team31\n\nimport androidx.appcompat.app.AppCompatActivity\nimport android.os.Bundle\nimport androidx.navigation.findNavController\nimport com.google.android.material.bottomnavigation.BottomNavigationView\nimport androidx.navigation.ui.AppBarConfiguration\nimport androidx.navigation.ui.setupActionBarWithNavController\nimport androidx.navigation.ui.setupWithNavController\n\n\nclass AdminActivity : AppCompatActivity() {\n\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        setContentView(R.layout.activity_admin)\n\n        val navView: BottomNavigationView = findViewById(R.id.nav_view)\n\n        val navController = findNavController(R.id.nav_host_fragment)\n        // Passing each menu ID as a set of Ids because each\n        // menu should be considered as top level destinations.\n        val appBarConfiguration = AppBarConfiguration(setOf(\n            R.id.navigation_overview, R.id.navigation_employees, R.id.navigation_settings, R.id.navigation_profile))\n        setupActionBarWithNavController(navController, appBarConfiguration)\n        navView.setupWithNavController(navController)\n\n\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/team31/AdminActivity.kt	(revision 49855edd0a4833e8fab85fc9888a89b25a072ffe)
++++ app/src/main/java/com/example/team31/AdminActivity.kt	(date 1618408500000)
+@@ -15,6 +15,9 @@
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_admin)
+ 
++        val bruker1 = intent.extras!!.get("User") as Bruker
++
++
+         val navView: BottomNavigationView = findViewById(R.id.nav_view)
+ 
+         val navController = findNavController(R.id.nav_host_fragment)

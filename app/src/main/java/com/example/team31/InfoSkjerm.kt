@@ -20,4 +20,5 @@ class InfoSkjerm : AppCompatActivity() {
         val bilde = findViewById<CircleImageView>(R.id.image)
         with(this).load(bruker1.bilde).into(bilde)
     }
+
 }

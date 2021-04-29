@@ -78,7 +78,7 @@
         android:id="@+id/registrer_knapp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@+id/name"
+        android:layout_below="@+id/autocomplete_fragment"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -87,6 +87,14 @@
         android:textSize="20dp"
         android:textAllCaps="false"
         android:backgroundTint="#72bcd4" />
+
+
+    <fragment android:id="@+id/autocomplete_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+        android:layout_below="@+id/name"
+        />
 
 
 </RelativeLayout>

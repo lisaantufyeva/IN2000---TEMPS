@@ -105,9 +105,7 @@ fun checkLowStaffing(forecast: RefinedForecast, max: Double):Boolean{
     return (forecast.temp.toDouble() >= max)
 }
 
-data class Forecast(val time: Date, val temp: String, val symbol: String?)
 
-data class RefinedForecast(val time: String, val temp: String, val symbol: String?)
 
 /*
 fun hasNetwork(context: Context):Boolean?{

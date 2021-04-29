@@ -10,7 +10,11 @@
         android:id="@+id/navigation_overview"
         android:name="com.example.team31.ui.overview.week_overview.OverviewFragment"
         android:label="@string/title_overview"
-        tools:layout="@layout/overview_fragment" />
+        tools:layout="@layout/overview_fragment" >
+        <action
+            android:id="@+id/actionDetail"
+            app:destination="@id/detailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_employees"
@@ -33,6 +37,10 @@
         android:id="@+id/detailFragment"
         android:name="com.example.team31.ui.overview.detail.DetailFragment"
         android:label="detail_fragment"
-        tools:layout="@layout/detail_fragment" />
+        tools:layout="@layout/detail_fragment" >
+        <argument
+            android:name="RefinedForecast"
+            app:argType="com.example.team31.ui.overview.week_overview.RefinedForecast" />
+    </fragment>
 
 </navigation>

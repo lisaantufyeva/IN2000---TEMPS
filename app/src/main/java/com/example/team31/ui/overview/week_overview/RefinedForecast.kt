@@ -2,16 +2,19 @@ package com.example.team31.ui.overview.week_overview
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.example.team31.data.api.Precipitation
 import java.util.*
 
 
-data class Forecast(val time: Date, val temp: String, val symbol: String?)
+data class Forecast(val time: Date, val temp: String, val symbol: String?, val precipitation: String?)
 
-data class RefinedForecast(val time: String, val temp: String, val symbol: String?): Parcelable {
+data class RefinedForecast(val time: String, val temp: String, val symbol: String?, val precipitation: String?): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
+        parcel.readString(),
         parcel.readString()
+
     ) {
     }
 
@@ -19,6 +22,7 @@ data class RefinedForecast(val time: String, val temp: String, val symbol: Strin
         parcel.writeString(time)
         parcel.writeString(temp)
         parcel.writeString(symbol)
+        parcel.writeString(precipitation)
     }
 
     override fun describeContents(): Int {

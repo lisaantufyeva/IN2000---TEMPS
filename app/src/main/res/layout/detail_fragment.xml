@@ -7,6 +7,7 @@
     tools:context=".ui.overview.detail.DetailFragment">
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Hello" />
@@ -63,5 +64,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/precipitation"
+        android:layout_width="172dp"
+        android:layout_height="35dp"
+        android:text="Nedbør"
+        app:layout_constraintBottom_toTopOf="@+id/sendMessageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.687" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

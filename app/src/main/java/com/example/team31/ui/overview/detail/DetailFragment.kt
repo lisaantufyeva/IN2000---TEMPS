@@ -47,6 +47,10 @@ class DetailFragment : Fragment() {
         val currentDegrees = args.RefinedForecast.temp
         degrees.text = currentDegrees
 
+        val precipitation: TextView = view.findViewById(R.id.precipitation)
+        val currentP = args.RefinedForecast.precipitation
+        precipitation.text = currentP
+
         //icon
 
         val image: ImageView = view.findViewById(R.id.imageView)

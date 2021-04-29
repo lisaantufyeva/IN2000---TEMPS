@@ -65,10 +65,11 @@ fun createForecast(result: ForecastDto): List<RefinedForecast>{
         val time = parseDate(i.time)
         val temp = i.data.instant?.details?.air_temperature
         val symbol = i.data.next_6_hours?.summary?.symbol_code
-        val forecast = Forecast(time, temp.toString(), symbol)
+        val precipitation = i.data.next_6_hours?.details?.precipitation_amount
+        val forecast = Forecast(time, temp.toString(), symbol, precipitation.toString())
         list.addAll(listOf(forecast))
     }
-    return filterForecastList(list).map { forecast ->  RefinedForecast(formatDate(forecast.time), forecast.temp, forecast.symbol) }
+    return filterForecastList(list).map { forecast ->  RefinedForecast(formatDate(forecast.time), forecast.temp, forecast.symbol, forecast.precipitation) }
 }
 
 

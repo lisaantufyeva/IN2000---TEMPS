@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.coroutines.CoroutineContext
-
+/*
 class OverviewPresenter(
         private var overviewView: Context?,
         private var model: OverviewContract.Model): OverviewContract.Presenter<Any?>, CoroutineScope,
@@ -36,7 +36,6 @@ class OverviewPresenter(
             .baseUrl("https://in2000-apiproxy.ifi.uio.no/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        println("test 1")
 
         val service: LocationForecastApi = retrofit.create(LocationForecastApi::class.java)
 
@@ -44,7 +43,6 @@ class OverviewPresenter(
             val result = service.fetchLocationForecast("59.9","10.75")
             Log.d("result", "$result")
             forecastList = (createForecast(result))
-            println(forecastList)
             }
         return forecastList
         }
@@ -52,12 +50,13 @@ class OverviewPresenter(
     override fun onFinished(string: String?) {
         TODO("Not yet implemented")
     }
-    /*
+
     override fun cleanup() {
     job.cancel()
-    }*/
-}
+    }
+}*/
 
+/*
 //returns a list of Forecast objects with refined date format
 fun createForecast(result: ForecastDto): List<RefinedForecast>{
     val list = mutableListOf<Forecast>()
@@ -71,7 +70,8 @@ fun createForecast(result: ForecastDto): List<RefinedForecast>{
     }
     return filterForecastList(list).map { forecast ->  RefinedForecast(formatDate(forecast.time), forecast.temp, forecast.symbol, forecast.precipitation) }
 }
-
+*/
+/*
 
 //returns a list of Forecast objects
 
@@ -105,7 +105,7 @@ fun checkLowStaffing(forecast: RefinedForecast, max: Double):Boolean{
     println("check low staffing:" +  forecast.temp.toDouble())
     return (forecast.temp.toDouble() >= max)
 }
-
+*/
 
 
 /*

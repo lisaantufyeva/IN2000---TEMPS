@@ -18,12 +18,10 @@ import com.example.team31.ui.overview.week_overview.RefinedForecast
 
 class DetailFragment : Fragment() {
 
-
     companion object {
         fun newInstance() = DetailFragment()
     }
 
-    private val viewModel: DetailViewModel by viewModels()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -32,10 +30,11 @@ class DetailFragment : Fragment() {
         return inflater.inflate(R.layout.detail_fragment, container, false)
     }
 
-    val args:DetailFragmentArgs by navArgs()
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val args:DetailFragmentArgs by navArgs()
 
         //date
         val date: TextView = view.findViewById(R.id.date)

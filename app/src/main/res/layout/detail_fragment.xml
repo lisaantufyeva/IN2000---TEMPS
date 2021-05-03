@@ -7,12 +7,6 @@
     tools:context=".ui.overview.detail.DetailFragment">
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
-
-    <TextView
         android:id="@+id/date"
         android:layout_width="226dp"
         android:layout_height="43dp"
@@ -22,10 +16,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintVertical_bias="0.023" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -38,22 +32,22 @@
         app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date"
-        app:layout_constraintVertical_bias="0.039" />
+        app:layout_constraintVertical_bias="0.017" />
 
     <TextView
         android:id="@+id/temp"
-        android:layout_width="86dp"
-        android:layout_height="43dp"
+        android:layout_width="87dp"
+        android:layout_height="34dp"
         android:text="@string/degrees"
         android:textColor="#282F3E"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.258"
+        app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintVertical_bias="0.111" />
 
     <Button
         android:id="@+id/sendMessageButton"
@@ -67,14 +61,27 @@
 
     <TextView
         android:id="@+id/precipitation"
-        android:layout_width="172dp"
-        android:layout_height="35dp"
-        android:text="Nedbør"
+        android:layout_width="85dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="32dp"
+        android:text="tall"
         app:layout_constraintBottom_toTopOf="@+id/sendMessageButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintHorizontal_bias="0.279"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.687" />
+        app:layout_constraintTop_toBottomOf="@+id/temp"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="58dp"
+        android:layout_height="32dp"
+        android:text="Nedbør"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/precipitation"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.046" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,6 +21,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /*
+        val knapp = findViewById<Button>(R.id.loginn_knapp)
+        knapp.setOnClickListener {
+            val intent = Intent(this, AdminActivity::class.java)
+            startActivity(intent)
+        }*/
         val knapp = findViewById<Button>(R.id.loginn_knapp)
         val registrerKnapp = findViewById<Button>(R.id.registrer_knapp)
 
@@ -31,16 +37,16 @@ class MainActivity : AppCompatActivity() {
 
         val brukere = mutableListOf<Bruker>()
         //brukere.add(bruker1)
-       // brukere.add(bruker2)
-       //brukere.add(bruker3)
+        // brukere.add(bruker2)
+        //brukere.add(bruker3)
         //brukere.add(bruker4)
         val ref = FirebaseDatabase.getInstance().getReference("Users")
 
         // Henter brukere fra firebase
         val UserListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if(dataSnapshot.exists()){
-                    for(i in dataSnapshot.children){
+                if (dataSnapshot.exists()) {
+                    for (i in dataSnapshot.children) {
                         val user = i.getValue(Bruker::class.java)
                         brukere.add(user!!)
                     }
@@ -55,14 +61,13 @@ class MainActivity : AppCompatActivity() {
         ref.addValueEventListener(UserListener)
 
 
-
         val email = findViewById<TextView>(R.id.email)
         val passord = findViewById<TextView>(R.id.passord)
 
         knapp.setOnClickListener {
             val email_svar = email.text.toString()
             val passord_svar = passord.text.toString()
-            if (email_svar.isBlank() || passord_svar.isBlank() ){
+            if (email_svar.isBlank() || passord_svar.isBlank()) {
                 Toast.makeText(this, "Ugyldig input!", Toast.LENGTH_SHORT).show()
                 hideKeyboard()
                 return@setOnClickListener
@@ -73,16 +78,14 @@ class MainActivity : AppCompatActivity() {
             if (user != null) {
                 //Toast.makeText(this@MainActivity, user.navn, Toast.LENGTH_SHORT).show()
 
-                if (passord_svar == user.passord){
+                if (passord_svar == user.passord) {
                     startActivity2(user)
-                }
-                else {
+                } else {
                     email.text = ""
                     passord.text = ""
                     Toast.makeText(this, "Feil passord", Toast.LENGTH_SHORT).show()
                 }
-            }
-            else {
+            } else {
                 Toast.makeText(this, "Du er ikke registrert hos oss. Registrer deg nå!", Toast.LENGTH_LONG).show()
             }
             hideKeyboard()
@@ -93,33 +96,43 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    // starter Infoskjerm
+// starter Infoskjerm
     /*
-    fun startActivity2(i:Bruker){
+    fun startActivity2(i: Bruker) {
         val intent = Intent(this, InfoSkjerm::class.java)
         intent.putExtra("User", i as Serializable)
         startActivity(intent)
     }*/
 
     //Starter AdminActivity
-    fun startActivity2(i:Bruker){
+
+    fun startActivity1() {
+        val intent = Intent(this, AdminActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun startActivity2(i: Bruker) {
         val intent = Intent(applicationContext, AdminActivity::class.java)
         intent.putExtra("User", i as Serializable)
         startActivity(intent)
     }
 
-    fun startActivity3(){
+    fun startActivity3() {
         val intent = Intent(this, Registrering::class.java)
         startActivity(intent)
     }
 
     fun hideKeyboard() {
         val view = this.currentFocus
-        if (view != null){
+        if (view != null) {
             val hideMe = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            hideMe.hideSoftInputFromWindow(view.windowToken,0)
+            hideMe.hideSoftInputFromWindow(view.windowToken, 0)
 
 
         }
     }
 }
+
+
+
+

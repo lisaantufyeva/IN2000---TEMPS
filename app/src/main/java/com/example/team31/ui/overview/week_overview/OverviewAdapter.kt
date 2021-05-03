@@ -1,7 +1,6 @@
 package com.example.team31.ui.overview.week_overview
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +14,10 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.team31.R
-import com.example.team31.ui.overview.detail.DetailFragment
 
 
-class OverviewAdapter(val forecastList: List<RefinedForecast>, val context: Context):
+
+class OverviewAdapter(private val forecastList: List<RefinedForecast>, val context: Context):
     RecyclerView.Adapter<OverviewAdapter.OverviewAdapterHolder>() {
 
     class OverviewAdapterHolder(itemView: View): RecyclerView.ViewHolder(itemView){

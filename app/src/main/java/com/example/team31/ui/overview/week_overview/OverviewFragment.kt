@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.team31.AdminActivity
+import com.example.team31.Bruker
 
 import com.example.team31.R
 import com.example.team31.ui.overview.detail.DetailFragment
@@ -25,7 +27,7 @@ class OverviewFragment : Fragment(), OverviewContract.View {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
-
+    private lateinit var user: Bruker
 
 
 
@@ -35,23 +37,26 @@ class OverviewFragment : Fragment(), OverviewContract.View {
 
     ): View {
 
+
+
         val root: View = inflater.inflate(R.layout.overview_fragment, container, false)
         presenter = OverviewPresenter(root.context, OverviewModel())
 
+
         CoroutineScope(Dispatchers.Main).launch {
             val response = presenter.getForecastList()
-            displayWeatherList(root, response)
+            user = (activity as AdminActivity?)!!.getUser()
+            displayWeatherList(root, response, user)
 
         }
         return root
     }
 
-
-     fun displayWeatherList(root: View, list: List<RefinedForecast>){
+     fun displayWeatherList(root: View, list: List<RefinedForecast>, user:Bruker){
         recyclerView = root.findViewById(R.id.recyclerview)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(root.context)
-        recyclerView.adapter = OverviewAdapter(list, root.context)
+        recyclerView.adapter = OverviewAdapter(list, root.context, user)
 
     }
 

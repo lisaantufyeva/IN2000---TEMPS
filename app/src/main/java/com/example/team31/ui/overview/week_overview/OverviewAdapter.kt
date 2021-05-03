@@ -1,7 +1,7 @@
 package com.example.team31.ui.overview.week_overview
 
+import android.app.ActivityManager
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,16 +10,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
-
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-
+import com.example.team31.AdminActivity
+import com.example.team31.Bruker
 import com.example.team31.R
-import com.example.team31.ui.overview.detail.DetailFragment
 
 
-class OverviewAdapter(val forecastList: List<RefinedForecast>, val context: Context):
+class OverviewAdapter(val forecastList: List<RefinedForecast>, val context: Context, bruker: Bruker):
     RecyclerView.Adapter<OverviewAdapter.OverviewAdapterHolder>() {
+
+    val user = bruker
 
     class OverviewAdapterHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val date: TextView = itemView.findViewById(R.id.date)
@@ -45,6 +46,8 @@ class OverviewAdapter(val forecastList: List<RefinedForecast>, val context: Cont
         val iconId = context.resources.getIdentifier(uri, "drawable", context.packageName)
         val drawable = context.resources.getDrawable(iconId)
         holder.icon.setImageDrawable(drawable)
+
+
 
         if (checkLowStaffing(forecastList[position], 10.0)){
             holder.staffButton.isVisible = true

@@ -47,9 +47,23 @@ class ProfileFragment : Fragment() {
         val mail: TextView = root.findViewById(R.id.mail)
         mail.text = "Mail: " + user.email
 
+        val normal = root.findViewById<TextView>(R.id.normal_bemanning)
+        normal.text = "Normal bemanning: " + user.normalBemanning
+
+        val max = root.findViewById<TextView>(R.id.max_bemanning)
+        max.text = "Maksimal bemanning: " + user.maxBemanning
+
+        val trigger = root.findViewById<TextView>(R.id.trigger)
+        trigger.text = "Temperatur under: " + user.triggerTemp
+
+        val aapning = root.findViewById<TextView>(R.id.aapning)
+        aapning.text = "Åpningstider: fra " + user.aapenFra + " til " + user.aapenTil
+
+        /*
         val bilde  = root.findViewById<CircleImageView>(R.id.image)
         Glide.with(this).load(user.bilde).into(bilde)
 
+         */
         //val textView: TextView = root.findViewById(R.id.text_profile)
         //profileViewModel.text.observe(viewLifecycleOwner, Observer {
           //  textView.text = it

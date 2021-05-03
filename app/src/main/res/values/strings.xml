@@ -9,5 +9,7 @@
     <string name="weather_icon">weather ikon</string>
     <string name="date">Date</string>
     <string name="lav_bemanning">Lav bemanning</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

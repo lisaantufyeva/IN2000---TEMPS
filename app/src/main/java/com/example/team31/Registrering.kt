@@ -16,7 +16,7 @@ import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.firebase.database.FirebaseDatabase
-
+/*
 class Registrering : AppCompatActivity() {
 
     lateinit var stedNavn: String
@@ -130,4 +130,4 @@ class Registrering : AppCompatActivity() {
         }
 
     }
-}
+}*/

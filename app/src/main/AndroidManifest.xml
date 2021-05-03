@@ -25,6 +25,7 @@
 
         <activity android:name=".Registrering"></activity>
         <activity android:name=".AdminActivity" />
+        <activity android:name=".Authentication"></activity>
         <activity android:name=".InfoSkjerm" />
         <activity android:name=".MainActivity">
             <intent-filter>

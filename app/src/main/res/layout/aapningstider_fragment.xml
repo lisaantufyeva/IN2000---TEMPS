@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".authentication.location_fragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Registrer åpningstider" />
+
+
+    <TextView
+        android:id="@+id/fra_tid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Fra:"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        android:layout_marginTop="100dp"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fra_tid"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="-554dp"
+        android:layout_marginRight="20dp"
+        android:autofillHints="Start"
+        android:drawablePadding="10dp"
+        android:inputType="number"
+        android:paddingBottom="20dp" />
+
+    <TextView
+        android:id="@+id/til_tid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/start"
+        android:layout_marginTop="21dp"
+        android:text="Til:"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/slutt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/til_tid"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="-450dp"
+        android:layout_marginRight="20dp"
+        android:autofillHints="Slutt"
+        android:drawablePadding="10dp"
+        android:paddingBottom="20dp"
+        android:inputType = "number"/>
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@+id/slutt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="#666666"
+        android:text="Fullfør"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
+
+</RelativeLayout>

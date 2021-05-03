@@ -21,6 +21,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        startActivityLogin()
+
+        /*
+
         val knapp = findViewById<Button>(R.id.loginn_knapp)
         val registrerKnapp = findViewById<Button>(R.id.registrer_knapp)
 
@@ -54,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         }
         ref.addValueEventListener(UserListener)
 
-
+        //val ansatt1 = Ansatt(null, "gregor@gmail.com","t", "Gregor Askjer", "Kokk")
 
         val email = findViewById<TextView>(R.id.email)
         val passord = findViewById<TextView>(R.id.passord)
@@ -90,9 +94,13 @@ class MainActivity : AppCompatActivity() {
 
         registrerKnapp.setOnClickListener {
             startActivity3()
-        }
+            //leggTilAnsatt(brukere[0], ansatt1)
+        }*/
 
     }
+
+
+
     // starter Infoskjerm
     /*
     fun startActivity2(i:Bruker){
@@ -108,11 +116,25 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun startActivity3(){
-        val intent = Intent(this, Registrering::class.java)
+    fun startActivityLogin(){
+        val intent = Intent(this, Authentication::class.java)
         startActivity(intent)
     }
 
+
+    /*
+    fun leggTilAnsatt(admin:Bruker, ansatt: Ansatt){
+        val refAnsatt = FirebaseDatabase.getInstance().getReference("Ansatte").child(admin.id)
+
+        val ansattId = refAnsatt.push().key
+        refAnsatt.child(ansattId!!).setValue(ansatt).addOnCompleteListener {
+            Toast.makeText(this, "Ansatt registrert", Toast.LENGTH_SHORT).show()
+        }
+
+
+
+    }
+*/
     fun hideKeyboard() {
         val view = this.currentFocus
         if (view != null){

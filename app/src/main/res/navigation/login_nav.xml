@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_nav"
+    app:startDestination="@id/login_fragment">
+
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="com.example.team31.authentication.login_fragment"
+        android:label="fragment_login_fragment"
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/action_login_fragment_to_registration_name_fragment"
+            app:destination="@id/registration_name_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registration_name_fragment"
+        android:name="com.example.team31.authentication.registration_name_fragment"
+        android:label="fragment_registration_name_fragment"
+        tools:layout="@layout/registration_name_fragment" >
+        <action
+            android:id="@+id/action_registration_name_fragment_to_location_fragment"
+            app:destination="@id/location_fragment" />
+        <argument
+            android:name="user"
+            app:argType="com.example.team31.Bruker" />
+    </fragment>
+    <fragment
+        android:id="@+id/location_fragment"
+        android:name="com.example.team31.authentication.location_fragment"
+        android:label="fragment_location_fragment"
+        tools:layout="@layout/location_fragment" >
+        <action
+            android:id="@+id/action_location_fragment_to_bemanning_fragment"
+            app:destination="@id/bemanning_fragment" />
+        <argument
+            android:name="user"
+            app:argType="com.example.team31.Bruker" />
+    </fragment>
+    <fragment
+        android:id="@+id/bemanning_fragment"
+        android:name="com.example.team31.authentication.bemanning_fragment"
+        android:label="bemanning_fragment"
+        tools:layout="@layout/bemanning_fragment" >
+        <action
+            android:id="@+id/action_bemanning_fragment_to_weather_registration_fragment"
+            app:destination="@id/weather_registration_fragment" />
+        <argument
+            android:name="user"
+            app:argType="com.example.team31.Bruker" />
+    </fragment>
+    <fragment
+        android:id="@+id/weather_registration_fragment"
+        android:name="com.example.team31.authentication.weather_registration_fragment"
+        android:label="weather_registration_fragment"
+        tools:layout="@layout/weather_registration_fragment" >
+        <action
+            android:id="@+id/action_weather_registration_fragment_to_aapningstider_fragment"
+            app:destination="@id/aapningstider_fragment" />
+        <argument
+            android:name="user"
+            app:argType="com.example.team31.Bruker" />
+    </fragment>
+    <fragment
+        android:id="@+id/aapningstider_fragment"
+        android:name="com.example.team31.authentication.aapningstider_fragment"
+        android:label="aapningstider_fragment"
+        tools:layout="@layout/aapningstider_fragment" >
+        <action
+            android:id="@+id/action_aapningstider_fragment_to_login_fragment"
+            app:destination="@id/login_fragment" />
+        <argument
+            android:name="user"
+            app:argType="com.example.team31.Bruker" />
+    </fragment>
+</navigation>

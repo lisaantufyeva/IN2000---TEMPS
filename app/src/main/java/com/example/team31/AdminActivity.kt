@@ -17,7 +17,7 @@ class AdminActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin)
 
-        //user = intent.extras!!.get("User") as Bruker
+        user = intent.extras!!.get("User") as Bruker
 
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)

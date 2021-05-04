@@ -2,7 +2,6 @@ package com.example.team31.ui.overview.week_overview
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.example.team31.data.api.Precipitation
 import java.util.*
 
 

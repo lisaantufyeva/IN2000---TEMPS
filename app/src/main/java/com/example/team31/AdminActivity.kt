@@ -31,6 +31,7 @@ class AdminActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
 
+
     }
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)

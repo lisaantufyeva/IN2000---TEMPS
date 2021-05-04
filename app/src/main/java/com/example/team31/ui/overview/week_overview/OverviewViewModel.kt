@@ -19,7 +19,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.coroutines.CoroutineContext
 
-class OverviewViewModel: ViewModel() {
+class OverviewViewModel(
+        private val repository: ForecastRepository): ViewModel() {
 
     //private var job = Job()
      //val coroutineContext: CoroutineContext = job + Dispatchers.Main
@@ -28,33 +29,34 @@ class OverviewViewModel: ViewModel() {
     val forecastList: LiveData<List<RefinedForecast>>
     get() = _forecastListModelLiveData
 
+
     val errorMessage = MutableLiveData<String>()
 
      fun getForecastList(lat:String,lon: String){
-
+    /*
          val retrofit = Retrofit.Builder()
              .baseUrl("https://in2000-apiproxy.ifi.uio.no/")
              .addConverterFactory(GsonConverterFactory.create())
              .build()
 
-         val service: LocationForecastApi = retrofit.create(LocationForecastApi::class.java)
+         val service: LocationForecastApi = retrofit.create(LocationForecastApi::class.java)*/
 
          viewModelScope.launch {
-             println("test3")
-             val result = service.fetchLocationForecast(lat,lon)
+             val result = repository.fetchLocationForecast(lat, lon)
+             //val result = service.fetchLocationForecast(lat,lon)
              Log.d("result", "$result")
 
              withContext(Dispatchers.Main){
-                 val forecastList = (createForecast(result))
+                 val forecastList = repository.createForecast(result)
                  println(forecastList)
                  _forecastListModelLiveData.value = forecastList
              }
-
         }
     }
 
 
 }
+/*
 
 fun createForecast(result: ForecastDto): List<RefinedForecast>{
     val list = mutableListOf<Forecast>()
@@ -92,7 +94,7 @@ fun formatDate(time: Date): String {
 fun parseDate(time: String): Date {
     val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
     return parser.parse(time)
-}
+}*/
 
 fun checkLowStaffing(forecast: RefinedForecast, max: Double):Boolean{
     println("check low staffing:" +  forecast.temp.toDouble())

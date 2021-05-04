@@ -1,7 +1,7 @@
 package com.example.team31.data.repositories
 
 import android.annotation.SuppressLint
-import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.team31.data.api.ForecastDto
 import com.example.team31.data.api.LocationForecastApi
@@ -10,18 +10,11 @@ import com.example.team31.ui.overview.week_overview.RefinedForecast
 import java.text.SimpleDateFormat
 import java.util.*
 
-/*class ForecastRepository constructor(private val locationForecastApi: LocationForecastApi){
 
-    suspend fun fetchLocationForecast(lat : String, lon: String) = locationForecastApi.fetchLocationForecast(lat = String(), lon = String())
-}*/
+class ForecastRepository(private val locationForecastApi: LocationForecastApi) {
 
-class ForecastRepository(private val locationForecastApi: LocationForecastApi){
-    val liveData = MutableLiveData<ForecastDto>()
-
-
-
-    suspend fun fetchLocationForecast(lat : String, lon: String){
-        liveData.value = locationForecastApi.fetchLocationForecast(lat, lon)
+    suspend fun fetchLocationForecast(lat: String, lon: String): ForecastDto {
+        return locationForecastApi.fetchLocationForecast(lat, lon)
     }
 
     fun createForecast(result: ForecastDto): List<RefinedForecast>{
@@ -36,31 +29,30 @@ class ForecastRepository(private val locationForecastApi: LocationForecastApi){
         }
         return filterForecastList(list).map { forecast ->  RefinedForecast(formatDate(forecast.time), forecast.temp, forecast.symbol, forecast.precipitation) }
     }
+    fun filterForecastList(list: MutableList<Forecast>):List<Forecast>{
+        val filteredList = list.filter { it.time.hours == 12 }
+        val first = list.first()
 
-}
+        return if (first.time.hours > 12)
+            listOf(list.first()) + filteredList
+        else filteredList
+    }
 
-fun filterForecastList(list: MutableList<Forecast>):List<Forecast>{
-    val filteredList = list.filter { it.time.hours == 12 }
-    val first = list.first()
-
-    return if (first.time.hours > 12)
-        listOf(list.first()) + filteredList
-    else filteredList
-}
-
-@SuppressLint("SimpleDateFormat")
+    @SuppressLint("SimpleDateFormat")
 
 // takes in time:Date object and returns date:String
-fun formatDate(time: Date): String {
-    val parser = SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy")
-    val formatter = SimpleDateFormat("EEEE dd. MMMM", Locale("no", "NO"))
+    fun formatDate(time: Date): String {
+        val parser = SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy")
+        val formatter = SimpleDateFormat("EEEE dd. MMMM", Locale("no", "NO"))
 
-    return formatter.format(parser.parse(time.toString()))
-}
+        return formatter.format(parser.parse(time.toString()))
+    }
 
-//takes time: String(from API) and returns time:Date
-@SuppressLint("SimpleDateFormat")
-fun parseDate(time: String): Date {
-    val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-    return parser.parse(time)
+    //takes time: String(from API) and returns time:Date
+    @SuppressLint("SimpleDateFormat")
+    fun parseDate(time: String): Date {
+        val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+        return parser.parse(time)
+    }
+
 }

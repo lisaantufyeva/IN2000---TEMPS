@@ -18,36 +18,14 @@ interface LocationForecastApi {
         @Query("lon") lon: String
     ): ForecastDto
 
-
-
-
-    /*
     companion object {
         operator fun invoke(): LocationForecastApi {
             return Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://in2000-apiproxy.ifi.uio.no/")
-                .build()
-                .create(LocationForecastApi::class.java)
-        }*/
-
-/*
-    companion object {
-
-        var locationForecastApi: LocationForecastApi? = null
-
-        fun getInstance(): LocationForecastApi {
-            if (LocationForecastApi == null) {
-                val retrofit = Retrofit.Builder()
-                    .baseUrl("https://in2000-apiproxy.ifi.uio.no/")
                     .addConverterFactory(GsonConverterFactory.create())
+                    .baseUrl("https://in2000-apiproxy.ifi.uio.no/")
                     .build()
-                locationForecastApi = retrofit.create(LocationForecastApi::class.java)
-
-            }
-            return locationForecastApi!!
+                    .create(LocationForecastApi::class.java)
         }
-    }*/
-
+    }
 }
 

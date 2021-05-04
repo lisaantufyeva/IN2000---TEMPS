@@ -36,7 +36,7 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
         return OverviewAdapterHolder(view)
     }
     override fun onBindViewHolder(holder: OverviewAdapterHolder, position: Int) {
-
+        val forecastObject = forecastList[position]
         holder.date.text = forecastList[position].time
         holder.temp.text = forecastList[position].temp + "°"
 
@@ -45,6 +45,8 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
         val drawable = context.resources.getDrawable(iconId)
         holder.icon.setImageDrawable(drawable)
 
+
+
         if (checkLowStaffing(forecastList[position], 10.0)){
             holder.staffButton.isVisible = true
         }
@@ -52,11 +54,12 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
 
         holder.staffButton.setOnClickListener {
             Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show()
-            showDetail(forecastList[position], it)
+            showDetail(forecastObject, it)
 
         }
     }
     override fun getItemCount() = forecastList.size
+
 
 }
 

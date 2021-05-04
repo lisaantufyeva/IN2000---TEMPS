@@ -15,58 +15,41 @@ import com.example.team31.data.api.LocationForecastApi
 import com.example.team31.data.repositories.ForecastRepository
 
 
-class OverviewFragment : Fragment(){
+class OverviewFragment : Fragment() {
 
     private lateinit var viewModel: OverviewViewModel
+    private lateinit var factory: OverviewViewModelFactory
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
 
     ): View {
-        println("test0")
         return inflater.inflate(R.layout.overview_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //val viewModel by viewModels<OverviewViewModel>()
-        //factory = OverviewViewModelFactory(repository)
-        viewModel = ViewModelProviders.of(this).get(OverviewViewModel::class.java)
+        val api = LocationForecastApi()
+        val repository = ForecastRepository(api)
+        factory = OverviewViewModelFactory(repository)
+        viewModel = ViewModelProviders.of(this, factory).get(OverviewViewModel::class.java)
         recyclerView = view.findViewById(R.id.recyclerview)
-        viewModel.getForecastList("59.9","10.75")
+        viewModel.getForecastList("59.9", "10.75")
         viewModel.forecastList.observe(viewLifecycleOwner, Observer { forecastList ->
-        recyclerView.also {
-            recyclerView.setHasFixedSize(true)
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            recyclerView.adapter = OverviewAdapter(forecastList, requireContext())
-        }})
+            recyclerView.also {
+                recyclerView.setHasFixedSize(true)
+                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                recyclerView.adapter = OverviewAdapter(forecastList, requireContext())
+            }
+        })
     }
 
-
-
-/*
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-
-    ): View {
-
-        val root: View = inflater.inflate(R.layout.overview_fragment, container, false)
-        presenter = OverviewPresenter(root.context, OverviewModel())
-
-        CoroutineScope(Dispatchers.Main).launch {
-            val response = presenter.getForecastList()
-            displayWeatherList(root, response)
-
-        }
-        return root
-    }*/
-
+}
+        /*
 
      fun displayWeatherList(root: View, list: List<RefinedForecast>){
         recyclerView = root.findViewById(R.id.recyclerview)
@@ -74,7 +57,7 @@ class OverviewFragment : Fragment(){
         recyclerView.layoutManager = LinearLayoutManager(root.context)
         recyclerView.adapter = OverviewAdapter(list, root.context)
 
-    }
+    }*/
 
          /*
 
@@ -95,8 +78,8 @@ class OverviewFragment : Fragment(){
         super.onDestroy()
         presenter.onDestroy()
     }
-*/
 
-}
+
+}*/
 
 

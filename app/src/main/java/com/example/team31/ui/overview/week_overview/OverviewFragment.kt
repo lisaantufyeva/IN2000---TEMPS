@@ -19,6 +19,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+//oppdatert Fragment
 
 class OverviewFragment : Fragment(), OverviewContract.View {
 

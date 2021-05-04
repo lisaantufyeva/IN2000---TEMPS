@@ -24,8 +24,10 @@ import com.google.android.gms.common.api.Status
 class location_fragment : Fragment() {
 
     lateinit var stedNavn: String
-    lateinit var latlng:String
+    lateinit var latitude:String
+    lateinit var longitude:String
     lateinit var user:Bruker
+
 
     private val args by navArgs<location_fragmentArgs>()
 
@@ -64,8 +66,14 @@ class location_fragment : Fragment() {
                 // TODO: Get info about the selected place.
                 Log.i("Svar", "Place: ${place.name}, ${place.latLng}")
 
+                val location = place.latLng
+
+                if (location!=null){
+                     latitude = location.latitude.toString()
+                     longitude = location.longitude.toString()
+                }
+
                 stedNavn = place.name.toString()
-                latlng = place.latLng.toString()
 
 
 
@@ -76,13 +84,14 @@ class location_fragment : Fragment() {
             }
         })
         knapp.setOnClickListener{
-            if(stedNavn == "" || latlng == ""){
+            if(stedNavn == "" || latitude == ""){
                 Log.i("FEIL", "Kunne ikke oppdatere bruker")
                 return@setOnClickListener
             }
 
             user.stedNavn = stedNavn
-            user.latlng = latlng
+            user.latitude = latitude
+            user.longitude = longitude
 
             val action = location_fragmentDirections.actionLocationFragmentToBemanningFragment(user)
             Navigation.findNavController(root).navigate(action)

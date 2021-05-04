@@ -14,6 +14,7 @@ import com.example.team31.R
 import com.example.team31.data.api.LocationForecastApi
 import com.example.team31.data.repositories.ForecastRepository
 
+//oppdatert Fragment
 
 class OverviewFragment : Fragment() {
 

@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.team31.Bruker
@@ -60,10 +61,19 @@ class AuthenticationViewModel : ViewModel(){
 
         val userId = ref.push().key
         user.id = userId
+        val mail = user.email
+
+        if (mail != null){
+            if(users.find {it.email == mail}!=null){
+                Log.i("message", "Brukeren finnes fra før")
+                return
+            }
+        }
 
         ref.child(userId!!).setValue(user).addOnCompleteListener {
             //Toast.makeText(this, "Bruker registrert", Toast.LENGTH_SHORT).show()
             Log.d("Firebase","User saved")
         }
     }
+
 }

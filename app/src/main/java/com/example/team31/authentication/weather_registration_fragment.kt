@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.Navigation
@@ -30,12 +31,18 @@ class weather_registration_fragment : Fragment() {
 
         val trigger = root.findViewById<EditText>(R.id.trigger_temp)
 
+        val box = root.findViewById<CheckBox>(R.id.checkBox1)
+
         val knapp = root.findViewById<Button>(R.id.save)
         knapp.setOnClickListener{
             if (trigger.text.isBlank()){
                 Toast.makeText(activity, "Ugyldig input!", Toast.LENGTH_SHORT).show()
                 (activity as Authentication?)!!.hideKeyboard()
                 return@setOnClickListener
+            }
+
+            if(box.isChecked){
+                user.nedbor = true
             }
 
             user.triggerTemp = trigger.text.toString()

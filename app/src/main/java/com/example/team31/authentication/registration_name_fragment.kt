@@ -40,7 +40,7 @@ class registration_name_fragment : Fragment() {
                 val emailSvar = email.text.toString()
                 val passordSvar = passord1.text.toString()
                 val navnSvar = name.text.toString()
-                val newUser: Bruker = Bruker(null, emailSvar,passordSvar,null,navnSvar,null,null,null,null,null,null,null)
+                val newUser: Bruker = Bruker(null, emailSvar,passordSvar,null,navnSvar,null,null,null,null,null,false,null,null)
                 email.text = ""
                 passord1.text = ""
                 passord2.text = ""

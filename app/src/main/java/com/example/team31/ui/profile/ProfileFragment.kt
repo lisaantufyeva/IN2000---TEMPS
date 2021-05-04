@@ -56,6 +56,17 @@ class ProfileFragment : Fragment() {
         val trigger = root.findViewById<TextView>(R.id.trigger)
         trigger.text = "Temperatur under: " + user.triggerTemp
 
+        val nedbor = root.findViewById<TextView>(R.id.nedbor)
+
+        if(user.nedbor){
+            nedbor.text = "Nedbør: Ja"
+        }
+        else{
+            nedbor.text = "Nedbør: Nei"
+        }
+
+
+
         val aapning = root.findViewById<TextView>(R.id.aapning)
         aapning.text = "Åpningstider: fra " + user.aapenFra + " til " + user.aapenTil
 

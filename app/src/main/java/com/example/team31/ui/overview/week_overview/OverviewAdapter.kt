@@ -1,6 +1,5 @@
 package com.example.team31.ui.overview.week_overview
 
-import android.app.ActivityManager
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -10,17 +9,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
+
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.team31.AdminActivity
-import com.example.team31.Bruker
+
 import com.example.team31.R
 
 
-class OverviewAdapter(val forecastList: List<RefinedForecast>, val context: Context, bruker: Bruker):
-    RecyclerView.Adapter<OverviewAdapter.OverviewAdapterHolder>() {
 
-    val user = bruker
+class OverviewAdapter(private val forecastList: List<RefinedForecast>, val context: Context):
+    RecyclerView.Adapter<OverviewAdapter.OverviewAdapterHolder>() {
 
     class OverviewAdapterHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val date: TextView = itemView.findViewById(R.id.date)
@@ -38,7 +36,7 @@ class OverviewAdapter(val forecastList: List<RefinedForecast>, val context: Cont
         return OverviewAdapterHolder(view)
     }
     override fun onBindViewHolder(holder: OverviewAdapterHolder, position: Int) {
-
+        val forecastObject = forecastList[position]
         holder.date.text = forecastList[position].time
         holder.temp.text = forecastList[position].temp + "°"
 
@@ -56,11 +54,12 @@ class OverviewAdapter(val forecastList: List<RefinedForecast>, val context: Cont
 
         holder.staffButton.setOnClickListener {
             Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show()
-            showDetail(forecastList[position], it)
+            showDetail(forecastObject, it)
 
         }
     }
     override fun getItemCount() = forecastList.size
+
 
 }
 

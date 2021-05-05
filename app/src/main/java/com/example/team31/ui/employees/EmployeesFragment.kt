@@ -1,14 +1,13 @@
 package com.example.team31.ui.employees
 
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.Observer
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.team31.R
+import com.example.team31.databinding.EmployeesFragmentBinding
 
 class EmployeesFragment : Fragment() {
 /*
@@ -16,27 +15,88 @@ class EmployeesFragment : Fragment() {
         fun newInstance() = OverviewFragment()
     }*/
 
-    private lateinit var employeesViewModel: EmployeesViewModel
+    //private lateinit var employeesViewModel: EmployeesViewModel
+
+
+    private lateinit var mBinding: EmployeesFragmentBinding
+    private var users = mutableListOf<Ansatt>()
+
+    val henrik = Ansatt("henrik", "henrik@gmail.com", "Serviør")
+    val lisz = Ansatt("Liza", "Liza@gmail.com", "Vaktsjef")
+    val greogor = Ansatt("Gregor", "gregor@gmail.com", "Vaktsjef")
+    val katerina = Ansatt("Katerina", "kat@gmail.com", "Vaktsjef")
+    val dragana = Ansatt("dragana", "dragana@emai.com", "Kokk")
+
+
+
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        employeesViewModel =
-            ViewModelProvider(this).get(EmployeesViewModel::class.java)
-        val root = inflater.inflate(R.layout.employees_fragment, container, false)
-        val textView: TextView = root.findViewById(R.id.text_employees)
+//        employeesViewModel =
+//            ViewModelProvider(this).get(EmployeesViewModel::class.java)
+//        val root = inflater.inflate(R.layout.employees_fragment, container, false)
+//        val textView: TextView = root.findViewById(R.id.text_employees)
+//
+//        employeesViewModel.text.observe(viewLifecycleOwner, Observer {
+//            textView.text = it
+//        })
 
-        employeesViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        mBinding = EmployeesFragmentBinding.inflate(inflater, container, false)
+        return mBinding.root
+
+
     }
-    /*
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(OverviewViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    }*/
 
+        add(dragana)
+        add(greogor)
+        add(lisz)
+        add(henrik)
+
+        // Set the LayoutManager that this RecyclerView will use.
+        mBinding.rvAnsattList.layoutManager = GridLayoutManager(requireActivity(), 1)
+        // Adapter class is initialized and list is passed in the param.
+        val emAdapter = EmployeeAdapter(this@EmployeesFragment, users)
+
+        mBinding.rvAnsattList.adapter = emAdapter
+        emAdapter.notifyDataSetChanged()
+
+
+
+
+        // END
+
+    }
+
+    fun add(ansatt : Ansatt){
+        users.add(ansatt)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.add_employee, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.action_add_employee -> {
+                startActivity(Intent(requireActivity(), LeggTilRedigerAnsatt::class.java))
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
+
+

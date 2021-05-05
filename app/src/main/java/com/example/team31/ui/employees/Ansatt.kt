@@ -2,8 +2,15 @@ package com.example.team31.ui.employees
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.provider.ContactsContract
 import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
+data class Ansatt(val navn:String?,val email:String?,val rolle:String?):Serializable {
+    constructor() : this("1","e","")
+}
+
+/*
 
 data class Ansatt(
     val navn: String?,
@@ -37,3 +44,4 @@ data class Ansatt(
         }
     }
 }
+*/

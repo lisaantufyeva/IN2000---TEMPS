@@ -7,30 +7,47 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.team31.AdminActivity
+import com.example.team31.Bruker
 import com.example.team31.Constants
 import com.example.team31.R
 import com.example.team31.databinding.ActivityLeggTilRedigerAnsattBinding
 import com.example.team31.databinding.DialogCustomListBinding
+import com.google.firebase.database.FirebaseDatabase
 
 class LeggTilRedigerAnsatt : AppCompatActivity(), View.OnClickListener {
 
+    //private val model: EmployeesViewModel by activityViewModels()
+
     private lateinit var mBinding: ActivityLeggTilRedigerAnsattBinding
     private lateinit var mCustomListDialog: Dialog
-    private lateinit var Employ : EmployeesFragment
+    //private lateinit var Employ : EmployeesFragment
     private lateinit var Adapter: EmployeeAdapter
+    private lateinit var user:Bruker
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityLeggTilRedigerAnsattBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        user = intent.extras!!.get("User") as Bruker
 
         setUpActionBar()
         mBinding.etRolle.setOnClickListener(this@LeggTilRedigerAnsatt)
         mBinding.btnAddEmployee.setOnClickListener(this@LeggTilRedigerAnsatt)
         //Employ.add(drganaa)
 
+    }
+
+    fun leggTilAnsatt(admin: Bruker, ansatt: Ansatt) {
+        val refAnsatt = FirebaseDatabase.getInstance().getReference("Ansatte").child(admin.id!!)
+
+        val ansattId = refAnsatt.push().key
+        refAnsatt.child(ansattId!!).setValue(ansatt).addOnCompleteListener {
+            Log.i("Message:", "Ansatt registrert")
+        }
     }
 
     private fun setUpActionBar() {
@@ -129,9 +146,8 @@ class LeggTilRedigerAnsatt : AppCompatActivity(), View.OnClickListener {
                            ).show()
                        }
                        else ->{
-
-                          val ansatt = Ansatt(name, email,rolle)
-                        Employ.add(ansatt)
+                           val ansatt = Ansatt(name, email,rolle)
+                           leggTilAnsatt(user,ansatt)
 
 
                            Toast.makeText(

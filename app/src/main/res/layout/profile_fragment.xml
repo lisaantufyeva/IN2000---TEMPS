@@ -6,43 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/l1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:background="@drawable/rounded_corner_view"
         android:orientation="vertical"
         android:paddingLeft="10dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:background= "@drawable/rounded_corner_view"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Endre"
-            android:layout_marginRight="10dp"
-            android:layout_gravity="right"/>
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            app:civ_border_color="#FF000000"
-            app:civ_border_width="2dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.662" />
-
+        <ImageButton
+            android:id="@+id/edit_name"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="13dp"
+            android:background="#ECECEC"
+            android:scaleType="fitXY"
+            android:src="@drawable/edit" />
 
         <TextView
             android:id="@+id/navn"
@@ -55,6 +46,7 @@
 
         <TextView
             android:id="@+id/mail"
+            android:layout_below="@+id/navn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mail:"
@@ -62,9 +54,9 @@
             android:textColor="@color/black"
             android:textSize="18sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/l2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -79,6 +71,19 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/l1">
 
+        <ImageButton
+            android:id="@+id/edit_pos"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="13dp"
+            android:src="@drawable/edit"
+            android:scaleType="fitCenter"
+            android:background="#ECECEC"/>
+
+
         <TextView
             android:id="@+id/position"
             android:layout_width="wrap_content"
@@ -88,9 +93,9 @@
             android:textColor="@color/black"
             android:textSize="18sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/l3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -105,7 +110,21 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/l2">
 
+        <ImageButton
+            android:id="@+id/edit_work"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="13dp"
+            android:background="#ECECEC"
+            android:scaleType="fitXY"
+            android:src="@drawable/edit" />
+
+
         <TextView
+            android:id="@+id/tekst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bemanning:"
@@ -121,7 +140,9 @@
             android:text="Normal bemanning:"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_below="@+id/tekst"
+            />
 
         <TextView
             android:id="@+id/max_bemanning"
@@ -130,13 +151,14 @@
             android:text="Maksimal bemanning"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_below="@+id/normal_bemanning"/>
 
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/l4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -151,7 +173,20 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/l3">
 
+        <ImageButton
+            android:id="@+id/edit_weather"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="13dp"
+            android:background="#ECECEC"
+            android:scaleType="fitXY"
+            android:src="@drawable/edit" />
+
         <TextView
+            android:id="@+id/tekst1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Værforhold:"
@@ -166,7 +201,8 @@
             android:text="Temperatur under: "
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_below="@+id/tekst1"/>
 
         <TextView
             android:id="@+id/nedbor"
@@ -175,9 +211,10 @@
             android:text="Nedbør: ja/nei"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_below="@+id/trigger"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/l5"
@@ -204,7 +241,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/l6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -219,6 +256,19 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/l5">
 
+        <ImageButton
+            android:id="@+id/edit_opening"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="13dp"
+            android:background="#ECECEC"
+            android:scaleType="fitXY"
+            android:src="@drawable/edit" />
+
+
         <TextView
             android:id="@+id/aapning"
             android:layout_width="wrap_content"
@@ -228,7 +278,7 @@
             android:textColor="@color/black"
             android:textSize="18sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 

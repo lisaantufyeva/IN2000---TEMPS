@@ -13,4 +13,5 @@
     <color name = "button_blue_text">#FEEED7</color>
     <color name = "cancel_button_detail">#CDD3DF</color>
     <color name = "transparent">#00FFFFFF</color>
+    <color name="grey_900">#212121</color>
 </resources>

@@ -12,4 +12,15 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="action_add_employee">Legg til ansatt</string>
+
+    <string name="name">Navn</string>
+    <string name="email">E-mail</string>
+    <string name="Rolle">Rolle</string>
+    <string name="addEmployeeBtn">Legg til ansatt</string>
+
+    <string name="err_msg_select_name">Skriv navn.</string>
+    <string name="err_msg_enter_email">Skriv email.</string>
+    <string name="err_msg_select_rolle">Velg rolle.</string>
+
 </resources>

@@ -24,7 +24,7 @@ class LeggTilRedigerAnsatt : AppCompatActivity(), View.OnClickListener {
     private lateinit var mBinding: ActivityLeggTilRedigerAnsattBinding
     private lateinit var mCustomListDialog: Dialog
     //private lateinit var Employ : EmployeesFragment
-    private lateinit var Adapter: EmployeeAdapter
+    private lateinit var adapter: EmployeeAdapter
     private lateinit var user:Bruker
 
 

@@ -7,11 +7,14 @@ import com.example.team31.data.api.ForecastDto
 import com.example.team31.data.api.LocationForecastApi
 import com.example.team31.ui.overview.week_overview.Forecast
 import com.example.team31.ui.overview.week_overview.RefinedForecast
+import okhttp3.Cache
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 
-class ForecastRepository(private val locationForecastApi: LocationForecastApi) {
+class ForecastRepository @Inject constructor(
+    private val locationForecastApi: LocationForecastApi) {
 
     suspend fun fetchLocationForecast(lat: String, lon: String): ForecastDto {
         return locationForecastApi.fetchLocationForecast(lat, lon)
@@ -29,7 +32,7 @@ class ForecastRepository(private val locationForecastApi: LocationForecastApi) {
         }
         return filterForecastList(list).map { forecast ->  RefinedForecast(formatDate(forecast.time), forecast.temp, forecast.symbol, forecast.precipitation) }
     }
-    fun filterForecastList(list: MutableList<Forecast>):List<Forecast>{
+    private fun filterForecastList(list: MutableList<Forecast>):List<Forecast>{
         val filteredList = list.filter { it.time.hours == 12 }
         val first = list.first()
 
@@ -54,5 +57,4 @@ class ForecastRepository(private val locationForecastApi: LocationForecastApi) {
         val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
         return parser.parse(time)
     }
-
 }

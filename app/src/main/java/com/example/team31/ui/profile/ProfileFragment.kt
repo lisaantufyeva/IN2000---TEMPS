@@ -65,8 +65,6 @@ class ProfileFragment : Fragment() {
             nedbor.text = "Nedbør: Nei"
         }
 
-
-
         val aapning = root.findViewById<TextView>(R.id.aapning)
         aapning.text = "Åpningstider: fra " + user.aapenFra + " til " + user.aapenTil
 

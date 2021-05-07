@@ -70,7 +70,7 @@
                 android:id="@+id/staff_button"
                 android:layout_width="189dp"
                 android:layout_height="51dp"
-                android:background="@drawable/rounded_corners"
+                android:background="@drawable/rounded_corners_button"
                 android:text="@string/lav_bemanning"
                 android:textAllCaps="false"
                 app:backgroundTint="@color/button_yellow"

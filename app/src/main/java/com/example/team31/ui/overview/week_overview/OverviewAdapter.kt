@@ -12,7 +12,7 @@ import androidx.core.view.isVisible
 
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-
+import com.example.team31.Bruker
 import com.example.team31.R
 
 
@@ -25,7 +25,6 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
         val temp: TextView = itemView.findViewById(R.id.temp)
         val icon: ImageView = itemView.findViewById(R.id.imageView)
         val staffButton: Button = itemView.findViewById(R.id.staff_button)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OverviewAdapterHolder {
@@ -59,7 +58,6 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
         }
     }
     override fun getItemCount() = forecastList.size
-
 
 }
 

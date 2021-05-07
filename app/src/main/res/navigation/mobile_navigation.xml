@@ -42,5 +42,10 @@
             android:name="RefinedForecast"
             app:argType="com.example.team31.ui.overview.week_overview.RefinedForecast" />
     </fragment>
+    <fragment
+        android:id="@+id/edit_name2"
+        android:name="com.example.team31.edit_name"
+        android:label="edit_name"
+        tools:layout="@layout/edit_name" />
 
 </navigation>

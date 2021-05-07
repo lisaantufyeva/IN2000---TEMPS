@@ -17,11 +17,12 @@ data class Bruker(
     var triggerTemp: String?,
     var nedbor: Boolean,
     var aapenFra: String?,
-    var aapenTil: String?
+    var aapenTil: String?,
+    var varselListe: MutableList<Varsel>
 
 
 ):Serializable{
-    constructor() : this("1", "e", "1", "1", "e", "e", "e", "e", "e", "e", "e", false, "e", "e")
+    constructor() : this("1", "e", "1", "1", "e", "e", "e", "e", "e", "e", "e", false, "e", "e", mutableListOf<Varsel>())
 }
 
 

@@ -14,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.team31.Authentication
 import com.example.team31.Bruker
 import com.example.team31.R
+import com.example.team31.Varsel
 
 
 class aapningstider_fragment : Fragment() {
@@ -43,6 +44,16 @@ class aapningstider_fragment : Fragment() {
             }
             user.aapenFra = start.text.toString()
             user.aapenTil = slutt.text.toString()
+
+            val liste = mutableListOf<Varsel>()
+            val varsel1 = Varsel("24.04.20",true)
+            val varsel2 = Varsel("02.04.20",false)
+            val varsel3 = Varsel("25.06.21", false)
+
+            liste.add(varsel1)
+            liste.add(varsel2)
+            liste.add(varsel3)
+            user.varselListe = liste
 
             model.saveUser(user)
 

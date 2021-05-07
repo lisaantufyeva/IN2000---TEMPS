@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import com.example.team31.Authentication
 import com.example.team31.Bruker
 import com.example.team31.R
+import com.example.team31.Varsel
 
 class registration_name_fragment : Fragment() {
 
@@ -40,7 +41,7 @@ class registration_name_fragment : Fragment() {
                 val emailSvar = email.text.toString()
                 val passordSvar = passord1.text.toString()
                 val navnSvar = name.text.toString()
-                val newUser: Bruker = Bruker(null, emailSvar,passordSvar,null,navnSvar,null,null,null,null,null,null,false,null,null)
+                val newUser: Bruker = Bruker(null, emailSvar,passordSvar,null,navnSvar,null,null,null,null,null,null,false,null,null, mutableListOf<Varsel>())
                 email.text = ""
                 passord1.text = ""
                 passord2.text = ""

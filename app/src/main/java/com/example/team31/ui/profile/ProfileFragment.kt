@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 //import com.bumptech.glide.Glide
 import android.content.Context
+import android.util.Log
 import com.bumptech.glide.Glide
 import com.example.team31.AdminActivity
 import com.example.team31.R
@@ -37,6 +38,8 @@ class ProfileFragment : Fragment() {
         profileViewModel =
             ViewModelProvider(this).get(ProfileViewModel::class.java)
         val root = inflater.inflate(R.layout.profile_fragment, container, false)
+
+        Log.i("message",user.varselListe.toString())
 
         val navn: TextView = root.findViewById(R.id.navn)
         navn.text = "Navn: " + user.navn

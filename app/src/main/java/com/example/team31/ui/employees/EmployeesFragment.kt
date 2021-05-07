@@ -92,7 +92,7 @@ class EmployeesFragment : Fragment() {
             val emAdapter = EmployeeAdapter(this@EmployeesFragment, users)
             mBinding.rvAnsattList.adapter = emAdapter
             emAdapter.notifyDataSetChanged()
-        }, 50)
+        }, 500)
 
 
 

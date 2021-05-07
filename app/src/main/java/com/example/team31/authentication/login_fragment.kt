@@ -2,6 +2,7 @@ package com.example.team31.authentication
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -49,6 +50,7 @@ class login_fragment : Fragment() {
             val user = model.login(email,passord)
 
             if(user != null){
+                Log.i("bruker:", user.toString())
                 (activity as Authentication?)!!.startActivity2(user)
             }
             else{

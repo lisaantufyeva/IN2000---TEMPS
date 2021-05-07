@@ -1,6 +1,7 @@
 package com.example.team31.ui.overview.week_overview
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.example.team31.R
 import com.example.team31.Bruker
 import com.example.team31.data.api.LocationForecastApi
 import com.example.team31.data.repositories.ForecastRepository
+import kotlinx.coroutines.delay
 import java.nio.channels.Selector
 
 //oppdatert Fragment
@@ -28,7 +30,7 @@ class OverviewFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
-    //private lateinit var user:Bruker
+    //heiprivate var userId:String = ""
 
 
 
@@ -38,20 +40,25 @@ class OverviewFragment : Fragment() {
             savedInstanceState: Bundle?
 
     ): View {
+
         return inflater.inflate(R.layout.overview_fragment, container, false)
     }
     //("59.9", "10.75")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        //user = (activity as AdminActivity?)!!.getUser()
+        var user = (activity as AdminActivity?)!!.getUser()
+        Log.i("id:", user.toString())
         super.onViewCreated(view, savedInstanceState)
         val api = LocationForecastApi()
         val repository = ForecastRepository(api)
+
         factory = OverviewViewModelFactory(repository)
         viewModel = ViewModelProviders.of(this, factory).get(OverviewViewModel::class.java)
+        //val user = viewModel.getUser(userId)
         recyclerView = view.findViewById(R.id.recyclerview)
+        //val user = viewModel.getMainUser()
 
-        viewModel.getForecastList("59.9", "10.75")
+        viewModel.getForecastList(user.latitude!!, user.longitude!!)
         viewModel.forecastList.observe(viewLifecycleOwner, Observer { forecastList ->
             recyclerView.also {
                 recyclerView.setHasFixedSize(true)

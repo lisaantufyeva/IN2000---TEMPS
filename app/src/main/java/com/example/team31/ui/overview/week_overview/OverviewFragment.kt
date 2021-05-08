@@ -30,6 +30,7 @@ class OverviewFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
+
     //heiprivate var userId:String = ""
 
 
@@ -40,8 +41,8 @@ class OverviewFragment : Fragment() {
             savedInstanceState: Bundle?
 
     ): View {
-
-        return inflater.inflate(R.layout.overview_fragment, container, false)
+        //var user = (activity as AdminActivity?)!!.getUser() //Henrik
+        return inflater.inflate(R.layout.overview_fragment, container,false)
     }
     //("59.9", "10.75")
 
@@ -63,7 +64,7 @@ class OverviewFragment : Fragment() {
             recyclerView.also {
                 recyclerView.setHasFixedSize(true)
                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
-                recyclerView.adapter = OverviewAdapter(forecastList, requireContext())
+                recyclerView.adapter = OverviewAdapter(forecastList, requireContext(),user)
             }
         })
     }

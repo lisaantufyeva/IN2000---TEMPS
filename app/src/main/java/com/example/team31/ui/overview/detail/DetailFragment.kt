@@ -29,6 +29,7 @@ class DetailFragment : Fragment() {
     private lateinit var forecastObject: RefinedForecast
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,6 +49,7 @@ class DetailFragment : Fragment() {
             date.text = forecastObject.time
             temp.text = forecastObject.temp
             precipitation.text = forecastObject.precipitation
+            extraStaffValue.text = ""
             val currentImageId = context?.resources?.getIdentifier("@drawable/"+forecastObject.symbol, "drawable",
                 context?.packageName)
             val currentDrawable = currentImageId?.let { context?.resources?.getDrawable(it) }

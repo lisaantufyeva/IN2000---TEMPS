@@ -82,11 +82,28 @@ class OverviewViewModel @Inject constructor(
         return mainUser
     }
     //fun getMainUser():Bruker{
-        //return mainUser
+      //  return mainUser
     //}
 }
 
-fun checkLowStaffing(forecast: RefinedForecast, max: Double):Boolean{
+fun checkLowStaffing(forecast: RefinedForecast, max: String?):Boolean{
     println("check low staffing:" +  forecast.temp.toDouble())
-    return (forecast.temp.toDouble() >= max)
+    return (forecast.temp.toDouble() >= max!!.toDouble())
+}
+
+fun checkStaffingDemand(forecast: RefinedForecast, user: Bruker): Int{
+    var manko = 0
+    val maxTemp = 30 //assumption
+    if (forecast.temp.toDouble() < maxTemp.toDouble()) {
+        val x = user.maxBemanning!!.toDouble() - user.normalBemanning!!.toDouble()
+        val y = forecast.temp.toDouble() - user.triggerTemp!!.toDouble()
+        val z = maxTemp.toDouble() - user.triggerTemp!!.toDouble()
+        val xy = x*y
+        manko = xy.toInt() / z.toInt()
+        return manko
+    } else {
+        manko = user.maxBemanning!!.toInt() - user.normalBemanning!!.toInt()
+        return manko
+    }
+
 }

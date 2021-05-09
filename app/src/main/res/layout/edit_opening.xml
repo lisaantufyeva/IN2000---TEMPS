@@ -2,66 +2,65 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".authentication.location_fragment">
-
+    android:layout_height="match_parent">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Registrer bemanning" />
+        android:text="Oppdater åpningstider" />
+
 
     <TextView
-        android:id="@+id/normal"
+        android:id="@+id/fra_tid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Fra:"
         android:layout_marginLeft="10dp"
+        android:textStyle="bold"
         android:layout_marginTop="100dp"
-        android:text="Normal bemanning:"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textSize="20sp"/>
 
     <EditText
-        android:id="@+id/normal_bemanning"
+        android:id="@+id/start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/normal"
+        android:layout_below="@+id/fra_tid"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:autofillHints="Antall ansatte"
+        android:autofillHints="Start"
         android:drawablePadding="10dp"
         android:inputType="number"
         android:paddingBottom="20dp" />
 
     <TextView
-        android:id="@+id/max"
+        android:id="@+id/til_tid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_below="@+id/normal_bemanning"
+        android:layout_below="@+id/start"
         android:layout_marginTop="21dp"
-        android:text="Maksimal bemanning:"
+        android:text="Til:"
         android:textSize="20sp"
         android:textStyle="bold" />
 
 
     <EditText
-        android:id="@+id/max_bemanning"
+        android:id="@+id/slutt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/max"
+        android:layout_below="@+id/til_tid"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:autofillHints="Antall ansatte"
+        android:autofillHints="Slutt"
         android:drawablePadding="10dp"
         android:paddingBottom="20dp"
         android:inputType = "number"/>
 
     <Button
         android:id="@+id/save"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:layout_below="@+id/max_bemanning"
+        android:layout_below="@+id/slutt"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"

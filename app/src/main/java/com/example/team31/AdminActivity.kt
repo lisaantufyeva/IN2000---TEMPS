@@ -1,9 +1,11 @@
 package com.example.team31
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.ui.AppBarConfiguration
@@ -47,5 +49,18 @@ class AdminActivity : AppCompatActivity() {
     }
     fun getUser(): Bruker{
         return user
+    }
+    fun updateUser(newUser:Bruker){
+        user = newUser
+    }
+
+    fun hideKeyboard() {
+        val view = this.currentFocus
+        if (view != null){
+            val hideMe = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            hideMe.hideSoftInputFromWindow(view.windowToken,0)
+
+
+        }
     }
 }

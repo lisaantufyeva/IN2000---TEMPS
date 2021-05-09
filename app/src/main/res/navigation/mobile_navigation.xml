@@ -32,7 +32,32 @@
         android:id="@+id/navigation_profile"
         android:name="com.example.team31.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/profile_fragment" />
+        tools:layout="@layout/profile_fragment" >
+        <action
+            android:id="@+id/action_navigation_profile_to_edit_name"
+            app:destination="@id/edit_name"/>
+        <argument
+            android:name="userId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_navigation_profile_to_edit_pos"
+            app:destination="@id/edit_pos" />
+        <action
+            android:id="@+id/action_navigation_profile_to_edit_work"
+            app:destination="@id/edit_work" />
+        <action
+            android:id="@+id/action_navigation_profile_to_edit_weather"
+            app:destination="@id/edit_weather" />
+        <action
+            android:id="@+id/action_navigation_profile_to_edit_opening"
+            app:destination="@id/edit_opening" />
+        <action
+            android:id="@+id/action_navigation_profile_to_edit_password"
+            app:destination="@id/edit_password" />
+
+
+    </fragment>
+
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.team31.ui.overview.detail.DetailFragment"
@@ -42,10 +67,60 @@
             android:name="RefinedForecast"
             app:argType="com.example.team31.ui.overview.week_overview.RefinedForecast" />
     </fragment>
+
     <fragment
-        android:id="@+id/edit_name2"
-        android:name="com.example.team31.edit_name"
+        android:id="@+id/edit_name"
+        android:name="com.example.team31.ui.profile.edit_name"
         android:label="edit_name"
-        tools:layout="@layout/edit_name" />
+        tools:layout="@layout/edit_name" >
+        <action
+            android:id="@+id/action_edit_name_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/edit_pos"
+        android:name="com.example.team31.ui.profile.edit_pos"
+        android:label="edit_pos"
+        tools:layout="@layout/edit_pos" >
+        <action
+            android:id="@+id/action_edit_pos_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/edit_work"
+        android:name="com.example.team31.ui.profile.edit_work"
+        android:label="edit_work"
+        tools:layout="@layout/edit_work" >
+        <action
+            android:id="@+id/action_edit_work_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/edit_weather"
+        android:name="com.example.team31.ui.profile.edit_weather"
+        android:label="edit_weather"
+        tools:layout="@layout/edit_weather" >
+        <action
+            android:id="@+id/action_edit_weather_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/edit_opening"
+        android:name="com.example.team31.ui.profile.edit_opening"
+        android:label="edit_opening"
+        tools:layout="@layout/edit_opening" >
+        <action
+            android:id="@+id/action_edit_opening_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/edit_password"
+        android:name="com.example.team31.ui.profile.edit_password"
+        android:label="edit_password"
+        tools:layout="@layout/edit_password" >
+        <action
+            android:id="@+id/action_edit_password_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
 
 </navigation>

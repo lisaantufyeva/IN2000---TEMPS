@@ -5,63 +5,57 @@
     android:layout_height="match_parent"
     tools:context=".authentication.location_fragment">
 
-
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Registrer bemanning" />
+        android:layout_height="match_parent"
+        android:text="Oppdater temperatur" />
+
 
     <TextView
-        android:id="@+id/normal"
+        android:id="@+id/temp1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Ny trigger temperatur:"
         android:layout_marginLeft="10dp"
+        android:textStyle="bold"
         android:layout_marginTop="100dp"
-        android:text="Normal bemanning:"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textSize="20sp"/>
 
     <EditText
-        android:id="@+id/normal_bemanning"
+        android:id="@+id/trigger_temp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/normal"
+        android:layout_below="@+id/temp1"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:autofillHints="Antall ansatte"
-        android:drawablePadding="10dp"
-        android:inputType="number"
-        android:paddingBottom="20dp" />
-
-    <TextView
-        android:id="@+id/max"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/normal_bemanning"
-        android:layout_marginTop="21dp"
-        android:text="Maksimal bemanning:"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-
-    <EditText
-        android:id="@+id/max_bemanning"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/max"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:autofillHints="Antall ansatte"
+        android:autofillHints="Temperatur i celsius"
         android:drawablePadding="10dp"
         android:paddingBottom="20dp"
         android:inputType = "number"/>
 
+    <TextView
+        android:id="@+id/nedbor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/trigger_temp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="18dp"
+        android:text="Nedbør (ja/nei):"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_below="@+id/nedbor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="Ja/nei" />
     <Button
         android:id="@+id/save"
         android:layout_width="100dp"
         android:layout_height="60dp"
-        android:layout_below="@+id/max_bemanning"
+        android:layout_below="@+id/checkBox1"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"

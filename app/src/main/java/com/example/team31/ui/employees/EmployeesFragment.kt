@@ -33,11 +33,11 @@ class EmployeesFragment : Fragment() {
     private var users = mutableListOf<Ansatt>()
     private lateinit var admin:Bruker
 
-    val henrik = Ansatt("henrik", "henrik@gmail.com", "Serviør")
-    val lisz = Ansatt("Liza", "Liza@gmail.com", "Vaktsjef")
-    val greogor = Ansatt("Gregor", "gregor@gmail.com", "Vaktsjef")
-    val katerina = Ansatt("Katerina", "kat@gmail.com", "Vaktsjef")
-    val dragana = Ansatt("dragana", "dragana@email.com", "Kokk")
+    //val henrik = Ansatt("henrik", "henrik@gmail.com", "Serviør")
+    //val lisz = Ansatt("Liza", "Liza@gmail.com", "Vaktsjef")
+    //val greogor = Ansatt("Gregor", "gregor@gmail.com", "Vaktsjef")
+    //val katerina = Ansatt("Katerina", "kat@gmail.com", "Vaktsjef")
+    //val dragana = Ansatt("dragana", "dragana@email.com", "Kokk")
 
 
 
@@ -80,7 +80,7 @@ class EmployeesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        add(dragana)
+        //add(dragana)
         //add(greogor)
         //add(lisz)
         //add(henrik)

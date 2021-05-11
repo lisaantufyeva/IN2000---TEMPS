@@ -146,7 +146,7 @@ class LeggTilRedigerAnsatt : AppCompatActivity(), View.OnClickListener {
                            ).show()
                        }
                        else ->{
-                           val ansatt = Ansatt(name, email,rolle)
+                           val ansatt = Ansatt(name, email,"temps31", rolle)
                            leggTilAnsatt(user,ansatt)
 
 

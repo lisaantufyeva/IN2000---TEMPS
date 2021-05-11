@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
 import com.example.team31.Bruker
+import com.example.team31.Varsel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -70,6 +71,14 @@ class ProfileViewModel : ViewModel() {
         val ref = FirebaseDatabase.getInstance().getReference("Users").child(userId)
         val hashMap =  hashMapOf<String, Any?>()
         hashMap.put("passord",password)
+
+        ref.updateChildren(hashMap)
+    }
+
+    fun update_list(liste:MutableList<Varsel>, userId: String){
+        val ref = FirebaseDatabase.getInstance().getReference("Users").child(userId)
+        val hashMap =  hashMapOf<String, Any?>()
+        hashMap.put("varselListe",liste)
 
         ref.updateChildren(hashMap)
     }

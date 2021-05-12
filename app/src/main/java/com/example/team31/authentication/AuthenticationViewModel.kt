@@ -56,6 +56,7 @@ class AuthenticationViewModel : ViewModel(){
                 if (dataSnapshot.exists()) {
                     for (i in dataSnapshot.children) {
                         val user = i.getValue(Bruker::class.java)
+                        getAnsatte(user!!.id!!)
                         brukere.add(user!!)
                     }
                 }
@@ -70,8 +71,8 @@ class AuthenticationViewModel : ViewModel(){
         ref.addValueEventListener(userListener)
     }
 
-    fun getAnsatte(){
-
+    fun getAnsatte(userId: String){
+        val ansattRef = FirebaseDatabase.getInstance().getReference("Ansatte").child(userId)
         val ansatte = ArrayList<Ansatt>()
 
         // Henter brukere fra firebase
@@ -80,7 +81,8 @@ class AuthenticationViewModel : ViewModel(){
                 if (dataSnapshot.exists()) {
                     for (i in dataSnapshot.children) {
                         val ansatt = i.getValue(Ansatt::class.java)
-                        ansatte.add(ansatt!!)
+                        ansattUsers.add(ansatt!!)
+                        Log.i("ansatt:", ansatt.toString())
                     }
                 }
             }
@@ -90,8 +92,8 @@ class AuthenticationViewModel : ViewModel(){
                 Log.w("message", "loadPost:onCancelled", databaseError.toException())
             }
         }
-        ansattUsers = ansatte
-        ref.addValueEventListener(userListener)
+        //ansattUsers = ansatte
+        ansattRef.addValueEventListener(userListener)
 
     }
 
@@ -113,6 +115,10 @@ class AuthenticationViewModel : ViewModel(){
             //Toast.makeText(this, "Bruker registrert", Toast.LENGTH_SHORT).show()
             Log.d("Firebase","User saved")
         }
+    }
+
+    fun getAnsatteList(): MutableList<Ansatt>{
+        return ansattUsers
     }
 
 }

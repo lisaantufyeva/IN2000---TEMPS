@@ -27,7 +27,7 @@ class login_employee_fragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         //model.getAnsatte()
-        println(model.getAnsatte())
+        println(model.getAnsatteList())
 
 
         val root =  inflater.inflate(R.layout.login_employee_fragment, container, false)

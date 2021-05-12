@@ -8,6 +8,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.team31.Bruker
 import com.example.team31.Varsel
+import com.example.team31.ui.employees.Ansatt
 import com.example.team31.ui.overview.week_overview.RefinedForecast
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -27,12 +28,20 @@ class DetailViewModel(
         ref.updateChildren(hashMap)
 
     }
-    /*
+
     suspend fun getAlertList(userId:String): MutableList<Varsel> {
-        val ref = FirebaseDatabase.getInstance().getReference("Users")
+        val ref = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("varselListe")
+        val liste = mutableListOf<Varsel>()
         val alertListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val alert = dataSnapshot.getValue()
+                if (dataSnapshot.exists()) {
+                    for (i in dataSnapshot.children) {
+                        val varsel = i.getValue(Varsel::class.java)
+                        liste.add(varsel!!)
+                        Log.i("ansatt hentes:", varsel.toString())
+                    }
+                }
+
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -41,7 +50,8 @@ class DetailViewModel(
         }
         ref.addValueEventListener(alertListener)
         delay(200)
-    }*/
+        return liste
+    }
 
 
 }

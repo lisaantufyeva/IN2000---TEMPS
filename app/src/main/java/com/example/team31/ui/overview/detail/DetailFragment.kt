@@ -2,6 +2,7 @@ package com.example.team31.ui.overview.detail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,10 @@ import com.example.team31.ui.overview.week_overview.Forecast
 import com.example.team31.ui.overview.week_overview.RefinedForecast
 import com.example.team31.ui.profile.ProfileViewModel
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class DetailFragment : Fragment() {
 
@@ -25,6 +30,7 @@ class DetailFragment : Fragment() {
     private lateinit var forecastObject: RefinedForecast
     private lateinit var detailViewModel: DetailViewModel
     private var user: Bruker = Bruker()
+    private lateinit var liste: MutableList<Varsel>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +46,20 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val admin = (activity as AdminActivity?)!!.getUser()
         val userId = (activity as AdminActivity?)!!.getUserId()
+
+
+
+
+        GlobalScope.launch(Dispatchers.IO){
+            val liste1 = detailViewModel.getAlertList(userId)
+
+            withContext(Dispatchers.Main){
+                liste = liste1
+                Log.i("VarselListe:", liste.toString())
+            }
+        }
+
+
         super.onViewCreated(view, savedInstanceState)
         //model = ViewModelProviders.of(this, factory).get(OverviewViewModel::class.java)
 
@@ -48,7 +68,7 @@ class DetailFragment : Fragment() {
             date.text = forecastObject.time
             temp.text = forecastObject.temp
             precipitation.text = forecastObject.precipitation
-            extraStaffValue.text = args.extraStaff.toString()
+            //extraStaffValue.text = args.extraStaff.toString()
             currentStaffValue.text = admin.normalBemanning
             val currentImageId = context?.resources?.getIdentifier("@drawable/"+forecastObject.symbol, "drawable",
                 context?.packageName)
@@ -67,12 +87,14 @@ class DetailFragment : Fragment() {
         val ref = FirebaseDatabase.getInstance().getReference("Users").child("userId")
         ref.push()
         Toast.makeText(context, "Send", Toast.LENGTH_SHORT).show()
+        var nyListe = liste
         println("varselliste før:")
-        println(user.varselListe)
-        user.varselListe.addAll(list)
+        println(nyListe.toString())
+        nyListe.addAll(list)
+        Log.i("NY", nyListe.toString())
         println("varselListe etter: ")
-        println(user.varselListe)
-        detailViewModel.update_alertList(user.varselListe, userId)
+        println(nyListe.toString())
+        detailViewModel.update_alertList(nyListe, userId)
     }
 
     private fun createAlertList(date: String, extraStaff: Int): MutableList<Varsel>{

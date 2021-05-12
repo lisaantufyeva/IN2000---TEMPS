@@ -100,7 +100,7 @@ class ProfileViewModel : ViewModel() {
                             if (user.id == userId) {
                                 mainUser = user
                             }
-                            Log.i("bruker", mainUser.toString())
+                            //Log.i("bruker", mainUser.toString())
                         }
                     }
                 }

@@ -88,9 +88,13 @@ class ProfileFragment : Fragment() {
                 val aapning = root.findViewById<TextView>(R.id.aapning)
                 aapning.text = "Åpningstider: fra " + user.aapenFra + " til " + user.aapenTil
 
+                Log.i("Varsel: ", user.varselListe.toString())
+
                 (activity as AdminActivity?)!!.updateUser(user)
             }
         }
+
+
 
 
 

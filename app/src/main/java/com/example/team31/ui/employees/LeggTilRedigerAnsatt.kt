@@ -118,6 +118,7 @@ class LeggTilRedigerAnsatt : AppCompatActivity(), View.OnClickListener {
                    val rolle = mBinding.etRolle.text.toString().trim {it <= ' '}
 
 
+
                    when{
 
                        TextUtils.isEmpty(name) -> {
@@ -144,7 +145,7 @@ class LeggTilRedigerAnsatt : AppCompatActivity(), View.OnClickListener {
                            ).show()
                        }
                        else ->{
-                           val ansatt = Ansatt(name, email,"temps31", rolle)
+                           val ansatt = Ansatt(name, email,"temps31", rolle, user.id)
                            leggTilAnsatt(user,ansatt)
 
 

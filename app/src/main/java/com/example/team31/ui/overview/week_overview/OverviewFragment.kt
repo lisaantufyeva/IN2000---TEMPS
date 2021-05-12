@@ -53,7 +53,6 @@ class OverviewFragment : Fragment() {
         //val user = viewModel.getUser(userId)
         recyclerView = view.findViewById(R.id.recyclerview)
         //val user = viewModel.getMainUser()
-
         viewModel.getForecastList(user.latitude!!, user.longitude!!)
         viewModel.forecastList.observe(viewLifecycleOwner, Observer { forecastList ->
             recyclerView.also {

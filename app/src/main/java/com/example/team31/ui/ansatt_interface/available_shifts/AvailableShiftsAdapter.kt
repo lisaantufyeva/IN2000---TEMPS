@@ -21,18 +21,16 @@ class AvailableShiftsAdapter(private val shiftList: MutableList<Varsel>, val con
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AvailableShiftAdapterHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.forecast_cards_layout, parent, false)
+                .inflate(R.layout.shift_card_layout, parent, false)
 
         return AvailableShiftAdapterHolder(view)
     }
     override fun onBindViewHolder(holder: AvailableShiftAdapterHolder, position: Int) {
         holder.date.text = shiftList[position].date
         holder.button.setOnClickListener {
-            Toast.makeText(context, "Send", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Vakten er tatt", Toast.LENGTH_SHORT).show()
         }
-
     }
-
 
     override fun getItemCount() = shiftList.size
 

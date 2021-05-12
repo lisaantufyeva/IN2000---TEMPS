@@ -73,7 +73,6 @@ class AuthenticationViewModel : ViewModel(){
 
     fun getAnsatte(userId: String){
         val ansattRef = FirebaseDatabase.getInstance().getReference("Ansatte").child(userId)
-        val ansatte = ArrayList<Ansatt>()
 
         // Henter brukere fra firebase
         val userListener = object : ValueEventListener {

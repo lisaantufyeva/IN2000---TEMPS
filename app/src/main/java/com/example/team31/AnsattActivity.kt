@@ -7,9 +7,17 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
+import com.google.firebase.database.FirebaseDatabase
+
 
 class AnsattActivity : AppCompatActivity() {
+    private lateinit var ansattUser: Ansatt
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        ansattUser = intent.extras!!.get("Ansatt") as Ansatt
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ansatt)
 
@@ -29,6 +37,23 @@ class AnsattActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_ansatt)
         return navController.navigateUp()
+    }
+
+    fun getUserId(): String{
+        return ansattUser.id!!
+    }
+    fun getUser(): Ansatt {
+        return ansattUser
+    }
+
+    fun hideKeyboard() {
+        val view = this.currentFocus
+        if (view != null){
+            val hideMe = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            hideMe.hideSoftInputFromWindow(view.windowToken,0)
+
+
+        }
     }
 
 }

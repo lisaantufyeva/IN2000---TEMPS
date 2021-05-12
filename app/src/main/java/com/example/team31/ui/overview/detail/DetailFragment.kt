@@ -46,9 +46,7 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val admin = (activity as AdminActivity?)!!.getUser()
         val userId = (activity as AdminActivity?)!!.getUserId()
-
-
-
+        println("hentet user id detail: "+ userId)
 
         GlobalScope.launch(Dispatchers.IO){
             val liste1 = detailViewModel.getAlertList(userId)
@@ -59,7 +57,6 @@ class DetailFragment : Fragment() {
             }
         }
 
-
         super.onViewCreated(view, savedInstanceState)
         //model = ViewModelProviders.of(this, factory).get(OverviewViewModel::class.java)
 
@@ -68,13 +65,12 @@ class DetailFragment : Fragment() {
             date.text = forecastObject.time
             temp.text = forecastObject.temp
             precipitation.text = forecastObject.precipitation
-            //extraStaffValue.text = args.extraStaff.toString()
+            extraStaffValue.text = args.extraStaff.toString()
             currentStaffValue.text = admin.normalBemanning
             val currentImageId = context?.resources?.getIdentifier("@drawable/"+forecastObject.symbol, "drawable",
                 context?.packageName)
             val currentDrawable = currentImageId?.let { context?.resources?.getDrawable(it) }
             imageView.setImageDrawable(currentDrawable)
-
         }
 
         binding.sendMessage.setOnClickListener {

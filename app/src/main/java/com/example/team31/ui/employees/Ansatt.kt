@@ -6,8 +6,8 @@ import android.provider.ContactsContract
 import kotlinx.android.parcel.Parcelize
 import java.io.Serializable
 
-data class Ansatt(val navn:String?,val email:String?, val passord: String?, val rolle:String?):Serializable {
-    constructor() : this("1","e","e","e")
+data class Ansatt(val navn:String?,val email:String?, val passord: String?, val rolle:String?, val adminId: String?):Serializable {
+    constructor() : this("1","e","e","e", "e")
 }
 
 /*

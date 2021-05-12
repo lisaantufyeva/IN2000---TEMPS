@@ -18,7 +18,7 @@ import com.example.team31.R
 import com.google.android.material.button.MaterialButton
 
 
-class login_fragment : Fragment() {
+class login_employee_fragment : Fragment() {
 
     private val model: AuthenticationViewModel by activityViewModels()
 
@@ -26,44 +26,40 @@ class login_fragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        model.getUsers()
-        val root =  inflater.inflate(R.layout.login_fragment, container, false)
-        val regKnapp = root.findViewById<MaterialButton>(R.id.registrer_knapp)
+        //model.getAnsatte()
+        println(model.getAnsatte())
+
+
+        val root =  inflater.inflate(R.layout.login_employee_fragment, container, false)
         val loginKnapp = root.findViewById<Button>(R.id.loginn_knapp)
-        val e= root.findViewById<TextView>(R.id.email)
-        val p = root.findViewById<TextView>(R.id.passord)
-        val switchToAnsatt = root.findViewById<SwitchCompat>(R.id.switchtoAnsatt)
+        val e1= root.findViewById<TextView>(R.id.email)
+        val p1 = root.findViewById<TextView>(R.id.passord)
+        val switchtoAdmin = root.findViewById<SwitchCompat>(R.id.switchtoAdmin)
 
-
-        switchToAnsatt.setOnClickListener{
-            if (switchToAnsatt.isChecked)
-                Navigation.findNavController(root).navigate(R.id.action_login_fragment_to_login_employee_fragment)
+        switchtoAdmin.setOnClickListener{
+            if (!switchtoAdmin.isChecked)
+                Navigation.findNavController(root).navigate(R.id.action_login_employee_fragment_to_login_fragment)
         }
 
-        regKnapp.setOnClickListener{
-            Navigation.findNavController(root).navigate(R.id.action_login_fragment_to_registration_name_fragment)
-        }
         loginKnapp.setOnClickListener {
-            val email = e.text.toString()
-            val passord = p.text.toString()
+            val email = e1.text.toString()
+            val passord = p1.text.toString()
             if (email.isBlank() || passord.isBlank() ){
                 Toast.makeText(activity, "Ugyldig input!", Toast.LENGTH_SHORT).show()
                 (activity as Authentication?)!!.hideKeyboard()
                 return@setOnClickListener
             }
 
-            val user = model.login(email,passord)
-            if(user != null){
-                Log.i("bruker:", user.toString())
-                (activity as Authentication?)!!.startActivity2(user)
+            val ansatt = model.loginAnsatt(email,passord)
+            if(ansatt != null){
+                Log.i("bruker:", ansatt.toString())
+                (activity as Authentication?)!!.startAnsattActivity(ansatt)
             }
             else{
-                Toast.makeText(activity, "Feil ved innlogging. Registrer deg eller skriv rett passord.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Feil ved innlogging. Ta kontakt med arbeidsgiveren.", Toast.LENGTH_SHORT).show()
             }
         }
-
         return root
     }
-
 }
 

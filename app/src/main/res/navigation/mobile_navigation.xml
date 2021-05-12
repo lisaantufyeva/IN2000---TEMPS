@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation.xml"
-    app:startDestination="@+id/navigation_overview">
+    app:startDestination="@id/navigation_overview">
 
 
     <fragment
@@ -66,6 +66,9 @@
         <argument
             android:name="RefinedForecast"
             app:argType="com.example.team31.ui.overview.week_overview.RefinedForecast" />
+        <argument
+            android:name="extraStaff"
+            app:argType="integer" />
     </fragment>
 
     <fragment

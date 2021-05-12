@@ -19,14 +19,17 @@ class Authentication : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun startAnsattActivity(i:Ansatt){
+        val intent = Intent(applicationContext, AnsattActivity::class.java)
+        intent.putExtra("Ansatt", i as Serializable)
+        startActivity(intent)
+    }
+
     fun hideKeyboard() {
         val view = this.currentFocus
         if (view != null){
             val hideMe = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             hideMe.hideSoftInputFromWindow(view.windowToken,0)
-
-
         }
     }
-
 }

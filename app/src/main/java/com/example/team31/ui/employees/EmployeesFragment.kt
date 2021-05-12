@@ -1,6 +1,5 @@
 package com.example.team31.ui.employees
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -12,10 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.team31.AdminActivity
 import com.example.team31.Bruker
 import com.example.team31.R
-import com.example.team31.authentication.AuthenticationViewModel
 import com.example.team31.databinding.EmployeesFragmentBinding
-import com.google.android.play.core.internal.i
-import kotlinx.coroutines.coroutineScope
 import java.io.Serializable
 
 class EmployeesFragment : Fragment() {

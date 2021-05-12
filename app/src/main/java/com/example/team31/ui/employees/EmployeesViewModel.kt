@@ -1,11 +1,9 @@
 package com.example.team31.ui.employees
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.team31.AdminActivity
 import com.example.team31.Bruker
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.team31.Ansatt
 import com.example.team31.Bruker
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -16,8 +17,8 @@ import com.google.firebase.database.ValueEventListener
 class AuthenticationViewModel : ViewModel(){
     //private var users: MutableLiveData<List<Bruker>> = MutableLiveData<List<Bruker>>()
     private var users = mutableListOf<Bruker>()
+    private var ansattUsers = mutableListOf<Ansatt>()
     val ref = FirebaseDatabase.getInstance().getReference("Users")
-
 
 
     fun login(email:String,password:String) : Bruker? {
@@ -34,11 +35,23 @@ class AuthenticationViewModel : ViewModel(){
         return null
     }
 
+    //login method for employees
+    fun loginAnsatt(email: String, password: String): Ansatt?{
+        val ansatt: Ansatt? = ansattUsers.find{it.email == email}
+
+        if (ansatt != null){
+            if (password == ansatt.passord){
+                return ansatt
+            }
+        }
+        return null
+    }
+
     fun getUsers() {
         val brukere = ArrayList<Bruker>()
 
         // Henter brukere fra firebase
-        val UserListener = object : ValueEventListener {
+        val userListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (i in dataSnapshot.children) {
@@ -54,8 +67,34 @@ class AuthenticationViewModel : ViewModel(){
             }
         }
         users = brukere
-        ref.addValueEventListener(UserListener)
+        ref.addValueEventListener(userListener)
     }
+
+    fun getAnsatte(){
+
+        val ansatte = ArrayList<Ansatt>()
+
+        // Henter brukere fra firebase
+        val userListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (i in dataSnapshot.children) {
+                        val ansatt = i.getValue(Ansatt::class.java)
+                        ansatte.add(ansatt!!)
+                    }
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w("message", "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        ansattUsers = ansatte
+        ref.addValueEventListener(userListener)
+
+    }
+
 
     fun saveUser(user:Bruker){
 

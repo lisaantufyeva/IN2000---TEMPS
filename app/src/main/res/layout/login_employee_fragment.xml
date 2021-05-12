@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/login_blue"
+    android:background="@color/button_yellow"
     tools:context=".MainActivity">
 
     <!--
@@ -29,9 +29,11 @@
         android:drawablePadding="10dp"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
+        android:textCursorDrawable="@drawable/cursor_yellow_background"
+        android:backgroundTint="@color/button_blue"
         android:paddingBottom="20dp"
-        android:textColor="@color/text_light"
-        android:textColorHint="@color/text_light"
+        android:textColor="@color/text_grey"
+        android:textColorHint="@color/text_grey"
         app:layout_constraintBottom_toTopOf="@+id/passord"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -51,9 +53,11 @@
         android:drawablePadding="10dp"
         android:hint="Passord"
         android:inputType="textPassword"
+        android:textCursorDrawable="@drawable/cursor_yellow_background"
+        android:backgroundTint="@color/button_blue"
         android:paddingBottom="20dp"
-        android:textColor="@color/text_light"
-        android:textColorHint="@color/text_light"
+        android:textColor="@color/text_grey"
+        android:textColorHint="@color/text_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +71,7 @@
         android:layout_below="@+id/passord"
         android:layout_marginTop="10dp"
         android:text="Glemt passord?"
-        android:textColor="@color/text_light"
+        android:textColor="@color/text_grey"
         android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/loginn_knapp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,10 +86,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/glemt_passord"
-        android:buttonTint="@color/button_yellow"
+        android:buttonTint="@color/button_blue"
         android:checked="false"
         android:text="Husk passord"
-        android:textColor="@color/text_light"
+        android:textColor="@color/text_grey"
         android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/loginn_knapp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +119,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
             android:text="Admin"
-            android:textColor="@color/text_light"
+            android:textColor="@color/text_grey"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/switchtoAnsatt"
@@ -130,22 +134,23 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="104dp"
             android:text="Ansatt"
-            android:textColor="@color/text_light"
+            android:textColor="@color/text_grey"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.291"
+            app:layout_constraintHorizontal_bias="0.188"
             app:layout_constraintStart_toEndOf="@+id/switchtoAnsatt"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.484" />
+            app:layout_constraintVertical_bias="0.515" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switchtoAnsatt"
+            android:id="@+id/switchtoAdmin"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:checked="false"
+            android:checked="true"
+
             android:theme="@style/Theme.AppCompat.DayNight"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -156,34 +161,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.button.MaterialButton
-
-        android:id="@+id/registrer_knapp"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="173dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/loginn_knapp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/rounded_corners_button"
-        android:text="Registrer deg"
-        android:textAllCaps="false"
-        android:textColor="@color/button_blue_text"
-        android:textSize="18dp"
-        android:theme="@style/Theme.MaterialComponents"
-        app:backgroundTint="@color/transparent"
-        app:cornerRadius="25.5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginn_knapp"
-        app:layout_constraintVertical_bias="0.132"
-        app:strokeColor="@color/button_yellow"
-        app:strokeWidth="3dp"
-        tools:ignore="MissingConstraints" />
-
     <Button
 
         android:id="@+id/loginn_knapp"
@@ -192,17 +169,18 @@
         android:layout_below="@+id/remember_password"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="180dp"
+        android:layout_marginBottom="188dp"
         android:background="@drawable/rounded_corners_button"
         android:text="Logg inn"
         android:textAllCaps="false"
-        android:textColor="@color/text_grey"
+        android:textColor="@color/button_blue_text"
         android:textSize="18dp"
-        app:backgroundTint="@color/button_yellow"
+        app:backgroundTint="@color/button_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passord"
         app:layout_constraintVertical_bias="0.413" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

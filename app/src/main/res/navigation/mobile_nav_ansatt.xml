@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_nav_ansatt.xml"
+    app:startDestination="@+id/navigation_available_shifts">
+
+    <fragment
+        android:id="@+id/navigation_available_shifts"
+        android:name="com.example.team31.ui.ansatt_interface.available_shifts.AvailableShiftsListFragment"
+        android:label="Ledige vakter"
+        tools:layout="@layout/available_shifts_list_fragment" >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_profile_ansatt"
+        android:name="com.example.team31.ui.ansatt_interface.ansatt_profile.ProfileFragmentAnsatt"
+        android:label="@string/title_profile"
+        tools:layout="@layout/profile_fragment_ansatt_fragment" />
+
+</navigation>

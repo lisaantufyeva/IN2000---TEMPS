@@ -55,7 +55,6 @@ class ProfileViewModel : ViewModel() {
         hashMap.put("nedbor", nedbor)
 
         ref.updateChildren(hashMap)
-
     }
 
     fun update_opening(open:String, close:String, userId: String){

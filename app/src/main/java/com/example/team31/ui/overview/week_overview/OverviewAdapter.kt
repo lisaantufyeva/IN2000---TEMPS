@@ -13,7 +13,6 @@ import androidx.core.view.isVisible
 
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.team31.AdminActivity
 import com.example.team31.Bruker
 import com.example.team31.R
 
@@ -32,7 +31,7 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OverviewAdapterHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.cards_layout, parent, false)
+            .inflate(R.layout.forecast_cards_layout, parent, false)
 
         return OverviewAdapterHolder(view)
     }
@@ -47,10 +46,11 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
         holder.icon.setImageDrawable(drawable)
 
 
-        var mankoBehov = 0
+        var extraStaff = 0
         if (checkLowStaffing(forecastList[position], user.triggerTemp)){
 
-            mankoBehov = checkStaffingDemand(forecastList[position], user)
+            extraStaff = checkStaffingDemand(forecastList[position], user)
+            println("Dato"+forecastList[position].time)
             Log.d("Testing staffingDemang", checkStaffingDemand(forecastList[position], user).toString())
 
             //varselgenerator
@@ -60,14 +60,14 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
 
         holder.staffButton.setOnClickListener {
             Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show()
-            showDetail(forecastObject, it)
+            showDetail(forecastObject,extraStaff, it)
         }
     }
     override fun getItemCount() = forecastList.size
 
 }
 
-fun showDetail(weatherObject: RefinedForecast, root: View){
-    val actionDetail = OverviewFragmentDirections.actionDetail(weatherObject)
+fun showDetail(weatherObject: RefinedForecast, extraStaff: Int,  root: View){
+    val actionDetail = OverviewFragmentDirections.actionDetail(weatherObject, extraStaff)
     Navigation.findNavController(root).navigate(actionDetail)
 }

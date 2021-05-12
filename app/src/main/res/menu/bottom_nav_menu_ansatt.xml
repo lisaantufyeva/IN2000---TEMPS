@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_available_shifts"
+        android:icon="@drawable/overview_graa"
+        android:title="Ledige vakter" />
+
+    <item
+        android:id="@+id/navigation_profile_ansatt"
+        android:icon="@drawable/user_graa"
+        android:title="@string/title_profile" />
+
+</menu>

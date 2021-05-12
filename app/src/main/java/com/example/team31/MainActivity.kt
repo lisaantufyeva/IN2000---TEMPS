@@ -4,23 +4,14 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.UserHandle
-import android.util.Log
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import java.io.Serializable
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        //startActivity2()
         startActivityLogin()
 
         /*
@@ -110,9 +101,8 @@ class MainActivity : AppCompatActivity() {
     }*/
 
     //Starter AdminActivity
-    fun startActivity2(i:Bruker){
-        val intent = Intent(applicationContext, AdminActivity::class.java)
-        intent.putExtra("User", i as Serializable)
+    fun startActivity2(){
+        val intent = Intent(this, AnsattActivity::class.java)
         startActivity(intent)
     }
 

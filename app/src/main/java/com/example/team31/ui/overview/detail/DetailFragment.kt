@@ -1,46 +1,45 @@
 package com.example.team31.ui.overview.detail
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.example.team31.AdminActivity
+import com.example.team31.Bruker
 import com.example.team31.R
-import com.example.team31.data.api.LocationForecastApi
+import com.example.team31.Varsel
 import com.example.team31.databinding.DetailFragmentBinding
-import com.example.team31.ui.overview.week_overview.OverviewViewModel
-import com.example.team31.ui.overview.week_overview.OverviewViewModelFactory
+import com.example.team31.ui.overview.week_overview.Forecast
 import com.example.team31.ui.overview.week_overview.RefinedForecast
+import com.example.team31.ui.profile.ProfileViewModel
+import com.google.firebase.database.FirebaseDatabase
 
 class DetailFragment : Fragment() {
 
     private val args: DetailFragmentArgs by navArgs()
     private lateinit var forecastObject: RefinedForecast
-
-
+    private lateinit var detailViewModel: DetailViewModel
+    private var user: Bruker = Bruker()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        detailViewModel =
+                ViewModelProvider(this).get(DetailViewModel::class.java)
         forecastObject = args.RefinedForecast
         return inflater.inflate(R.layout.detail_fragment, container, false)
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val admin = (activity as AdminActivity?)!!.getUser()
+        val userId = (activity as AdminActivity?)!!.getUserId()
         super.onViewCreated(view, savedInstanceState)
         //model = ViewModelProviders.of(this, factory).get(OverviewViewModel::class.java)
 
@@ -49,73 +48,36 @@ class DetailFragment : Fragment() {
             date.text = forecastObject.time
             temp.text = forecastObject.temp
             precipitation.text = forecastObject.precipitation
-            extraStaffValue.text = ""
+            extraStaffValue.text = args.extraStaff.toString()
+            currentStaffValue.text = admin.normalBemanning
             val currentImageId = context?.resources?.getIdentifier("@drawable/"+forecastObject.symbol, "drawable",
                 context?.packageName)
             val currentDrawable = currentImageId?.let { context?.resources?.getDrawable(it) }
             imageView.setImageDrawable(currentDrawable)
+
         }
 
-        /*
-        model.getSelected()?.let { selectedItem ->
-            with(binding) {
-                date.text = selectedItem.time
-                temp.text = selectedItem.temp
-                precipitation.text = selectedItem.precipitation
-            }
-        }*/
         binding.sendMessage.setOnClickListener {
-            sendMessage()
+            val alertList = createAlertList(forecastObject.time, args.extraStaff)
+            println("Created list"+ alertList)
+            sendMessage(alertList, userId)
         }
     }
-    private fun sendMessage(){
+    private fun sendMessage(list: MutableList<Varsel>, userId:String){
+        val ref = FirebaseDatabase.getInstance().getReference("Users").child("userId")
+        ref.push()
         Toast.makeText(context, "Send", Toast.LENGTH_SHORT).show()
+        println("varselliste før:")
+        println(user.varselListe)
+        user.varselListe.addAll(list)
+        println("varselListe etter: ")
+        println(user.varselListe)
+        detailViewModel.update_alertList(user.varselListe, userId)
+    }
+
+    private fun createAlertList(date: String, extraStaff: Int): MutableList<Varsel>{
+        return MutableList(extraStaff){Varsel(date, false)}
     }
 
 }
 
-        /*
-        //date
-        val date: TextView = view.findViewById(R.id.date)
-        date.text = forecastObject.time
-
-        //temp
-        val degrees: TextView = view.findViewById(R.id.temp)
-        degrees.text = forecastObject.temp
-
-        val precipitation: TextView = view.findViewById(R.id.precipitation)
-        precipitation.text = forecastObject.precipitation
-
-        //icon
-        val image: ImageView = view.findViewById(R.id.imageView)
-        val currentImageURI = "@drawable/"+forecastObject.symbol
-        val currentImageId = context?.resources?.getIdentifier(currentImageURI, "drawable",
-            context?.packageName
-        )
-        val currentDrawable = currentImageId?.let { context?.resources?.getDrawable(it) }
-        image.setImageDrawable(currentDrawable)
-
-        val button: Button = requireView().findViewById(R.id.sendMessage)
-        button.setOnClickListener {
-            sendMessage()
-        }*/
-
-
-/*
-//model = ViewModelProviders.of(this, factory).get(OverviewViewModel::class.java)
-        /*
-        model.getSelected()?.let { selectedItem->
-            with(binding){
-                date.text = selectedItem.time
-                temp.text = selectedItem.temp
-                precipitation.text = selectedItem.precipitation
-            }
-        }
-        binding.sendMessage.setOnClickListener {
-            sendMessage()*/
-        }
-
-        /*
-        val button: Button = requireView().findViewById(R.id.sendMessage)
-        button.setOnClickListener {
- */

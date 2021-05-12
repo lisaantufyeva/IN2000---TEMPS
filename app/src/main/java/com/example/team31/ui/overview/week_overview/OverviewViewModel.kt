@@ -36,8 +36,6 @@ class OverviewViewModel @Inject constructor(
     fun getSelected() = selected.value
 
 
-    val errorMessage = MutableLiveData<String>()
-
     fun getForecastList(lat: String, lon: String) {
         viewModelScope.launch {
             val result = repository.fetchLocationForecast(lat, lon)

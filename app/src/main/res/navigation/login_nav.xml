@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_login_fragment_to_registration_name_fragment"
             app:destination="@id/registration_name_fragment" />
+        <action
+            android:id="@+id/action_login_fragment_to_login_employee_fragment"
+            app:destination="@id/login_employee_fragment" />
     </fragment>
     <fragment
         android:id="@+id/registration_name_fragment"
@@ -73,5 +76,13 @@
         <argument
             android:name="user"
             app:argType="com.example.team31.Bruker" />
+    </fragment>
+    <fragment
+        android:id="@+id/login_employee_fragment"
+        android:name="com.example.team31.authentication.login_employee_fragment"
+        android:label="login_employee_fragment" >
+        <action
+            android:id="@+id/action_login_employee_fragment_to_login_fragment"
+            app:destination="@id/login_fragment" />
     </fragment>
 </navigation>

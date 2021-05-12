@@ -7,9 +7,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.team31.AdminActivity
 import com.example.team31.Bruker
 import com.example.team31.Constants
 import com.example.team31.R

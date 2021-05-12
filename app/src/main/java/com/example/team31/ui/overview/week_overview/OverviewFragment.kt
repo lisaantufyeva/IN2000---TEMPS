@@ -6,17 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team31.AdminActivity
 import com.example.team31.R
-import com.example.team31.Bruker
 import com.example.team31.data.api.LocationForecastApi
 import com.example.team31.data.repositories.ForecastRepository
-import kotlinx.coroutines.delay
 import java.nio.channels.Selector
 
 //oppdatert Fragment
@@ -32,8 +29,6 @@ class OverviewFragment : Fragment() {
     private lateinit var viewManager: RecyclerView.LayoutManager
 
     //heiprivate var userId:String = ""
-
-
 
 
     override fun onCreateView(
@@ -69,37 +64,5 @@ class OverviewFragment : Fragment() {
         })
     }
 }
-        /*
-
-     fun displayWeatherList(root: View, list: List<RefinedForecast>){
-        recyclerView = root.findViewById(R.id.recyclerview)
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(root.context)
-        recyclerView.adapter = OverviewAdapter(list, root.context)
-
-    }*/
-
-         /*
-
-    fun showDetail(weatherObject: RefinedForecast, root: View){
-        val actionDetail = DetailFragmentDirections.actionDetail(weatherObject)
-        Navigation.findNavController(root).navigate(actionDetail)
-    }*/
-/*
-    val staffButton: Button = root.findViewById(R.id.staff_button)
-    staffButton.setOnClickListener {
-        Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show()
-    }*/
-
-
-
-/*
-    override fun onDestroy() {
-        super.onDestroy()
-        presenter.onDestroy()
-    }
-
-
-}*/
 
 

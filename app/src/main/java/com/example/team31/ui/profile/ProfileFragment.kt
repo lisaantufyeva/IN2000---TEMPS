@@ -2,11 +2,14 @@ package com.example.team31.ui.profile
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+//import com.bumptech.glide.Glide
+import android.content.Context
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
@@ -15,7 +18,11 @@ import com.bumptech.glide.Glide
 import com.example.team31.AdminActivity
 import com.example.team31.Bruker
 import com.example.team31.R
-import kotlinx.coroutines.*
+import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.w3c.dom.Text
 
 //import com.example.team31.databinding.ProfileFragmentBinding
@@ -32,14 +39,14 @@ class ProfileFragment : Fragment() {
     private lateinit var profileViewModel: ProfileViewModel
     private var user: Bruker = Bruker()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val userId = (activity as AdminActivity?)!!.getUserId()
         profileViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
-
+                ViewModelProvider(this).get(ProfileViewModel::class.java)
         val root = inflater.inflate(R.layout.profile_fragment, container, false)
 
         GlobalScope.launch(Dispatchers.IO) {
@@ -123,11 +130,10 @@ class ProfileFragment : Fragment() {
         /*
         val bilde  = root.findViewById<CircleImageView>(R.id.image)
         Glide.with(this).load(user.bilde).into(bilde)
-
          */
         //val textView: TextView = root.findViewById(R.id.text_profile)
         //profileViewModel.text.observe(viewLifecycleOwner, Observer {
-          //  textView.text = it
+        //  textView.text = it
         //})
         return root
     }

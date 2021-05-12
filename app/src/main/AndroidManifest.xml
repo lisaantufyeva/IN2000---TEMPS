@@ -16,20 +16,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Team31">
-
-        <activity android:name=".ui.employees.LeggTilRedigerAnsatt"
+        <activity android:name=".AuthEmployee"></activity>
+        <activity
+            android:name=".ui.employees.LeggTilRedigerAnsatt"
             android:configChanges="orientation"
             android:label="Legg til ansatt"
-            android:theme="@style/Theme.Team31.NoActionBar"
-            />
+            android:theme="@style/Theme.Team31.NoActionBar" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDwU7qloh3FrztFPxnyR4zbbKOBUGmgN9Y" />
 
-        <activity android:name=".Registrering" />
+        <activity android:name=".AnsattActivity" />
         <activity android:name=".AdminActivity" />
-        <activity android:name=".Authentication"></activity>
+        <activity android:name=".Authentication" />
         <activity android:name=".InfoSkjerm" />
         <activity android:name=".MainActivity">
             <intent-filter>

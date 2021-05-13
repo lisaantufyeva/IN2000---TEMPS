@@ -16,7 +16,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Team31">
-        <activity android:name=".AuthEmployee"></activity>
         <activity
             android:name=".ui.employees.LeggTilRedigerAnsatt"
             android:configChanges="orientation"
@@ -29,7 +28,8 @@
 
         <activity android:name=".AnsattActivity" />
         <activity android:name=".AdminActivity" />
-        <activity android:name=".Authentication" />
+        <activity android:name=".Authentication"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".InfoSkjerm" />
         <activity android:name=".MainActivity">
             <intent-filter>

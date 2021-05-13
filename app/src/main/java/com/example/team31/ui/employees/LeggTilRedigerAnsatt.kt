@@ -43,6 +43,7 @@ class LeggTilRedigerAnsatt : AppCompatActivity(), View.OnClickListener {
         val refAnsatt = FirebaseDatabase.getInstance().getReference("Ansatte").child(admin.id!!)
 
         val ansattId = refAnsatt.push().key
+        ansatt.ansattId = ansattId
         refAnsatt.child(ansattId!!).setValue(ansatt).addOnCompleteListener {
             Log.i("Message:", "Ansatt registrert")
         }
@@ -145,7 +146,7 @@ class LeggTilRedigerAnsatt : AppCompatActivity(), View.OnClickListener {
                            ).show()
                        }
                        else ->{
-                           val ansatt = Ansatt(name, email,"temps31", rolle, user.id)
+                           val ansatt = Ansatt(null,name, email,"temps31", rolle, user.id)
                            leggTilAnsatt(user,ansatt)
 
 

@@ -22,14 +22,14 @@ class AvailableShiftsListViewModel : ViewModel() {
 
     suspend fun getAlertList(userId:String): MutableList<Varsel> {
 
-        val ref = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("varselListe")
-        val list = mutableListOf<Varsel>()
+        val ref = FirebaseDatabase.getInstance().getReference("Varsler").child(userId).child("not_Taken")
+        val liste = mutableListOf<Varsel>()
         val alertListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (i in dataSnapshot.children) {
                         val varsel = i.getValue(Varsel::class.java)
-                        list.add(varsel!!)
+                        liste.add(varsel!!)
                         Log.i("ansatt hentes:", varsel.toString())
                     }
                 }
@@ -41,15 +41,6 @@ class AvailableShiftsListViewModel : ViewModel() {
         ref.addValueEventListener(alertListener)
         delay(200)
         //_alertList.value = liste
-        return list.distinctBy { it.date } as MutableList<Varsel>
+        return liste.distinctBy { it.date } as MutableList<Varsel>
     }
-
 }
-/*
-fun update_Alert(varsel: Varsel, userId: String){
-    val ref = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("varselListe")
-    val hashMap =  hashMapOf<String, Any?>()
-    hashMap.put("tatt",true)
-    ref.updateChildren(hashMap)
-
-}*/

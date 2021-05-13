@@ -15,11 +15,16 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team31.Bruker
 import com.example.team31.R
-
+import com.example.team31.Varsel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class OverviewAdapter(private val forecastList: List<RefinedForecast>, val context: Context, val user: Bruker):
     RecyclerView.Adapter<OverviewAdapter.OverviewAdapterHolder>() {
+    private var availableAlerts = mutableListOf<Varsel>()
 
     class OverviewAdapterHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val date: TextView = itemView.findViewById(R.id.date)
@@ -46,9 +51,16 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
         val drawable = context.resources.getDrawable(iconId)
         holder.icon.setImageDrawable(drawable)
 
-        println( "VarselListe Adapter:" + user.varselListe)
-        if (checkCreatedAlerts(forecastList[position].time, user.varselListe)){
-            holder.alertButton.text = "Sendt: "+ getNumberOfAlerts(forecastList[position].time, user.varselListe) + "/ Tatt: "+ getAcceptedShifts(forecastList[position].time, user.varselListe).toString()
+        // get alert list
+        GlobalScope.launch(Dispatchers.IO){
+            val availableShifts = getAvailableShiftsList(user.id!!)
+
+            withContext(Dispatchers.Main){
+                availableAlerts = availableShifts
+            }
+        }
+        if (checkCreatedAlerts(forecastList[position].time, availableAlerts)){
+            holder.alertButton.text = "Sendt: "+ getNumberOfAlerts(forecastList[position].time, availableAlerts) + "/ Tatt: "+ getAcceptedShifts(forecastList[position].time, availableAlerts).toString()
             holder.alertButton.isVisible = true
         } else {
             var extraStaff = 0
@@ -57,7 +69,6 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
                 println("Dato"+forecastList[position].time)
                 Log.d("Testing staffingDemang", checkStaffingDemand(forecastList[position], user).toString())
 
-                //varselgenerator
 
                 holder.staffButton.isVisible = true
             }

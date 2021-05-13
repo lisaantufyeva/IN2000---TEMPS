@@ -46,9 +46,9 @@ class aapningstider_fragment : Fragment() {
             user.aapenTil = slutt.text.toString()
 
             val liste = mutableListOf<Varsel>()
-            val varsel1 = Varsel("24.04.20",true)
-            val varsel2 = Varsel("02.04.20",false)
-            val varsel3 = Varsel("25.06.21", false)
+            val varsel1 = Varsel(null,"24.04.20",true,null,null)
+            val varsel2 = Varsel(null,"02.04.20",false,null,null)
+            val varsel3 = Varsel(null,"25.06.21", false,null,null)
 
             liste.add(varsel1)
             liste.add(varsel2)

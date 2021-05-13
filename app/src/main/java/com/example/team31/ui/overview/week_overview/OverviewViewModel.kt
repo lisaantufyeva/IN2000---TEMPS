@@ -13,6 +13,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -121,4 +122,28 @@ fun checkStaffingDemand(forecast: RefinedForecast, user: Bruker): Int{
         manko = user.maxBemanning!!.toDouble() - user.normalBemanning!!.toDouble()
     }
     return manko.toInt()
+}
+
+suspend fun getAvailableShiftsList(userId:String): MutableList<Varsel> {
+    val ref = FirebaseDatabase.getInstance().getReference("Varsler").child(userId).child("not_Taken")
+    val liste = mutableListOf<Varsel>()
+    val alertListener = object : ValueEventListener {
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            if (dataSnapshot.exists()) {
+                for (i in dataSnapshot.children) {
+                    val varsel = i.getValue(Varsel::class.java)
+                    liste.add(varsel!!)
+                    Log.i("ansatt hentes:", varsel.toString())
+                }
+            }
+
+        }
+
+        override fun onCancelled(databaseError: DatabaseError) {
+            Log.w("message", "loadPost:onCancelled", databaseError.toException())
+        }
+    }
+    ref.addValueEventListener(alertListener)
+    delay(200)
+    return liste
 }

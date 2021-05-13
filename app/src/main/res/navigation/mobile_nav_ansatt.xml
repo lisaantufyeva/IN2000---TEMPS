@@ -16,7 +16,23 @@
     <fragment
         android:id="@+id/navigation_profile_ansatt"
         android:name="com.example.team31.ui.ansatt_interface.ansatt_profile.ProfileFragmentAnsatt"
-        android:label="@string/title_profile"
-        tools:layout="@layout/profile_fragment_ansatt_fragment" />
+        android:label="Profile ansatt"
+        tools:layout="@layout/profile_fragment_ansatt_fragment">
+
+        <action
+            android:id="@+id/action_navigation_profile_ansatt_to_edit_employee_password"
+            app:destination="@id/edit_employee_password" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/edit_employee_password"
+        android:name="com.example.team31.ui.ansatt_interface.ansatt_profile.edit_employee_password"
+        android:label="edit_employee_password"
+        tools:layout="@layout/edit_employee_password" >
+        <action
+            android:id="@+id/action_edit_employee_password_to_navigation_profile_ansatt"
+            app:destination="@id/navigation_profile_ansatt" />
+    </fragment>
 
 </navigation>

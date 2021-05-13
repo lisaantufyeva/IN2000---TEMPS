@@ -46,6 +46,10 @@ class AnsattActivity : AppCompatActivity() {
         return ansattUser
     }
 
+    fun updateUser(newUser: Ansatt){
+        ansattUser = newUser
+    }
+
     fun hideKeyboard() {
         val view = this.currentFocus
         if (view != null){

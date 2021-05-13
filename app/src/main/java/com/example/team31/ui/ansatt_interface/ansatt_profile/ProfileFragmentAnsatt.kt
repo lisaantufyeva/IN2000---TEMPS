@@ -43,8 +43,8 @@ class ProfileFragmentAnsatt : Fragment() {
         }
         return root
     }
-        return inflater.inflate(R.layout.profile_fragment_ansatt_fragment, container, false)
-    }
+       // return inflater.inflate(R.layout.profile_fragment_ansatt_fragment, container, false)
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

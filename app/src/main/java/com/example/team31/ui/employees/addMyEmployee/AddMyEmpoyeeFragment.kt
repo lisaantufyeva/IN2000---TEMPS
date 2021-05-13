@@ -17,7 +17,7 @@ import com.example.team31.databinding.AddmyemployeeFragmentBinding
 import com.example.team31.databinding.DialogCustomListBinding
 import com.example.team31.ui.employees.JobTitleListItemAdapter
 
-import com.example.team31.ui.employees.myEmployees.MyEmployee
+import com.example.team31.Ansatt
 import com.google.firebase.database.FirebaseDatabase
 import java.util.regex.Pattern.compile
 
@@ -50,7 +50,7 @@ class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
 
 
 
-    fun leggTilAnsatt(admin: Bruker, myEmployee: MyEmployee) {
+    fun leggTilAnsatt(admin: Bruker, myEmployee: Ansatt) {
         val refAnsatt = FirebaseDatabase.getInstance().getReference("Ansatte").child(admin.id!!)
 
         val ansattId = refAnsatt.push().key
@@ -155,7 +155,7 @@ class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
                             ).show()
                         }
                         else ->{
-                            val ansatt = MyEmployee(name, email,rolle)
+                            val ansatt = Ansatt(null,name, email,"temps31", rolle, user.id)
                             leggTilAnsatt(user,ansatt)
 
                             findNavController().navigate(

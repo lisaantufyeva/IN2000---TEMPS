@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.team31.AdminActivity
 import com.example.team31.Bruker
+import com.example.team31.Ansatt
 import com.example.team31.R
 import com.example.team31.authentication.AuthenticationViewModel
 import com.example.team31.databinding.EmployeesFragmentBinding
@@ -80,7 +81,7 @@ class MyEmployeeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        add(dragana)
+        //add(dragana)
         //add(greogor)
         //add(lisz)
         //add(henrik)

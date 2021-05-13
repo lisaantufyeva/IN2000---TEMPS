@@ -1,3 +1,5 @@
+/*
+
 package com.example.team31.ui.employees
 
 import android.app.Dialog
@@ -8,11 +10,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.team31.Ansatt
 import com.example.team31.Bruker
 import com.example.team31.Constants
 import com.example.team31.R
 import com.example.team31.databinding.ActivityLeggTilRedigerAnsattBinding
 import com.example.team31.databinding.DialogCustomListBinding
+import com.example.team31.ui.employees.myEmployees.MyEmployeeAdapter
 import com.google.firebase.database.FirebaseDatabase
 
 class LeggTilRedigerAnsatt : AppCompatActivity(), View.OnClickListener {
@@ -22,7 +26,7 @@ class LeggTilRedigerAnsatt : AppCompatActivity(), View.OnClickListener {
     private lateinit var mBinding: ActivityLeggTilRedigerAnsattBinding
     private lateinit var mCustomListDialog: Dialog
     //private lateinit var Employ : EmployeesFragment
-    private lateinit var adapter: EmployeeAdapter
+    private lateinit var adapter: MyEmployeeAdapter
     private lateinit var user:Bruker
 
 
@@ -165,6 +169,6 @@ class LeggTilRedigerAnsatt : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
-}
+}*/
 
 

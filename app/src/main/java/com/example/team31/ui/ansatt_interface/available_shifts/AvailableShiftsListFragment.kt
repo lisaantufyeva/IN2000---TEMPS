@@ -14,7 +14,7 @@ import com.example.team31.AdminActivity
 import com.example.team31.AnsattActivity
 import com.example.team31.R
 import com.example.team31.Varsel
-import com.example.team31.ui.employees.Ansatt
+import com.example.team31.Ansatt
 import com.example.team31.ui.overview.week_overview.OverviewAdapter
 import com.example.team31.ui.overview.week_overview.OverviewViewModel
 import com.google.firebase.database.FirebaseDatabase

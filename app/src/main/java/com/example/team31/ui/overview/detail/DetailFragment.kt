@@ -49,6 +49,7 @@ class DetailFragment : Fragment() {
         val userId = (activity as AdminActivity?)!!.getUserId()
         println("hentet user id detail: "+ userId)
 
+        /*
         GlobalScope.launch(Dispatchers.IO){
             val liste1 = detailViewModel.getAlertList(userId)
 
@@ -56,7 +57,7 @@ class DetailFragment : Fragment() {
                 liste = liste1
                 Log.i("VarselListe:", liste.toString())
             }
-        }
+        }*/
 
         super.onViewCreated(view, savedInstanceState)
         //model = ViewModelProviders.of(this, factory).get(OverviewViewModel::class.java)
@@ -86,9 +87,12 @@ class DetailFragment : Fragment() {
         //val ref = FirebaseDatabase.getInstance().getReference("Users").child("userId")
         //ref.push()
         Toast.makeText(context, "Send", Toast.LENGTH_SHORT).show()
-        var nyListe = liste
-        nyListe.addAll(list)
-        detailViewModel.update_alertList(nyListe, userId)
+        //var nyListe = liste
+        //nyListe.addAll(list)
+        for ( i in list){
+            detailViewModel.addAlert(i)
+        }
+
     }
 
     private fun createAlertList(date: String, extraStaff: Int, userId: String): MutableList<Varsel>{

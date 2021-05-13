@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.example.team31.Ansatt
 import com.example.team31.R
 import com.example.team31.databinding.EmployeeCardBinding
 
-class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : MutableList<MyEmployee> ):RecyclerView.Adapter<MyEmployeeAdapter.ViewHolder>() {
+class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : MutableList<Ansatt> ):RecyclerView.Adapter<MyEmployeeAdapter.ViewHolder>() {
 
 
     class ViewHolder(view: EmployeeCardBinding) : RecyclerView.ViewHolder(view.root) {

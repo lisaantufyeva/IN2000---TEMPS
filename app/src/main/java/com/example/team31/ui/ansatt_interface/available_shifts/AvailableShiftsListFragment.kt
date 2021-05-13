@@ -14,6 +14,7 @@ import com.example.team31.AdminActivity
 import com.example.team31.AnsattActivity
 import com.example.team31.R
 import com.example.team31.Varsel
+import com.example.team31.ui.employees.Ansatt
 import com.example.team31.ui.overview.week_overview.OverviewAdapter
 import com.example.team31.ui.overview.week_overview.OverviewViewModel
 import com.google.firebase.database.FirebaseDatabase
@@ -37,7 +38,6 @@ class AvailableShiftsListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         var ansattUser = (activity as AnsattActivity?)!!.getUser()
-        val ansattId = (activity as AnsattActivity?)!!.getUserId()
 
         //val refK = FirebaseDatabase.getInstance().getReference("Ansatte").child(ansattUser.adminId!!)
         //println("Hentet UserID available shifts fragment:" + refK)
@@ -50,8 +50,7 @@ class AvailableShiftsListFragment : Fragment() {
             withContext(Dispatchers.Main){
                 alerts = recentAlerts
                 Log.i("VarselListe:", alerts.toString())
-
-                display(alerts)
+                display(alerts, ansattUser)
             }
         }
             /*
@@ -85,11 +84,11 @@ class AvailableShiftsListFragment : Fragment() {
 
     }
 
-    private fun display(list: MutableList<Varsel>){
+    private fun display(list: MutableList<Varsel>, ansattUser: com.example.team31.Ansatt){
             recyclerView.also {
             recyclerView.setHasFixedSize(true)
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            recyclerView.adapter = AvailableShiftsAdapter(list, requireContext())
+            recyclerView.adapter = AvailableShiftsAdapter(list, requireContext(), ansattUser)
         }
     }
 

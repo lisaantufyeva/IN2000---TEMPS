@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.isInvisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.team31.AdminActivity
@@ -77,6 +78,8 @@ class DetailFragment : Fragment() {
             val alertList = createAlertList(forecastObject.time, args.extraStaff)
             println("Created list"+ alertList)
             sendMessage(alertList, userId)
+            binding.sendMessage.isInvisible = true
+
         }
     }
     private fun sendMessage(list: MutableList<Varsel>, userId:String){
@@ -84,12 +87,7 @@ class DetailFragment : Fragment() {
         ref.push()
         Toast.makeText(context, "Send", Toast.LENGTH_SHORT).show()
         var nyListe = liste
-        println("varselliste før:")
-        println(nyListe.toString())
         nyListe.addAll(list)
-        Log.i("NY", nyListe.toString())
-        println("varselListe etter: ")
-        println(nyListe.toString())
         detailViewModel.update_alertList(nyListe, userId)
     }
 

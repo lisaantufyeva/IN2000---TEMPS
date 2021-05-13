@@ -83,6 +83,23 @@
                 app:layout_constraintStart_toEndOf="@+id/temp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.735" />
+            <Button
+                android:id="@+id/alert_lable"
+                android:layout_width="189dp"
+                android:layout_height="51dp"
+                android:background="@drawable/rounded_corners_button"
+                android:text="Varsel sendt"
+                android:visibility="invisible"
+                android:textAllCaps="false"
+                app:backgroundTint="@color/button_blue_text"
+                android:textColor="@color/text_grey"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.625"
+                app:layout_constraintStart_toEndOf="@+id/temp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.735" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

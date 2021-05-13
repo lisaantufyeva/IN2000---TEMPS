@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.recyclerview.widget.RecyclerView
+import com.example.team31.Ansatt
 import com.example.team31.R
 import com.example.team31.Varsel
 
 
-class AvailableShiftsAdapter(private val shiftList: MutableList<Varsel>, val context: Context): RecyclerView.Adapter<AvailableShiftsAdapter.AvailableShiftAdapterHolder>() {
+class AvailableShiftsAdapter(private val shiftList: MutableList<Varsel>, val context: Context, val ansattUser:Ansatt): RecyclerView.Adapter<AvailableShiftsAdapter.AvailableShiftAdapterHolder>() {
 
     class AvailableShiftAdapterHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val date: TextView = itemView.findViewById(R.id.date)
@@ -28,6 +30,7 @@ class AvailableShiftsAdapter(private val shiftList: MutableList<Varsel>, val con
         holder.date.text = shiftList[position].date
         holder.button.setOnClickListener {
             Toast.makeText(context, "Vakten er tatt", Toast.LENGTH_SHORT).show()
+            //update_Alert(shiftList[position], ansattUser.adminId!!)
         }
     }
     override fun getItemCount() = shiftList.size

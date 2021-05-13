@@ -5,6 +5,7 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.team31.Bruker
+import com.example.team31.Varsel
 
 import com.example.team31.data.repositories.ForecastRepository
 import com.google.firebase.database.DataSnapshot
@@ -70,7 +71,6 @@ class OverviewViewModel @Inject constructor(
                         }
                     }
                 }
-
                 override fun onCancelled(databaseError: DatabaseError) {
                     // Getting Post failed, log a message
                     Log.w("message", "loadPost:onCancelled", databaseError.toException())
@@ -82,6 +82,22 @@ class OverviewViewModel @Inject constructor(
     //fun getMainUser():Bruker{
       //  return mainUser
     //}
+
+}
+
+fun checkCreatedAlerts(date:String, alertList: MutableList<Varsel>):Boolean{
+    for ( i in alertList){
+        if (i.date == date) return true
+    }
+    return false
+}
+
+fun getNumberOfAlerts(date: String, alertList: MutableList<Varsel>):Int{
+    return alertList.filter { it.date == date }.count()
+}
+
+fun getAcceptedShifts(date: String, alertList: MutableList<Varsel>):Int{
+    return alertList.filter { it.date == date }.filter { it.tatt }.count()
 }
 
 fun checkLowStaffing(forecast: RefinedForecast, max: String?):Boolean{

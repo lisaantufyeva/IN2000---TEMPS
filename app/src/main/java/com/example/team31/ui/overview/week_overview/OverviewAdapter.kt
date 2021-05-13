@@ -26,6 +26,7 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
         val temp: TextView = itemView.findViewById(R.id.temp)
         val icon: ImageView = itemView.findViewById(R.id.imageView)
         val staffButton: Button = itemView.findViewById(R.id.staff_button)
+        val alertButton: Button = itemView.findViewById(R.id.alert_lable)
 
     }
 
@@ -45,22 +46,26 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
         val drawable = context.resources.getDrawable(iconId)
         holder.icon.setImageDrawable(drawable)
 
+        println( "VarselListe Adapter:" + user.varselListe)
+        if (checkCreatedAlerts(forecastList[position].time, user.varselListe)){
+            holder.alertButton.text = "Sendt: "+ getNumberOfAlerts(forecastList[position].time, user.varselListe) + "/ Tatt: "+ getAcceptedShifts(forecastList[position].time, user.varselListe).toString()
+            holder.alertButton.isVisible = true
+        } else {
+            var extraStaff = 0
+            if (checkLowStaffing(forecastList[position], user.triggerTemp)){
+                extraStaff = checkStaffingDemand(forecastList[position], user)
+                println("Dato"+forecastList[position].time)
+                Log.d("Testing staffingDemang", checkStaffingDemand(forecastList[position], user).toString())
 
-        var extraStaff = 0
-        if (checkLowStaffing(forecastList[position], user.triggerTemp)){
+                //varselgenerator
 
-            extraStaff = checkStaffingDemand(forecastList[position], user)
-            println("Dato"+forecastList[position].time)
-            Log.d("Testing staffingDemang", checkStaffingDemand(forecastList[position], user).toString())
+                holder.staffButton.isVisible = true
+            }
 
-            //varselgenerator
-
-            holder.staffButton.isVisible = true
-        }
-
-        holder.staffButton.setOnClickListener {
-            Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show()
-            showDetail(forecastObject,extraStaff, it)
+            holder.staffButton.setOnClickListener {
+                Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show()
+                showDetail(forecastObject,extraStaff, it)
+            }
         }
     }
     override fun getItemCount() = forecastList.size

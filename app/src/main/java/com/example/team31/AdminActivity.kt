@@ -3,6 +3,7 @@ package com.example.team31
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.navigation.findNavController
@@ -51,7 +52,7 @@ class AdminActivity : AppCompatActivity() {
     fun getUserId(): String{
         return user.id!!
     }
-    fun getUser(): Bruker {
+    fun getUser(): Bruker{
         return user
     }
     fun updateUser(newUser:Bruker){

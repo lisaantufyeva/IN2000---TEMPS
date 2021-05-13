@@ -1,0 +1,1373 @@
+Index: app/src/main/java/com/example/team31/AnsattActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.team31\n\nimport androidx.appcompat.app.AppCompatActivity\nimport android.os.Bundle\nimport androidx.navigation.findNavController\nimport androidx.navigation.ui.AppBarConfiguration\nimport androidx.navigation.ui.setupActionBarWithNavController\nimport androidx.navigation.ui.setupWithNavController\nimport com.google.android.material.bottomnavigation.BottomNavigationView\nimport android.content.Context\nimport android.view.inputmethod.InputMethodManager\nimport com.google.firebase.database.FirebaseDatabase\n\n\nclass AnsattActivity : AppCompatActivity() {\n    private lateinit var ansattUser: Ansatt\n\n    override fun onCreate(savedInstanceState: Bundle?) {\n        ansattUser = intent.extras!!.get(\"Ansatt\") as Ansatt\n\n        super.onCreate(savedInstanceState)\n        setContentView(R.layout.activity_ansatt)\n\n        val navViewAnsatt: BottomNavigationView = findViewById(R.id.nav_view_ansatt)\n\n        val navController = findNavController(R.id.nav_host_fragment_ansatt)\n        // Passing each menu ID as a set of Ids because each\n        // menu should be considered as top level destinations.\n        val appBarConfiguration = AppBarConfiguration(setOf(\n            R.id.navigation_available_shifts,\n            R.id.navigation_profile_ansatt,\n        ))\n        setupActionBarWithNavController(navController, appBarConfiguration)\n        navViewAnsatt.setupWithNavController(navController)\n\n    }\n    override fun onSupportNavigateUp(): Boolean {\n        val navController = findNavController(R.id.nav_host_fragment_ansatt)\n        return navController.navigateUp()\n    }\n\n    fun getUserId(): String{\n        return ansattUser.id!!\n    }\n    fun getUser(): Ansatt {\n        return ansattUser\n    }\n\n    fun hideKeyboard() {\n        val view = this.currentFocus\n        if (view != null){\n            val hideMe = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager\n            hideMe.hideSoftInputFromWindow(view.windowToken,0)\n\n\n        }\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/team31/AnsattActivity.kt	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/java/com/example/team31/AnsattActivity.kt	(date 1620886581000)
+@@ -9,6 +9,7 @@
+ import com.google.android.material.bottomnavigation.BottomNavigationView
+ import android.content.Context
+ import android.view.inputmethod.InputMethodManager
++import com.example.team31.ui.employees.myEmployees.MyEmployee
+ import com.google.firebase.database.FirebaseDatabase
+ 
+ 
+Index: app/src/main/res/layout/employees_fragment.xml
+===================================================================
+--- app/src/main/res/layout/employees_fragment.xml	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/res/layout/employees_fragment.xml	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
+@@ -1,34 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    tools:context=".ui.employees.EmployeesFragment">
+-
+-    <androidx.recyclerview.widget.RecyclerView
+-        android:id="@+id/rv_ansatt_list"
+-        android:layout_width="0dp"
+-        android:layout_height="0dp"
+-        android:visibility="visible"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
+-
+-    <TextView
+-        android:id="@+id/tv_no_employees_added_yet"
+-        android:layout_width="0dp"
+-        android:layout_height="0dp"
+-        android:gravity="center"
+-        android:text="ingen teksdt"
+-        android:textSize="16dp"
+-        android:textStyle="bold"
+-        android:visibility="gone"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
+-
+-
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/team31/ui/employees/Ansatt.kt
+===================================================================
+--- app/src/main/java/com/example/team31/ui/employees/Ansatt.kt	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/java/com/example/team31/ui/employees/Ansatt.kt	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
+@@ -1,47 +0,0 @@
+-package com.example.team31.ui.employees
+-
+-import android.os.Parcel
+-import android.os.Parcelable
+-import android.provider.ContactsContract
+-import kotlinx.android.parcel.Parcelize
+-import java.io.Serializable
+-
+-data class Ansatt(val navn:String?,val email:String?, val passord: String?, val rolle:String?, val adminId: String?):Serializable {
+-    constructor() : this("1","e","e","e", "e")
+-}
+-
+-/*
+-
+-data class Ansatt(
+-    val navn: String?,
+-    val email: String?,
+-    val rolle: String?
+-    ) : Parcelable {
+-    constructor(parcel: Parcel) : this(
+-        parcel.readString(),
+-        parcel.readString(),
+-        parcel.readString()
+-    ) {
+-    }
+-
+-    override fun writeToParcel(parcel: Parcel, flags: Int) {
+-        parcel.writeString(navn)
+-        parcel.writeString(email)
+-        parcel.writeString(rolle)
+-    }
+-
+-    override fun describeContents(): Int {
+-        return 0
+-    }
+-
+-    companion object CREATOR : Parcelable.Creator<Ansatt> {
+-        override fun createFromParcel(parcel: Parcel): Ansatt {
+-            return Ansatt(parcel)
+-        }
+-
+-        override fun newArray(size: Int): Array<Ansatt?> {
+-            return arrayOfNulls(size)
+-        }
+-    }
+-}
+-*/
+\ No newline at end of file
+Index: app/src/main/res/layout/employee_card.xml
+===================================================================
+--- app/src/main/res/layout/employee_card.xml	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/res/layout/employee_card.xml	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
+@@ -1,62 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="wrap_content"
+-    app:cardCornerRadius="5dp"
+-    app:cardElevation="5dp"
+-    app:cardUseCompatPadding="true">
+-
+-
+-
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:orientation="vertical">
+-        <ImageView
+-            android:id="@+id/iv_add_dish_image"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_gravity="end|bottom"
+-            android:foreground="?attr/selectableItemBackgroundBorderless"
+-            android:padding="16dp"
+-            android:src="@drawable/ic_baseline_edit_24" />
+-
+-
+-        <TextView
+-            android:id="@+id/tv_name"
+-            android:layout_width="384dp"
+-            android:layout_height="wrap_content"
+-            android:layout_margin="10dp"
+-            android:gravity="center_vertical"
+-            android:textColor="@color/grey_900"
+-            android:textSize="16dp"
+-            android:textStyle="bold"
+-            tools:text="Navn:" />
+-
+-
+-
+-        <TextView
+-            android:id="@+id/tv_rolle"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_margin="10dp"
+-            android:gravity="center_vertical"
+-            android:textSize="16dp"
+-            android:textStyle="bold"
+-            android:textColor="@color/grey_900"
+-            tools:text="Rolle: " />
+-        <TextView
+-            android:id="@+id/tv_email"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_margin="10dp"
+-            android:gravity="center_vertical"
+-            android:textSize="16dp"
+-            android:textColor="@color/grey_900"
+-            android:textStyle="bold"
+-            tools:text="E-mail:" />
+-    </LinearLayout>
+-</androidx.cardview.widget.CardView>
+-    <!--END-->
+\ No newline at end of file
+Index: app/src/main/java/com/example/team31/Ansatt.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/team31/Ansatt.kt	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/java/com/example/team31/Ansatt.kt	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
+@@ -1,7 +0,0 @@
+-package com.example.team31
+-
+-import java.io.Serializable
+-
+-data class Ansatt(val id: String?, val email: String?, val passord: String?, val navn: String?, val rolle: String?, val adminId:String?):Serializable{
+-    constructor() : this("1", "e", "1", "1", "e", "e")
+-}
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_legg_til_rediger_ansatt.xml
+===================================================================
+--- app/src/main/res/layout/activity_legg_til_rediger_ansatt.xml	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/res/layout/activity_legg_til_rediger_ansatt.xml	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
+@@ -1,110 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    android:orientation="vertical"
+-    tools:context=".ui.employees.LeggTilRedigerAnsatt">
+-
+-
+-    <androidx.appcompat.widget.Toolbar
+-        android:id="@+id/toolbar_legg_til_ansatt_activity"
+-        android:layout_width="match_parent"
+-        android:layout_height="?attr/actionBarSize"
+-        android:background="?attr/colorPrimary"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        app:titleTextColor="@color/white" />
+-
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent"
+-        android:layout_gravity="center"
+-        android:layout_marginTop="40dp"
+-        android:orientation="vertical">
+-
+-
+-        <com.google.android.material.textfield.TextInputLayout
+-            android:id="@+id/til_navn"
+-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_marginStart="16dp"
+-            android:layout_marginTop="16dp"
+-            android:layout_marginEnd="16dp"
+-            android:hint="Navn"
+-            app:layout_constraintEnd_toEndOf="parent"
+-            app:layout_constraintStart_toStartOf="parent"
+-            app:layout_constraintTop_toBottomOf="@id/toolbar_legg_til_ansatt_activity">
+-
+-            <EditText
+-                android:id="@+id/et_navn"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:inputType="text"
+-                android:textSize="15dp" />
+-        </com.google.android.material.textfield.TextInputLayout>
+-
+-        <com.google.android.material.textfield.TextInputLayout
+-            android:id="@+id/til_email"
+-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_marginStart="16dp"
+-            android:layout_marginTop="16dp"
+-            android:layout_marginEnd="16dp"
+-            android:hint="E-mail"
+-            app:layout_constraintEnd_toEndOf="parent"
+-            app:layout_constraintStart_toStartOf="parent"
+-            app:layout_constraintTop_toBottomOf="@id/til_navn">
+-
+-            <EditText
+-                android:id="@+id/et_email"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:inputType="text"
+-                android:textSize="15dp" />
+-        </com.google.android.material.textfield.TextInputLayout>
+-
+-        <com.google.android.material.textfield.TextInputLayout
+-            android:id="@+id/til_rolle"
+-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_marginStart="16dp"
+-            android:layout_marginTop="16dp"
+-            android:layout_marginEnd="16dp"
+-            android:hint="Rolle"
+-            app:layout_constraintEnd_toEndOf="parent"
+-            app:layout_constraintStart_toStartOf="parent"
+-            app:layout_constraintTop_toBottomOf="@id/til_email">
+-
+-            <EditText
+-                android:id="@+id/et_rolle"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:inputType="text"
+-                android:textSize="15dp" />
+-        </com.google.android.material.textfield.TextInputLayout>
+-
+-        <Button
+-            android:id="@+id/btn_add_employee"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_gravity="center"
+-            android:layout_marginTop="30dp"
+-            android:background="@drawable/rounded_corners_button"
+-            android:foreground="?attr/selectableItemBackground"
+-            android:gravity="center"
+-            android:paddingTop="8dp"
+-            android:paddingBottom="8dp"
+-            android:text="@string/addEmployeeBtn"
+-            android:textAllCaps="false"
+-            android:textColor="@color/text_grey"
+-            android:textSize="18sp"
+-            app:backgroundTint="@color/button_yellow" />
+-    </LinearLayout>
+-    </LinearLayout>
+-
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\n    <string name=\"app_name\">Team31</string>\n    <string name=\"title_overview\">Oversikt</string>\n    <string name=\"title_employees\">Ansatte</string>\n    <string name=\"title_settings\">Instillinger</string>\n    <string name=\"title_profile\">Profil</string>\n    <string name=\"calendar_date\">date</string>\n    <string name=\"degrees\">Degrees</string>\n    <string name=\"weather_icon\">weather ikon</string>\n    <string name=\"date\">Date</string>\n    <string name=\"lav_bemanning\">Lav bemanning</string>\n    <!-- TODO: Remove or change this placeholder text -->\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\n\n    <string name=\"action_add_employee\">Legg til ansatt</string>\n\n    <string name=\"name\">Navn</string>\n    <string name=\"email\">E-mail</string>\n    <string name=\"Rolle\">Rolle</string>\n    <string name=\"addEmployeeBtn\">Legg til ansatt</string>\n\n    <string name=\"err_msg_select_name\">Skriv navn.</string>\n    <string name=\"err_msg_enter_email\">Skriv email.</string>\n    <string name=\"err_msg_select_rolle\">Velg rolle.</string>\n\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/res/values/strings.xml	(date 1620860410000)
+@@ -19,6 +19,12 @@
+     <string name="Rolle">Rolle</string>
+     <string name="addEmployeeBtn">Legg til ansatt</string>
+ 
++    <string name="store_button">Lagre</string>
++    <string name="name_edit">Navn</string>
++    <string name="email_edit">E-mail</string>
++    <string name="Rolle_edit">Rolle</string>
++
++
+     <string name="err_msg_select_name">Skriv navn.</string>
+     <string name="err_msg_enter_email">Skriv email.</string>
+     <string name="err_msg_select_rolle">Velg rolle.</string>
+Index: app/src/main/res/navigation/mobile_navigation.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<navigation xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:id=\"@+id/mobile_navigation.xml\"\n    app:startDestination=\"@id/navigation_overview\">\n\n\n    <fragment\n        android:id=\"@+id/navigation_overview\"\n        android:name=\"com.example.team31.ui.overview.week_overview.OverviewFragment\"\n        android:label=\"@string/title_overview\"\n        tools:layout=\"@layout/overview_fragment\" >\n        <action\n            android:id=\"@+id/actionDetail\"\n            app:destination=\"@id/detailFragment\" />\n    </fragment>\n\n    <fragment\n        android:id=\"@+id/navigation_employees\"\n        android:name=\"com.example.team31.ui.employees.EmployeesFragment\"\n        android:label=\"@string/title_employees\"\n        tools:layout=\"@layout/employees_fragment\" />\n\n    <fragment\n        android:id=\"@+id/navigation_settings\"\n        android:name=\"com.example.team31.ui.settings.SettingsFragment\"\n        android:label=\"@string/title_settings\"\n        tools:layout=\"@layout/settings_fragment\" />\n\n    <fragment\n        android:id=\"@+id/navigation_profile\"\n        android:name=\"com.example.team31.ui.profile.ProfileFragment\"\n        android:label=\"@string/title_profile\"\n        tools:layout=\"@layout/profile_fragment\" >\n        <action\n            android:id=\"@+id/action_navigation_profile_to_edit_name\"\n            app:destination=\"@id/edit_name\"/>\n        <argument\n            android:name=\"userId\"\n            app:argType=\"string\" />\n        <action\n            android:id=\"@+id/action_navigation_profile_to_edit_pos\"\n            app:destination=\"@id/edit_pos\" />\n        <action\n            android:id=\"@+id/action_navigation_profile_to_edit_work\"\n            app:destination=\"@id/edit_work\" />\n        <action\n            android:id=\"@+id/action_navigation_profile_to_edit_weather\"\n            app:destination=\"@id/edit_weather\" />\n        <action\n            android:id=\"@+id/action_navigation_profile_to_edit_opening\"\n            app:destination=\"@id/edit_opening\" />\n        <action\n            android:id=\"@+id/action_navigation_profile_to_edit_password\"\n            app:destination=\"@id/edit_password\" />\n\n\n    </fragment>\n\n    <fragment\n        android:id=\"@+id/detailFragment\"\n        android:name=\"com.example.team31.ui.overview.detail.DetailFragment\"\n        android:label=\"detail_fragment\"\n        tools:layout=\"@layout/detail_fragment\" >\n        <argument\n            android:name=\"RefinedForecast\"\n            app:argType=\"com.example.team31.ui.overview.week_overview.RefinedForecast\" />\n        <argument\n            android:name=\"extraStaff\"\n            app:argType=\"integer\" />\n    </fragment>\n\n    <fragment\n        android:id=\"@+id/edit_name\"\n        android:name=\"com.example.team31.ui.profile.edit_name\"\n        android:label=\"edit_name\"\n        tools:layout=\"@layout/edit_name\" >\n        <action\n            android:id=\"@+id/action_edit_name_to_navigation_profile\"\n            app:destination=\"@id/navigation_profile\" />\n    </fragment>\n    <fragment\n        android:id=\"@+id/edit_pos\"\n        android:name=\"com.example.team31.ui.profile.edit_pos\"\n        android:label=\"edit_pos\"\n        tools:layout=\"@layout/edit_pos\" >\n        <action\n            android:id=\"@+id/action_edit_pos_to_navigation_profile\"\n            app:destination=\"@id/navigation_profile\" />\n    </fragment>\n    <fragment\n        android:id=\"@+id/edit_work\"\n        android:name=\"com.example.team31.ui.profile.edit_work\"\n        android:label=\"edit_work\"\n        tools:layout=\"@layout/edit_work\" >\n        <action\n            android:id=\"@+id/action_edit_work_to_navigation_profile\"\n            app:destination=\"@id/navigation_profile\" />\n    </fragment>\n    <fragment\n        android:id=\"@+id/edit_weather\"\n        android:name=\"com.example.team31.ui.profile.edit_weather\"\n        android:label=\"edit_weather\"\n        tools:layout=\"@layout/edit_weather\" >\n        <action\n            android:id=\"@+id/action_edit_weather_to_navigation_profile\"\n            app:destination=\"@id/navigation_profile\" />\n    </fragment>\n    <fragment\n        android:id=\"@+id/edit_opening\"\n        android:name=\"com.example.team31.ui.profile.edit_opening\"\n        android:label=\"edit_opening\"\n        tools:layout=\"@layout/edit_opening\" >\n        <action\n            android:id=\"@+id/action_edit_opening_to_navigation_profile\"\n            app:destination=\"@id/navigation_profile\" />\n    </fragment>\n    <fragment\n        android:id=\"@+id/edit_password\"\n        android:name=\"com.example.team31.ui.profile.edit_password\"\n        android:label=\"edit_password\"\n        tools:layout=\"@layout/edit_password\" >\n        <action\n            android:id=\"@+id/action_edit_password_to_navigation_profile\"\n            app:destination=\"@id/navigation_profile\" />\n    </fragment>\n\n</navigation>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/navigation/mobile_navigation.xml	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/res/navigation/mobile_navigation.xml	(date 1620860410000)
+@@ -18,9 +18,16 @@
+ 
+     <fragment
+         android:id="@+id/navigation_employees"
+-        android:name="com.example.team31.ui.employees.EmployeesFragment"
++        android:name="com.example.team31.ui.employees.myEmployees.MyEmployeeFragment"
+         android:label="@string/title_employees"
+-        tools:layout="@layout/employees_fragment" />
++        tools:layout="@layout/my_employees_fragment">
++        <action
++            android:id="@+id/action_navigation_employees_to_leggTiiFragment"
++            app:destination="@id/leggTiiFragment" />
++        <action
++            android:id="@+id/action_navigation_employees_to_editEmployee"
++            app:destination="@id/editEmployee" />
++    </fragment>
+ 
+     <fragment
+         android:id="@+id/navigation_settings"
+@@ -126,4 +133,15 @@
+             app:destination="@id/navigation_profile" />
+     </fragment>
+ 
++    <fragment
++        android:id="@+id/leggTiiFragment"
++        android:name="com.example.team31.ui.employees.addMyEmployee.AddMyEmpoyeeFragment"
++        android:label="legg_tii_fragment"
++        tools:layout="@layout/addmyemployee_fragment" />
++    <fragment
++        android:id="@+id/editEmployee"
++        android:name="com.example.team31.ui.employees.myEmployees.editEmployee"
++        android:label="fragment_edit_employee"
++        tools:layout="@layout/fragment_edit_employee" />
++
+ </navigation>
+\ No newline at end of file
+Index: app/src/main/res/values/themes.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources xmlns:tools=\"http://schemas.android.com/tools\">\n    <!-- Base application theme. -->\n    <style name=\"Theme.Team31\" parent=\"Theme.MaterialComponents.DayNight.DarkActionBar\">\n        <!-- Primary brand color. -->\n        <item name=\"colorPrimary\">#1E6B9C</item>\n        <item name=\"colorPrimaryVariant\">@color/purple_700</item>\n        <item name=\"colorOnPrimary\">@color/white</item>\n        <!-- Secondary brand color. -->\n        <item name=\"colorSecondary\">@color/button_yellow</item>\n        <item name=\"colorSecondaryVariant\">@color/button_blue</item>\n        <item name=\"colorOnSecondary\">@color/black</item>\n        <!-- Status bar color. -->\n        <item name=\"android:statusBarColor\" tools:targetApi=\"l\">?attr/colorPrimaryVariant</item>\n        <!-- Customize your theme here. -->\n\n\n    </style>\n    <style name=\"Theme.Team31.NoActionBar\">\n    <item name=\"windowActionBar\">false</item>\n    <item name=\"windowNoTitle\">true</item>\n</style>\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/themes.xml	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/res/values/themes.xml	(date 1620860410000)
+@@ -2,7 +2,7 @@
+     <!-- Base application theme. -->
+     <style name="Theme.Team31" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+         <!-- Primary brand color. -->
+-        <item name="colorPrimary">#1E6B9C</item>
++        <item name="colorPrimary">#E8E9EC</item>
+         <item name="colorPrimaryVariant">@color/purple_700</item>
+         <item name="colorOnPrimary">@color/white</item>
+         <!-- Secondary brand color. -->
+@@ -14,9 +14,16 @@
+         <!-- Customize your theme here. -->
+ 
+ 
++
+     </style>
+     <style name="Theme.Team31.NoActionBar">
+     <item name="windowActionBar">false</item>
+     <item name="windowNoTitle">true</item>
+ </style>
++
++
++<style name="Theme.Team31.ActionBar">
++    <item name="android:textColor">#282F3E</item>
++</style>
++
+ </resources>
+\ No newline at end of file
+Index: app/src/main/java/com/example/team31/ui/employees/CustomListItemAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.team31.ui.employees\r\n\r\nimport android.app.Activity\r\nimport android.view.LayoutInflater\r\nimport android.view.ViewGroup\r\nimport androidx.recyclerview.widget.RecyclerView\r\nimport com.example.team31.databinding.ItemCustomListLayoutBinding\r\n\r\nclass CustomListItemAdapter(\r\n    private val activity: Activity,\r\n    private val listItems: List<String>,\r\n    private val selection: String\r\n) :\r\n    RecyclerView.Adapter<CustomListItemAdapter.ViewHolder>() {\r\n\r\n  //Inflates the item view for roles\r\n\r\n    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {\r\n        val binding: ItemCustomListLayoutBinding =\r\n            ItemCustomListLayoutBinding.inflate(LayoutInflater.from(activity), parent, false)\r\n        return ViewHolder(binding)\r\n    }\r\n\r\n    override fun onBindViewHolder(holder: ViewHolder, position: Int) {\r\n\r\n        val item = listItems[position]\r\n\r\n        holder.tvText.text = item\r\n\r\n\r\n        holder.itemView.setOnClickListener {\r\n\r\n            if (activity is LeggTilRedigerAnsatt) {\r\n                activity.selectedListItem(item, selection)\r\n            }\r\n        }\r\n\r\n    }\r\n\r\n    override fun getItemCount(): Int {\r\n        return listItems.size\r\n    }\r\n\r\n    class ViewHolder(view: ItemCustomListLayoutBinding) : RecyclerView.ViewHolder(view.root) {\r\n        // Holds the TextView that will add each item to\r\n        val tvText = view.tvText\r\n    }\r\n}
+===================================================================
+--- app/src/main/java/com/example/team31/ui/employees/CustomListItemAdapter.kt	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/java/com/example/team31/ui/employees/addMyEmployee/JobTitleListItemAdapter.kt	(date 1620860410000)
+@@ -1,23 +1,23 @@
+-package com.example.team31.ui.employees
++package com.example.team31.ui.employees.addMyEmployee
+ 
+-import android.app.Activity
+ import android.view.LayoutInflater
+ import android.view.ViewGroup
++import androidx.fragment.app.Fragment
+ import androidx.recyclerview.widget.RecyclerView
+-import com.example.team31.databinding.ItemCustomListLayoutBinding
++import com.example.team31.databinding.JobbTitleCustomListLayoutBinding
+ 
+-class CustomListItemAdapter(
+-    private val activity: Activity,
++class JobTitleListItemAdapter(
++    private val activity:Fragment,
+     private val listItems: List<String>,
+     private val selection: String
+ ) :
+-    RecyclerView.Adapter<CustomListItemAdapter.ViewHolder>() {
++    RecyclerView.Adapter<JobTitleListItemAdapter.ViewHolder>() {
+ 
+   //Inflates the item view for roles
+ 
+     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+-        val binding: ItemCustomListLayoutBinding =
+-            ItemCustomListLayoutBinding.inflate(LayoutInflater.from(activity), parent, false)
++        val binding: JobbTitleCustomListLayoutBinding =
++            JobbTitleCustomListLayoutBinding.inflate(LayoutInflater.from(activity.context), parent, false)
+         return ViewHolder(binding)
+     }
+ 
+@@ -30,7 +30,7 @@
+ 
+         holder.itemView.setOnClickListener {
+ 
+-            if (activity is LeggTilRedigerAnsatt) {
++            if (activity is AddMyEmpoyeeFragment) {
+                 activity.selectedListItem(item, selection)
+             }
+         }
+@@ -41,7 +41,7 @@
+         return listItems.size
+     }
+ 
+-    class ViewHolder(view: ItemCustomListLayoutBinding) : RecyclerView.ViewHolder(view.root) {
++    class ViewHolder(view:  JobbTitleCustomListLayoutBinding) : RecyclerView.ViewHolder(view.root) {
+         // Holds the TextView that will add each item to
+         val tvText = view.tvText
+     }
+Index: app/src/main/java/com/example/team31/ui/employees/myEmployees/MyEmployee.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/team31/ui/employees/myEmployees/MyEmployee.kt	(date 1620860424000)
++++ app/src/main/java/com/example/team31/ui/employees/myEmployees/MyEmployee.kt	(date 1620860424000)
+@@ -0,0 +1,8 @@
++package com.example.team31.ui.employees.myEmployees
++
++import java.io.Serializable
++
++data class MyEmployee(val navn:String?, val email:String?, val rolle:String?):Serializable {
++    constructor() : this("1","e","")
++}
++
+Index: app/src/main/res/layout/my_employees_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/my_employees_fragment.xml	(date 1620860445000)
++++ app/src/main/res/layout/my_employees_fragment.xml	(date 1620860445000)
+@@ -0,0 +1,72 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".ui.employees.myEmployees.MyEmployeeFragment"
++    android:background="#DADEE7">
++
++
++    <com.google.android.material.button.MaterialButton
++        android:id="@+id/leggtilknapp"
++        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
++        android:layout_width="225dp"
++        android:layout_height="103dp"
++        android:layout_marginLeft="12dp"
++        android:layout_marginTop="6dp"
++        android:paddingTop="8dp"
++        android:paddingBottom="8dp"
++        android:text="@string/addEmployeeBtn"
++        android:textAllCaps="false"
++        android:textColor="@color/text_grey"
++        android:textSize="18sp"
++        app:backgroundTint="#EEF0F4"
++        app:icon="@drawable/group"
++        app:iconGravity="textStart"
++        app:iconTint="@null"
++
++        />
++
++    <TextView
++        android:id="@+id/tekstAnsatte"
++        android:layout_marginTop="20dp"
++        android:layout_marginBottom="20dp"
++        android:layout_marginLeft="17dp"
++        android:layout_width="330dp"
++        android:layout_height="26dp"
++        android:layout_below="@+id/leggtilknapp"
++        android:text="Dine ansatte"
++        android:textColor="#282F3E"
++        android:textSize="22dp"
++        android:textStyle="bold"
++        android:visibility="visible" />
++
++
++
++    <androidx.recyclerview.widget.RecyclerView
++        android:id="@+id/rv_ansatt_list"
++        android:layout_below="@id/tekstAnsatte"
++        android:visibility="visible"
++        android:layout_marginTop="2dp"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"/>
++
++    <TextView
++        android:id="@+id/tv_no_employees_added_yet"
++        android:layout_width="0dp"
++        android:layout_height="0dp"
++        android:gravity="center"
++        android:text="Dine ansatte"
++
++        android:textColor="#282F3E"
++        android:textSize="22sp"
++        android:textStyle="bold"
++        android:visibility="gone"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++
++
++</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/team31/ui/employees/EmployeesViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.team31.ui.employees\n\nimport android.util.Log\nimport androidx.lifecycle.LiveData\nimport androidx.lifecycle.MutableLiveData\nimport androidx.lifecycle.ViewModel\nimport com.example.team31.Bruker\nimport com.google.firebase.database.DataSnapshot\nimport com.google.firebase.database.DatabaseError\nimport com.google.firebase.database.FirebaseDatabase\nimport com.google.firebase.database.ValueEventListener\n\nclass EmployeesViewModel : ViewModel() {\n\n    private val _text = MutableLiveData<String>().apply {\n        value = \"employees Fragment\"\n    }\n    private var employees = mutableListOf<Ansatt>()\n\n    val text: LiveData<String> = _text\n\n    fun getUsers(admin: Bruker) {\n        val refAnsatt = FirebaseDatabase.getInstance().getReference(\"Ansatte\").child(admin.id!!)\n        val ansatte = ArrayList<Ansatt>()\n\n        // Henter brukere fra firebase\n        val UserListener = object : ValueEventListener {\n            override fun onDataChange(dataSnapshot: DataSnapshot) {\n                if (dataSnapshot.exists()) {\n                    for (i in dataSnapshot.children) {\n                        val user = i.getValue(Ansatt::class.java)\n                        ansatte.add(user!!)\n                        Log.i(\"hei\",ansatte.toString())\n                    }\n                }\n            }\n\n            override fun onCancelled(databaseError: DatabaseError) {\n                // Getting Post failed, log a message\n                Log.w(\"message\", \"loadPost:onCancelled\", databaseError.toException())\n            }\n        }\n        employees = ansatte\n        refAnsatt.addValueEventListener(UserListener)\n    }\n\n    fun leggTilAnsatt(admin: Bruker, ansatt: Ansatt) {\n        val refAnsatt = FirebaseDatabase.getInstance().getReference(\"Ansatte\").child(admin.id!!)\n\n        val ansattId = refAnsatt.push().key\n        refAnsatt.child(ansattId!!).setValue(ansatt).addOnCompleteListener {\n            Log.i(\"Message:\", \"Ansatt registrert\")\n        }\n    }\n\n    fun getEmployees():MutableList<Ansatt>{\n        return employees\n    }\n}
+===================================================================
+--- app/src/main/java/com/example/team31/ui/employees/EmployeesViewModel.kt	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/java/com/example/team31/ui/employees/myEmployees/MyEmployeesViewModel.kt	(date 1620860396000)
+@@ -1,4 +1,4 @@
+-package com.example.team31.ui.employees
++package com.example.team31.ui.employees.myEmployees
+ 
+ import android.util.Log
+ import androidx.lifecycle.LiveData
+@@ -10,25 +10,25 @@
+ import com.google.firebase.database.FirebaseDatabase
+ import com.google.firebase.database.ValueEventListener
+ 
+-class EmployeesViewModel : ViewModel() {
++class MyEmployeesViewModel : ViewModel() {
+ 
+     private val _text = MutableLiveData<String>().apply {
+         value = "employees Fragment"
+     }
+-    private var employees = mutableListOf<Ansatt>()
++    private var employees = mutableListOf<MyEmployee>()
+ 
+     val text: LiveData<String> = _text
+ 
+     fun getUsers(admin: Bruker) {
+         val refAnsatt = FirebaseDatabase.getInstance().getReference("Ansatte").child(admin.id!!)
+-        val ansatte = ArrayList<Ansatt>()
++        val ansatte = ArrayList<MyEmployee>()
+ 
+         // Henter brukere fra firebase
+         val UserListener = object : ValueEventListener {
+             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                 if (dataSnapshot.exists()) {
+                     for (i in dataSnapshot.children) {
+-                        val user = i.getValue(Ansatt::class.java)
++                        val user = i.getValue(MyEmployee::class.java)
+                         ansatte.add(user!!)
+                         Log.i("hei",ansatte.toString())
+                     }
+@@ -44,16 +44,16 @@
+         refAnsatt.addValueEventListener(UserListener)
+     }
+ 
+-    fun leggTilAnsatt(admin: Bruker, ansatt: Ansatt) {
++    fun leggTilAnsatt(admin: Bruker, myEmployee: MyEmployee) {
+         val refAnsatt = FirebaseDatabase.getInstance().getReference("Ansatte").child(admin.id!!)
+ 
+         val ansattId = refAnsatt.push().key
+-        refAnsatt.child(ansattId!!).setValue(ansatt).addOnCompleteListener {
++        refAnsatt.child(ansattId!!).setValue(myEmployee).addOnCompleteListener {
+             Log.i("Message:", "Ansatt registrert")
+         }
+     }
+ 
+-    fun getEmployees():MutableList<Ansatt>{
++    fun getEmployees():MutableList<MyEmployee>{
+         return employees
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/team31/ui/employees/EmployeesFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.team31.ui.employees\n\nimport android.content.Intent\nimport android.os.Bundle\nimport android.os.Handler\nimport android.util.Log\nimport android.view.*\nimport androidx.fragment.app.Fragment\nimport androidx.fragment.app.activityViewModels\nimport androidx.recyclerview.widget.GridLayoutManager\nimport com.example.team31.AdminActivity\nimport com.example.team31.Bruker\nimport com.example.team31.R\nimport com.example.team31.databinding.EmployeesFragmentBinding\nimport java.io.Serializable\n\nclass EmployeesFragment : Fragment() {\n/*\n    companion object {\n        fun newInstance() = OverviewFragment()\n    }*/\n\n    //private lateinit var employeesViewModel: EmployeesViewModel\n\n    private val model: EmployeesViewModel by activityViewModels()\n\n\n    private lateinit var mBinding: EmployeesFragmentBinding\n    private var users = mutableListOf<Ansatt>()\n    private lateinit var admin:Bruker\n\n    //val henrik = Ansatt(\"henrik\", \"henrik@gmail.com\", \"Serviør\")\n    //val lisz = Ansatt(\"Liza\", \"Liza@gmail.com\", \"Vaktsjef\")\n    //val greogor = Ansatt(\"Gregor\", \"gregor@gmail.com\", \"Vaktsjef\")\n    //val katerina = Ansatt(\"Katerina\", \"kat@gmail.com\", \"Vaktsjef\")\n    //val dragana = Ansatt(\"dragana\", \"dragana@email.com\", \"Kokk\")\n\n\n\n\n\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        setHasOptionsMenu(true)\n\n        admin = (activity as AdminActivity?)!!.getUser()\n        model.getUsers(admin)\n        users = model.getEmployees()\n        Log.i(\"message\",users.toString())\n\n\n    }\n\n    override fun onCreateView(\n        inflater: LayoutInflater, container: ViewGroup?,\n        savedInstanceState: Bundle?\n    ): View? {\n        //admin = (activity as AdminActivity?)!!.getUser()\n        //model.getUsers(admin)\n        //users = model.getEmployees()\n       // Log.i(\"message\",users.toString())\n//        employeesViewModel =\n//            ViewModelProvider(this).get(EmployeesViewModel::class.java)\n//        val root = inflater.inflate(R.layout.employees_fragment, container, false)\n//        val textView: TextView = root.findViewById(R.id.text_employees)\n//\n//        employeesViewModel.text.observe(viewLifecycleOwner, Observer {\n//            textView.text = it\n//        })\n\n        mBinding = EmployeesFragmentBinding.inflate(inflater, container, false)\n        return mBinding.root\n\n\n    }\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\n        super.onViewCreated(view, savedInstanceState)\n\n        //add(dragana)\n        //add(greogor)\n        //add(lisz)\n        //add(henrik)\n\n        // Set the LayoutManager that this RecyclerView will use.\n        mBinding.rvAnsattList.layoutManager = GridLayoutManager(requireActivity(), 1)\n        // Adapter class is initialized and list is passed in the param.\n        Handler().postDelayed({\n            val emAdapter = EmployeeAdapter(this@EmployeesFragment, users)\n            mBinding.rvAnsattList.adapter = emAdapter\n            emAdapter.notifyDataSetChanged()\n        }, 500)\n\n\n\n\n\n\n\n        // END\n\n    }\n\n    fun add(ansatt : Ansatt){\n        users.add(ansatt)\n    }\n\n    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {\n        inflater.inflate(R.menu.add_employee, menu)\n        super.onCreateOptionsMenu(menu, inflater)\n    }\n\n    override fun onOptionsItemSelected(item: MenuItem): Boolean {\n\n        when (item.itemId) {\n            R.id.action_add_employee -> {\n                //startActivity(Intent(requireActivity(), LeggTilRedigerAnsatt::class.java))\n                startActivity1(admin)\n                return true\n            }\n        }\n        return super.onOptionsItemSelected(item)\n    }\n\n    fun startActivity1(user:Bruker){\n        val intent = Intent(requireContext(), LeggTilRedigerAnsatt::class.java)\n        intent.putExtra(\"User\", user as Serializable)\n        startActivity(intent)\n    }\n}\n\n\n
+===================================================================
+--- app/src/main/java/com/example/team31/ui/employees/EmployeesFragment.kt	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/java/com/example/team31/ui/employees/myEmployees/MyEmployeeFragment.kt	(date 1620860396000)
+@@ -1,20 +1,19 @@
+-package com.example.team31.ui.employees
++package com.example.team31.ui.employees.myEmployees
+ 
+-import android.content.Intent
+ import android.os.Bundle
+ import android.os.Handler
+ import android.util.Log
+ import android.view.*
+ import androidx.fragment.app.Fragment
+ import androidx.fragment.app.activityViewModels
++import androidx.navigation.fragment.findNavController
+ import androidx.recyclerview.widget.GridLayoutManager
+ import com.example.team31.AdminActivity
+ import com.example.team31.Bruker
+ import com.example.team31.R
+-import com.example.team31.databinding.EmployeesFragmentBinding
+-import java.io.Serializable
++import com.example.team31.databinding.MyEmployeesFragmentBinding
+ 
+-class EmployeesFragment : Fragment() {
++class MyEmployeeFragment : Fragment() {
+ /*
+     companion object {
+         fun newInstance() = OverviewFragment()
+@@ -22,11 +21,12 @@
+ 
+     //private lateinit var employeesViewModel: EmployeesViewModel
+ 
+-    private val model: EmployeesViewModel by activityViewModels()
++    private val modelMy: MyEmployeesViewModel by activityViewModels()
+ 
+ 
+-    private lateinit var mBinding: EmployeesFragmentBinding
+-    private var users = mutableListOf<Ansatt>()
++
++    private lateinit var mBinding: MyEmployeesFragmentBinding
++    private var users = mutableListOf<MyEmployee>()
+     private lateinit var admin:Bruker
+ 
+     //val henrik = Ansatt("henrik", "henrik@gmail.com", "Serviør")
+@@ -44,11 +44,14 @@
+         setHasOptionsMenu(true)
+ 
+         admin = (activity as AdminActivity?)!!.getUser()
+-        model.getUsers(admin)
+-        users = model.getEmployees()
++        modelMy.getUsers(admin)
++        users = modelMy.getEmployees()
+         Log.i("message",users.toString())
+ 
+ 
++
++
++
+     }
+ 
+     override fun onCreateView(
+@@ -68,7 +71,15 @@
+ //            textView.text = it
+ //        })
+ 
+-        mBinding = EmployeesFragmentBinding.inflate(inflater, container, false)
++        mBinding = MyEmployeesFragmentBinding.inflate(inflater, container, false)
++
++        val leggTIl = mBinding.leggtilknapp
++        leggTIl.setOnClickListener{
++            findNavController().navigate(R.id.leggTiiFragment)
++        }
++
++
++
+         return mBinding.root
+ 
+ 
+@@ -85,47 +96,41 @@
+         mBinding.rvAnsattList.layoutManager = GridLayoutManager(requireActivity(), 1)
+         // Adapter class is initialized and list is passed in the param.
+         Handler().postDelayed({
+-            val emAdapter = EmployeeAdapter(this@EmployeesFragment, users)
++            val emAdapter = MyEmployeeAdapter(this@MyEmployeeFragment, users)
+             mBinding.rvAnsattList.adapter = emAdapter
+             emAdapter.notifyDataSetChanged()
+         }, 500)
+ 
+-
+-
+-
+-
+-
+-
+-        // END
+-
+     }
+ 
+-    fun add(ansatt : Ansatt){
+-        users.add(ansatt)
++    fun add(myEmployee : MyEmployee){
++        users.add(myEmployee)
+     }
+ 
+-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+-        inflater.inflate(R.menu.add_employee, menu)
+-        super.onCreateOptionsMenu(menu, inflater)
+-    }
+ 
+-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
++//
++//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
++//        inflater.inflate(R.menu.add_employee, menu)
++//        super.onCreateOptionsMenu(menu, inflater)
++//    }
+ 
+-        when (item.itemId) {
+-            R.id.action_add_employee -> {
+-                //startActivity(Intent(requireActivity(), LeggTilRedigerAnsatt::class.java))
+-                startActivity1(admin)
+-                return true
+-            }
+-        }
+-        return super.onOptionsItemSelected(item)
+-    }
++//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
++//
++//        when (item.itemId) {
++//            R.id.action_add_employee -> {
++//                startActivity(Intent(requireActivity(), LeggTilFagment::class.java))
++//               // startActivity1(admin)
++//                return true
++//            }
++//        }
++//        return super.onOptionsItemSelected(item)
++//    }
+ 
+-    fun startActivity1(user:Bruker){
+-        val intent = Intent(requireContext(), LeggTilRedigerAnsatt::class.java)
+-        intent.putExtra("User", user as Serializable)
+-        startActivity(intent)
+-    }
++//    fun startActivity1(user:Bruker){
++//        val intent = Intent(requireContext(),LeggTiiFragment::class.java)
++//        intent.putExtra("User", user as Serializable)
++//        startActivity(intent)
++//    }
+ }
+ 
+ 
+Index: app/src/main/java/com/example/team31/ui/employees/EmployeeAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.team31.ui.employees\n\nimport android.view.LayoutInflater\nimport android.view.ViewGroup\nimport androidx.fragment.app.Fragment\nimport androidx.recyclerview.widget.RecyclerView\nimport com.bumptech.glide.Glide\nimport com.example.team31.databinding.ActivityLeggTilRedigerAnsattBinding\nimport com.example.team31.databinding.EmployeeCardBinding\n\nclass EmployeeAdapter(private val fragment: Fragment,private val ansatte : MutableList<Ansatt> ):RecyclerView.Adapter<EmployeeAdapter.ViewHolder>() {\n\n\n    class ViewHolder(view: EmployeeCardBinding) : RecyclerView.ViewHolder(view.root) {\n\n        val name = view.tvName\n        val email = view.tvEmail\n        val rolle = view.tvRolle\n\n    }\n\n    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {\n        val binding: EmployeeCardBinding =\n            EmployeeCardBinding.inflate(LayoutInflater.from(fragment.context), parent, false)\n        return ViewHolder(binding)\n    }\n\n\n    override fun onBindViewHolder(holder: ViewHolder, position: Int) {\n\n        val ansatt = ansatte.get(position)\n\n            holder.name.text = \"Navn: ${ansatt.navn}\"\n\n            holder.email.text = \"E-mail: ${ansatt.email}\"\n\n            holder.rolle.text = \"Rolle: ${ansatt.rolle}\"\n\n\n\n    }\n\n    override fun getItemCount(): Int {\n        return ansatte!!.size\n    }\n\n//    fun add(ansatt: Ansatt) {\n//        ansatte.add(ansatt)\n//       notifyDataSetChanged()\n//    }\n\n}\n\n\n
+===================================================================
+--- app/src/main/java/com/example/team31/ui/employees/EmployeeAdapter.kt	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/java/com/example/team31/ui/employees/myEmployees/MyEmployeeAdapter.kt	(date 1620860396000)
+@@ -1,27 +1,29 @@
+-package com.example.team31.ui.employees
++package com.example.team31.ui.employees.myEmployees
+ 
+ import android.view.LayoutInflater
++import android.view.View
+ import android.view.ViewGroup
+ import androidx.fragment.app.Fragment
++import androidx.navigation.Navigation
+ import androidx.recyclerview.widget.RecyclerView
+-import com.bumptech.glide.Glide
+-import com.example.team31.databinding.ActivityLeggTilRedigerAnsattBinding
+-import com.example.team31.databinding.EmployeeCardBinding
++import com.example.team31.R
++import com.example.team31.databinding.MyEmployeeCardBinding
+ 
+-class EmployeeAdapter(private val fragment: Fragment,private val ansatte : MutableList<Ansatt> ):RecyclerView.Adapter<EmployeeAdapter.ViewHolder>() {
++class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : MutableList<MyEmployee> ):RecyclerView.Adapter<MyEmployeeAdapter.ViewHolder>() {
+ 
+ 
+-    class ViewHolder(view: EmployeeCardBinding) : RecyclerView.ViewHolder(view.root) {
++    class ViewHolder(view: MyEmployeeCardBinding) : RecyclerView.ViewHolder(view.root) {
+ 
+         val name = view.tvName
+         val email = view.tvEmail
+         val rolle = view.tvRolle
++        var editButton = view.editButton
+ 
+     }
+ 
+     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+-        val binding: EmployeeCardBinding =
+-            EmployeeCardBinding.inflate(LayoutInflater.from(fragment.context), parent, false)
++        val binding: MyEmployeeCardBinding =
++            MyEmployeeCardBinding.inflate(LayoutInflater.from(fragment.context), parent, false)
+         return ViewHolder(binding)
+     }
+ 
+@@ -36,6 +38,12 @@
+ 
+             holder.rolle.text = "Rolle: ${ansatt.rolle}"
+ 
++            holder.editButton.setOnClickListener {
++                edit(it)
++
++            }
++
++
+ 
+ 
+     }
+@@ -43,6 +51,10 @@
+     override fun getItemCount(): Int {
+         return ansatte!!.size
+     }
++    fun edit(root: View){
++        Navigation.findNavController(root).navigate(R.id.editEmployee)
++    }
++
+ 
+ //    fun add(ansatt: Ansatt) {
+ //        ansatte.add(ansatt)
+Index: app/src/main/java/com/example/team31/Constants.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.team31\n\nobject Constants {\n\n    const val ROLLE_TYPE = \"Rolle\"\n\n\n    fun rolleType(): ArrayList<String>{\n        val list = ArrayList<String>()\n        list.add(\"Kokk\")\n        list.add(\"Servirør\")\n        list.add(\"Bartender\")\n        list.add(\"Vaktsjef\")\n\n        return list\n    }\n}
+===================================================================
+--- app/src/main/java/com/example/team31/Constants.kt	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/java/com/example/team31/ui/employees/addMyEmployee/JobTitleConstants.kt	(date 1620860396000)
+@@ -1,14 +1,14 @@
+-package com.example.team31
++package com.example.team31.ui.employees.addMyEmployee
+ 
+-object Constants {
++object JobTitleConstants {
+ 
+-    const val ROLLE_TYPE = "Rolle"
++    const val JOB_TITLE = "Rolle"
+ 
+ 
+     fun rolleType(): ArrayList<String>{
+         val list = ArrayList<String>()
+         list.add("Kokk")
+-        list.add("Servirør")
++        list.add("Servitør")
+         list.add("Bartender")
+         list.add("Vaktsjef")
+ 
+Index: app/src/main/res/layout/my_employee_card.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/my_employee_card.xml	(date 1620860445000)
++++ app/src/main/res/layout/my_employee_card.xml	(date 1620860445000)
+@@ -0,0 +1,73 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="376dp"
++    android:layout_height="150dp"
++    app:cardCornerRadius="5dp"
++    app:cardElevation="5dp"
++    android:layout_gravity="center"
++    android:background="#DADEE7"
++    android:layout_marginBottom="4dp"
++    android:layout_marginRight="9dp"
++    android:layout_marginLeft="9dp"
++
++    >
++
++
++    <RelativeLayout
++        android:id="@+id/layout"
++        android:layout_width="376dp"
++        android:layout_height="150dp"
++        android:background="#EEF0F4"
++        android:orientation="vertical"
++        android:rotation="0"
++        android:rotationX="0">
++
++        <TextView
++            android:id="@+id/tv_name"
++            android:layout_width="200dp"
++            android:layout_height="30dp"
++            android:layout_margin="10dp"
++            android:gravity="center_vertical"
++            android:textColor="@color/grey_900"
++            android:textSize="16dp"
++            android:textStyle="bold"
++            tools:text="Navn:" />
++        <ImageButton
++            android:id="@+id/edit_button"
++            android:layout_width="25dp"
++            android:layout_height="25dp"
++            android:layout_alignParentTop="true"
++            android:layout_alignParentEnd="true"
++            android:layout_marginTop="4dp"
++            android:layout_marginRight="13dp"
++            android:src="@drawable/edit"
++            android:scaleType="fitCenter"
++            android:background="#ECECEC"/>
++        <TextView
++            android:id="@+id/tv_rolle"
++            android:layout_width="250dp"
++            android:layout_height="30dp"
++            android:layout_margin="10dp"
++            android:gravity="center_vertical"
++            android:textColor="@color/grey_900"
++            android:textSize="16dp"
++            android:textStyle="bold"
++            tools:text="Rolle: "
++            android:layout_below="@id/tv_name"/>
++
++        <TextView
++            android:id="@+id/tv_email"
++            android:layout_width="250dp"
++            android:layout_height="wrap_content"
++            android:layout_margin="10dp"
++            android:gravity="center_vertical"
++            android:textColor="@color/grey_900"
++            android:textSize="16dp"
++            android:textStyle="bold"
++            tools:text="E-mail:"
++            android:layout_below="@id/tv_rolle"/>
++    </RelativeLayout>
++</androidx.cardview.widget.CardView>
++    <!--END-->
+\ No newline at end of file
+Index: app/src/main/res/drawable-v24/shape_button_rounded.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!--All the values used are defined in the constant files.-->\n<shape xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:shape=\"rectangle\">\n\n    <gradient\n        android:angle=\"360\"\n        android:endColor=\"#0A80F5\"\n        android:startColor=\"#0BCCEB\"\n        android:type=\"linear\" />\n\n    <corners android:radius=\"10dp\" />\n</shape>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable-v24/shape_button_rounded.xml	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/res/drawable-v24/shape_button_rounded.xml	(date 1620860424000)
+@@ -5,8 +5,8 @@
+ 
+     <gradient
+         android:angle="360"
+-        android:endColor="#0A80F5"
+-        android:startColor="#0BCCEB"
++        android:endColor="#EEF0F4"
++        android:startColor="#EEF0F4"
+         android:type="linear" />
+ 
+     <corners android:radius="10dp" />
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    id 'com.android.application'\n    id 'kotlin-android'\n    id 'com.google.gms.google-services'\n    id 'com.google.secrets_gradle_plugin' version '0.5'\n    id 'kotlin-parcelize'\n}\n\nandroid {\n    compileSdkVersion 30\n    buildToolsVersion \"30.0.3\"\n\n    defaultConfig {\n        applicationId \"com.example.login2000\"\n        minSdkVersion 23\n        targetSdkVersion 30\n        versionCode 1\n        versionName \"1.0\"\n        buildFeatures.dataBinding\n\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n    }\n\n    buildTypes {\n        release {\n            minifyEnabled false\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n        }\n    }\n    compileOptions {\n        sourceCompatibility JavaVersion.VERSION_1_8\n        targetCompatibility JavaVersion.VERSION_1_8\n    }\n    kotlinOptions {\n        jvmTarget = '1.8'\n    }\n    buildFeatures {\n        viewBinding true\n    }\n\n    buildFeatures {\n        dataBinding true\n    }\n\n}\n\ndependencies {\n\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version\"\n    implementation 'androidx.core:core-ktx:1.3.2'\n    implementation 'androidx.appcompat:appcompat:1.2.0'\n    implementation 'com.google.android.material:material:1.3.0'\n    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'\n    implementation 'de.hdodenhof:circleimageview:3.1.0'\n\n    //navigation\n    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.4'\n    implementation 'androidx.navigation:navigation-ui-ktx:2.3.4'\n    // Feature module Support\n    implementation \"androidx.navigation:navigation-dynamic-features-fragment:2.3.4\"\n\n    // Testing Navigation\n    androidTestImplementation \"androidx.navigation:navigation-testing:2.3.4\"\n\n    // Jetpack Compose Integration\n    implementation \"androidx.navigation:navigation-compose:1.0.0-alpha10\"\n\n    //liveData\n    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'\n\n    //viewModel\n    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'\n\n    implementation \"androidx.activity:activity-ktx:1.2.0\"\n\n    implementation 'androidx.legacy:legacy-support-v4:1.0.0'\n    implementation 'com.google.firebase:firebase-database:19.7.0'\n    testImplementation 'junit:junit:4.+'\n    androidTestImplementation 'androidx.test.ext:junit:1.1.2'\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'\n\n    //Glide-bilde\n    implementation 'com.github.bumptech.glide:glide:4.12.0'\n\n    //Google maps searchbar\n\n    implementation 'com.google.android.libraries.places:places:2.4.0'\n\n\n    implementation 'com.google.code.gson:gson:2.8.6'\n\n    implementation ('khttp:khttp:1.0.0'){\n        exclude group: \"org.jetbrains.kotlin\", module:\"kotlin-reflect\"\n    }\n\n    dependencies {\n        implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'\n        implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2'\n    }\n\n    //network library\n    implementation 'com.squareup.retrofit2:retrofit:2.9.0'\n    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'\n\n    implementation 'com.google.android.material:material:1.0.0'\n\n\n\n\n    dependencies {\n        def fragment_version = \"1.3.2\"\n        implementation \"androidx.fragment:fragment-ktx:$fragment_version\"\n    }\n\n    apply plugin: \"androidx.navigation.safeargs.kotlin\"\n    implementation 'com.google.android.material:material:1.3.0-alpha05'\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/build.gradle	(date 1620860441000)
+@@ -4,6 +4,7 @@
+     id 'com.google.gms.google-services'
+     id 'com.google.secrets_gradle_plugin' version '0.5'
+     id 'kotlin-parcelize'
++    id 'androidx.navigation.safeargs.kotlin'
+ }
+ 
+ android {
+@@ -113,6 +114,6 @@
+     }
+ 
+     apply plugin: "androidx.navigation.safeargs.kotlin"
+-    implementation 'com.google.android.material:material:1.3.0-alpha05'
++   // implementation 'com.google.android.material:material:1.3.0'
+ 
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/team31/ui/employees/LeggTilRedigerAnsatt.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.team31.ui.employees\n\nimport android.app.Dialog\nimport androidx.appcompat.app.AppCompatActivity\nimport android.os.Bundle\nimport android.text.TextUtils\nimport android.util.Log\nimport android.view.View\nimport android.widget.Toast\nimport androidx.recyclerview.widget.LinearLayoutManager\nimport com.example.team31.Bruker\nimport com.example.team31.Constants\nimport com.example.team31.R\nimport com.example.team31.databinding.ActivityLeggTilRedigerAnsattBinding\nimport com.example.team31.databinding.DialogCustomListBinding\nimport com.google.firebase.database.FirebaseDatabase\n\nclass LeggTilRedigerAnsatt : AppCompatActivity(), View.OnClickListener {\n\n    //private val model: EmployeesViewModel by activityViewModels()\n\n    private lateinit var mBinding: ActivityLeggTilRedigerAnsattBinding\n    private lateinit var mCustomListDialog: Dialog\n    //private lateinit var Employ : EmployeesFragment\n    private lateinit var adapter: EmployeeAdapter\n    private lateinit var user:Bruker\n\n\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        mBinding = ActivityLeggTilRedigerAnsattBinding.inflate(layoutInflater)\n        setContentView(mBinding.root)\n        user = intent.extras!!.get(\"User\") as Bruker\n\n        setUpActionBar()\n        mBinding.etRolle.setOnClickListener(this@LeggTilRedigerAnsatt)\n        mBinding.btnAddEmployee.setOnClickListener(this@LeggTilRedigerAnsatt)\n        //Employ.add(drganaa)\n\n    }\n\n    fun leggTilAnsatt(admin: Bruker, ansatt: Ansatt) {\n        val refAnsatt = FirebaseDatabase.getInstance().getReference(\"Ansatte\").child(admin.id!!)\n\n        val ansattId = refAnsatt.push().key\n        refAnsatt.child(ansattId!!).setValue(ansatt).addOnCompleteListener {\n            Log.i(\"Message:\", \"Ansatt registrert\")\n        }\n    }\n\n    private fun setUpActionBar() {\n        setSupportActionBar(mBinding.toolbarLeggTilAnsattActivity)\n\n        supportActionBar?.setDisplayHomeAsUpEnabled(true)\n        //back button\n        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)\n\n        mBinding.toolbarLeggTilAnsattActivity.setNavigationOnClickListener { onBackPressed() }\n    }\n\n\n\n    private fun customItemsListDialog(title: String, itemsList: List<String>, selection: String) {\n\n        mCustomListDialog = Dialog(this@LeggTilRedigerAnsatt)\n\n        val binding: DialogCustomListBinding = DialogCustomListBinding.inflate(layoutInflater)\n\n\n        mCustomListDialog.setContentView(binding.root)\n\n        binding.tvTitle.text = title\n\n        binding.rvList.layoutManager = LinearLayoutManager(this@LeggTilRedigerAnsatt)\n\n        val adapter = CustomListItemAdapter(this@LeggTilRedigerAnsatt, itemsList, selection)\n\n        binding.rvList.adapter = adapter\n        //start dialog\n        mCustomListDialog.show()\n    }\n\n\n\n    fun selectedListItem(item: String, selection: String) {\n\n        when (selection) {\n\n            Constants.ROLLE_TYPE-> {\n                mCustomListDialog.dismiss()\n                mBinding.etRolle.setText(item)\n            }\n\n        }    }\n\n\n\n\n    override fun onClick(v: View?) {\n        if (v != null) {\n            when (v.id) {\n\n\n                R.id.et_rolle -> {\n                    customItemsListDialog(\n                        resources.getString(R.string.Rolle),\n                        Constants.rolleType(),\n                        Constants.ROLLE_TYPE\n                    )\n                    return\n\n\n                }\n\n               R.id.btn_add_employee ->{\n                   val name = mBinding.etNavn.text.toString().trim {it <= ' '}\n                   val email = mBinding.etEmail.text.toString().trim {it <= ' '}\n                   val rolle = mBinding.etRolle.text.toString().trim {it <= ' '}\n\n\n\n                   when{\n\n                       TextUtils.isEmpty(name) -> {\n                           Toast.makeText(\n                               this@LeggTilRedigerAnsatt,\n                               resources.getString(R.string.err_msg_select_name),\n                               Toast.LENGTH_SHORT\n                           ).show()\n                       }\n\n                       TextUtils.isEmpty(email) -> {\n                           Toast.makeText(\n                               this@LeggTilRedigerAnsatt,\n                               resources.getString(R.string.err_msg_enter_email),\n                               Toast.LENGTH_SHORT\n                           ).show()\n                       }\n\n                       TextUtils.isEmpty(rolle) -> {\n                           Toast.makeText(\n                               this@LeggTilRedigerAnsatt,\n                               resources.getString(R.string.err_msg_select_rolle),\n                               Toast.LENGTH_SHORT\n                           ).show()\n                       }\n                       else ->{\n                           val ansatt = Ansatt(name, email,\"temps31\", rolle, user.id)\n                           leggTilAnsatt(user,ansatt)\n\n\n                           Toast.makeText(\n                               this@LeggTilRedigerAnsatt,\n                               \"Alle verdig er gyldige\",\n                               Toast.LENGTH_SHORT\n                           ).show()\n\n                           Log.w(\"Insertion\", \"Success\")\n                           finish()\n                       }\n                   }\n\n               }\n            }\n        }\n    }\n}\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/team31/ui/employees/LeggTilRedigerAnsatt.kt	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/java/com/example/team31/ui/employees/LeggTilRedigerAnsatt.kt	(date 1620860445000)
+@@ -1,169 +1,168 @@
+-package com.example.team31.ui.employees
+-
+-import android.app.Dialog
+-import androidx.appcompat.app.AppCompatActivity
+-import android.os.Bundle
+-import android.text.TextUtils
+-import android.util.Log
+-import android.view.View
+-import android.widget.Toast
+-import androidx.recyclerview.widget.LinearLayoutManager
+-import com.example.team31.Bruker
+-import com.example.team31.Constants
+-import com.example.team31.R
+-import com.example.team31.databinding.ActivityLeggTilRedigerAnsattBinding
+-import com.example.team31.databinding.DialogCustomListBinding
+-import com.google.firebase.database.FirebaseDatabase
+-
+-class LeggTilRedigerAnsatt : AppCompatActivity(), View.OnClickListener {
+-
+-    //private val model: EmployeesViewModel by activityViewModels()
+-
+-    private lateinit var mBinding: ActivityLeggTilRedigerAnsattBinding
+-    private lateinit var mCustomListDialog: Dialog
+-    //private lateinit var Employ : EmployeesFragment
+-    private lateinit var adapter: EmployeeAdapter
+-    private lateinit var user:Bruker
+-
+-
+-    override fun onCreate(savedInstanceState: Bundle?) {
+-        super.onCreate(savedInstanceState)
+-        mBinding = ActivityLeggTilRedigerAnsattBinding.inflate(layoutInflater)
+-        setContentView(mBinding.root)
+-        user = intent.extras!!.get("User") as Bruker
+-
+-        setUpActionBar()
+-        mBinding.etRolle.setOnClickListener(this@LeggTilRedigerAnsatt)
+-        mBinding.btnAddEmployee.setOnClickListener(this@LeggTilRedigerAnsatt)
+-        //Employ.add(drganaa)
+-
+-    }
+-
+-    fun leggTilAnsatt(admin: Bruker, ansatt: Ansatt) {
+-        val refAnsatt = FirebaseDatabase.getInstance().getReference("Ansatte").child(admin.id!!)
+-
+-        val ansattId = refAnsatt.push().key
+-        refAnsatt.child(ansattId!!).setValue(ansatt).addOnCompleteListener {
+-            Log.i("Message:", "Ansatt registrert")
+-        }
+-    }
+-
+-    private fun setUpActionBar() {
+-        setSupportActionBar(mBinding.toolbarLeggTilAnsattActivity)
+-
+-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+-        //back button
+-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+-
+-        mBinding.toolbarLeggTilAnsattActivity.setNavigationOnClickListener { onBackPressed() }
+-    }
+-
+-
+-
+-    private fun customItemsListDialog(title: String, itemsList: List<String>, selection: String) {
+-
+-        mCustomListDialog = Dialog(this@LeggTilRedigerAnsatt)
+-
+-        val binding: DialogCustomListBinding = DialogCustomListBinding.inflate(layoutInflater)
+-
+-
+-        mCustomListDialog.setContentView(binding.root)
+-
+-        binding.tvTitle.text = title
+-
+-        binding.rvList.layoutManager = LinearLayoutManager(this@LeggTilRedigerAnsatt)
+-
+-        val adapter = CustomListItemAdapter(this@LeggTilRedigerAnsatt, itemsList, selection)
+-
+-        binding.rvList.adapter = adapter
+-        //start dialog
+-        mCustomListDialog.show()
+-    }
+-
+-
+-
+-    fun selectedListItem(item: String, selection: String) {
+-
+-        when (selection) {
+-
+-            Constants.ROLLE_TYPE-> {
+-                mCustomListDialog.dismiss()
+-                mBinding.etRolle.setText(item)
+-            }
+-
+-        }    }
+-
+-
+-
+-
+-    override fun onClick(v: View?) {
+-        if (v != null) {
+-            when (v.id) {
+-
+-
+-                R.id.et_rolle -> {
+-                    customItemsListDialog(
+-                        resources.getString(R.string.Rolle),
+-                        Constants.rolleType(),
+-                        Constants.ROLLE_TYPE
+-                    )
+-                    return
+-
+-
+-                }
+-
+-               R.id.btn_add_employee ->{
+-                   val name = mBinding.etNavn.text.toString().trim {it <= ' '}
+-                   val email = mBinding.etEmail.text.toString().trim {it <= ' '}
+-                   val rolle = mBinding.etRolle.text.toString().trim {it <= ' '}
+-
+-
+-
+-                   when{
+-
+-                       TextUtils.isEmpty(name) -> {
+-                           Toast.makeText(
+-                               this@LeggTilRedigerAnsatt,
+-                               resources.getString(R.string.err_msg_select_name),
+-                               Toast.LENGTH_SHORT
+-                           ).show()
+-                       }
+-
+-                       TextUtils.isEmpty(email) -> {
+-                           Toast.makeText(
+-                               this@LeggTilRedigerAnsatt,
+-                               resources.getString(R.string.err_msg_enter_email),
+-                               Toast.LENGTH_SHORT
+-                           ).show()
+-                       }
+-
+-                       TextUtils.isEmpty(rolle) -> {
+-                           Toast.makeText(
+-                               this@LeggTilRedigerAnsatt,
+-                               resources.getString(R.string.err_msg_select_rolle),
+-                               Toast.LENGTH_SHORT
+-                           ).show()
+-                       }
+-                       else ->{
+-                           val ansatt = Ansatt(name, email,"temps31", rolle, user.id)
+-                           leggTilAnsatt(user,ansatt)
+-
+-
+-                           Toast.makeText(
+-                               this@LeggTilRedigerAnsatt,
+-                               "Alle verdig er gyldige",
+-                               Toast.LENGTH_SHORT
+-                           ).show()
+-
+-                           Log.w("Insertion", "Success")
+-                           finish()
+-                       }
+-                   }
+-
+-               }
+-            }
+-        }
+-    }
+-}
+-
+-
++//package com.example.team31.ui.employees
++//
++//import android.app.Dialog
++//import androidx.appcompat.app.AppCompatActivity
++//import android.os.Bundle
++//import android.text.TextUtils
++//import android.util.Log
++//import android.view.View
++//import android.widget.Toast
++//import androidx.fragment.app.activityViewModels
++//import androidx.recyclerview.widget.LinearLayoutManager
++//import com.example.team31.AdminActivity
++//import com.example.team31.Bruker
++//import com.example.team31.Constants
++//import com.example.team31.R
++//import com.example.team31.databinding.ActivityLeggTilRedigerAnsattBinding
++//import com.example.team31.databinding.DialogCustomListBinding
++//import com.google.firebase.database.FirebaseDatabase
++//
++//class LeggTilRedigerAnsatt : AppCompatActivity(), View.OnClickListener {
++//
++//    //private val model: EmployeesViewModel by activityViewModels()
++//
++//    private lateinit var mBinding: ActivityLeggTilRedigerAnsattBinding
++//    private lateinit var mCustomListDialog: Dialog
++//    private lateinit var user:Bruker
++//
++//
++//    override fun onCreate(savedInstanceState: Bundle?) {
++//        super.onCreate(savedInstanceState)
++//        mBinding = ActivityLeggTilRedigerAnsattBinding.inflate(layoutInflater)
++//        setContentView(mBinding.root)
++//        user = intent.extras!!.get("User") as Bruker
++//
++//        setUpActionBar()
++//        mBinding.etRolle.setOnClickListener(this@LeggTilRedigerAnsatt)
++//        mBinding.btnAddEmployee.setOnClickListener(this@LeggTilRedigerAnsatt)
++//        //Employ.add(drganaa)
++//
++//    }
++//
++//    fun leggTilAnsatt(admin: Bruker, ansatt: Ansatt) {
++//        val refAnsatt = FirebaseDatabase.getInstance().getReference("Ansatte").child(admin.id!!)
++//
++//        val ansattId = refAnsatt.push().key
++//        refAnsatt.child(ansattId!!).setValue(ansatt).addOnCompleteListener {
++//            Log.i("Message:", "Ansatt registrert")
++//        }
++//    }
++//
++//    private fun setUpActionBar() {
++//        setSupportActionBar(mBinding.toolbarLeggTilAnsattActivity)
++//
++//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
++//        //back button
++//        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
++//
++//        mBinding.toolbarLeggTilAnsattActivity.setNavigationOnClickListener { onBackPressed() }
++//    }
++//
++//
++//
++//    private fun customItemsListDialog(title: String, itemsList: List<String>, selection: String) {
++//
++//        mCustomListDialog = Dialog(this@LeggTilRedigerAnsatt)
++//
++//        val binding: DialogCustomListBinding = DialogCustomListBinding.inflate(layoutInflater)
++//
++//
++//        mCustomListDialog.setContentView(binding.root)
++//
++//        binding.tvTitle.text = title
++//
++//        binding.rvList.layoutManager = LinearLayoutManager(this@LeggTilRedigerAnsatt)
++//
++//        val adapter = CustomListItemAdapter(this@LeggTilRedigerAnsatt, itemsList, selection)
++//
++//        binding.rvList.adapter = adapter
++//        //start dialog
++//        mCustomListDialog.show()
++//    }
++//
++//
++//
++//    fun selectedListItem(item: String, selection: String) {
++//
++//        when (selection) {
++//
++//            Constants.ROLLE_TYPE-> {
++//                mCustomListDialog.dismiss()
++//                mBinding.etRolle.setText(item)
++//            }
++//
++//        }    }
++//
++//
++//
++//
++//    override fun onClick(v: View?) {
++//        if (v != null) {
++//            when (v.id) {
++//
++//
++//                R.id.et_rolle -> {
++//                    customItemsListDialog(
++//                        resources.getString(R.string.Rolle),
++//                        Constants.rolleType(),
++//                        Constants.ROLLE_TYPE
++//                    )
++//                    return
++//
++//
++//                }
++//
++//               R.id.btn_add_employee ->{
++//                   val name = mBinding.etNavn.text.toString().trim {it <= ' '}
++//                   val email = mBinding.etEmail.text.toString().trim {it <= ' '}
++//                   val rolle = mBinding.etRolle.text.toString().trim {it <= ' '}
++//
++//
++//                   when{
++//
++//                       TextUtils.isEmpty(name) -> {
++//                           Toast.makeText(
++//                               this@LeggTilRedigerAnsatt,
++//                               resources.getString(R.string.err_msg_select_name),
++//                               Toast.LENGTH_SHORT
++//                           ).show()
++//                       }
++//
++//                       TextUtils.isEmpty(email) -> {
++//                           Toast.makeText(
++//                               this@LeggTilRedigerAnsatt,
++//                               resources.getString(R.string.err_msg_enter_email),
++//                               Toast.LENGTH_SHORT
++//                           ).show()
++//                       }
++//
++//                       TextUtils.isEmpty(rolle) -> {
++//                           Toast.makeText(
++//                               this@LeggTilRedigerAnsatt,
++//                               resources.getString(R.string.err_msg_select_rolle),
++//                               Toast.LENGTH_SHORT
++//                           ).show()
++//                       }
++//                       else ->{
++//                           val ansatt = Ansatt(name, email,rolle)
++//                           leggTilAnsatt(user,ansatt)
++//
++//
++//                           Toast.makeText(
++//                               this@LeggTilRedigerAnsatt,
++//                               "Alle verdig er gyldige",
++//                               Toast.LENGTH_SHORT
++//                           ).show()
++//
++//                           Log.w("Insertion", "Success")
++//                           finish()
++//                       }
++//                   }
++//
++//               }
++//            }
++//        }
++//    }
++//}
++//
++//
+Index: app/src/main/res/layout/settings_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".ui.settings.SettingsFragment\">\n\n    <TextView\n        android:id=\"@+id/text_settings\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginStart=\"8dp\"\n        android:layout_marginTop=\"8dp\"\n        android:layout_marginEnd=\"8dp\"\n        android:textAlignment=\"center\"\n        android:textSize=\"20sp\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/settings_fragment.xml	(revision 5d074617acb0fa61a483f68fa3a38f22be032117)
++++ app/src/main/res/layout/settings_fragment.xml	(date 1620860445000)
+@@ -21,4 +21,5 @@
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+ 
++
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+diff --git app/src/main/res/layout/item_custom_list_layout.xml app/src/main/res/layout/jobb_title_custom_list_layout.xml
+rename from app/src/main/res/layout/item_custom_list_layout.xml
+rename to app/src/main/res/layout/jobb_title_custom_list_layout.xml

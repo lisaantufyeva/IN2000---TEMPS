@@ -1,8 +1,8 @@
-package com.example.team31
+package com.example.team31.ui.employees.addMyEmployee
 
-object Constants {
+object JobTitleConstants {
 
-    const val ROLLE_TYPE = "Rolle"
+    const val JOB_TITLE = "Rolle"
 
 
     fun rolleType(): ArrayList<String>{

@@ -19,6 +19,12 @@
     <string name="Rolle">Rolle</string>
     <string name="addEmployeeBtn">Legg til ansatt</string>
 
+
+    <string name="store_button">Lagre</string>
+    <string name="name_edit">Navn</string>
+    <string name="email_edit">E-mail</string>
+    <string name="Rolle_edit">Rolle</string>
+
     <string name="err_msg_select_name">Skriv navn.</string>
     <string name="err_msg_enter_email">Skriv email.</string>
     <string name="err_msg_select_rolle">Velg rolle.</string>

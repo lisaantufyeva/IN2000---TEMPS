@@ -1,4 +1,4 @@
-package com.example.team31.ui.employees
+package com.example.team31.ui.employees.myEmployees
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,22 +7,19 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.team31.AdminActivity
 import com.example.team31.Bruker
 import com.example.team31.R
+import com.example.team31.authentication.AuthenticationViewModel
 import com.example.team31.databinding.EmployeesFragmentBinding
 import java.io.Serializable
 
-class EmployeesFragment : Fragment() {
-/*
-    companion object {
-        fun newInstance() = OverviewFragment()
-    }*/
+class MyEmployeeFragment : Fragment() {
 
-    //private lateinit var employeesViewModel: EmployeesViewModel
 
-    private val model: EmployeesViewModel by activityViewModels()
+    private val modelMy: MyEmployeesViewModel by activityViewModels()
 
 
     private lateinit var mBinding: EmployeesFragmentBinding
@@ -44,21 +41,21 @@ class EmployeesFragment : Fragment() {
         setHasOptionsMenu(true)
 
         admin = (activity as AdminActivity?)!!.getUser()
-        model.getUsers(admin)
-        users = model.getEmployees()
-        Log.i("message",users.toString())
+        modelMy.getUsers(admin)
+        users = modelMy.getEmployees()
+        Log.i("message", users.toString())
 
 
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         //admin = (activity as AdminActivity?)!!.getUser()
         //model.getUsers(admin)
         //users = model.getEmployees()
-       // Log.i("message",users.toString())
+        // Log.i("message",users.toString())
 //        employeesViewModel =
 //            ViewModelProvider(this).get(EmployeesViewModel::class.java)
 //        val root = inflater.inflate(R.layout.employees_fragment, container, false)
@@ -69,14 +66,21 @@ class EmployeesFragment : Fragment() {
 //        })
 
         mBinding = EmployeesFragmentBinding.inflate(inflater, container, false)
+        val leggTIl = mBinding.leggtilknapp
+
+        leggTIl.setOnClickListener{
+            findNavController().navigate(R.id.addMyEmpoyeeFragment)
+        }
+
         return mBinding.root
 
 
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //add(dragana)
+        add(dragana)
         //add(greogor)
         //add(lisz)
         //add(henrik)
@@ -85,47 +89,44 @@ class EmployeesFragment : Fragment() {
         mBinding.rvAnsattList.layoutManager = GridLayoutManager(requireActivity(), 1)
         // Adapter class is initialized and list is passed in the param.
         Handler().postDelayed({
-            val emAdapter = EmployeeAdapter(this@EmployeesFragment, users)
+            val emAdapter = MyEmployeeAdapter(this@MyEmployeeFragment, users)
             mBinding.rvAnsattList.adapter = emAdapter
             emAdapter.notifyDataSetChanged()
         }, 500)
-
-
-
-
-
 
 
         // END
 
     }
 
-    fun add(ansatt : Ansatt){
-        users.add(ansatt)
+    fun add(myEmployee: Ansatt) {
+        users.add(myEmployee)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.add_employee, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        when (item.itemId) {
-            R.id.action_add_employee -> {
-                //startActivity(Intent(requireActivity(), LeggTilRedigerAnsatt::class.java))
-                startActivity1(admin)
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    fun startActivity1(user:Bruker){
-        val intent = Intent(requireContext(), LeggTilRedigerAnsatt::class.java)
-        intent.putExtra("User", user as Serializable)
-        startActivity(intent)
-    }
 }
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        inflater.inflate(R.menu.add_employee, menu)
+//        super.onCreateOptionsMenu(menu, inflater)
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//
+//        when (item.itemId) {
+//            R.id.action_add_employee -> {
+//                //startActivity(Intent(requireActivity(), LeggTilRedigerAnsatt::class.java))
+//                startActivity1(admin)
+//                return true
+//            }
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
+//
+//    fun startActivity1(user:Bruker){
+//        val intent = Intent(requireContext(), LeggTilRedigerAnsatt::class.java)
+//        intent.putExtra("User", user as Serializable)
+//        startActivity(intent)
+//    }
+//}
 
 

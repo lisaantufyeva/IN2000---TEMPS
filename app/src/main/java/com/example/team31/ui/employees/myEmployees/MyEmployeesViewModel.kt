@@ -1,36 +1,34 @@
-package com.example.team31.ui.employees
+package com.example.team31.ui.employees.myEmployees
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.team31.AdminActivity
 import com.example.team31.Bruker
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class EmployeesViewModel : ViewModel() {
+class MyEmployeesViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "employees Fragment"
     }
-    private var employees = mutableListOf<Ansatt>()
+    private var employees = mutableListOf<MyEmployee>()
 
     val text: LiveData<String> = _text
 
     fun getUsers(admin: Bruker) {
         val refAnsatt = FirebaseDatabase.getInstance().getReference("Ansatte").child(admin.id!!)
-        val ansatte = ArrayList<Ansatt>()
+        val ansatte = ArrayList<MyEmployee>()
 
         // Henter brukere fra firebase
         val UserListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (i in dataSnapshot.children) {
-                        val user = i.getValue(Ansatt::class.java)
+                        val user = i.getValue(MyEmployee::class.java)
                         ansatte.add(user!!)
                         Log.i("hei",ansatte.toString())
                     }
@@ -46,16 +44,16 @@ class EmployeesViewModel : ViewModel() {
         refAnsatt.addValueEventListener(UserListener)
     }
 
-    fun leggTilAnsatt(admin: Bruker, ansatt: Ansatt) {
+    fun leggTilAnsatt(admin: Bruker, myEmployee: MyEmployee) {
         val refAnsatt = FirebaseDatabase.getInstance().getReference("Ansatte").child(admin.id!!)
 
         val ansattId = refAnsatt.push().key
-        refAnsatt.child(ansattId!!).setValue(ansatt).addOnCompleteListener {
+        refAnsatt.child(ansattId!!).setValue(myEmployee).addOnCompleteListener {
             Log.i("Message:", "Ansatt registrert")
         }
     }
 
-    fun getEmployees():MutableList<Ansatt>{
+    fun getEmployees():MutableList<MyEmployee>{
         return employees
     }
 }

@@ -1,14 +1,15 @@
-package com.example.team31.ui.employees
+package com.example.team31.ui.employees.myEmployees
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.team31.databinding.ActivityLeggTilRedigerAnsattBinding
+import com.example.team31.R
 import com.example.team31.databinding.EmployeeCardBinding
 
-class EmployeeAdapter(private val fragment: Fragment,private val ansatte : MutableList<Ansatt> ):RecyclerView.Adapter<EmployeeAdapter.ViewHolder>() {
+class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : MutableList<MyEmployee> ):RecyclerView.Adapter<MyEmployeeAdapter.ViewHolder>() {
 
 
     class ViewHolder(view: EmployeeCardBinding) : RecyclerView.ViewHolder(view.root) {
@@ -16,6 +17,7 @@ class EmployeeAdapter(private val fragment: Fragment,private val ansatte : Mutab
         val name = view.tvName
         val email = view.tvEmail
         val rolle = view.tvRolle
+        var editButton = view.editButton
 
     }
 
@@ -36,8 +38,18 @@ class EmployeeAdapter(private val fragment: Fragment,private val ansatte : Mutab
 
             holder.rolle.text = "Rolle: ${ansatt.rolle}"
 
+        holder.editButton.setOnClickListener {
+            edit(it)
+
+        }
 
 
+
+
+    }
+
+    fun edit(root: View){
+        Navigation.findNavController(root).navigate(R.id.editEmployee)
     }
 
     override fun getItemCount(): Int {

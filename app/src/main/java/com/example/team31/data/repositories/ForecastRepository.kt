@@ -35,7 +35,6 @@ class ForecastRepository @Inject constructor(
     private fun filterForecastList(list: MutableList<Forecast>):List<Forecast>{
         val filteredList = list.filter { it.time.hours == 12 }
         val first = list.first()
-
         return if (first.time.hours > 12)
             listOf(list.first()) + filteredList
         else filteredList

@@ -22,9 +22,7 @@ class AvailableShiftsListViewModel : ViewModel() {
 
     suspend fun getAlertList(userId:String): MutableList<Varsel> {
 
-
         val ref = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("varselListe")
-
         val liste = mutableListOf<Varsel>()
         val alertListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -36,14 +34,13 @@ class AvailableShiftsListViewModel : ViewModel() {
                     }
                 }
             }
-
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.w("message", "loadPost:onCancelled", databaseError.toException())
             }
         }
         ref.addValueEventListener(alertListener)
         delay(200)
+        _alertList.value = liste
         return liste
     }
-
 }

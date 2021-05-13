@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team31.AdminActivity
@@ -44,17 +45,43 @@ class AvailableShiftsListFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(AvailableShiftsListViewModel::class.java)
         recyclerView = view.findViewById(R.id.recyclerview)
+        GlobalScope.launch(Dispatchers.IO){
+            viewModel.getAlertList(ansattUser.adminId!!)
+            withContext(Dispatchers.Main){
+                Log.i("VarselListe:", alerts.toString())
+                display(alerts)
+            }
+        }
+            /*
+        GlobalScope.launch(Dispatchers.IO){
+            viewModel.getAlertList(ansattUser.adminId!!)
+            withContext(Dispatchers.Main){
+                viewModel.alertList.observe(viewLifecycleOwner, Observer{ alerts ->
+                    recyclerView.also {
+                        recyclerView.setHasFixedSize(true)
+                        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                        recyclerView.adapter = AvailableShiftsAdapter(alerts, requireContext())
+                    }
+                })
+            }
+        }*/
+        /*
+            withContext(Dispatchers.Main){
+                alerts = recentAlerts
+                Log.i("VarselListe:", alerts.toString())
+                display(alerts)
+            }
+        }
+        viewModel.getAlertList(ansattUser.adminId!!)
+        viewModel.alertList.observe(viewLifecycleOwner, Observer { alertList ->
+            recyclerView.also {
+                recyclerView.setHasFixedSize(true)
+                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                recyclerView.adapter = AvailableShiftsAdapter(alertList, requireContext())
+            }
+        })*/
 
-/*
-        alerts = mutableListOf<Varsel>()
-
-        val alert1 = Varsel("12.mars", false)
-        alerts.add(alert1)
-
-        display(alerts)*/
-
-
-
+        /*
         GlobalScope.launch(Dispatchers.IO){
             val recentAlerts = viewModel.getAlertList(ansattUser.adminId!!)
 
@@ -63,7 +90,7 @@ class AvailableShiftsListFragment : Fragment() {
                 Log.i("VarselListe:", alerts.toString())
                 display(alerts)
             }
-        }
+        }*/
     }
 
     private fun display(list: MutableList<Varsel>){

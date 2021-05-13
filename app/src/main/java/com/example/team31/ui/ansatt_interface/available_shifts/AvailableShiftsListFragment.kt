@@ -46,9 +46,11 @@ class AvailableShiftsListFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(AvailableShiftsListViewModel::class.java)
         recyclerView = view.findViewById(R.id.recyclerview)
         GlobalScope.launch(Dispatchers.IO){
-            viewModel.getAlertList(ansattUser.adminId!!)
+            val recentAlerts = viewModel.getAlertList(ansattUser.adminId!!)
             withContext(Dispatchers.Main){
+                alerts = recentAlerts
                 Log.i("VarselListe:", alerts.toString())
+
                 display(alerts)
             }
         }
@@ -81,16 +83,6 @@ class AvailableShiftsListFragment : Fragment() {
             }
         })*/
 
-        /*
-        GlobalScope.launch(Dispatchers.IO){
-            val recentAlerts = viewModel.getAlertList(ansattUser.adminId!!)
-
-            withContext(Dispatchers.Main){
-                alerts = recentAlerts
-                Log.i("VarselListe:", alerts.toString())
-                display(alerts)
-            }
-        }*/
     }
 
     private fun display(list: MutableList<Varsel>){

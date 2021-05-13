@@ -40,7 +40,7 @@ class AvailableShiftsListViewModel : ViewModel() {
         }
         ref.addValueEventListener(alertListener)
         delay(200)
-        _alertList.value = liste
+        //_alertList.value = liste
         return liste
     }
 }

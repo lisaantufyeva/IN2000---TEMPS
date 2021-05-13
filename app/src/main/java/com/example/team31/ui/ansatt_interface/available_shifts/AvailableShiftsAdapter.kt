@@ -22,7 +22,6 @@ class AvailableShiftsAdapter(private val shiftList: MutableList<Varsel>, val con
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AvailableShiftAdapterHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.shift_card_layout, parent, false)
-
         return AvailableShiftAdapterHolder(view)
     }
     override fun onBindViewHolder(holder: AvailableShiftAdapterHolder, position: Int) {
@@ -31,8 +30,5 @@ class AvailableShiftsAdapter(private val shiftList: MutableList<Varsel>, val con
             Toast.makeText(context, "Vakten er tatt", Toast.LENGTH_SHORT).show()
         }
     }
-
     override fun getItemCount() = shiftList.size
-
-
 }

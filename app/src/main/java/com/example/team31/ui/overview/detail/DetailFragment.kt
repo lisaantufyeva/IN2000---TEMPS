@@ -74,27 +74,28 @@ class DetailFragment : Fragment() {
         }
 
         binding.sendMessage.setOnClickListener {
-            val alertList = createAlertList(forecastObject.time, args.extraStaff)
+            val alertList = createAlertList(forecastObject.time, args.extraStaff, userId)
             println("Created list"+ alertList)
             sendMessage(alertList, userId)
         }
     }
     private fun sendMessage(list: MutableList<Varsel>, userId:String){
-        val ref = FirebaseDatabase.getInstance().getReference("Users").child("userId")
-        ref.push()
+        //val ref = FirebaseDatabase.getInstance().getReference("Users").child("userId")
+        //ref.push()
         Toast.makeText(context, "Send", Toast.LENGTH_SHORT).show()
         var nyListe = liste
         println("varselliste før:")
         println(nyListe.toString())
+        detailViewModel.addAlert(list[0])
         nyListe.addAll(list)
         Log.i("NY", nyListe.toString())
         println("varselListe etter: ")
         println(nyListe.toString())
-        detailViewModel.update_alertList(nyListe, userId)
+        //detailViewModel.update_alertList(nyListe, userId)
     }
 
-    private fun createAlertList(date: String, extraStaff: Int): MutableList<Varsel>{
-        return MutableList(extraStaff){Varsel(date, false)}
+    private fun createAlertList(date: String, extraStaff: Int, userId: String): MutableList<Varsel>{
+        return MutableList(extraStaff){Varsel(null,date, false,null,userId)}
     }
 
 }

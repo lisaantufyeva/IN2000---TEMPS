@@ -39,11 +39,11 @@ class ProfileFragmentAnsatt : Fragment() {
         GlobalScope.launch(Dispatchers.IO){
             withContext(Dispatchers.Main){
                 val navnAnsatt: TextView = root.findViewById(R.id.navnAnsatt)
-                navnAnsatt.text="Navn:"+user.navn
+                navnAnsatt.text="Navn: "+user.navn
                 val emailAnsatt:TextView = root.findViewById(R.id.emailAnsatt)
-                emailAnsatt.text="Email:"+user.email
+                emailAnsatt.text="Email: "+user.email
                 val rolleAnsatt:TextView = root.findViewById(R.id.rolleAnsatt)
-                rolleAnsatt.text="Rolle:"+user.rolle
+                rolleAnsatt.text="Rolle: "+user.rolle
 
                 (activity as AnsattActivity?)!!.updateUser(user)
             }

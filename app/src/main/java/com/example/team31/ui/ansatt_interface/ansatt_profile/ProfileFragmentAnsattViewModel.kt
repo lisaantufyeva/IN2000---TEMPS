@@ -9,8 +9,8 @@ class ProfileFragmentAnsattViewModel : ViewModel() {
     private val _text = MutableLiveData<String>().apply {
         value = "Profile fragment ansatt"
     }
-    fun update_password(password:String, userId: String){
-        val ref = FirebaseDatabase.getInstance().getReference("Ansatte").child(userId)
+    fun update_password(password:String, userId: String, ansattId:String){
+        val ref = FirebaseDatabase.getInstance().getReference("Ansatte").child(userId).child(ansattId)
         val hashMap =  hashMapOf<String, Any?>()
         hashMap.put("passord",password)
 

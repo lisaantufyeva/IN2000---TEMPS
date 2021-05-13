@@ -51,7 +51,7 @@ class edit_employee_password : Fragment() {
 
             if(oldPass == user.passord){
                 if(newPass1 == newPass2){
-                    viewModel.update_password(newPass1,user.id!!)
+                    viewModel.update_password(newPass1,user.adminId!!, user.ansattId!!)
                     Navigation.findNavController(root).navigate(R.id.action_edit_employee_password_to_navigation_profile_ansatt)
                 }
                 else{

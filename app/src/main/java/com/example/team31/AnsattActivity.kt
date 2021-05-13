@@ -40,10 +40,14 @@ class AnsattActivity : AppCompatActivity() {
     }
 
     fun getUserId(): String{
-        return ansattUser.id!!
+        return ansattUser.ansattId!!
     }
     fun getUser(): Ansatt {
         return ansattUser
+    }
+
+    fun updateUser(newUser: Ansatt){
+        ansattUser = newUser
     }
 
     fun hideKeyboard() {

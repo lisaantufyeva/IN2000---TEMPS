@@ -39,7 +39,7 @@ class AvailableShiftsListViewModel : ViewModel() {
             }
         }
         ref.addValueEventListener(alertListener)
-        delay(200)
+        delay(800)
         //_alertList.value = liste
         return liste.distinctBy { it.date } as MutableList<Varsel>
     }

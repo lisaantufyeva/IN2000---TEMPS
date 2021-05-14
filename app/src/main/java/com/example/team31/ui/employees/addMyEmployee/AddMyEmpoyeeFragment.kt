@@ -53,7 +53,10 @@ class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
     fun leggTilAnsatt(admin: Bruker, myEmployee: Ansatt) {
         val refAnsatt = FirebaseDatabase.getInstance().getReference("Ansatte").child(admin.id!!)
 
+
+
         val ansattId = refAnsatt.push().key
+        myEmployee.ansattId = ansattId
         refAnsatt.child(ansattId!!).setValue(myEmployee).addOnCompleteListener {
             Log.i("Message:", "Ansatt registrert")
         }

@@ -111,7 +111,7 @@ class ProfileViewModel : ViewModel() {
                 }
             }
         ref.addValueEventListener(UserListener)
-        delay(200)
+        delay(500)
         return mainUser
     }
 

@@ -28,6 +28,7 @@ class AvailableShiftsListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: AvailableShiftsListViewModel
     private lateinit var alerts: MutableList<Varsel>
+    private lateinit var acceptedAlerts: MutableList<Varsel>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,41 +47,16 @@ class AvailableShiftsListFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(AvailableShiftsListViewModel::class.java)
         recyclerView = view.findViewById(R.id.recyclerview)
         GlobalScope.launch(Dispatchers.IO){
-            val recentAlerts = viewModel.getAlertList(ansattUser.adminId!!)
+            val recentAccepted =viewModel.getAcceptedShifts(ansattUser.adminId!!)
+            val recentAlerts = viewModel.getAlertList(ansattUser.adminId!!, recentAccepted, ansattUser.ansattId!! )
             withContext(Dispatchers.Main){
+                //acceptedAlerts = recentAccepted
                 alerts = recentAlerts
                 Log.i("VarselListe:", alerts.toString())
                 display(alerts, ansattUser)
             }
         }
-            /*
-        GlobalScope.launch(Dispatchers.IO){
-            viewModel.getAlertList(ansattUser.adminId!!)
-            withContext(Dispatchers.Main){
-                viewModel.alertList.observe(viewLifecycleOwner, Observer{ alerts ->
-                    recyclerView.also {
-                        recyclerView.setHasFixedSize(true)
-                        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-                        recyclerView.adapter = AvailableShiftsAdapter(alerts, requireContext())
-                    }
-                })
-            }
-        }*/
-        /*
-            withContext(Dispatchers.Main){
-                alerts = recentAlerts
-                Log.i("VarselListe:", alerts.toString())
-                display(alerts)
-            }
-        }
-        viewModel.getAlertList(ansattUser.adminId!!)
-        viewModel.alertList.observe(viewLifecycleOwner, Observer { alertList ->
-            recyclerView.also {
-                recyclerView.setHasFixedSize(true)
-                recyclerView.layoutManager = LinearLayoutManager(requireContext())
-                recyclerView.adapter = AvailableShiftsAdapter(alertList, requireContext())
-            }
-        })*/
+
 
     }
 

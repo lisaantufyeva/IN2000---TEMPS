@@ -28,6 +28,7 @@ class AnsattActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(setOf(
             R.id.navigation_available_shifts,
+            R.id.navigation_accepted_shifts,
             R.id.navigation_profile_ansatt,
         ))
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -55,8 +56,6 @@ class AnsattActivity : AppCompatActivity() {
         if (view != null){
             val hideMe = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             hideMe.hideSoftInputFromWindow(view.windowToken,0)
-
-
         }
     }
 

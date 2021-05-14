@@ -1,4 +1,4 @@
-package com.example.team31.ui.ansatt_interface.available_shifts
+package com.example.team31.ui.ansatt_interface.my_shifts
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -15,33 +15,22 @@ import com.example.team31.R
 import com.example.team31.Varsel
 
 
-class AvailableShiftsAdapter(private val shiftList: MutableList<Varsel>, val context: Context, val ansattUser:Ansatt): RecyclerView.Adapter<AvailableShiftsAdapter.AvailableShiftAdapterHolder>() {
+class MyShiftsAdapter(private val shiftList: MutableList<Varsel>, val context: Context, val ansattUser:Ansatt): RecyclerView.Adapter<MyShiftsAdapter.MyShiftsAdapterHolder>() {
 
-    class AvailableShiftAdapterHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    class MyShiftsAdapterHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val date: TextView = itemView.findViewById(R.id.date)
-        val button: Button = itemView.findViewById(R.id.accept_button)
         val label: Button = itemView.findViewById(R.id.accepted_lable)
 
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AvailableShiftAdapterHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyShiftsAdapterHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.shift_card_layout, parent, false)
-        return AvailableShiftAdapterHolder(view)
+            .inflate(R.layout.my_shift_card, parent, false)
+        return MyShiftsAdapterHolder(view)
     }
-    override fun onBindViewHolder(holder: AvailableShiftAdapterHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyShiftsAdapterHolder, position: Int) {
         holder.date.text = shiftList[position].date
 
-        //val acceptedShifts = checkAcceptedAlerts(accepted, shiftList[position].date!!, ansattUser.ansattId!!)
-
-
-        holder.button.setOnClickListener {
-            Toast.makeText(context, "Vakten er tatt", Toast.LENGTH_SHORT).show()
-            acceptAlert(shiftList[position], ansattUser.ansattId!!)
-            holder.button.isVisible = false
-            holder.label.isVisible = true
-        }
-
-        /*
+/*
         //check if the user allready accepted this shift
         if (checkAcceptedAlerts(shiftList[position], ansattUser.ansattId!!)){
             holder.button.isVisible = false

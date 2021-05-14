@@ -29,6 +29,7 @@ class DetailViewModel(
             Log.d("Firebase","Varsel saved")
         }
     }
+
 /*
     suspend fun getAlertList(userId:String): MutableList<Varsel> {
         val ref = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("varselListe")

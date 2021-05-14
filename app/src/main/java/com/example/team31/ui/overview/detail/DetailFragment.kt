@@ -30,8 +30,7 @@ class DetailFragment : Fragment() {
     private val args: DetailFragmentArgs by navArgs()
     private lateinit var forecastObject: RefinedForecast
     private lateinit var detailViewModel: DetailViewModel
-    private var user: Bruker = Bruker()
-    private lateinit var liste: MutableList<Varsel>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,20 +46,8 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val admin = (activity as AdminActivity?)!!.getUser()
         val userId = (activity as AdminActivity?)!!.getUserId()
-        println("hentet user id detail: "+ userId)
-
-        /*
-        GlobalScope.launch(Dispatchers.IO){
-            val liste1 = detailViewModel.getAlertList(userId)
-
-            withContext(Dispatchers.Main){
-                liste = liste1
-                Log.i("VarselListe:", liste.toString())
-            }
-        }*/
 
         super.onViewCreated(view, savedInstanceState)
-        //model = ViewModelProviders.of(this, factory).get(OverviewViewModel::class.java)
 
         val binding = DetailFragmentBinding.bind(view)
         binding.apply {
@@ -77,22 +64,16 @@ class DetailFragment : Fragment() {
 
         binding.sendMessage.setOnClickListener {
             val alertList = createAlertList(forecastObject.time, args.extraStaff, userId)
-            println("Created list"+ alertList)
             sendMessage(alertList, userId)
             binding.sendMessage.isInvisible = true
 
         }
     }
     private fun sendMessage(list: MutableList<Varsel>, userId:String){
-        //val ref = FirebaseDatabase.getInstance().getReference("Users").child("userId")
-        //ref.push()
         Toast.makeText(context, "Send", Toast.LENGTH_SHORT).show()
-        //var nyListe = liste
-        //nyListe.addAll(list)
         for ( i in list){
             detailViewModel.addAlert(i)
         }
-
     }
 
     private fun createAlertList(date: String, extraStaff: Int, userId: String): MutableList<Varsel>{

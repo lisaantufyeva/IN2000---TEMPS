@@ -41,7 +41,6 @@ class OverviewFragment : Fragment() {
 
         factory = OverviewViewModelFactory(repository)
         viewModel = ViewModelProviders.of(this, factory).get(OverviewViewModel::class.java)
-
         viewModel.getForecastList(user.latitude!!, user.longitude!!)
         viewModel.forecastList.observe(viewLifecycleOwner, Observer { forecastList ->
             viewBinding.recyclerview.layoutManager = LinearLayoutManager(requireContext())

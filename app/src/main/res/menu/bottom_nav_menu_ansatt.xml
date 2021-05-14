@@ -7,6 +7,11 @@
         android:title="Ledige vakter" />
 
     <item
+        android:id="@+id/navigation_accepted_shifts"
+        android:icon="@drawable/user_graa"
+        android:title="Mine vakter" />
+
+    <item
         android:id="@+id/navigation_profile_ansatt"
         android:icon="@drawable/user_graa"
         android:title="@string/title_profile" />

@@ -25,6 +25,7 @@ import kotlinx.coroutines.withContext
 class OverviewAdapter(private val forecastList: List<RefinedForecast>, val context: Context, val user: Bruker):
     RecyclerView.Adapter<OverviewAdapter.OverviewAdapterHolder>() {
     private var availableAlerts = mutableListOf<Varsel>()
+    private var acceptedAlerts = mutableListOf<Varsel>()
 
     class OverviewAdapterHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val date: TextView = itemView.findViewById(R.id.date)
@@ -54,13 +55,15 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
         // get alert list
         GlobalScope.launch(Dispatchers.IO){
             val availableShifts = getAvailableShiftsList(user.id!!)
+            val acceptedShifts = getAcceptedShiftsList(user.id!!)
 
             withContext(Dispatchers.Main){
                 availableAlerts = availableShifts
+                acceptedAlerts = acceptedShifts
             }
         }
         if (checkCreatedAlerts(forecastList[position].time, availableAlerts)){
-            holder.alertButton.text = "Sendt: "+ getNumberOfAlerts(forecastList[position].time, availableAlerts) + "/ Tatt: "+ getAcceptedShifts(forecastList[position].time, availableAlerts).toString()
+            holder.alertButton.text = "Sendt: "+ getNumberOfAlerts(forecastList[position].time, availableAlerts) + "/ Tatt: "+ getAcceptedShifts(forecastList[position].time, acceptedAlerts).toString()
             holder.alertButton.isVisible = true
         } else {
             var extraStaff = 0

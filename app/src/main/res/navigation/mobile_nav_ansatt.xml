@@ -14,6 +14,14 @@
     </fragment>
 
     <fragment
+        android:id="@+id/navigation_accepted_shifts"
+        android:name="com.example.team31.ui.ansatt_interface.my_shifts.MyShiftsFragment"
+        android:label="Mine vakter"
+        tools:layout="@layout/my_shifts_fragment" >
+
+    </fragment>
+
+    <fragment
         android:id="@+id/navigation_profile_ansatt"
         android:name="com.example.team31.ui.ansatt_interface.ansatt_profile.ProfileFragmentAnsatt"
         android:label="Profile ansatt"
@@ -23,7 +31,6 @@
             android:id="@+id/action_navigation_profile_ansatt_to_edit_employee_password"
             app:destination="@id/edit_employee_password" />
     </fragment>
-
 
     <fragment
         android:id="@+id/edit_employee_password"

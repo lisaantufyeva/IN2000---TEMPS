@@ -34,7 +34,6 @@ class OverviewViewModel @Inject constructor(
     fun select(item: RefinedForecast) {
         selected.value = item
     }
-
     fun getSelected() = selected.value
 
 
@@ -97,8 +96,10 @@ fun getNumberOfAlerts(date: String, alertList: MutableList<Varsel>):Int{
     return alertList.filter { it.date == date }.count()
 }
 
-fun getAcceptedShifts(date: String, alertList: MutableList<Varsel>):Int{
-    return alertList.filter { it.date == date }.filter { it.tatt }.count()
+
+
+fun getAcceptedShifts(date: String, accepted: MutableList<Varsel>):Int{
+    return accepted.filter { it.date == date }.count()
 }
 
 fun checkLowStaffing(forecast: RefinedForecast, max: String?):Boolean{
@@ -133,7 +134,27 @@ suspend fun getAvailableShiftsList(userId:String): MutableList<Varsel> {
                 for (i in dataSnapshot.children) {
                     val varsel = i.getValue(Varsel::class.java)
                     liste.add(varsel!!)
-                    Log.i("ansatt hentes:", varsel.toString())
+                }
+            }
+
+        }
+        override fun onCancelled(databaseError: DatabaseError) {
+            Log.w("message", "loadPost:onCancelled", databaseError.toException())
+        }
+    }
+    ref.addValueEventListener(alertListener)
+    delay(200)
+    return liste
+}
+suspend fun getAcceptedShiftsList(userId:String): MutableList<Varsel> {
+    val ref = FirebaseDatabase.getInstance().getReference("Varsler").child(userId).child("Taken")
+    val liste = mutableListOf<Varsel>()
+    val alertListener = object : ValueEventListener {
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            if (dataSnapshot.exists()) {
+                for (i in dataSnapshot.children) {
+                    val varsel = i.getValue(Varsel::class.java)
+                    liste.add(varsel!!)
                 }
             }
 

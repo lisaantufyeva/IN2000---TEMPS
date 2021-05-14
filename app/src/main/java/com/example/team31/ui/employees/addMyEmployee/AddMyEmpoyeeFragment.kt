@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.team31.*
@@ -36,6 +37,8 @@ class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
         mBinding.etRolle.setOnClickListener(this)
         mBinding.btnAddEmployee.setOnClickListener(this)
 
+        viewModel = ViewModelProvider(this).get(AddMyEmployeeViewModel::class.java)
+
         return mBinding.root
 
 
@@ -50,17 +53,7 @@ class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
 
 
 
-    fun leggTilAnsatt(admin: Bruker, myEmployee: Ansatt) {
-        val refAnsatt = FirebaseDatabase.getInstance().getReference("Ansatte").child(admin.id!!)
 
-
-
-        val ansattId = refAnsatt.push().key
-        myEmployee.ansattId = ansattId
-        refAnsatt.child(ansattId!!).setValue(myEmployee).addOnCompleteListener {
-            Log.i("Message:", "Ansatt registrert")
-        }
-    }
 
 
 
@@ -159,7 +152,7 @@ class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
                         }
                         else ->{
                             val ansatt = Ansatt(null,email, "temps31",name, rolle, user.id)
-                            leggTilAnsatt(user,ansatt)
+                            viewModel.leggTilAnsatt(user,ansatt)
 
                             findNavController().navigate(
                                     R.id.navigation_employees)

@@ -47,12 +47,19 @@ class edit_password : Fragment() {
             }
 
             if(oldPass == user.passord){
+                if(checkPassword(newPass1)){
                 if(newPass1 == newPass2){
                     profileViewModel.update_password(newPass1,user.id!!)
                     Navigation.findNavController(root).navigate(R.id.action_edit_password_to_navigation_profile)
                 }
                 else{
                     Toast.makeText(activity, "De nye passordene er ikke like", Toast.LENGTH_SHORT).show()
+                    (activity as AdminActivity?)!!.hideKeyboard()
+                    return@setOnClickListener
+                    }
+                }
+                else{
+                    Toast.makeText(activity, "Nytt passord oppfyller ikke kravene. Må ha ulike tegn og inneholde minimum 6 bokstaver", Toast.LENGTH_SHORT).show()
                     (activity as AdminActivity?)!!.hideKeyboard()
                     return@setOnClickListener
                 }
@@ -66,4 +73,16 @@ class edit_password : Fragment() {
         }
         return root
     }
+
+    fun checkPassword(password:String):Boolean{
+        for (i in 0..password.length-1) {
+            if(password[i] != password[0]){
+                if(password.length > 5){
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
 }

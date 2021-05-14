@@ -16,10 +16,13 @@ import com.example.team31.Varsel
 
 class registration_name_fragment : Fragment() {
 
+    private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         val root =  inflater.inflate(R.layout.registration_name_fragment, container, false)
 
@@ -37,30 +40,77 @@ class registration_name_fragment : Fragment() {
                 return@setOnClickListener
             }
 
-            if (passord1.text.toString() == passord2.text.toString()){
-                val emailSvar = email.text.toString()
-                val passordSvar = passord1.text.toString()
-                val navnSvar = name.text.toString()
-                val newUser: Bruker = Bruker(null, emailSvar,passordSvar,null,navnSvar,null,null,null,null,null,null,false,null,null, mutableListOf<Varsel>())
-                email.text = ""
-                passord1.text = ""
-                passord2.text = ""
-                name.text = ""
-                (activity as Authentication?)!!.hideKeyboard()
-                val action = registration_name_fragmentDirections.actionRegistrationNameFragmentToLocationFragment(newUser)
-                Navigation.findNavController(root).navigate(action)
+            if(email.text.toString().trim().matches(emailPattern.toRegex())){
+
+                if(checkPassword(passord1.text.toString())) {
+                    if (passord1.text.toString() == passord2.text.toString()) {
+                        val emailSvar = email.text.toString()
+                        val passordSvar = passord1.text.toString()
+                        val navnSvar = name.text.toString()
+                        val newUser: Bruker = Bruker(
+                            null,
+                            emailSvar,
+                            passordSvar,
+                            null,
+                            navnSvar,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            false,
+                            null,
+                            null,
+                            mutableListOf<Varsel>()
+                        )
+                        email.text = ""
+                        passord1.text = ""
+                        passord2.text = ""
+                        name.text = ""
+                        (activity as Authentication?)!!.hideKeyboard()
+                        val action =
+                            registration_name_fragmentDirections.actionRegistrationNameFragmentToLocationFragment(
+                                newUser
+                            )
+                        Navigation.findNavController(root).navigate(action)
+                    } else {
+                        Toast.makeText(activity, "Passordene er ikke like", Toast.LENGTH_SHORT)
+                            .show()
+                        email.text = ""
+                        passord1.text = ""
+                        passord2.text = ""
+                        name.text = ""
+                        (activity as Authentication?)!!.hideKeyboard()
+                    }
+                }
+                else{
+                    Toast.makeText(activity, "Passordet oppfyller ikke kravene. Må ha ulike tegn og minimum 6 bokstaver", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
             }
             else{
-                Toast.makeText(activity, "Passordene er ikke like", Toast.LENGTH_SHORT).show()
-                email.text = ""
-                passord1.text = ""
-                passord2.text = ""
-                name.text = ""
-                (activity as Authentication?)!!.hideKeyboard()
+                Toast.makeText(activity, "E-postadressen er ikke gyldig", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+
+
         }
 
 
         return root
+    }
+
+    fun checkPassword(password:String):Boolean{
+        for (i in 0..password.length-1) {
+            if(password[i] != password[0]){
+                if(password.length > 5){
+                    return true
+                }
+            }
+        }
+        return false
     }
 }

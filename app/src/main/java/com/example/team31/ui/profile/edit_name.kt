@@ -15,6 +15,7 @@ import com.example.team31.Authentication
 import com.example.team31.R
 
 private lateinit var profileViewModel: ProfileViewModel
+private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
 class edit_name : Fragment() {
 
@@ -37,12 +38,19 @@ class edit_name : Fragment() {
         knapp.setOnClickListener {
             if (email.text.toString().isBlank() || name.text.toString().isBlank()) {
                 Toast.makeText(activity, "Fyll ut alle feltene", Toast.LENGTH_SHORT).show()
-                (activity as Authentication?)!!.hideKeyboard()
+                (activity as AdminActivity?)!!.hideKeyboard()
                 return@setOnClickListener
             }
-            profileViewModel.updateName_Email(email.text.toString(), name.text.toString(),userId)
+            if(email.text.toString().trim().matches(emailPattern.toRegex())) {
+                profileViewModel.updateName_Email(email.text.toString(), name.text.toString(), userId)
 
-            Navigation.findNavController(root).navigate(R.id.action_edit_name_to_navigation_profile)
+                Navigation.findNavController(root).navigate(R.id.action_edit_name_to_navigation_profile)
+            }
+            else{
+                Toast.makeText(activity, "Emailen er ikke gyldig", Toast.LENGTH_SHORT).show()
+                (activity as AdminActivity?)!!.hideKeyboard()
+                return@setOnClickListener
+            }
 
         }
         return root

@@ -54,6 +54,10 @@ class MyEmployeesViewModel : ViewModel() {
         }
     }
 
+    fun edit_ansatt(){
+
+    }
+
     fun getEmployees():MutableList<Ansatt>{
         return employees
     }

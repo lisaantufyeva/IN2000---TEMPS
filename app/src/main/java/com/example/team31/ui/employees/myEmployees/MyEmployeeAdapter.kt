@@ -40,7 +40,7 @@ class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : Mu
             holder.rolle.text = "Rolle: ${ansatt.rolle}"
 
         holder.editButton.setOnClickListener {
-            edit(it)
+            edit(it, ansatt.ansattId!!)
 
         }
 
@@ -49,8 +49,9 @@ class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : Mu
 
     }
 
-    fun edit(root: View){
-        Navigation.findNavController(root).navigate(R.id.editEmployee)
+    fun edit(root: View, ansattId:String){
+        val action = MyEmployeeFragmentDirections.actionNavigationEmployeesToEditEmployee(ansattId!!)
+        Navigation.findNavController(root).navigate(action)
     }
 
     override fun getItemCount(): Int {

@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_navigation_employees_to_editEmployee"
             app:destination="@id/editEmployee" />
+        <argument
+            android:name="ansattId"
+            app:argType="string" />
     </fragment>
 
     <fragment
@@ -144,6 +147,10 @@
         android:id="@+id/editEmployee"
         android:name="com.example.team31.ui.employees.myEmployees.editEmployee"
         android:label="fragment_edit_employee"
-        tools:layout="@layout/fragment_edit_employee" />
+        tools:layout="@layout/fragment_edit_employee" >
+        <argument
+            android:name="ansattId"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

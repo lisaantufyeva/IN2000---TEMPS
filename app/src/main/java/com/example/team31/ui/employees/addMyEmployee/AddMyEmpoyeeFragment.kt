@@ -155,7 +155,7 @@ class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
                             ).show()
                         }
                         else ->{
-                            val ansatt = Ansatt(null,name, email,"temps31", rolle, user.id)
+                            val ansatt = Ansatt(null,email, "temps31",name, rolle, user.id)
                             leggTilAnsatt(user,ansatt)
 
                             findNavController().navigate(

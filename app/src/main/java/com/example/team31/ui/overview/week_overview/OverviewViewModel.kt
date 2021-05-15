@@ -31,11 +31,6 @@ class OverviewViewModel @Inject constructor(
     val ref = FirebaseDatabase.getInstance().getReference("Users")
 
 
-    fun select(item: RefinedForecast) {
-        selected.value = item
-    }
-    fun getSelected() = selected.value
-
 
     fun getForecastList(lat: String, lon: String) {
         viewModelScope.launch {
@@ -53,7 +48,6 @@ class OverviewViewModel @Inject constructor(
 
     fun getUser(id: String):Bruker {
 
-            //val ref = FirebaseDatabase.getInstance().getReference("Users")
             val brukere = ArrayList<Bruker>()
             var mainUser = Bruker()
 
@@ -79,10 +73,49 @@ class OverviewViewModel @Inject constructor(
             ref.addValueEventListener(UserListener)
         return mainUser
     }
-    //fun getMainUser():Bruker{
-      //  return mainUser
-    //}
+    suspend fun getAvailableShiftsList(userId:String): MutableList<Varsel> {
+        val ref = FirebaseDatabase.getInstance().getReference("Varsler").child(userId).child("not_Taken")
+        val liste = mutableListOf<Varsel>()
+        val alertListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (i in dataSnapshot.children) {
+                        val varsel = i.getValue(Varsel::class.java)
+                        liste.add(varsel!!)
+                    }
+                }
 
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w("message", "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        ref.addValueEventListener(alertListener)
+        delay(800)
+        return liste
+    }
+    suspend fun getAcceptedShiftsList(userId:String): MutableList<Varsel> {
+        val ref = FirebaseDatabase.getInstance().getReference("Varsler").child(userId).child("Taken")
+        val liste = mutableListOf<Varsel>()
+        val alertListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (i in dataSnapshot.children) {
+                        val varsel = i.getValue(Varsel::class.java)
+                        liste.add(varsel!!)
+                    }
+                }
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w("message", "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        ref.addValueEventListener(alertListener)
+        delay(800)
+        return liste
+    }
 }
 
 fun checkCreatedAlerts(date:String, alertList: MutableList<Varsel>):Boolean{
@@ -95,7 +128,6 @@ fun checkCreatedAlerts(date:String, alertList: MutableList<Varsel>):Boolean{
 fun getNumberOfAlerts(date: String, alertList: MutableList<Varsel>):Int{
     return alertList.filter { it.date == date }.count()
 }
-
 
 
 fun getAcceptedShifts(date: String, accepted: MutableList<Varsel>):Int{
@@ -125,46 +157,3 @@ fun checkStaffingDemand(forecast: RefinedForecast, user: Bruker): Int{
     return manko.toInt()
 }
 
-suspend fun getAvailableShiftsList(userId:String): MutableList<Varsel> {
-    val ref = FirebaseDatabase.getInstance().getReference("Varsler").child(userId).child("not_Taken")
-    val liste = mutableListOf<Varsel>()
-    val alertListener = object : ValueEventListener {
-        override fun onDataChange(dataSnapshot: DataSnapshot) {
-            if (dataSnapshot.exists()) {
-                for (i in dataSnapshot.children) {
-                    val varsel = i.getValue(Varsel::class.java)
-                    liste.add(varsel!!)
-                }
-            }
-
-        }
-        override fun onCancelled(databaseError: DatabaseError) {
-            Log.w("message", "loadPost:onCancelled", databaseError.toException())
-        }
-    }
-    ref.addValueEventListener(alertListener)
-    delay(200)
-    return liste
-}
-suspend fun getAcceptedShiftsList(userId:String): MutableList<Varsel> {
-    val ref = FirebaseDatabase.getInstance().getReference("Varsler").child(userId).child("Taken")
-    val liste = mutableListOf<Varsel>()
-    val alertListener = object : ValueEventListener {
-        override fun onDataChange(dataSnapshot: DataSnapshot) {
-            if (dataSnapshot.exists()) {
-                for (i in dataSnapshot.children) {
-                    val varsel = i.getValue(Varsel::class.java)
-                    liste.add(varsel!!)
-                }
-            }
-
-        }
-
-        override fun onCancelled(databaseError: DatabaseError) {
-            Log.w("message", "loadPost:onCancelled", databaseError.toException())
-        }
-    }
-    ref.addValueEventListener(alertListener)
-    delay(200)
-    return liste
-}

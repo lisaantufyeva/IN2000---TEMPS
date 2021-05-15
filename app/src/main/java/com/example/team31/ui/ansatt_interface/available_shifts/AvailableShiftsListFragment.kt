@@ -57,7 +57,6 @@ class AvailableShiftsListFragment : Fragment() {
             }
         }
 
-
     }
 
     private fun display(list: MutableList<Varsel>, ansattUser: com.example.team31.Ansatt){

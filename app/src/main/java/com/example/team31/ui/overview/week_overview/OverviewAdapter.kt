@@ -22,10 +22,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class OverviewAdapter(private val forecastList: List<RefinedForecast>, val context: Context, val user: Bruker):
+class OverviewAdapter(private val forecastList: List<RefinedForecast>, val context: Context, val user: Bruker, val availableAlerts:MutableList<Varsel>, val acceptedAlerts:MutableList<Varsel>):
     RecyclerView.Adapter<OverviewAdapter.OverviewAdapterHolder>() {
-    private var availableAlerts = mutableListOf<Varsel>()
-    private var acceptedAlerts = mutableListOf<Varsel>()
+    //private var availableAlerts = mutableListOf<Varsel>()
+    //private var acceptedAlerts = mutableListOf<Varsel>()
 
     class OverviewAdapterHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val date: TextView = itemView.findViewById(R.id.date)
@@ -51,17 +51,19 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
         val iconId = context.resources.getIdentifier(uri, "drawable", context.packageName)
         val drawable = context.resources.getDrawable(iconId)
         holder.icon.setImageDrawable(drawable)
-
+        Log.d("Dato nå: ", forecastList[position].toString())
         // get alert list
-        GlobalScope.launch(Dispatchers.IO){
+        /*GlobalScope.launch(Dispatchers.IO){
             val availableShifts = getAvailableShiftsList(user.id!!)
             val acceptedShifts = getAcceptedShiftsList(user.id!!)
 
             withContext(Dispatchers.Main){
                 availableAlerts = availableShifts
                 acceptedAlerts = acceptedShifts
+                Log.d("Available alerts: ", availableAlerts.toString())
+                Log.d("Accepted alerts:", acceptedAlerts.toString())
             }
-        }
+        }*/
         if (checkCreatedAlerts(forecastList[position].time, availableAlerts)){
             holder.alertButton.text = "Sendt: "+ getNumberOfAlerts(forecastList[position].time, availableAlerts) + "/ Tatt: "+ getAcceptedShifts(forecastList[position].time, acceptedAlerts).toString()
             holder.alertButton.isVisible = true
@@ -69,7 +71,7 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
             var extraStaff = 0
             if (checkLowStaffing(forecastList[position], user.triggerTemp)){
                 extraStaff = checkStaffingDemand(forecastList[position], user)
-                println("Dato"+forecastList[position].time)
+                Log.d("Ekstra demand Dato: ",forecastList[position].time)
                 Log.d("Testing staffingDemang", checkStaffingDemand(forecastList[position], user).toString())
 
 
@@ -77,7 +79,6 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
             }
 
             holder.staffButton.setOnClickListener {
-                Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show()
                 showDetail(forecastObject,extraStaff, it)
             }
         }

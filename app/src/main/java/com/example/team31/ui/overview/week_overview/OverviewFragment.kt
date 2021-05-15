@@ -14,6 +14,11 @@ import com.example.team31.data.api.LocationForecastApi
 import com.example.team31.data.repositories.ForecastRepository
 import com.example.team31.databinding.OverviewFragmentBinding
 import android.os.Handler
+import com.example.team31.Varsel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class OverviewFragment : Fragment() {
@@ -21,6 +26,8 @@ class OverviewFragment : Fragment() {
     private lateinit var viewModel: OverviewViewModel
     private lateinit var factory: OverviewViewModelFactory
     private lateinit var viewBinding: OverviewFragmentBinding
+    private var availableAlerts = mutableListOf<Varsel>()
+    private var acceptedAlerts = mutableListOf<Varsel>()
 
 
     override fun onCreateView(
@@ -36,21 +43,35 @@ class OverviewFragment : Fragment() {
         val user = (activity as AdminActivity?)!!.getUser()
         Log.i("id:", user.toString())
         super.onViewCreated(view, savedInstanceState)
+
         val api = LocationForecastApi()
         val repository = ForecastRepository(api)
 
         factory = OverviewViewModelFactory(repository)
         viewModel = ViewModelProviders.of(this, factory).get(OverviewViewModel::class.java)
         viewModel.getForecastList(user.latitude!!, user.longitude!!)
-        viewModel.forecastList.observe(viewLifecycleOwner, Observer { forecastList ->
-            viewBinding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
-            Handler().postDelayed({
-                viewBinding.recyclerview.setHasFixedSize(true)
-                val overviewAdapter = OverviewAdapter(forecastList, requireContext(), user)
-                viewBinding.recyclerview.adapter = overviewAdapter
-                overviewAdapter.notifyDataSetChanged()
-            }, 500)
-        })
+
+        GlobalScope.launch(Dispatchers.IO){
+            val availableShifts = viewModel.getAvailableShiftsList(user.id!!)
+            val acceptedShifts = viewModel.getAcceptedShiftsList(user.id!!)
+
+            withContext(Dispatchers.Main){
+                availableAlerts = availableShifts
+                acceptedAlerts = acceptedShifts
+                Log.d("Available alerts: ", availableAlerts.toString())
+                Log.d("Accepted alerts:", acceptedAlerts.toString())
+                viewModel.forecastList.observe(viewLifecycleOwner, Observer { forecastList ->
+                    viewBinding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
+                    Handler().postDelayed({
+                        viewBinding.recyclerview.setHasFixedSize(true)
+                        val overviewAdapter = OverviewAdapter(forecastList, requireContext(), user, availableAlerts, acceptedAlerts)
+                        viewBinding.recyclerview.adapter = overviewAdapter
+                        overviewAdapter.notifyDataSetChanged()
+                    }, 500)
+                })
+            }
+        }
+
     }
 }
 

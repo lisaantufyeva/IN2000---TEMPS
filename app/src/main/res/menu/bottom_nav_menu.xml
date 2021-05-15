@@ -12,10 +12,6 @@
         android:title="@string/title_employees" />
 
     <item
-        android:id="@+id/navigation_settings"
-        android:icon="@drawable/settings_graa"
-        android:title="@string/title_settings" />
-    <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/user_graa"
         android:title="@string/title_profile" />

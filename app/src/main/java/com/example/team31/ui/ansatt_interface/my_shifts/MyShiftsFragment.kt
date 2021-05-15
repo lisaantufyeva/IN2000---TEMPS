@@ -47,43 +47,14 @@ class MyShiftsFragment : Fragment() {
                 display(myshifts, ansattUser)
             }
         }
-        /*
-    GlobalScope.launch(Dispatchers.IO){
-        viewModel.getAlertList(ansattUser.adminId!!)
-        withContext(Dispatchers.Main){
-            viewModel.alertList.observe(viewLifecycleOwner, Observer{ alerts ->
-                recyclerView.also {
-                    recyclerView.setHasFixedSize(true)
-                    recyclerView.layoutManager = LinearLayoutManager(requireContext())
-                    recyclerView.adapter = AvailableShiftsAdapter(alerts, requireContext())
-                }
-            })
-        }
-    }*/
-        /*
-            withContext(Dispatchers.Main){
-                alerts = recentAlerts
-                Log.i("VarselListe:", alerts.toString())
-                display(alerts)
-            }
-        }
-        viewModel.getAlertList(ansattUser.adminId!!)
-        viewModel.alertList.observe(viewLifecycleOwner, Observer { alertList ->
-            recyclerView.also {
-                recyclerView.setHasFixedSize(true)
-                recyclerView.layoutManager = LinearLayoutManager(requireContext())
-                recyclerView.adapter = AvailableShiftsAdapter(alertList, requireContext())
-            }
-        })*/
 
     }
 
-    private fun display(list: MutableList<Varsel>, ansattUser: com.example.team31.Ansatt){
+    private fun display(list: List<Varsel>, ansattUser: com.example.team31.Ansatt){
         recyclerView.also {
             recyclerView.setHasFixedSize(true)
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.adapter = MyShiftsAdapter(list, requireContext(), ansattUser)
         }
     }
-
 }

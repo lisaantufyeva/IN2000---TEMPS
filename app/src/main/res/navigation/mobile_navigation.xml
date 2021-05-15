@@ -5,7 +5,6 @@
     android:id="@+id/mobile_navigation.xml"
     app:startDestination="@id/navigation_overview">
 
-
     <fragment
         android:id="@+id/navigation_overview"
         android:name="com.example.team31.ui.overview.week_overview.OverviewFragment"
@@ -34,12 +33,6 @@
             android:name="ansattId"
             app:argType="string" />
     </fragment>
-
-    <fragment
-        android:id="@+id/navigation_settings"
-        android:name="com.example.team31.ui.settings.SettingsFragment"
-        android:label="@string/title_settings"
-        tools:layout="@layout/settings_fragment" />
 
     <fragment
         android:id="@+id/navigation_profile"
@@ -74,7 +67,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.team31.ui.overview.detail.DetailFragment"
-        android:label="detail_fragment"
+        android:label="Oversikt over bemanning"
         tools:layout="@layout/detail_fragment" >
         <argument
             android:name="RefinedForecast"

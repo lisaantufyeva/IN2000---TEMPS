@@ -2,28 +2,21 @@ package com.example.team31.ui.overview.detail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.team31.AdminActivity
-import com.example.team31.Bruker
 import com.example.team31.R
 import com.example.team31.Varsel
 import com.example.team31.databinding.DetailFragmentBinding
-import com.example.team31.ui.overview.week_overview.Forecast
 import com.example.team31.ui.overview.week_overview.RefinedForecast
-import com.example.team31.ui.profile.ProfileViewModel
-import com.google.firebase.database.FirebaseDatabase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+
 
 class DetailFragment : Fragment() {
 
@@ -58,18 +51,18 @@ class DetailFragment : Fragment() {
             currentStaffValue.text = admin.normalBemanning
             val currentImageId = context?.resources?.getIdentifier("@drawable/"+forecastObject.symbol, "drawable",
                 context?.packageName)
-            val currentDrawable = currentImageId?.let { context?.resources?.getDrawable(it) }
+            val currentDrawable = currentImageId?.let { context?.let { it1 -> ContextCompat.getDrawable(it1,it) } }
             imageView.setImageDrawable(currentDrawable)
         }
 
         binding.sendMessage.setOnClickListener {
             val alertList = createAlertList(forecastObject.time, args.extraStaff, userId)
-            sendMessage(alertList, userId)
+            sendMessage(alertList)
             binding.sendMessage.isInvisible = true
 
         }
     }
-    private fun sendMessage(list: MutableList<Varsel>, userId:String){
+    private fun sendMessage(list: MutableList<Varsel>){
         Toast.makeText(context, "Send", Toast.LENGTH_SHORT).show()
         for ( i in list){
             detailViewModel.addAlert(i)

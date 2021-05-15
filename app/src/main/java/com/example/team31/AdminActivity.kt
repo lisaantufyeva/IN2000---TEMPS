@@ -3,7 +3,6 @@ package com.example.team31
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.navigation.findNavController
@@ -11,10 +10,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.team31.Bruker
-import com.example.team31.R
 
-//import android.support.v4.app.FragmentActivity
+
 
 
 class AdminActivity : AppCompatActivity() {
@@ -37,7 +34,6 @@ class AdminActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(setOf(
             R.id.navigation_overview,
             R.id.navigation_employees,
-            R.id.navigation_settings,
             R.id.navigation_profile
         ))
         setupActionBarWithNavController(navController, appBarConfiguration)

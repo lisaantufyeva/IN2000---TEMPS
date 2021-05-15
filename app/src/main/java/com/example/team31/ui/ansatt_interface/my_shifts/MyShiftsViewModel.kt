@@ -33,6 +33,7 @@ class MyShiftsViewModel : ViewModel() {
         delay(800)
         //_alertList.value = liste
         //return liste.distinctBy { it.date } as MutableList<Varsel>
+         //list = liste.filter { it.ansattId == userId  }.sortedBy { it.date } as MutableList<Varsel>
         return liste.filter { it.ansattId == userId  } as MutableList<Varsel>
     }
 }

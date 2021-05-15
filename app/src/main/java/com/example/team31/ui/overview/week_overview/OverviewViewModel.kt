@@ -1,7 +1,6 @@
 package com.example.team31.ui.overview.week_overview
 
 
-import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.team31.Bruker
@@ -26,8 +25,6 @@ class OverviewViewModel @Inject constructor(
     val forecastList: LiveData<List<RefinedForecast>>
         get() = _forecastListModelLiveData
 
-    // detailed fragment data
-    private val selected = MutableLiveData<RefinedForecast>()
     val ref = FirebaseDatabase.getInstance().getReference("Users")
 
 
@@ -75,13 +72,13 @@ class OverviewViewModel @Inject constructor(
     }
     suspend fun getAvailableShiftsList(userId:String): MutableList<Varsel> {
         val ref = FirebaseDatabase.getInstance().getReference("Varsler").child(userId).child("not_Taken")
-        val liste = mutableListOf<Varsel>()
+        val list = mutableListOf<Varsel>()
         val alertListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (i in dataSnapshot.children) {
-                        val varsel = i.getValue(Varsel::class.java)
-                        liste.add(varsel!!)
+                        val shift = i.getValue(Varsel::class.java)
+                        list.add(shift!!)
                     }
                 }
 
@@ -92,17 +89,17 @@ class OverviewViewModel @Inject constructor(
         }
         ref.addValueEventListener(alertListener)
         delay(800)
-        return liste
+        return list
     }
     suspend fun getAcceptedShiftsList(userId:String): MutableList<Varsel> {
         val ref = FirebaseDatabase.getInstance().getReference("Varsler").child(userId).child("Taken")
-        val liste = mutableListOf<Varsel>()
+        val list = mutableListOf<Varsel>()
         val alertListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (i in dataSnapshot.children) {
-                        val varsel = i.getValue(Varsel::class.java)
-                        liste.add(varsel!!)
+                        val alert = i.getValue(Varsel::class.java)
+                        list.add(alert!!)
                     }
                 }
 
@@ -114,7 +111,7 @@ class OverviewViewModel @Inject constructor(
         }
         ref.addValueEventListener(alertListener)
         delay(800)
-        return liste
+        return list
     }
 }
 
@@ -130,16 +127,16 @@ fun getNumberOfAlerts(date: String, alertList: MutableList<Varsel>):Int{
 }
 
 
-fun getAcceptedShifts(date: String, accepted: MutableList<Varsel>):Int{
-    return accepted.filter { it.date == date }.count()
+fun getAcceptedShifts(date: String, acceptedList: MutableList<Varsel>):Int{
+    return acceptedList.filter { it.date == date }.count()
 }
 
-fun checkLowStaffing(forecast: RefinedForecast, max: String?, nedbor: Boolean):Boolean{
+fun checkLowStaffing(forecast: RefinedForecast, max: String?, precipitation: Boolean):Boolean{
     println("check low staffing:" +  forecast.temp.toDouble())
-    if(nedbor){
-        return (forecast.temp.toDouble() > max!!.toDouble() && forecast.precipitation!!.toDouble() <= 0.5)
+    return if(precipitation){
+        (forecast.temp.toDouble() > max!!.toDouble() && forecast.precipitation!!.toDouble() <= 0.5)
     }else{
-        return (forecast.temp.toDouble() > max!!.toDouble())
+        (forecast.temp.toDouble() > max!!.toDouble())
     }
 
 }

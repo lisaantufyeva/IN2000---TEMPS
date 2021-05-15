@@ -1,14 +1,14 @@
 package com.example.team31.ui.overview.week_overview
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.core.content.ContextCompat
+
 import androidx.core.view.isVisible
 
 import androidx.navigation.Navigation
@@ -16,23 +16,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.team31.Bruker
 import com.example.team31.R
 import com.example.team31.Varsel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
-class OverviewAdapter(private val forecastList: List<RefinedForecast>, val context: Context, val user: Bruker, val availableAlerts:MutableList<Varsel>, val acceptedAlerts:MutableList<Varsel>):
+class OverviewAdapter(private val forecastList: List<RefinedForecast>, val context: Context, val user: Bruker, private val availableAlerts:MutableList<Varsel>, private val acceptedAlerts:MutableList<Varsel>):
     RecyclerView.Adapter<OverviewAdapter.OverviewAdapterHolder>() {
-    //private var availableAlerts = mutableListOf<Varsel>()
-    //private var acceptedAlerts = mutableListOf<Varsel>()
 
     class OverviewAdapterHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val date: TextView = itemView.findViewById(R.id.date)
         val temp: TextView = itemView.findViewById(R.id.temp)
         val icon: ImageView = itemView.findViewById(R.id.imageView)
         val staffButton: Button = itemView.findViewById(R.id.staff_button)
-        val alertButton: Button = itemView.findViewById(R.id.alert_lable)
+        val alertLable: Button = itemView.findViewById(R.id.alert_lable)
 
     }
 
@@ -45,35 +39,23 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
     override fun onBindViewHolder(holder: OverviewAdapterHolder, position: Int) {
         val forecastObject = forecastList[position]
         holder.date.text = forecastList[position].time
-        holder.temp.text = forecastList[position].temp + "°"
+        holder.temp.text = context.getString(R.string.degrees_symbol,forecastList[position].temp)
 
         val uri = "@drawable/" + forecastList[position].symbol
+        println(forecastList[position].symbol)
         val iconId = context.resources.getIdentifier(uri, "drawable", context.packageName)
-        val drawable = context.resources.getDrawable(iconId)
+        val drawable = ContextCompat.getDrawable(context, iconId)
         holder.icon.setImageDrawable(drawable)
-        Log.d("Dato nå: ", forecastList[position].toString())
-        // get alert list
-        /*GlobalScope.launch(Dispatchers.IO){
-            val availableShifts = getAvailableShiftsList(user.id!!)
-            val acceptedShifts = getAcceptedShiftsList(user.id!!)
 
-            withContext(Dispatchers.Main){
-                availableAlerts = availableShifts
-                acceptedAlerts = acceptedShifts
-                Log.d("Available alerts: ", availableAlerts.toString())
-                Log.d("Accepted alerts:", acceptedAlerts.toString())
-            }
-        }*/
         if (checkCreatedAlerts(forecastList[position].time, availableAlerts)){
-            holder.alertButton.text = "Sendt: "+ getNumberOfAlerts(forecastList[position].time, availableAlerts) + "/ Tatt: "+ getAcceptedShifts(forecastList[position].time, acceptedAlerts).toString()
-            holder.alertButton.isVisible = true
+            holder.alertLable.text = context.getString(R.string.varsel_sendt_mottatt,
+                    getNumberOfAlerts(forecastList[position].time, availableAlerts).toString(),
+                    getAcceptedShifts(forecastList[position].time, acceptedAlerts).toString())
+            holder.alertLable.isVisible = true
         } else {
             var extraStaff = 0
             if (checkLowStaffing(forecastList[position], user.triggerTemp, user.nedbor)){
                 extraStaff = checkStaffingDemand(forecastList[position], user)
-                Log.d("Ekstra demand Dato: ",forecastList[position].time)
-                Log.d("Testing staffingDemang", checkStaffingDemand(forecastList[position], user).toString())
-
 
                 holder.staffButton.isVisible = true
             }
@@ -83,8 +65,8 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
             }
         }
     }
-    override fun getItemCount() = forecastList.size
 
+    override fun getItemCount() = forecastList.size
 }
 
 fun showDetail(weatherObject: RefinedForecast, extraStaff: Int,  root: View){

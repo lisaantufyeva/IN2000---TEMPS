@@ -9,7 +9,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
-import com.google.firebase.database.FirebaseDatabase
 
 
 class AnsattActivity : AppCompatActivity() {

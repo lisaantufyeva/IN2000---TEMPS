@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.team31.AdminActivity
@@ -14,6 +13,7 @@ import com.example.team31.data.api.LocationForecastApi
 import com.example.team31.data.repositories.ForecastRepository
 import com.example.team31.databinding.OverviewFragmentBinding
 import android.os.Handler
+import android.os.Looper
 import com.example.team31.Varsel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -58,11 +58,9 @@ class OverviewFragment : Fragment() {
             withContext(Dispatchers.Main){
                 availableAlerts = availableShifts
                 acceptedAlerts = acceptedShifts
-                Log.d("Available alerts: ", availableAlerts.toString())
-                Log.d("Accepted alerts:", acceptedAlerts.toString())
-                viewModel.forecastList.observe(viewLifecycleOwner, Observer { forecastList ->
+                viewModel.forecastList.observe(viewLifecycleOwner,  { forecastList ->
                     viewBinding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
-                    Handler().postDelayed({
+                    Handler(Looper.getMainLooper()).postDelayed({
                         viewBinding.recyclerview.setHasFixedSize(true)
                         val overviewAdapter = OverviewAdapter(forecastList, requireContext(), user, availableAlerts, acceptedAlerts)
                         viewBinding.recyclerview.adapter = overviewAdapter
@@ -71,7 +69,6 @@ class OverviewFragment : Fragment() {
                 })
             }
         }
-
     }
 }
 

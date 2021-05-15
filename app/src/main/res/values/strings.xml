@@ -1,14 +1,23 @@
 <resources>
+
     <string name="app_name">Team31</string>
+
+    <!--Navigation Menu Admin-->
     <string name="title_overview">Oversikt</string>
     <string name="title_employees">Ansatte</string>
     <string name="title_settings">Instillinger</string>
     <string name="title_profile">Profil</string>
+
+    <!--Admin: Overview fragment card-->
     <string name="calendar_date">date</string>
     <string name="degrees">Degrees</string>
     <string name="weather_icon">weather ikon</string>
     <string name="date">Date</string>
     <string name="lav_bemanning">Lav bemanning</string>
+    <string name="varsel_sendt_mottatt">Sendt: %1$s/Tatt: %2$s </string>
+    <string name ="degrees_symbol"> %1$s °</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -28,5 +37,28 @@
     <string name="err_msg_select_name">Skriv navn.</string>
     <string name="err_msg_enter_email">Skriv email.</string>
     <string name="err_msg_select_rolle">Velg rolle.</string>
+
+    <!--Admin: Detail fragment card-->
+    <string name="detail_precipitation">Nedbør</string>
+
+    <!--Admin: Detail fragment body-->
+    <string name="detail_staffing">Din bemanning</string>
+    <string name="detail_current_staffing">Normal bemanning:</string>
+    <string name="detail_extra_staffing">Estimert ekstra bemanning:</string>
+    <string name="detail_button_send">Send varsel</string>
+    <string name="current_staffing_value">0</string>
+    <string name="extra_staffing_value">0</string>
+    <string name="precipitation_number">0</string>
+    <string name="cancel_button">Avbryt</string>
+
+    <!--Ansatt: My shifts card-->
+    <string name="accepted_label">Godtatt</string>
+
+    <!--Ansatt: Available shifts fragment card-->
+    <string name="accept_shift_button">Godta vakt</string>
+    <string name="accepted_shift_label">Vakten er din!</string>
+    <string name="tittle_my_shifts">Mine vakter</string>
+    <string name="tittle_available_shifts">Ledige vakter</string>
+
 
 </resources>

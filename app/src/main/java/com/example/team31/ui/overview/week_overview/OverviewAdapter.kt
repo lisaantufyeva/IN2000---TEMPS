@@ -69,7 +69,7 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
             holder.alertButton.isVisible = true
         } else {
             var extraStaff = 0
-            if (checkLowStaffing(forecastList[position], user.triggerTemp)){
+            if (checkLowStaffing(forecastList[position], user.triggerTemp, user.nedbor)){
                 extraStaff = checkStaffingDemand(forecastList[position], user)
                 Log.d("Ekstra demand Dato: ",forecastList[position].time)
                 Log.d("Testing staffingDemang", checkStaffingDemand(forecastList[position], user).toString())

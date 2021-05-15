@@ -134,9 +134,14 @@ fun getAcceptedShifts(date: String, accepted: MutableList<Varsel>):Int{
     return accepted.filter { it.date == date }.count()
 }
 
-fun checkLowStaffing(forecast: RefinedForecast, max: String?):Boolean{
+fun checkLowStaffing(forecast: RefinedForecast, max: String?, nedbor: Boolean):Boolean{
     println("check low staffing:" +  forecast.temp.toDouble())
-    return (forecast.temp.toDouble() >= max!!.toDouble() && forecast.precipitation!!.toDouble() <= 0.2)
+    if(nedbor){
+        return (forecast.temp.toDouble() > max!!.toDouble() && forecast.precipitation!!.toDouble() <= 0.5)
+    }else{
+        return (forecast.temp.toDouble() > max!!.toDouble())
+    }
+
 }
 
 fun checkStaffingDemand(forecast: RefinedForecast, user: Bruker): Int{

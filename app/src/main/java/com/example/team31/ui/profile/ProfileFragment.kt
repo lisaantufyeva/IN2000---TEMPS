@@ -74,7 +74,7 @@ class ProfileFragment : Fragment() {
                 max.text = "Maksimal bemanning: " + user.maxBemanning
 
                 val trigger = root.findViewById<TextView>(R.id.trigger)
-                trigger.text = "Temperatur under: " + user.triggerTemp
+                trigger.text = "Temperatur over: " + user.triggerTemp
 
                 val nedbor = root.findViewById<TextView>(R.id.nedbor)
 

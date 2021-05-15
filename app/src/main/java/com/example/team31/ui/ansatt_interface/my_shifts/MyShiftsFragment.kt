@@ -31,10 +31,8 @@ class MyShiftsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var ansattUser = (activity as AnsattActivity?)!!.getUser()
+        val ansattUser = (activity as AnsattActivity?)!!.getUser()
 
-        //val refK = FirebaseDatabase.getInstance().getReference("Ansatte").child(ansattUser.adminId!!)
-        //println("Hentet UserID available shifts fragment:" + refK)
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(MyShiftsViewModel::class.java)
@@ -44,17 +42,17 @@ class MyShiftsFragment : Fragment() {
             withContext(Dispatchers.Main){
                 myshifts = recentAlerts
                 Log.i("VarselListe:", myshifts.toString())
-                display(myshifts, ansattUser)
+                display(myshifts)
             }
         }
 
     }
 
-    private fun display(list: List<Varsel>, ansattUser: com.example.team31.Ansatt){
+    private fun display(list: List<Varsel>){
         recyclerView.also {
             recyclerView.setHasFixedSize(true)
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            recyclerView.adapter = MyShiftsAdapter(list, requireContext(), ansattUser)
+            recyclerView.adapter = MyShiftsAdapter(list, requireContext())
         }
     }
 }

@@ -13,14 +13,14 @@ class MyShiftsViewModel : ViewModel() {
     suspend fun getMyShiftList(adminId:String, userId:String): MutableList<Varsel> {
 
         val ref = FirebaseDatabase.getInstance().getReference("Varsler").child(adminId).child("Taken")
-        val liste = mutableListOf<Varsel>()
+        val list = mutableListOf<Varsel>()
         val alertListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (i in dataSnapshot.children) {
-                        val varsel = i.getValue(Varsel::class.java)
-                        liste.add(varsel!!)
-                        Log.i("ansatt hentes:", varsel.toString())
+                        val shift = i.getValue(Varsel::class.java)
+                        list.add(shift!!)
+                        Log.i("ansatt hentes:", shift.toString())
                     }
                 }
             }
@@ -29,11 +29,7 @@ class MyShiftsViewModel : ViewModel() {
             }
         }
         ref.addValueEventListener(alertListener)
-        //delay(500)
         delay(800)
-        //_alertList.value = liste
-        //return liste.distinctBy { it.date } as MutableList<Varsel>
-         //list = liste.filter { it.ansattId == userId  }.sortedBy { it.date } as MutableList<Varsel>
-        return liste.filter { it.ansattId == userId  } as MutableList<Varsel>
+        return list.filter { it.ansattId == userId  } as MutableList<Varsel>
     }
 }

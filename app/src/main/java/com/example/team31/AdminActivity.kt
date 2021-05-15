@@ -60,8 +60,6 @@ class AdminActivity : AppCompatActivity() {
         if (view != null){
             val hideMe = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             hideMe.hideSoftInputFromWindow(view.windowToken,0)
-
-
         }
     }
 }

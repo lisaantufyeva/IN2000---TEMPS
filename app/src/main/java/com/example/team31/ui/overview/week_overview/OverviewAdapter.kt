@@ -18,7 +18,8 @@ import com.example.team31.R
 import com.example.team31.Varsel
 
 
-class OverviewAdapter(private val forecastList: List<RefinedForecast>, val context: Context, val user: Bruker, private val availableAlerts:MutableList<Varsel>, private val acceptedAlerts:MutableList<Varsel>):
+class OverviewAdapter(private val forecastList: List<RefinedForecast>, val context: Context, val user: Bruker,
+                      private val availableAlerts:MutableList<Varsel>, private val acceptedAlerts:MutableList<Varsel>):
     RecyclerView.Adapter<OverviewAdapter.OverviewAdapterHolder>() {
 
     class OverviewAdapterHolder(itemView: View): RecyclerView.ViewHolder(itemView){

@@ -25,7 +25,7 @@ class OverviewViewModel @Inject constructor(
     val forecastList: LiveData<List<RefinedForecast>>
         get() = _forecastListModelLiveData
 
-    val ref = FirebaseDatabase.getInstance().getReference("Users")
+    private val ref = FirebaseDatabase.getInstance().getReference("Users")
 
 
 
@@ -49,7 +49,7 @@ class OverviewViewModel @Inject constructor(
             var mainUser = Bruker()
 
             // Henter brukere fra firebase
-            val UserListener = object : ValueEventListener {
+            val userListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (dataSnapshot.exists()) {
                         for (i in dataSnapshot.children) {
@@ -67,7 +67,7 @@ class OverviewViewModel @Inject constructor(
                     Log.w("message", "loadPost:onCancelled", databaseError.toException())
                 }
             }
-            ref.addValueEventListener(UserListener)
+            ref.addValueEventListener(userListener)
         return mainUser
     }
     suspend fun getAvailableShiftsList(userId:String): MutableList<Varsel> {
@@ -142,7 +142,7 @@ fun checkLowStaffing(forecast: RefinedForecast, max: String?, precipitation: Boo
 }
 
 fun checkStaffingDemand(forecast: RefinedForecast, user: Bruker): Int{
-    var manko = 0.0
+    var manko: Double
     val maxTemp = 30 //assumption
     if (forecast.temp.toDouble() < maxTemp.toDouble()) {
         val x = user.maxBemanning!!.toDouble() - user.normalBemanning!!.toDouble()

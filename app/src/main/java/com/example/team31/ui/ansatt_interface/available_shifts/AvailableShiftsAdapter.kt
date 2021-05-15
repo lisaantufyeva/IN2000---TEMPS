@@ -14,7 +14,7 @@ import com.example.team31.R
 import com.example.team31.Varsel
 
 
-class AvailableShiftsAdapter(private val shiftList: MutableList<Varsel>, val context: Context, val ansattUser:Ansatt):
+class AvailableShiftsAdapter(private val shiftList: MutableList<Varsel>, val context: Context, private val ansattUser:Ansatt):
         RecyclerView.Adapter<AvailableShiftsAdapter.AvailableShiftAdapterHolder>() {
 
     class AvailableShiftAdapterHolder(itemView: View): RecyclerView.ViewHolder(itemView){

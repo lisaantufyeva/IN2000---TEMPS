@@ -134,23 +134,26 @@ fun getAcceptedShifts(date: String, acceptedList: MutableList<Varsel>):Int{
 fun checkLowStaffing(forecast: RefinedForecast, max: String?, precipitation: Boolean):Boolean{
     println("check low staffing:" +  forecast.temp.toDouble())
     return if(precipitation){
-        (forecast.temp.toDouble() > max!!.toDouble() && forecast.precipitation!!.toDouble() <= 0.5)
+        (forecast.temp.toDouble() >= max!!.toDouble() && forecast.precipitation!!.toDouble() <= 0.5)
     }else{
-        (forecast.temp.toDouble() > max!!.toDouble())
+        (forecast.temp.toDouble() >= max!!.toDouble())
     }
 
 }
 
 fun checkStaffingDemand(forecast: RefinedForecast, user: Bruker): Int{
     var manko: Double
-    val maxTemp = 30 //assumption
+    var maxTemp = 30 //assumption
+    if (maxTemp  < user.triggerTemp!!.toInt()){
+        maxTemp = (1.2*user.triggerTemp!!.toDouble()).toInt()
+    }
     if (forecast.temp.toDouble() < maxTemp.toDouble()) {
         val x = user.maxBemanning!!.toDouble() - user.normalBemanning!!.toDouble()
         val y = forecast.temp.toDouble() - user.triggerTemp!!.toDouble()
         val z = maxTemp.toDouble() - user.triggerTemp!!.toDouble()
         val xy = x*y
         manko = xy / z
-        if (0.0< manko && manko <1.0){
+        if (0.0<= manko && manko <1.0){
             manko = 1.0
         }
     } else {

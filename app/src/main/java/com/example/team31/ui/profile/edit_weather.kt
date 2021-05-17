@@ -52,6 +52,12 @@ class edit_weather : Fragment() {
 
             val triggerTemp = trigger.text.toString()
 
+            if (triggerTemp.toInt() > 60){
+                Toast.makeText(activity, " Ugyldig triggertemp. Max temp målt på jorda er 58!", Toast.LENGTH_SHORT).show()
+                (activity as Authentication?)!!.hideKeyboard()
+                return@setOnClickListener
+            }
+
             profileViewModel.update_weather(triggerTemp,nedbor,userId)
 
             Navigation.findNavController(root).navigate(R.id.action_edit_weather_to_navigation_profile)

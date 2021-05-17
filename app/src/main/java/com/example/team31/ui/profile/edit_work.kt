@@ -40,11 +40,17 @@ class edit_work : Fragment() {
         knapp.setOnClickListener {
             if (normal.text.isBlank() || max.text.isBlank()) {
                 Toast.makeText(activity, "Ugyldig input!", Toast.LENGTH_SHORT).show()
-                (activity as Authentication?)!!.hideKeyboard()
+                (activity as AdminActivity?)!!.hideKeyboard()
                 return@setOnClickListener
             }
             val normalBemanning = normal.text.toString()
             val maxBemanning = max.text.toString()
+            //Added check to ensure maxBemanning greater than normalBemanning
+            if (normalBemanning.toInt() > maxBemanning.toInt()) {
+                Toast.makeText(activity, "Ugyldig input! Krav: Max > Normal!!", Toast.LENGTH_SHORT).show()
+                (activity as AdminActivity?)!!.hideKeyboard()
+                return@setOnClickListener
+            }
 
             profileViewModel.update_work(normalBemanning,maxBemanning,userId)
 

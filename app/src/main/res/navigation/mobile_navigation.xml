@@ -80,7 +80,7 @@
     <fragment
         android:id="@+id/edit_name"
         android:name="com.example.team31.ui.profile.edit_name"
-        android:label="edit_name"
+        android:label="Oppdater navn"
         tools:layout="@layout/edit_name" >
         <action
             android:id="@+id/action_edit_name_to_navigation_profile"
@@ -89,7 +89,7 @@
     <fragment
         android:id="@+id/edit_pos"
         android:name="com.example.team31.ui.profile.edit_pos"
-        android:label="edit_pos"
+        android:label="Endre posisjon"
         tools:layout="@layout/edit_pos" >
         <action
             android:id="@+id/action_edit_pos_to_navigation_profile"
@@ -98,7 +98,7 @@
     <fragment
         android:id="@+id/edit_work"
         android:name="com.example.team31.ui.profile.edit_work"
-        android:label="edit_work"
+        android:label="Endre bemanning"
         tools:layout="@layout/edit_work" >
         <action
             android:id="@+id/action_edit_work_to_navigation_profile"
@@ -107,7 +107,7 @@
     <fragment
         android:id="@+id/edit_weather"
         android:name="com.example.team31.ui.profile.edit_weather"
-        android:label="edit_weather"
+        android:label="Oppdater temperatur"
         tools:layout="@layout/edit_weather" >
         <action
             android:id="@+id/action_edit_weather_to_navigation_profile"
@@ -116,7 +116,7 @@
     <fragment
         android:id="@+id/edit_opening"
         android:name="com.example.team31.ui.profile.edit_opening"
-        android:label="edit_opening"
+        android:label="Oppdater åpningstider"
         tools:layout="@layout/edit_opening" >
         <action
             android:id="@+id/action_edit_opening_to_navigation_profile"
@@ -134,12 +134,12 @@
     <fragment
         android:id="@+id/addMyEmpoyeeFragment"
         android:name="com.example.team31.ui.employees.addMyEmployee.AddMyEmpoyeeFragment"
-        android:label="addmyemployee_fragment"
+        android:label="Ansatte"
         tools:layout="@layout/addmyemployee_fragment" />
     <fragment
         android:id="@+id/editEmployee"
         android:name="com.example.team31.ui.employees.myEmployees.editEmployee"
-        android:label="fragment_edit_employee"
+        android:label="Ansatte"
         tools:layout="@layout/fragment_edit_employee" >
         <argument
             android:name="ansattId"

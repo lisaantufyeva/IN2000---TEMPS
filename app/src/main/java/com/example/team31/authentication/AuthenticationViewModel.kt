@@ -57,7 +57,7 @@ class AuthenticationViewModel : ViewModel(){
                     for (i in dataSnapshot.children) {
                         val user = i.getValue(Bruker::class.java)
                         getAnsatte(user!!.id!!)
-                        brukere.add(user!!)
+                        brukere.add(user)
                     }
                 }
             }

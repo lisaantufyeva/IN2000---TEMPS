@@ -50,12 +50,12 @@ class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : Mu
     }
 
     fun edit(root: View, ansattId:String){
-        val action = MyEmployeeFragmentDirections.actionNavigationEmployeesToEditEmployee(ansattId!!)
+        val action = MyEmployeeFragmentDirections.actionNavigationEmployeesToEditEmployee(ansattId)
         Navigation.findNavController(root).navigate(action)
     }
 
     override fun getItemCount(): Int {
-        return ansatte!!.size
+        return ansatte.size
     }
 
 //    fun add(ansatt: Ansatt) {

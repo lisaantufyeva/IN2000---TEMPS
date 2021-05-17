@@ -11,10 +11,12 @@
     <color name="text_grey">#282F3E</color>
     <color name="text_light">#EEF0F4</color>
     <color name ="button_blue">#1E6B9C</color>
+    <color name="bar_color">#E8E9EC</color>
     <color name = "login_blue">#1E6B9C</color>
     <color name = "button_blue_text">#FEEED7</color>
     <color name = "cancel_button_detail">#CDD3DF</color>
     <color name = "fragment_background">#DADEE7</color>
+    <color name = "button_grey">#8F9CB7</color>
     <color name = "card_background">#EEF0F4</color>
     <color name = "transparent">#00FFFFFF</color>
     <color name="grey_900">#212121</color>

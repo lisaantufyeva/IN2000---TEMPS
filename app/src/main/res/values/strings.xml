@@ -61,4 +61,60 @@
     <string name="tittle_available_shifts">Ledige vakter</string>
 
 
+    <string name="location_text">Velg posisjon for din arbeidsplass, slik at det vises riktig værmeldig.</string>
+    <string name="standard_profile_remainder">Du kan gjøre endringer senere under din Profil.</string>
+
+    <string name="manpower_text1">Definer antall ansatte du pleier å ha normalt, og maks antall ansatte du kan ha i løpet av en dag.</string>
+    <string name="manpower_edit_text1">Rediger antall ansatte du pleier å ha normalt, og maks antall ansatte du kan ha i løpet av en dag.</string>
+    <string name="temp_text1">Velg hvilken værforhold som gjør at du trenger ekstra bemanning.</string>
+    <string name="openhours_text">Legg til åpningstiden for din bedrift.</string>
+    <string name="hint_name">Navn</string>
+    <string name="hint_e_mail">E-mail</string>
+    <string name="hint_rolle">Rolle</string>
+    <string name="legg_til_button">Legg til</string>
+    <string name="legg_til_en_ansatt">Legg til en ansatt</string>
+    <string name="antall_ansatte">Antall ansatte</string>
+    <string name="legg_til_bemannings_kapasitet">Legg til bemannings kapasitet</string>
+    <string name="maksimal_bemanning">Maksimal bemanning:</string>
+    <string name="normal_bemanning">Normal bemanning:</string>
+    <string name="til">Til</string>
+    <string name="lagre">Lagre</string>
+    <string name="legg_til_aningstider">Legg til åpningstider</string>
+    <string name="fra">Fra</string>
+    <string name="rediger_ansattinformasjon">Rediger ansattinformasjon</string>
+    <string name="rolle">Rolle</string>
+    <string name="navn">Navn</string>
+    <string name="e_mail">E-mail</string>
+    <string name="legg_til_posisjon">Legg til posisjon</string>
+    <string name="roller">Roller:</string>
+    <string name="apningstider">Åpningstider:</string>
+    <string name="endre_passord">Endre passord</string>
+    <string name="nedb_r_ja_nei">Nedbør: ja/nei</string>
+    <string name="temperatur_under">Temperatur under:</string>
+    <string name="v_rforhold">Værforhold:</string>
+
+    <string name="posisjon">Posisjon:</string>
+    <string name="edit">Edit button</string>
+    <string name="bemanning">Bemanning:</string>
+    <string name="dine_ansatte">Dine ansatte</string>
+
+
+    <string name="ansatt">Ansatt</string>
+
+    <string name="logg_inn">Logg inn</string>
+    <string name="admin">Admin</string>
+    <string name="glemt_passord">Glemt passord?</string>
+    <string name="husk_passord">Husk passord</string>
+
+    <string name="passord">Passord</string>
+    <string name="bekreft_passord">Bekreft passord</string>
+    <string name="registrer_deg">Registrer deg</string>
+    <string name="legg_til_v_rforhold">Legg til værforhold</string>
+    <string name="temperatur_over">Temperatur over:</string>
+    <string name="nedb_r">Nedbør:</string>
+
+    <string name="ja_nei">Ja/nei</string>
+    <string name="endre_posisjon">Endre posisjon</string>
+    <string name="endre_pningstider">Endre åpningstider</string>
+
 </resources>

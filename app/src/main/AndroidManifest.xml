@@ -16,11 +16,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Team31">
-        <activity
-            android:name=".ui.employees.LeggTilRedigerAnsatt"
-            android:configChanges="orientation"
-            android:label="Legg til ansatt"
-            android:theme="@style/Theme.Team31.NoActionBar" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

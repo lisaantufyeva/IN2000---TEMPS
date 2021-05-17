@@ -44,6 +44,22 @@ class edit_opening : Fragment() {
             val aapenFra = start.text.toString()
             val aapenTil = slutt.text.toString()
 
+            if (aapenFra.toInt() < 0 || aapenFra.toInt() > 24){
+                Toast.makeText(activity, "Ugyldig input!", Toast.LENGTH_SHORT).show()
+                (activity as AdminActivity?)!!.hideKeyboard()
+                return@setOnClickListener
+            }
+            if (aapenTil.toInt() < 0 || aapenTil.toInt() > 24){
+                Toast.makeText(activity, "Ugyldig input!", Toast.LENGTH_SHORT).show()
+                (activity as AdminActivity?)!!.hideKeyboard()
+                return@setOnClickListener
+            }
+            if (aapenFra.toInt() > aapenTil.toInt()){
+                Toast.makeText(activity, "Ugyldig input!", Toast.LENGTH_SHORT).show()
+                (activity as AdminActivity?)!!.hideKeyboard()
+                return@setOnClickListener
+            }
+
             profileViewModel.update_opening(aapenFra,aapenTil,userId)
 
             Navigation.findNavController(root).navigate(R.id.action_edit_opening_to_navigation_profile)

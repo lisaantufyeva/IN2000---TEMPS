@@ -33,9 +33,7 @@ class DetailViewModel(
                         Log.i("ansatt hentes:", varsel.toString())
                     }
                 }
-
             }
-
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.w("message", "loadPost:onCancelled", databaseError.toException())
             }
@@ -44,6 +42,4 @@ class DetailViewModel(
         delay(200)
         return liste
     }
-
-
 }

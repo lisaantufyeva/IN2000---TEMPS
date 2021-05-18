@@ -8,6 +8,10 @@
     <string name="title_settings">Instillinger</string>
     <string name="title_profile">Profil</string>
 
+    <!--Navigation Menu Ansatt-->
+    <string name="title_my_shifts">Mine vakter</string>
+    <string name="title_available_shifts">Ledige vakter</string>
+
     <!--Admin: Overview fragment card-->
     <string name="calendar_date">date</string>
     <string name="degrees">Degrees</string>
@@ -42,6 +46,7 @@
     <string name="detail_precipitation">Nedbør</string>
 
     <!--Admin: Detail fragment body-->
+    <string name="title_detail">Oversikt over bemanning</string>
     <string name="detail_staffing">Din bemanning</string>
     <string name="detail_current_staffing">Normal bemanning:</string>
     <string name="detail_extra_staffing">Estimert ekstra bemanning:</string>
@@ -57,8 +62,6 @@
     <!--Ansatt: Available shifts fragment card-->
     <string name="accept_shift_button">Godta vakt</string>
     <string name="accepted_shift_label">Vakten er din!</string>
-    <string name="tittle_my_shifts">Mine vakter</string>
-    <string name="tittle_available_shifts">Ledige vakter</string>
 
 
 </resources>

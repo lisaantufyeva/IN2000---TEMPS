@@ -1,6 +1,8 @@
 package com.example.team31.ui.ansatt_interface.available_shifts
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 
 import androidx.lifecycle.ViewModel
 import com.example.team31.Varsel
@@ -11,9 +13,9 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.delay
 class AvailableShiftsListViewModel : ViewModel() {
 
-    //private val _alertList = MutableLiveData<List<Varsel>>()
-    //val alertList: LiveData<List<Varsel>>
-        //get() = _alertList
+    private val _alertList = MutableLiveData<List<Varsel>>()
+    val alertList: LiveData<List<Varsel>>
+        get() = _alertList
 
     suspend fun getAlertList(userId:String, recentAccepted:MutableList<Varsel>, ansattId: String): MutableList<Varsel> {
 
@@ -35,6 +37,8 @@ class AvailableShiftsListViewModel : ViewModel() {
         }
         ref.addValueEventListener(alertListener)
         delay(800)
+
+
 
         return list.filter { !(harVakt(recentAccepted,it.date!!, ansattId)) }
                 .distinctBy { it.date } as MutableList<Varsel>

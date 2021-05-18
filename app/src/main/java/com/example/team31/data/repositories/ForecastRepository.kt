@@ -1,13 +1,10 @@
 package com.example.team31.data.repositories
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.team31.data.api.ForecastDto
 import com.example.team31.data.api.LocationForecastApi
 import com.example.team31.ui.overview.week_overview.Forecast
 import com.example.team31.ui.overview.week_overview.RefinedForecast
-import okhttp3.Cache
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -27,7 +24,7 @@ class ForecastRepository @Inject constructor(
             val temp = i.data.instant?.details?.air_temperature
             val symbol = i.data.next_6_hours?.summary?.symbol_code
             val precipitation = i.data.next_6_hours?.details?.precipitation_amount
-            val forecast = Forecast(time, temp.toString(), symbol, precipitation.toString())
+            val forecast = Forecast(time!!, temp.toString(), symbol, precipitation.toString())
             list.addAll(listOf(forecast))
         }
         return filterForecastList(list).map { forecast ->  RefinedForecast(formatDate(forecast.time), forecast.temp, forecast.symbol, forecast.precipitation) }
@@ -42,18 +39,18 @@ class ForecastRepository @Inject constructor(
 
     @SuppressLint("SimpleDateFormat")
 
-// takes in time:Date object and returns date:String
-    fun formatDate(time: Date): String {
+// takes in time:Date object and returns formatted date:String
+    fun formatDate(time: Date?): String {
         val parser = SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy")
         val formatter = SimpleDateFormat("EEEE dd. MMMM", Locale("no", "NO"))
 
-        return formatter.format(parser.parse(time.toString()))
+        return formatter.format(parser.parse(time.toString())!!)
     }
 
-    //takes time: String(from API) and returns time:Date
+    //takes in time:String (from API) and returns time:Date
     @SuppressLint("SimpleDateFormat")
-    fun parseDate(time: String): Date {
+    fun parseDate(time: String?): Date? {
         val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-        return parser.parse(time)
+        return parser.parse(time!!)
     }
 }

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/navigation_available_shifts"
         android:name="com.example.team31.ui.ansatt_interface.available_shifts.AvailableShiftsListFragment"
-        android:label="Ledige vakter"
+        android:label="@string/title_available_shifts"
         tools:layout="@layout/available_shifts_list_fragment" >
 
     </fragment>
@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/navigation_accepted_shifts"
         android:name="com.example.team31.ui.ansatt_interface.my_shifts.MyShiftsFragment"
-        android:label="Mine vakter"
+        android:label="@string/title_my_shifts"
         tools:layout="@layout/my_shifts_fragment" >
 
     </fragment>
@@ -24,7 +24,7 @@
     <fragment
         android:id="@+id/navigation_profile_ansatt"
         android:name="com.example.team31.ui.ansatt_interface.ansatt_profile.ProfileFragmentAnsatt"
-        android:label="Profile ansatt"
+        android:label="@string/title_profile"
         tools:layout="@layout/profile_fragment_ansatt_fragment">
 
         <action

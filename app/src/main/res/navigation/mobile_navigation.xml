@@ -67,7 +67,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.team31.ui.overview.detail.DetailFragment"
-        android:label="Oversikt over bemanning"
+        android:label="@string/title_detail"
         tools:layout="@layout/detail_fragment" >
         <argument
             android:name="RefinedForecast"

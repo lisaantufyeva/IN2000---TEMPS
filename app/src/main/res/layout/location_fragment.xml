@@ -1,42 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".authentication.location_fragment"
-    android:background="@color/fragment_background">
+    android:background="#E8E9EC"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_location"
+        android:layout_width="411dp"
+        android:layout_height="76dp"
+        android:background="@color/fragment_background"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Fullfør registereing"
+        app:titleMarginStart="100dp"
+        app:titleTextColor="#282F3E"
+        android:padding="10dp"/>
 
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Registrer posisjon"
-        android:textSize="35dp"
-        app:layout_constraintBottom_toTopOf="@+id/autocomplete_fragment1"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="182dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="204dp"
+        android:layout_marginBottom="40dp"
+        android:text="@string/legg_til_posisjon"
+        android:textColor="#282F3E"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="364dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_below="@id/textView"
+        android:text="@string/location_text"
+        android:textSize="18sp"
+        android:textColor="#282F3E"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="364dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/textView2"
+        android:text="@string/standard_profile_remainder"
+        android:layout_marginStart="25dp"
+        android:textSize="14sp"
+        android:textColor="#282F3E"
+        android:layout_marginBottom="20dp"/>
+    
+
+
 
     <LinearLayout
         android:id="@+id/autocomplete_fragment1"
         android:layout_width="340dp"
-        android:layout_height="50dp"
+        android:layout_height="51dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="283dp"
-        android:background="@color/card_background"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4"
+        android:layout_marginStart="35dp"
+        android:background="@drawable/rounded_corner_view"
+        android:backgroundTint="#DADEE7"
+        android:layout_below="@id/textView3"
         android:gravity="center"
+
         >
 
         <fragment
             android:id="@+id/autocomplete_fragment"
             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-            android:layout_width="361dp"
-            android:layout_height="24dp"
+            android:layout_width="210dp"
+            android:layout_height="22dp"
             android:layout_gravity="center"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,20 +93,19 @@
         android:id="@+id/registrer_knapp"
         android:layout_width="173dp"
         android:layout_height="51dp"
+        android:layout_marginBottom="237dp"
         android:layout_below="@+id/autocomplete_fragment1"
         android:layout_centerHorizontal="true"
         android:background="@drawable/rounded_corners_button"
-        android:backgroundTint="@color/button_yellow"
-        android:text="Lagre"
+        android:backgroundTint="@color/button_grey"
+        android:text="@string/lagre"
+
         android:textAllCaps="false"
         android:textColor="@color/text_grey"
         android:textSize="20sp"
         app:backgroundTint="@color/button_yellow"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/autocomplete_fragment1"
-        app:layout_constraintVertical_bias="0.36" />
+        android:layout_marginTop="225dp"
+        />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

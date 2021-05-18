@@ -1,0 +1,1290 @@
+Index: app/src/main/res/layout/bemanning_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".authentication.location_fragment\"\n    android:background=\"@color/fragment_background\">\n\n\n    <TextView\n        android:id=\"@+id/textView2\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"Registrer bemanning\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"/>\n\n\n    <TextView\n        android:id=\"@+id/normal\"\n        android:layout_width=\"250dp\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"Normal bemanning:\"\n        android:textSize=\"20sp\"\n        android:textStyle=\"bold\"\n        app:layout_constraintBottom_toTopOf=\"@+id/max\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.211\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.908\" />\n\n    <EditText\n        android:id=\"@+id/normal_bemanning\"\n        android:layout_width=\"70dp\"\n        android:layout_height=\"wrap_content\"\n        android:layout_below=\"@+id/normal\"\n        android:autofillHints=\"Antall ansatte\"\n        android:background=\"@color/card_background\"\n        android:drawablePadding=\"10dp\"\n        android:inputType=\"number\"\n        android:paddingBottom=\"20dp\"\n        app:layout_constraintBottom_toTopOf=\"@+id/max_bemanning\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.68\"\n        app:layout_constraintStart_toStartOf=\"@+id/normal\"\n        app:layout_constraintTop_toBottomOf=\"@+id/textView2\"\n        app:layout_constraintVertical_bias=\"0.953\" />\n\n    <TextView\n        android:id=\"@+id/max\"\n        android:layout_width=\"250dp\"\n        android:layout_height=\"wrap_content\"\n        android:layout_below=\"@+id/normal_bemanning\"\n        android:layout_marginBottom=\"116dp\"\n        android:text=\"Maksimal bemanning:\"\n        android:textSize=\"20sp\"\n        android:textStyle=\"bold\"\n        app:layout_constraintBottom_toTopOf=\"@+id/save\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.211\"\n        app:layout_constraintStart_toStartOf=\"parent\" />\n\n    <EditText\n        android:id=\"@+id/max_bemanning\"\n        android:layout_width=\"70dp\"\n        android:layout_height=\"wrap_content\"\n        android:layout_below=\"@+id/max\"\n        android:layout_marginBottom=\"108dp\"\n        android:autofillHints=\"Antall ansatte\"\n        android:background=\"@color/card_background\"\n        android:drawablePadding=\"10dp\"\n        android:inputType=\"number\"\n        android:paddingBottom=\"20dp\"\n        app:layout_constraintBottom_toTopOf=\"@+id/save\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.712\"\n        app:layout_constraintStart_toStartOf=\"parent\" />\n\n    <Button\n        android:id=\"@+id/save\"\n        android:layout_width=\"173dp\"\n        android:layout_height=\"51dp\"\n        android:layout_below=\"@+id/max_bemanning\"\n        android:layout_centerHorizontal=\"true\"\n        android:background=\"@drawable/rounded_corners_button\"\n        android:text=\"Lagre\"\n        android:textAllCaps=\"false\"\n        android:textColor=\"@color/text_grey\"\n        android:textSize=\"20sp\"\n        app:backgroundTint=\"@color/button_yellow\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@+id/textView2\"\n        app:layout_constraintVertical_bias=\"0.692\" />\n\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/bemanning_fragment.xml	(revision 6206a4e08ef8d4b8267313110272b1d7e4b99a5c)
++++ app/src/main/res/layout/bemanning_fragment.xml	(date 1621120080000)
+@@ -5,77 +5,131 @@
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     tools:context=".authentication.location_fragment"
+-    android:background="@color/fragment_background">
++    android:background="#E8E9EC">
++
++
++    <androidx.appcompat.widget.Toolbar
++        android:id="@+id/toolbar_location"
++        android:layout_width="411dp"
++        android:layout_height="76dp"
++        android:background="@color/fragment_background"
++        android:padding="10dp"
++        android:textAlignment="center"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:title="Fullfør registereing"
++        app:titleMarginStart="100dp"
++        app:titleTextColor="#282F3E"
++        />
+ 
+ 
+     <TextView
+         android:id="@+id/textView2"
+-        android:layout_width="match_parent"
++        android:layout_width="300dp"
++        android:layout_height="35dp"
++        android:layout_marginLeft="35dp"
++        android:layout_marginTop="60dp"
++        android:layout_marginBottom="60dp"
++        android:text="Legg til bemannings kapasitet"
++        android:textColor="#282F3E"
++        android:textSize="22dp"
++        android:textStyle="bold"
++        app:layout_constraintBottom_toTopOf="@+id/textView3"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.704" />
++
++    <TextView
++        android:id="@+id/textView3"
++        android:layout_width="357dp"
+         android:layout_height="wrap_content"
+-        android:text="Registrer bemanning"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"/>
++        android:layout_marginEnd="16dp"
++        android:layout_marginBottom="32dp"
++        android:text="@string/standard_profile_remainder"
++        android:textSize="14dp"
++        app:layout_constraintBottom_toTopOf="@+id/normal"
++        app:layout_constraintEnd_toEndOf="parent" />
++
++    <TextView
++        android:id="@+id/textView4"
++        android:layout_width="357dp"
++        android:layout_height="wrap_content"
++        android:layout_marginEnd="16dp"
++        android:layout_marginBottom="15dp"
++        android:text="@string/manpower_text1"
++        android:textSize="18dp"
++        app:layout_constraintBottom_toTopOf="@+id/textView3"
++        app:layout_constraintEnd_toEndOf="parent" />
+ 
+ 
+     <TextView
+         android:id="@+id/normal"
+-        android:layout_width="250dp"
+-        android:layout_height="wrap_content"
++        android:layout_width="182dp"
++        android:layout_height="22dp"
+         android:text="Normal bemanning:"
+-        android:textSize="20sp"
++        android:textSize="18dp"
+         android:textStyle="bold"
+         app:layout_constraintBottom_toTopOf="@+id/max"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.211"
++        app:layout_constraintHorizontal_bias="0.133"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+-        app:layout_constraintVertical_bias="0.908" />
++        app:layout_constraintVertical_bias="0.909" />
+ 
+     <EditText
+         android:id="@+id/normal_bemanning"
+-        android:layout_width="70dp"
+-        android:layout_height="wrap_content"
++        android:layout_width="162dp"
++        android:layout_height="26dp"
+         android:layout_below="@+id/normal"
+         android:autofillHints="Antall ansatte"
+         android:background="@color/card_background"
++        android:backgroundTint="#DADEE7"
+         android:drawablePadding="10dp"
++        android:textColor="#282F3E"
++        android:hint="Antall ansatte"
++        android:textSize="10dp"
++
+         android:inputType="number"
+         android:paddingBottom="20dp"
+         app:layout_constraintBottom_toTopOf="@+id/max_bemanning"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.68"
++        app:layout_constraintHorizontal_bias="0.831"
+         app:layout_constraintStart_toStartOf="@+id/normal"
+         app:layout_constraintTop_toBottomOf="@+id/textView2"
+-        app:layout_constraintVertical_bias="0.953" />
++        app:layout_constraintVertical_bias="0.851" />
+ 
+     <TextView
+         android:id="@+id/max"
+-        android:layout_width="250dp"
+-        android:layout_height="wrap_content"
++        android:layout_width="180dp"
++        android:layout_height="22dp"
+         android:layout_below="@+id/normal_bemanning"
+         android:layout_marginBottom="116dp"
+         android:text="Maksimal bemanning:"
+-        android:textSize="20sp"
++        android:textSize="18dp"
+         android:textStyle="bold"
+         app:layout_constraintBottom_toTopOf="@+id/save"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.211"
++        app:layout_constraintHorizontal_bias="0.14"
+         app:layout_constraintStart_toStartOf="parent" />
+ 
+     <EditText
+         android:id="@+id/max_bemanning"
+-        android:layout_width="70dp"
+-        android:layout_height="wrap_content"
++        android:layout_width="162dp"
++        android:layout_height="26dp"
+         android:layout_below="@+id/max"
+-        android:layout_marginBottom="108dp"
++        android:layout_marginBottom="116dp"
+         android:autofillHints="Antall ansatte"
+         android:background="@color/card_background"
++        android:backgroundTint="#DADEE7"
+         android:drawablePadding="10dp"
++        android:hint="Antall ansatte"
+         android:inputType="number"
+         android:paddingBottom="20dp"
+         app:layout_constraintBottom_toTopOf="@+id/save"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.712"
++        app:layout_constraintHorizontal_bias="0.851"
+         app:layout_constraintStart_toStartOf="parent" />
+ 
+     <Button
+Index: app/src/main/res/layout/fragment_edit_employee.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:orientation=\"vertical\"\n    tools:context=\".ui.employees.myEmployees.editEmployee\">\n    tools:ignore=\"MissingDefaultResource\">\n\n\n\n    <LinearLayout\n        android:id=\"@+id/topLayout\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n        android:layout_gravity=\"center\"\n        android:layout_marginTop=\"40dp\"\n        android:orientation=\"vertical\">\n\n\n        <TextView\n            android:id=\"@+id/updateemployee\"\n            android:layout_marginTop=\"20dp\"\n            android:layout_marginBottom=\"20dp\"\n            android:layout_marginLeft=\"17dp\"\n            android:layout_width=\"330dp\"\n            android:layout_height=\"26dp\"\n            android:text=\"Oppdater ansatt\"\n            android:textColor=\"#282F3E\"\n            android:textSize=\"22dp\"\n            android:textStyle=\"bold\"\n            android:visibility=\"visible\" />\n\n\n        <com.google.android.material.textfield.TextInputLayout\n            android:id=\"@+id/til_navn_edit\"\n            style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginStart=\"16dp\"\n            android:layout_marginTop=\"16dp\"\n            android:layout_marginEnd=\"16dp\"\n            android:hint=\"Navn\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toBottomOf=\"@id/topLayout\">\n\n            <EditText\n                android:id=\"@+id/et_navn_edit\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:inputType=\"text\"\n                android:textSize=\"15dp\" />\n        </com.google.android.material.textfield.TextInputLayout>\n\n        <com.google.android.material.textfield.TextInputLayout\n            android:id=\"@+id/til_email_edit\"\n            style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginStart=\"16dp\"\n            android:layout_marginTop=\"16dp\"\n            android:layout_marginEnd=\"16dp\"\n            android:hint=\"E-mail\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toBottomOf=\"@id/til_navn\">\n\n            <EditText\n                android:id=\"@+id/et_email_edit\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:inputType=\"text\"\n                android:textSize=\"15dp\" />\n        </com.google.android.material.textfield.TextInputLayout>\n\n        <com.google.android.material.textfield.TextInputLayout\n            android:id=\"@+id/til_rolle_edit\"\n            style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginStart=\"16dp\"\n            android:layout_marginTop=\"16dp\"\n            android:layout_marginEnd=\"16dp\"\n            android:hint=\"Rolle\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toBottomOf=\"@id/til_email\">\n\n            <EditText\n                android:id=\"@+id/et_rolle_edit\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:inputType=\"text\"\n                android:textSize=\"15dp\" />\n        </com.google.android.material.textfield.TextInputLayout>\n\n        <Button\n            android:id=\"@+id/save_button\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_gravity=\"center\"\n            android:layout_marginTop=\"30dp\"\n            android:background=\"@drawable/rounded_corners_button\"\n            android:foreground=\"?attr/selectableItemBackground\"\n            android:gravity=\"center\"\n            android:paddingTop=\"8dp\"\n            android:paddingBottom=\"8dp\"\n            android:text=\"@string/store_button\"\n            android:textAllCaps=\"false\"\n            android:textColor=\"@color/text_grey\"\n            android:textSize=\"18sp\"\n            app:backgroundTint=\"@color/button_yellow\" />\n    </LinearLayout>\n</LinearLayout>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_edit_employee.xml	(revision 6206a4e08ef8d4b8267313110272b1d7e4b99a5c)
++++ app/src/main/res/layout/fragment_edit_employee.xml	(date 1621120920000)
+@@ -5,6 +5,7 @@
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:orientation="vertical"
++    android:background="@color/fragment_background"
+     tools:context=".ui.employees.myEmployees.editEmployee">
+     tools:ignore="MissingDefaultResource">
+ 
+@@ -21,12 +22,12 @@
+ 
+         <TextView
+             android:id="@+id/updateemployee"
+-            android:layout_marginTop="20dp"
++            android:layout_marginTop="15dp"
+             android:layout_marginBottom="20dp"
+             android:layout_marginLeft="17dp"
+             android:layout_width="330dp"
+-            android:layout_height="26dp"
+-            android:text="Oppdater ansatt"
++            android:layout_height="35dp"
++            android:text="Rediger ansattinformasjon"
+             android:textColor="#282F3E"
+             android:textSize="22dp"
+             android:textStyle="bold"
+@@ -98,10 +99,10 @@
+ 
+         <Button
+             android:id="@+id/save_button"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
++            android:layout_width="173dp"
++            android:layout_height="55dp"
+             android:layout_gravity="center"
+-            android:layout_marginTop="30dp"
++            android:layout_marginTop="80dp"
+             android:background="@drawable/rounded_corners_button"
+             android:foreground="?attr/selectableItemBackground"
+             android:gravity="center"
+@@ -110,7 +111,8 @@
+             android:text="@string/store_button"
+             android:textAllCaps="false"
+             android:textColor="@color/text_grey"
+-            android:textSize="18sp"
++            android:textSize="20sp"
+             app:backgroundTint="@color/button_yellow" />
++
+     </LinearLayout>
+ </LinearLayout>
+Index: app/src/main/res/values/themes.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources xmlns:tools=\"http://schemas.android.com/tools\">\n    <!-- Base application theme. -->\n    <style name=\"Theme.Team31\" parent=\"Theme.MaterialComponents.DayNight.DarkActionBar\">\n        <!-- Primary brand color. -->\n        <item name=\"colorPrimary\">#1E6B9C</item>\n        <item name=\"colorPrimaryVariant\">@color/purple_700</item>\n        <item name=\"colorOnPrimary\">@color/white</item>\n        <!-- Secondary brand color. -->\n        <item name=\"colorSecondary\">@color/button_yellow</item>\n        <item name=\"colorSecondaryVariant\">@color/button_blue</item>\n        <item name=\"colorOnSecondary\">@color/black</item>\n        <!-- Status bar color. -->\n        <item name=\"android:statusBarColor\" tools:targetApi=\"l\">?attr/colorPrimaryVariant</item>\n        <!-- Customize your theme here. -->\n\n\n    </style>\n    <style name=\"Theme.Team31.NoActionBar\">\n    <item name=\"windowActionBar\">false</item>\n    <item name=\"windowNoTitle\">true</item>\n</style>\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/themes.xml	(revision 6206a4e08ef8d4b8267313110272b1d7e4b99a5c)
++++ app/src/main/res/values/themes.xml	(date 1621120372000)
+@@ -2,18 +2,21 @@
+     <!-- Base application theme. -->
+     <style name="Theme.Team31" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+         <!-- Primary brand color. -->
+-        <item name="colorPrimary">#1E6B9C</item>
++        <item name="colorPrimary">@color/bar_color</item>
+         <item name="colorPrimaryVariant">@color/purple_700</item>
+-        <item name="colorOnPrimary">@color/white</item>
++        <item name="colorOnPrimary">@color/button_blue</item>
+         <!-- Secondary brand color. -->
+         <item name="colorSecondary">@color/button_yellow</item>
+         <item name="colorSecondaryVariant">@color/button_blue</item>
+         <item name="colorOnSecondary">@color/black</item>
+         <!-- Status bar color. -->
+         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
++
++
+         <!-- Customize your theme here. -->
+ 
+ 
++
+     </style>
+     <style name="Theme.Team31.NoActionBar">
+     <item name="windowActionBar">false</item>
+Index: app/src/main/res/layout/addmyemployee_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n    <LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:orientation=\"vertical\"\n    tools:context=\".ui.employees.addMyEmployee.AddMyEmpoyeeFragment\"\n        tools:ignore=\"MissingDefaultResource\">\n\n\n\n    <LinearLayout\n    android:id=\"@+id/topLayout\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:layout_gravity=\"center\"\n    android:layout_marginTop=\"40dp\"\n    android:orientation=\"vertical\">\n\n\n    <com.google.android.material.textfield.TextInputLayout\n        android:id=\"@+id/til_navn\"\n        style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginStart=\"16dp\"\n        android:layout_marginTop=\"16dp\"\n        android:layout_marginEnd=\"16dp\"\n        android:hint=\"Navn\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@id/topLayout\">\n\n        <EditText\n            android:id=\"@+id/et_navn\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:inputType=\"text\"\n            android:textSize=\"15dp\" />\n    </com.google.android.material.textfield.TextInputLayout>\n\n    <com.google.android.material.textfield.TextInputLayout\n        android:id=\"@+id/til_email\"\n        style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginStart=\"16dp\"\n        android:layout_marginTop=\"16dp\"\n        android:layout_marginEnd=\"16dp\"\n        android:hint=\"E-mail\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@id/til_navn\">\n\n        <EditText\n            android:id=\"@+id/et_email\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:inputType=\"text\"\n            android:textSize=\"15dp\" />\n    </com.google.android.material.textfield.TextInputLayout>\n\n    <com.google.android.material.textfield.TextInputLayout\n        android:id=\"@+id/til_rolle\"\n        style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginStart=\"16dp\"\n        android:layout_marginTop=\"16dp\"\n        android:layout_marginEnd=\"16dp\"\n        android:hint=\"Rolle\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@id/til_email\">\n\n        <EditText\n            android:id=\"@+id/et_rolle\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:inputType=\"text\"\n            android:textSize=\"15dp\" />\n    </com.google.android.material.textfield.TextInputLayout>\n\n    <Button\n        android:id=\"@+id/btn_add_employee\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_gravity=\"center\"\n        android:layout_marginTop=\"30dp\"\n        android:background=\"@drawable/rounded_corners_button\"\n        android:foreground=\"?attr/selectableItemBackground\"\n        android:gravity=\"center\"\n        android:paddingTop=\"8dp\"\n        android:paddingBottom=\"8dp\"\n        android:text=\"@string/addEmployeeBtn\"\n        android:textAllCaps=\"false\"\n        android:textColor=\"@color/text_grey\"\n        android:textSize=\"18sp\"\n        app:backgroundTint=\"@color/button_yellow\" />\n</LinearLayout>\n</LinearLayout>\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/addmyemployee_fragment.xml	(revision 6206a4e08ef8d4b8267313110272b1d7e4b99a5c)
++++ app/src/main/res/layout/addmyemployee_fragment.xml	(date 1621120920000)
+@@ -5,6 +5,7 @@
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:orientation="vertical"
++    android:background="@color/fragment_background"
+     tools:context=".ui.employees.addMyEmployee.AddMyEmpoyeeFragment"
+         tools:ignore="MissingDefaultResource">
+ 
+@@ -18,6 +19,21 @@
+     android:layout_marginTop="40dp"
+     android:orientation="vertical">
+ 
++        <TextView
++            android:id="@+id/updateemployee"
++            android:layout_marginTop="15dp"
++            android:layout_marginBottom="20dp"
++            android:layout_marginLeft="17dp"
++            android:layout_width="330dp"
++            android:layout_height="35dp"
++            android:text="Legg til en ansatt"
++            android:textColor="#282F3E"
++            android:textSize="22dp"
++            android:textStyle="bold"
++            android:visibility="visible" />
++
++
++
+ 
+     <com.google.android.material.textfield.TextInputLayout
+         android:id="@+id/til_navn"
+@@ -25,7 +41,7 @@
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="16dp"
+-        android:layout_marginTop="16dp"
++        android:layout_marginTop="40dp"
+         android:layout_marginEnd="16dp"
+         android:hint="Navn"
+         app:layout_constraintEnd_toEndOf="parent"
+@@ -83,21 +99,21 @@
+     </com.google.android.material.textfield.TextInputLayout>
+ 
+     <Button
+-        android:id="@+id/btn_add_employee"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_gravity="center"
+-        android:layout_marginTop="30dp"
+-        android:background="@drawable/rounded_corners_button"
+-        android:foreground="?attr/selectableItemBackground"
+-        android:gravity="center"
+-        android:paddingTop="8dp"
+-        android:paddingBottom="8dp"
+-        android:text="@string/addEmployeeBtn"
+-        android:textAllCaps="false"
+-        android:textColor="@color/text_grey"
+-        android:textSize="18sp"
+-        app:backgroundTint="@color/button_yellow" />
++            android:id="@+id/btn_add_employee"
++            android:layout_width="173dp"
++            android:layout_height="55dp"
++            android:layout_gravity="center"
++            android:layout_marginTop="80dp"
++            android:background="@drawable/rounded_corners_button"
++            android:foreground="?attr/selectableItemBackground"
++            android:gravity="center"
++            android:paddingTop="8dp"
++            android:paddingBottom="8dp"
++            android:text="Legg til"
++            android:textAllCaps="false"
++            android:textColor="@color/text_grey"
++            android:textSize="20sp"
++            app:backgroundTint="@color/button_yellow"  />
+ </LinearLayout>
+ </LinearLayout>
+ 
+Index: app/src/main/res/layout/activity_legg_til_rediger_ansatt.xml
+===================================================================
+--- app/src/main/res/layout/activity_legg_til_rediger_ansatt.xml	(revision 6206a4e08ef8d4b8267313110272b1d7e4b99a5c)
++++ app/src/main/res/layout/activity_legg_til_rediger_ansatt.xml	(revision 6206a4e08ef8d4b8267313110272b1d7e4b99a5c)
+@@ -1,110 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    android:orientation="vertical"
+-    tools:context=".ui.employees.LeggTilRedigerAnsatt">
+-
+-
+-    <androidx.appcompat.widget.Toolbar
+-        android:id="@+id/toolbar_legg_til_ansatt_activity"
+-        android:layout_width="match_parent"
+-        android:layout_height="?attr/actionBarSize"
+-        android:background="?attr/colorPrimary"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        app:titleTextColor="@color/white" />
+-
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent"
+-        android:layout_gravity="center"
+-        android:layout_marginTop="40dp"
+-        android:orientation="vertical">
+-
+-
+-        <com.google.android.material.textfield.TextInputLayout
+-            android:id="@+id/til_navn"
+-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_marginStart="16dp"
+-            android:layout_marginTop="16dp"
+-            android:layout_marginEnd="16dp"
+-            android:hint="Navn"
+-            app:layout_constraintEnd_toEndOf="parent"
+-            app:layout_constraintStart_toStartOf="parent"
+-            app:layout_constraintTop_toBottomOf="@id/toolbar_legg_til_ansatt_activity">
+-
+-            <EditText
+-                android:id="@+id/et_navn"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:inputType="text"
+-                android:textSize="15dp" />
+-        </com.google.android.material.textfield.TextInputLayout>
+-
+-        <com.google.android.material.textfield.TextInputLayout
+-            android:id="@+id/til_email"
+-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_marginStart="16dp"
+-            android:layout_marginTop="16dp"
+-            android:layout_marginEnd="16dp"
+-            android:hint="E-mail"
+-            app:layout_constraintEnd_toEndOf="parent"
+-            app:layout_constraintStart_toStartOf="parent"
+-            app:layout_constraintTop_toBottomOf="@id/til_navn">
+-
+-            <EditText
+-                android:id="@+id/et_email"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:inputType="text"
+-                android:textSize="15dp" />
+-        </com.google.android.material.textfield.TextInputLayout>
+-
+-        <com.google.android.material.textfield.TextInputLayout
+-            android:id="@+id/til_rolle"
+-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_marginStart="16dp"
+-            android:layout_marginTop="16dp"
+-            android:layout_marginEnd="16dp"
+-            android:hint="Rolle"
+-            app:layout_constraintEnd_toEndOf="parent"
+-            app:layout_constraintStart_toStartOf="parent"
+-            app:layout_constraintTop_toBottomOf="@id/til_email">
+-
+-            <EditText
+-                android:id="@+id/et_rolle"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:inputType="text"
+-                android:textSize="15dp" />
+-        </com.google.android.material.textfield.TextInputLayout>
+-
+-        <Button
+-            android:id="@+id/btn_add_employee"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_gravity="center"
+-            android:layout_marginTop="30dp"
+-            android:background="@drawable/rounded_corners_button"
+-            android:foreground="?attr/selectableItemBackground"
+-            android:gravity="center"
+-            android:paddingTop="8dp"
+-            android:paddingBottom="8dp"
+-            android:text="@string/addEmployeeBtn"
+-            android:textAllCaps="false"
+-            android:textColor="@color/text_grey"
+-            android:textSize="18sp"
+-            app:backgroundTint="@color/button_yellow" />
+-    </LinearLayout>
+-    </LinearLayout>
+-
+Index: app/src/main/res/layout/weather_registration_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".authentication.location_fragment\">\n\n    <TextView\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n        android:text=\"Registrer temperatur\" />\n\n\n    <TextView\n        android:id=\"@+id/temp1\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"Trigger temperatur:\"\n        android:layout_marginLeft=\"10dp\"\n        android:textStyle=\"bold\"\n        android:layout_marginTop=\"100dp\"\n        android:textSize=\"20sp\"/>\n\n    <EditText\n        android:id=\"@+id/trigger_temp\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_below=\"@+id/temp1\"\n        android:layout_marginLeft=\"20dp\"\n        android:layout_marginRight=\"20dp\"\n        android:autofillHints=\"Temperatur i celsius\"\n        android:drawablePadding=\"10dp\"\n        android:paddingBottom=\"20dp\"\n        android:inputType = \"number\"/>\n\n    <TextView\n        android:id=\"@+id/nedbor\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_below=\"@+id/trigger_temp\"\n        android:layout_marginLeft=\"10dp\"\n        android:layout_marginTop=\"18dp\"\n        android:text=\"Nedbør (ja/nei):\"\n        android:textSize=\"20sp\"\n        android:textStyle=\"bold\" />\n\n    <CheckBox\n        android:id=\"@+id/checkBox1\"\n        android:layout_below=\"@+id/nedbor\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginLeft=\"20dp\"\n        android:text=\"Ja/nei\" />\n    <Button\n        android:id=\"@+id/save\"\n        android:layout_width=\"100dp\"\n        android:layout_height=\"60dp\"\n        android:layout_below=\"@+id/checkBox1\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginLeft=\"20dp\"\n        android:layout_marginTop=\"30dp\"\n        android:layout_marginRight=\"20dp\"\n        android:backgroundTint=\"#666666\"\n        android:text=\"Lagre\"\n        android:textAllCaps=\"false\"\n        android:textColor=\"#FFFFFF\"\n        android:textSize=\"20sp\" />\n\n\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/weather_registration_fragment.xml	(revision 6206a4e08ef8d4b8267313110272b1d7e4b99a5c)
++++ app/src/main/res/layout/weather_registration_fragment.xml	(date 1621117492000)
+@@ -1,70 +1,137 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    tools:context=".authentication.location_fragment">
++    tools:context=".authentication.location_fragment"
++    android:background="#E8E9EC">
++
++    <androidx.appcompat.widget.Toolbar
++        android:id="@+id/toolbar_location"
++        android:layout_width="411dp"
++        android:layout_height="76dp"
++        android:background="@color/fragment_background"
++        android:focusable="auto"
++        android:padding="20dp"
++        android:textAlignment="center"
++        app:title="Fullfør registereing"
++        app:titleMarginStart="100dp"
++
++        app:titleTextColor="#282F3E" />
+ 
+     <TextView
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent"
+-        android:text="Registrer temperatur" />
++        android:id="@+id/textView"
++        android:layout_width="220dp"
++        android:layout_height="30dp"
++        android:layout_marginLeft="25dp"
++        android:layout_marginTop="100dp"
++        android:layout_marginRight="204dp"
++        android:layout_marginBottom="40dp"
++        android:text="Legg til værforhold"
++        android:textColor="#282F3E"
++        android:textSize="20dp"
++        android:textStyle="bold" />
++
++    <TextView
++        android:id="@+id/textView2"
++        android:layout_width="364dp"
++        android:layout_height="50dp"
++        android:layout_below="@id/textView"
++        android:layout_marginLeft="25dp"
++        android:layout_marginTop="-18dp"
++        android:layout_marginBottom="10dp"
++        android:text="@string/temp_text1"
++        android:textColor="#282F3E"
++        android:textSize="18dp" />
++
++    <TextView
++        android:id="@+id/textView3"
++        android:layout_width="364dp"
++        android:layout_height="30dp"
++        android:layout_below="@id/textView2"
++        android:text="@string/standard_profile_remainder"
++        android:layout_marginLeft="25dp"
++        android:textSize="14dp"
++        android:textColor="#282F3E"
++        android:layout_marginBottom="20dp"/>
+ 
+ 
+     <TextView
+         android:id="@+id/temp1"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:text="Trigger temperatur:"
+-        android:layout_marginLeft="10dp"
+-        android:textStyle="bold"
+-        android:layout_marginTop="100dp"
+-        android:textSize="20sp"/>
++        android:layout_width="141dp"
++        android:layout_height="45dp"
++        android:layout_below="@id/textView3"
++        android:layout_marginLeft="30dp"
++        android:layout_marginTop="60dp"
++        android:layout_marginEnd="20dp"
++        android:layout_marginRight="18dp"
++        android:layout_toStartOf="@+id/trigger_temp"
++        android:text="Temperatur over:"
++        android:textSize="18dp"
++        android:textStyle="bold" />
+ 
+     <EditText
+         android:id="@+id/trigger_temp"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_below="@+id/temp1"
+-        android:layout_marginLeft="20dp"
+-        android:layout_marginRight="20dp"
+-        android:autofillHints="Temperatur i celsius"
++        android:layout_width="91dp"
++        android:layout_height="51dp"
++        android:layout_below="@+id/textView3"
++        android:layout_alignEnd="@+id/textView3"
++        android:layout_marginTop="50dp"
++        android:layout_marginEnd="84dp"
++        android:background="@color/card_background"
++        android:backgroundTint="#DADEE7"
+         android:drawablePadding="10dp"
++        android:inputType="number"
+         android:paddingBottom="20dp"
+-        android:inputType = "number"/>
++
++        android:textColor="#282F3E"
++        android:textSize="18dp" />
+ 
+     <TextView
+         android:id="@+id/nedbor"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_below="@+id/trigger_temp"
+-        android:layout_marginLeft="10dp"
+-        android:layout_marginTop="18dp"
+-        android:text="Nedbør (ja/nei):"
+-        android:textSize="20sp"
++        android:layout_width="63dp"
++        android:layout_height="22dp"
++        android:layout_below="@+id/temp1"
++        android:layout_marginLeft="55dp"
++        android:layout_marginTop="35dp"
++        android:text="Nedbør:"
++
++        android:textSize="18dp"
+         android:textStyle="bold" />
+ 
+     <CheckBox
+         android:id="@+id/checkBox1"
+-        android:layout_below="@+id/nedbor"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginLeft="20dp"
++        android:layout_below="@+id/trigger_temp"
++        android:layout_alignEnd="@+id/trigger_temp"
++        android:layout_marginStart="20dp"
++        android:layout_marginLeft="100dp"
++        android:layout_marginTop="29dp"
++        android:layout_marginEnd="6dp"
++        android:layout_marginBottom="20dp"
++        android:layout_toEndOf="@+id/nedbor"
+         android:text="Ja/nei" />
++
+     <Button
+         android:id="@+id/save"
+-        android:layout_width="100dp"
+-        android:layout_height="60dp"
+-        android:layout_below="@+id/checkBox1"
++        android:layout_width="173dp"
++        android:layout_height="51dp"
++        android:layout_below="@id/nedbor"
+         android:layout_centerHorizontal="true"
+-        android:layout_marginLeft="20dp"
+-        android:layout_marginTop="30dp"
+-        android:layout_marginRight="20dp"
+-        android:backgroundTint="#666666"
++        android:layout_marginTop="80dp"
++        android:background="@drawable/rounded_corners_button"
++        android:backgroundTint="@color/button_grey"
+         android:text="Lagre"
+         android:textAllCaps="false"
+-        android:textColor="#FFFFFF"
+-        android:textSize="20sp" />
++        android:textColor="@color/text_grey"
++        android:textSize="20sp"
++        app:backgroundTint="@color/button_yellow" />
++
++
++
+ 
+ 
+-</RelativeLayout>
+\ No newline at end of file
++</RelativeLayout>
++
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    package=\"com.example.team31\">\n\n    <uses-permission android:name=\"android.permission.INTERNET\" />\n    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />\n    <uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />\n    <uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />\n    <uses-permission android:name=\"com.google.android.providers.gsf.permission.READ_GSERVICES\" />\n\n    <application\n        android:allowBackup=\"true\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:installLocation=\"auto\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/Theme.Team31\">\n        <activity\n            android:name=\".ui.employees.LeggTilRedigerAnsatt\"\n            android:configChanges=\"orientation\"\n            android:label=\"Legg til ansatt\"\n            android:theme=\"@style/Theme.Team31.NoActionBar\" />\n\n        <meta-data\n            android:name=\"com.google.android.geo.API_KEY\"\n            android:value=\"AIzaSyDwU7qloh3FrztFPxnyR4zbbKOBUGmgN9Y\" />\n\n        <activity android:name=\".AnsattActivity\" />\n        <activity android:name=\".AdminActivity\" />\n        <activity android:name=\".Authentication\"\n            android:theme=\"@style/Theme.AppCompat.Light.NoActionBar\"/>\n        <activity android:name=\".InfoSkjerm\" />\n        <activity android:name=\".MainActivity\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n    </application>\n\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 6206a4e08ef8d4b8267313110272b1d7e4b99a5c)
++++ app/src/main/AndroidManifest.xml	(date 1621025832000)
+@@ -16,11 +16,6 @@
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"
+         android:theme="@style/Theme.Team31">
+-        <activity
+-            android:name=".ui.employees.LeggTilRedigerAnsatt"
+-            android:configChanges="orientation"
+-            android:label="Legg til ansatt"
+-            android:theme="@style/Theme.Team31.NoActionBar" />
+ 
+         <meta-data
+             android:name="com.google.android.geo.API_KEY"
+Index: app/src/main/res/layout/aapningstider_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".authentication.location_fragment\">\n\n    <TextView\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n        android:text=\"Registrer åpningstider\" />\n\n\n    <TextView\n        android:id=\"@+id/fra_tid\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n        android:text=\"Fra:\"\n        android:layout_marginLeft=\"10dp\"\n        android:textStyle=\"bold\"\n        android:layout_marginTop=\"100dp\"\n        android:textSize=\"20sp\"/>\n\n    <EditText\n        android:id=\"@+id/start\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_below=\"@+id/fra_tid\"\n        android:layout_marginLeft=\"20dp\"\n        android:layout_marginTop=\"-554dp\"\n        android:layout_marginRight=\"20dp\"\n        android:autofillHints=\"Start\"\n        android:drawablePadding=\"10dp\"\n        android:inputType=\"number\"\n        android:paddingBottom=\"20dp\" />\n\n    <TextView\n        android:id=\"@+id/til_tid\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n        android:layout_marginLeft=\"10dp\"\n        android:layout_below=\"@+id/start\"\n        android:layout_marginTop=\"21dp\"\n        android:text=\"Til:\"\n        android:textSize=\"20sp\"\n        android:textStyle=\"bold\" />\n\n\n    <EditText\n        android:id=\"@+id/slutt\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_below=\"@+id/til_tid\"\n        android:layout_marginLeft=\"20dp\"\n        android:layout_marginTop=\"-450dp\"\n        android:layout_marginRight=\"20dp\"\n        android:autofillHints=\"Slutt\"\n        android:drawablePadding=\"10dp\"\n        android:paddingBottom=\"20dp\"\n        android:inputType = \"number\"/>\n\n    <Button\n        android:id=\"@+id/save\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"60dp\"\n        android:layout_below=\"@+id/slutt\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginLeft=\"20dp\"\n        android:layout_marginTop=\"30dp\"\n        android:layout_marginRight=\"20dp\"\n        android:backgroundTint=\"#666666\"\n        android:text=\"Fullfør\"\n        android:textAllCaps=\"false\"\n        android:textColor=\"#FFFFFF\"\n        android:textSize=\"20sp\" />\n\n\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/aapningstider_fragment.xml	(revision 6206a4e08ef8d4b8267313110272b1d7e4b99a5c)
++++ app/src/main/res/layout/aapningstider_fragment.xml	(date 1621120574000)
+@@ -1,78 +1,140 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    tools:context=".authentication.location_fragment">
++    tools:context=".authentication.location_fragment"
++    android:background="#E8E9EC">
++
++    <androidx.appcompat.widget.Toolbar
++        android:id="@+id/toolbar_location"
++        android:layout_width="411dp"
++        android:layout_height="76dp"
++        android:background="@color/fragment_background"
++        android:focusable="auto"
++        android:padding="22dp"
++        android:textAlignment="center"
++        app:title="Fullfør registereing"
++        app:titleMarginStart="100dp"
++
++        app:titleTextColor="#282F3E" />
+ 
+     <TextView
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent"
+-        android:text="Registrer åpningstider" />
++        android:id="@+id/textView"
++        android:layout_width="250dp"
++        android:layout_height="30dp"
++        android:layout_marginLeft="25dp"
++        android:layout_marginTop="100dp"
++        android:layout_marginRight="204dp"
++        android:layout_marginBottom="40dp"
++        android:text="Legg til åpningstider"
++        android:textColor="#282F3E"
++        android:textSize="19dp"
++        android:textStyle="bold" />
++
++    <TextView
++        android:id="@+id/textView2"
++        android:layout_width="364dp"
++        android:layout_height="30dp"
++        android:layout_below="@id/textView"
++        android:layout_marginLeft="25dp"
++        android:layout_marginTop="-18dp"
++        android:layout_marginBottom="10dp"
++        android:text="@string/openhours_text"
++        android:textColor="#282F3E"
++        android:textSize="18dp" />
++
++    <TextView
++        android:id="@+id/textView3"
++        android:layout_width="364dp"
++        android:layout_height="30dp"
++        android:layout_below="@id/textView2"
++        android:layout_marginTop="20dp"
++        android:text="@string/standard_profile_remainder"
++        android:layout_marginLeft="25dp"
++        android:textSize="14dp"
++        android:textColor="#282F3E"
++        android:layout_marginBottom="20dp"/>
+ 
+ 
+     <TextView
+         android:id="@+id/fra_tid"
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent"
+-        android:text="Fra:"
+-        android:layout_marginLeft="10dp"
+-        android:textStyle="bold"
+-        android:layout_marginTop="100dp"
+-        android:textSize="20sp"/>
++        android:layout_width="52dp"
++        android:layout_height="22dp"
++        android:layout_below="@id/textView3"
++        android:layout_marginLeft="38dp"
++        android:layout_marginTop="98dp"
++        android:layout_toStartOf="@+id/normal_bemanning"
++        android:text="Fra"
++        android:textSize="18dp"
++        android:textStyle="bold" />
+ 
+     <EditText
+         android:id="@+id/start"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_below="@+id/fra_tid"
+-        android:layout_marginLeft="20dp"
+-        android:layout_marginTop="-554dp"
+-        android:layout_marginRight="20dp"
+-        android:autofillHints="Start"
++        android:layout_width="111dp"
++        android:layout_height="51dp"
++        android:layout_below="@+id/textView3"
++        android:layout_alignEnd="@+id/textView3"
++        android:layout_marginTop="79dp"
++        android:layout_marginEnd="211dp"
++        android:background="@color/card_background"
++        android:backgroundTint="#DADEE7"
+         android:drawablePadding="10dp"
+         android:inputType="number"
+-        android:paddingBottom="20dp" />
++        android:paddingBottom="20dp"
++
++        android:textColor="#282F3E"
++        android:textSize="18dp" />
+ 
+     <TextView
+         android:id="@+id/til_tid"
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent"
+-        android:layout_marginLeft="10dp"
+-        android:layout_below="@+id/start"
+-        android:layout_marginTop="21dp"
+-        android:text="Til:"
+-        android:textSize="20sp"
++        android:layout_width="52dp"
++        android:layout_height="22dp"
++        android:layout_below="@+id/textView3"
++        android:layout_alignEnd="@+id/textView3"
++        android:layout_marginLeft="30dp"
++        android:layout_marginTop="98dp"
++        android:layout_marginEnd="150dp"
++        android:layout_marginStart="10dp"
++        android:text="Til"
++        android:textSize="18dp"
+         android:textStyle="bold" />
+ 
+-
+     <EditText
+         android:id="@+id/slutt"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_below="@+id/til_tid"
+-        android:layout_marginLeft="20dp"
+-        android:layout_marginTop="-450dp"
+-        android:layout_marginRight="20dp"
+-        android:autofillHints="Slutt"
++        android:layout_width="111dp"
++        android:layout_height="51dp"
++        android:layout_below="@+id/textView3"
++        android:layout_alignEnd="@+id/textView3"
++        android:layout_marginTop="79dp"
++        android:layout_marginEnd="68dp"
++        android:background="@color/card_background"
++        android:backgroundTint="#DADEE7"
+         android:drawablePadding="10dp"
++        android:inputType="number"
+         android:paddingBottom="20dp"
+-        android:inputType = "number"/>
++
++        android:textColor="#282F3E"
++        android:textSize="18dp" />
+ 
+     <Button
+         android:id="@+id/save"
+-        android:layout_width="wrap_content"
+-        android:layout_height="60dp"
+-        android:layout_below="@+id/slutt"
++        android:layout_width="173dp"
++        android:layout_height="51dp"
++        android:layout_below="@id/fra_tid"
+         android:layout_centerHorizontal="true"
+-        android:layout_marginLeft="20dp"
+-        android:layout_marginTop="30dp"
+-        android:layout_marginRight="20dp"
+-        android:backgroundTint="#666666"
+-        android:text="Fullfør"
++        android:layout_marginTop="80dp"
++        android:background="@drawable/rounded_corners_button"
++        android:backgroundTint="@color/button_grey"
++
++        android:text="Lagre"
++        android:layout_marginBottom="36dp"
+         android:textAllCaps="false"
+-        android:textColor="#FFFFFF"
+-        android:textSize="20sp" />
++        android:textColor="@color/text_grey"
++        android:textSize="20sp"
++        app:backgroundTint="@color/button_yellow" />
++
+ 
+ 
+ </RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\n    <string name=\"app_name\">Team31</string>\n    <string name=\"title_overview\">Oversikt</string>\n    <string name=\"title_employees\">Ansatte</string>\n    <string name=\"title_settings\">Instillinger</string>\n    <string name=\"title_profile\">Profil</string>\n    <string name=\"calendar_date\">date</string>\n    <string name=\"degrees\">Degrees</string>\n    <string name=\"weather_icon\">weather ikon</string>\n    <string name=\"date\">Date</string>\n    <string name=\"lav_bemanning\">Lav bemanning</string>\n    <!-- TODO: Remove or change this placeholder text -->\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\n\n    <string name=\"action_add_employee\">Legg til ansatt</string>\n\n    <string name=\"name\">Navn</string>\n    <string name=\"email\">E-mail</string>\n    <string name=\"Rolle\">Rolle</string>\n    <string name=\"addEmployeeBtn\">Legg til ansatt</string>\n\n\n    <string name=\"store_button\">Lagre</string>\n    <string name=\"name_edit\">Navn</string>\n    <string name=\"email_edit\">E-mail</string>\n    <string name=\"Rolle_edit\">Rolle</string>\n\n    <string name=\"err_msg_select_name\">Skriv navn.</string>\n    <string name=\"err_msg_enter_email\">Skriv email.</string>\n    <string name=\"err_msg_select_rolle\">Velg rolle.</string>\n\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision 6206a4e08ef8d4b8267313110272b1d7e4b99a5c)
++++ app/src/main/res/values/strings.xml	(date 1621114657000)
+@@ -29,4 +29,11 @@
+     <string name="err_msg_enter_email">Skriv email.</string>
+     <string name="err_msg_select_rolle">Velg rolle.</string>
+ 
++    <string name="location_text">Velg posisjon for din arbeidsplass, slik at det vises riktig værmeldig.</string>
++    <string name="standard_profile_remainder">Du kan gjøre endringer senere under din Profil.</string>
++
++    <string name="manpower_text1">Definer antall ansatte du pleier å ha normalt, og maks antall ansatte du kan ha i løpet av en dag.</string>
++    <string name="temp_text1">Velg hvilken værforhold som gjør at du trenger ekstra bemanning.</string>
++    <string name="openhours_text">Legg til åpningstiden for din bedrift.</string>
++
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/layout/profile_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".ui.profile.ProfileFragment\">\n\n    <RelativeLayout\n        android:id=\"@+id/l1\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_margin=\"10dp\"\n        android:background=\"@drawable/rounded_corner_view\"\n        android:orientation=\"vertical\"\n        android:paddingLeft=\"10dp\"\n        android:paddingTop=\"20dp\"\n        android:paddingBottom=\"20dp\"\n        app:layout_constraintHorizontal_bias=\"0.526\"\n        app:layout_constraintLeft_toLeftOf=\"parent\"\n        app:layout_constraintRight_toRightOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\">\n\n\n        <ImageButton\n            android:id=\"@+id/edit_name\"\n            android:layout_width=\"25dp\"\n            android:layout_height=\"25dp\"\n            android:layout_alignParentTop=\"true\"\n            android:layout_alignParentEnd=\"true\"\n            android:layout_marginTop=\"4dp\"\n            android:layout_marginRight=\"13dp\"\n            android:background=\"#ECECEC\"\n            android:scaleType=\"fitXY\"\n            android:src=\"@drawable/edit\" />\n\n        <TextView\n            android:id=\"@+id/navn\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"Navn:\"\n            android:textAllCaps=\"false\"\n            android:textColor=\"@color/black\"\n            android:textSize=\"18sp\" />\n\n        <TextView\n            android:id=\"@+id/mail\"\n            android:layout_below=\"@+id/navn\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"Mail:\"\n            android:textAllCaps=\"false\"\n            android:textColor=\"@color/black\"\n            android:textSize=\"18sp\" />\n\n    </RelativeLayout>\n\n    <RelativeLayout\n        android:id=\"@+id/l2\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_margin=\"10dp\"\n        android:orientation=\"vertical\"\n        android:paddingLeft=\"10dp\"\n        android:paddingTop=\"10dp\"\n        android:paddingBottom=\"10dp\"\n        android:background= \"@drawable/rounded_corner_view\"\n        app:layout_constraintHorizontal_bias=\"1.0\"\n        app:layout_constraintLeft_toLeftOf=\"parent\"\n        app:layout_constraintRight_toRightOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@id/l1\">\n\n        <ImageButton\n            android:id=\"@+id/edit_pos\"\n            android:layout_width=\"25dp\"\n            android:layout_height=\"25dp\"\n            android:layout_alignParentTop=\"true\"\n            android:layout_alignParentEnd=\"true\"\n            android:layout_marginTop=\"4dp\"\n            android:layout_marginRight=\"13dp\"\n            android:src=\"@drawable/edit\"\n            android:scaleType=\"fitCenter\"\n            android:background=\"#ECECEC\"/>\n\n\n        <TextView\n            android:id=\"@+id/position\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"Posisjon:\"\n            android:textAllCaps=\"false\"\n            android:textColor=\"@color/black\"\n            android:textSize=\"18sp\" />\n\n    </RelativeLayout>\n\n    <RelativeLayout\n        android:id=\"@+id/l3\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_margin=\"10dp\"\n        android:orientation=\"vertical\"\n        android:paddingLeft=\"10dp\"\n        android:paddingTop=\"10dp\"\n        android:paddingBottom=\"10dp\"\n        android:background= \"@drawable/rounded_corner_view\"\n        app:layout_constraintHorizontal_bias=\"1.0\"\n        app:layout_constraintLeft_toLeftOf=\"parent\"\n        app:layout_constraintRight_toRightOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@id/l2\">\n\n        <ImageButton\n            android:id=\"@+id/edit_work\"\n            android:layout_width=\"25dp\"\n            android:layout_height=\"25dp\"\n            android:layout_alignParentTop=\"true\"\n            android:layout_alignParentRight=\"true\"\n            android:layout_marginTop=\"4dp\"\n            android:layout_marginRight=\"13dp\"\n            android:background=\"#ECECEC\"\n            android:scaleType=\"fitXY\"\n            android:src=\"@drawable/edit\" />\n\n\n        <TextView\n            android:id=\"@+id/tekst\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"Bemanning:\"\n            android:textAllCaps=\"false\"\n            android:textColor=\"@color/black\"\n            android:textSize=\"18sp\"\n            android:textStyle=\"bold\"/>\n\n        <TextView\n            android:id=\"@+id/normal_bemanning\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"Normal bemanning:\"\n            android:textAllCaps=\"false\"\n            android:textColor=\"@color/black\"\n            android:textSize=\"18sp\"\n            android:layout_below=\"@+id/tekst\"\n            />\n\n        <TextView\n            android:id=\"@+id/max_bemanning\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"Maksimal bemanning\"\n            android:textAllCaps=\"false\"\n            android:textColor=\"@color/black\"\n            android:textSize=\"18sp\"\n            android:layout_below=\"@+id/normal_bemanning\"/>\n\n\n\n    </RelativeLayout>\n\n    <RelativeLayout\n        android:id=\"@+id/l4\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_margin=\"10dp\"\n        android:background= \"@drawable/rounded_corner_view\"\n        android:orientation=\"vertical\"\n        android:paddingLeft=\"10dp\"\n        android:paddingTop=\"10dp\"\n        android:paddingBottom=\"10dp\"\n        app:layout_constraintHorizontal_bias=\"1.0\"\n        app:layout_constraintLeft_toLeftOf=\"parent\"\n        app:layout_constraintRight_toRightOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@id/l3\">\n\n        <ImageButton\n            android:id=\"@+id/edit_weather\"\n            android:layout_width=\"25dp\"\n            android:layout_height=\"25dp\"\n            android:layout_alignParentTop=\"true\"\n            android:layout_alignParentRight=\"true\"\n            android:layout_marginTop=\"4dp\"\n            android:layout_marginRight=\"13dp\"\n            android:background=\"#ECECEC\"\n            android:scaleType=\"fitXY\"\n            android:src=\"@drawable/edit\" />\n\n        <TextView\n            android:id=\"@+id/tekst1\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"Værforhold:\"\n            android:textAllCaps=\"false\"\n            android:textColor=\"@color/black\"\n            android:textSize=\"18sp\"\n            android:textStyle=\"bold\"/>\n        <TextView\n            android:id=\"@+id/trigger\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"Temperatur under: \"\n            android:textAllCaps=\"false\"\n            android:textColor=\"@color/black\"\n            android:textSize=\"18sp\"\n            android:layout_below=\"@+id/tekst1\"/>\n\n        <TextView\n            android:id=\"@+id/nedbor\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"Nedbør: ja/nei\"\n            android:textAllCaps=\"false\"\n            android:textColor=\"@color/black\"\n            android:textSize=\"18sp\"\n            android:layout_below=\"@+id/trigger\"/>\n\n    </RelativeLayout>\n\n    <LinearLayout\n        android:id=\"@+id/l5\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_margin=\"10dp\"\n        android:background= \"@drawable/rounded_corner_view\"\n        android:orientation=\"vertical\"\n        android:paddingLeft=\"10dp\"\n        android:paddingTop=\"10dp\"\n        android:paddingBottom=\"10dp\"\n        app:layout_constraintHorizontal_bias=\"1.0\"\n        app:layout_constraintLeft_toLeftOf=\"parent\"\n        app:layout_constraintRight_toRightOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@id/l4\">\n\n        <TextView\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"Roller:\"\n            android:textAllCaps=\"false\"\n            android:textColor=\"@color/black\"\n            android:textSize=\"18sp\" />\n\n    </LinearLayout>\n\n    <RelativeLayout\n        android:id=\"@+id/l6\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_margin=\"10dp\"\n        android:background= \"@drawable/rounded_corner_view\"\n        android:orientation=\"vertical\"\n        android:paddingLeft=\"5dp\"\n        android:paddingTop=\"10dp\"\n        android:paddingBottom=\"10dp\"\n        app:layout_constraintHorizontal_bias=\"1.0\"\n        app:layout_constraintLeft_toLeftOf=\"parent\"\n        app:layout_constraintRight_toRightOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@id/l5\">\n\n        <ImageButton\n            android:id=\"@+id/edit_opening\"\n            android:layout_width=\"25dp\"\n            android:layout_height=\"25dp\"\n            android:layout_alignParentTop=\"true\"\n            android:layout_alignParentRight=\"true\"\n            android:layout_marginTop=\"4dp\"\n            android:layout_marginRight=\"13dp\"\n            android:background=\"#ECECEC\"\n            android:scaleType=\"fitXY\"\n            android:src=\"@drawable/edit\" />\n\n\n        <TextView\n            android:id=\"@+id/aapning\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"Åpningstider: fra x til y\"\n            android:textAllCaps=\"false\"\n            android:textColor=\"@color/black\"\n            android:textSize=\"18sp\" />\n\n    </RelativeLayout>\n\n    <Button\n        android:id=\"@+id/edit_passord\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"60dp\"\n        android:layout_below=\"@+id/l6\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginLeft=\"20dp\"\n        android:layout_marginTop=\"30dp\"\n        android:layout_marginRight=\"20dp\"\n        android:backgroundTint=\"#666666\"\n        android:text=\"Endre passord\"\n        android:textAllCaps=\"false\"\n        android:textColor=\"#FFFFFF\"\n        android:textSize=\"20sp\"\n        app:layout_constraintLeft_toLeftOf=\"parent\"\n        app:layout_constraintRight_toRightOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@id/l6\"/>\n\n\n\n\n\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/profile_fragment.xml	(revision 6206a4e08ef8d4b8267313110272b1d7e4b99a5c)
++++ app/src/main/res/layout/profile_fragment.xml	(date 1621074836000)
+@@ -4,7 +4,8 @@
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    tools:context=".ui.profile.ProfileFragment">
++    tools:context=".ui.profile.ProfileFragment"
++    android:background="@color/fragment_background">
+ 
+     <RelativeLayout
+         android:id="@+id/l1"
+@@ -20,7 +21,8 @@
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+         app:layout_constraintTop_toBottomOf="parent"
+-        app:layout_constraintTop_toTopOf="parent">
++        app:layout_constraintTop_toTopOf="parent"
++        android:backgroundTint="@color/card_background">
+ 
+ 
+         <ImageButton
+@@ -40,6 +42,7 @@
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Navn:"
++            android:textStyle="bold"
+             android:textAllCaps="false"
+             android:textColor="@color/black"
+             android:textSize="18sp" />
+@@ -50,6 +53,7 @@
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Mail:"
++            android:textStyle="bold"
+             android:textAllCaps="false"
+             android:textColor="@color/black"
+             android:textSize="18sp" />
+@@ -69,7 +73,8 @@
+         app:layout_constraintHorizontal_bias="1.0"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+-        app:layout_constraintTop_toBottomOf="@id/l1">
++        app:layout_constraintTop_toBottomOf="@id/l1"
++        android:backgroundTint="@color/card_background">
+ 
+         <ImageButton
+             android:id="@+id/edit_pos"
+@@ -89,9 +94,11 @@
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Posisjon:"
++            android:textStyle="bold"
+             android:textAllCaps="false"
+             android:textColor="@color/black"
+-            android:textSize="18sp" />
++            android:textSize="18sp"
++            android:backgroundTint="@color/card_background"/>
+ 
+     </RelativeLayout>
+ 
+@@ -108,7 +115,10 @@
+         app:layout_constraintHorizontal_bias="1.0"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+-        app:layout_constraintTop_toBottomOf="@id/l2">
++        app:layout_constraintTop_toBottomOf="@id/l2"
++        android:backgroundTint="@color/card_background"
++        >
++
+ 
+         <ImageButton
+             android:id="@+id/edit_work"
+@@ -171,7 +181,8 @@
+         app:layout_constraintHorizontal_bias="1.0"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+-        app:layout_constraintTop_toBottomOf="@id/l3">
++        app:layout_constraintTop_toBottomOf="@id/l3"
++        android:backgroundTint="@color/card_background">
+ 
+         <ImageButton
+             android:id="@+id/edit_weather"
+@@ -229,12 +240,14 @@
+         app:layout_constraintHorizontal_bias="1.0"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+-        app:layout_constraintTop_toBottomOf="@id/l4">
++        app:layout_constraintTop_toBottomOf="@id/l4"
++        android:backgroundTint="@color/card_background">
+ 
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Roller:"
++            android:textStyle="bold"
+             android:textAllCaps="false"
+             android:textColor="@color/black"
+             android:textSize="18sp" />
+@@ -254,7 +267,8 @@
+         app:layout_constraintHorizontal_bias="1.0"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+-        app:layout_constraintTop_toBottomOf="@id/l5">
++        app:layout_constraintTop_toBottomOf="@id/l5"
++        android:backgroundTint="@color/card_background">
+ 
+         <ImageButton
+             android:id="@+id/edit_opening"
+@@ -273,7 +287,8 @@
+             android:id="@+id/aapning"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+-            android:text="Åpningstider: fra x til y"
++            android:text="Åpningstider:"
++            android:textStyle="bold"
+             android:textAllCaps="false"
+             android:textColor="@color/black"
+             android:textSize="18sp" />
+@@ -282,25 +297,24 @@
+ 
+     <Button
+         android:id="@+id/edit_passord"
+-        android:layout_width="wrap_content"
+-        android:layout_height="60dp"
++        android:layout_width="173dp"
++        android:layout_height="51dp"
+         android:layout_below="@+id/l6"
+         android:layout_centerHorizontal="true"
+         android:layout_marginLeft="20dp"
+         android:layout_marginTop="30dp"
+         android:layout_marginRight="20dp"
+-        android:backgroundTint="#666666"
++        android:background="@drawable/rounded_corners_button"
++        android:textStyle="bold"
++        app:backgroundTint="@color/button_yellow"
+         android:text="Endre passord"
+         android:textAllCaps="false"
+-        android:textColor="#FFFFFF"
+-        android:textSize="20sp"
++        android:textColor="@color/text_grey"
++        android:textSize="18dp"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+-        app:layout_constraintTop_toBottomOf="@id/l6"/>
+-
+-
+-
+-
++        app:layout_constraintTop_toBottomOf="@id/l6"
++        />
+ 
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/navigation/mobile_navigation.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<navigation xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:id=\"@+id/mobile_navigation.xml\"\n    app:startDestination=\"@id/navigation_overview\">\n\n\n    <fragment\n        android:id=\"@+id/navigation_overview\"\n        android:name=\"com.example.team31.ui.overview.week_overview.OverviewFragment\"\n        android:label=\"@string/title_overview\"\n        tools:layout=\"@layout/overview_fragment\" >\n        <action\n            android:id=\"@+id/actionDetail\"\n            app:destination=\"@id/detailFragment\" />\n    </fragment>\n\n    <fragment\n        android:id=\"@+id/navigation_employees\"\n        android:name=\"com.example.team31.ui.employees.myEmployees.MyEmployeeFragment\"\n        android:label=\"@string/title_employees\"\n        tools:layout=\"@layout/employees_fragment\" >\n        <action\n            android:id=\"@+id/action_navigation_employees_to_addMyEmpoyeeFragment\"\n            app:destination=\"@id/addMyEmpoyeeFragment\" />\n        <action\n            android:id=\"@+id/action_navigation_employees_to_addMyEmpoyeeFragment2\"\n            app:destination=\"@id/addMyEmpoyeeFragment\" />\n        <action\n            android:id=\"@+id/action_navigation_employees_to_editEmployee\"\n            app:destination=\"@id/editEmployee\" />\n        <argument\n            android:name=\"ansattId\"\n            app:argType=\"string\" />\n    </fragment>\n\n    <fragment\n        android:id=\"@+id/navigation_settings\"\n        android:name=\"com.example.team31.ui.settings.SettingsFragment\"\n        android:label=\"@string/title_settings\"\n        tools:layout=\"@layout/settings_fragment\" />\n\n    <fragment\n        android:id=\"@+id/navigation_profile\"\n        android:name=\"com.example.team31.ui.profile.ProfileFragment\"\n        android:label=\"@string/title_profile\"\n        tools:layout=\"@layout/profile_fragment\" >\n        <action\n            android:id=\"@+id/action_navigation_profile_to_edit_name\"\n            app:destination=\"@id/edit_name\"/>\n        <argument\n            android:name=\"userId\"\n            app:argType=\"string\" />\n        <action\n            android:id=\"@+id/action_navigation_profile_to_edit_pos\"\n            app:destination=\"@id/edit_pos\" />\n        <action\n            android:id=\"@+id/action_navigation_profile_to_edit_work\"\n            app:destination=\"@id/edit_work\" />\n        <action\n            android:id=\"@+id/action_navigation_profile_to_edit_weather\"\n            app:destination=\"@id/edit_weather\" />\n        <action\n            android:id=\"@+id/action_navigation_profile_to_edit_opening\"\n            app:destination=\"@id/edit_opening\" />\n        <action\n            android:id=\"@+id/action_navigation_profile_to_edit_password\"\n            app:destination=\"@id/edit_password\" />\n\n\n    </fragment>\n\n    <fragment\n        android:id=\"@+id/detailFragment\"\n        android:name=\"com.example.team31.ui.overview.detail.DetailFragment\"\n        android:label=\"detail_fragment\"\n        tools:layout=\"@layout/detail_fragment\" >\n        <argument\n            android:name=\"RefinedForecast\"\n            app:argType=\"com.example.team31.ui.overview.week_overview.RefinedForecast\" />\n        <argument\n            android:name=\"extraStaff\"\n            app:argType=\"integer\" />\n    </fragment>\n\n    <fragment\n        android:id=\"@+id/edit_name\"\n        android:name=\"com.example.team31.ui.profile.edit_name\"\n        android:label=\"edit_name\"\n        tools:layout=\"@layout/edit_name\" >\n        <action\n            android:id=\"@+id/action_edit_name_to_navigation_profile\"\n            app:destination=\"@id/navigation_profile\" />\n    </fragment>\n    <fragment\n        android:id=\"@+id/edit_pos\"\n        android:name=\"com.example.team31.ui.profile.edit_pos\"\n        android:label=\"edit_pos\"\n        tools:layout=\"@layout/edit_pos\" >\n        <action\n            android:id=\"@+id/action_edit_pos_to_navigation_profile\"\n            app:destination=\"@id/navigation_profile\" />\n    </fragment>\n    <fragment\n        android:id=\"@+id/edit_work\"\n        android:name=\"com.example.team31.ui.profile.edit_work\"\n        android:label=\"edit_work\"\n        tools:layout=\"@layout/edit_work\" >\n        <action\n            android:id=\"@+id/action_edit_work_to_navigation_profile\"\n            app:destination=\"@id/navigation_profile\" />\n    </fragment>\n    <fragment\n        android:id=\"@+id/edit_weather\"\n        android:name=\"com.example.team31.ui.profile.edit_weather\"\n        android:label=\"edit_weather\"\n        tools:layout=\"@layout/edit_weather\" >\n        <action\n            android:id=\"@+id/action_edit_weather_to_navigation_profile\"\n            app:destination=\"@id/navigation_profile\" />\n    </fragment>\n    <fragment\n        android:id=\"@+id/edit_opening\"\n        android:name=\"com.example.team31.ui.profile.edit_opening\"\n        android:label=\"edit_opening\"\n        tools:layout=\"@layout/edit_opening\" >\n        <action\n            android:id=\"@+id/action_edit_opening_to_navigation_profile\"\n            app:destination=\"@id/navigation_profile\" />\n    </fragment>\n    <fragment\n        android:id=\"@+id/edit_password\"\n        android:name=\"com.example.team31.ui.profile.edit_password\"\n        android:label=\"edit_password\"\n        tools:layout=\"@layout/edit_password\" >\n        <action\n            android:id=\"@+id/action_edit_password_to_navigation_profile\"\n            app:destination=\"@id/navigation_profile\" />\n    </fragment>\n    <fragment\n        android:id=\"@+id/addMyEmpoyeeFragment\"\n        android:name=\"com.example.team31.ui.employees.addMyEmployee.AddMyEmpoyeeFragment\"\n        android:label=\"addmyemployee_fragment\"\n        tools:layout=\"@layout/addmyemployee_fragment\" />\n    <fragment\n        android:id=\"@+id/editEmployee\"\n        android:name=\"com.example.team31.ui.employees.myEmployees.editEmployee\"\n        android:label=\"fragment_edit_employee\"\n        tools:layout=\"@layout/fragment_edit_employee\" >\n        <argument\n            android:name=\"ansattId\"\n            app:argType=\"string\" />\n    </fragment>\n\n</navigation>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/navigation/mobile_navigation.xml	(revision 6206a4e08ef8d4b8267313110272b1d7e4b99a5c)
++++ app/src/main/res/navigation/mobile_navigation.xml	(date 1621119179000)
+@@ -141,12 +141,12 @@
+     <fragment
+         android:id="@+id/addMyEmpoyeeFragment"
+         android:name="com.example.team31.ui.employees.addMyEmployee.AddMyEmpoyeeFragment"
+-        android:label="addmyemployee_fragment"
++        android:label="Ansatte"
+         tools:layout="@layout/addmyemployee_fragment" />
+     <fragment
+         android:id="@+id/editEmployee"
+         android:name="com.example.team31.ui.employees.myEmployees.editEmployee"
+-        android:label="fragment_edit_employee"
++        android:label="Ansatte"
+         tools:layout="@layout/fragment_edit_employee" >
+         <argument
+             android:name="ansattId"
+Index: app/src/main/res/layout/profile_fragment_ansatt_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".ui.ansatt_interface.ansatt_profile.ProfileFragmentAnsatt\">\n\n    <RelativeLayout\n        android:id=\"@+id/l1\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_margin=\"10dp\"\n        android:background=\"@drawable/rounded_corner_view\"\n        android:orientation=\"vertical\"\n        android:paddingLeft=\"10dp\"\n        android:paddingTop=\"20dp\"\n        android:paddingBottom=\"20dp\"\n        app:layout_constraintHorizontal_bias=\"0.473\"\n        app:layout_constraintLeft_toLeftOf=\"parent\"\n        app:layout_constraintRight_toRightOf=\"parent\"\n        tools:layout_editor_absoluteY=\"10dp\">\n\n\n        <ImageButton\n            android:id=\"@+id/edit_name\"\n            android:layout_width=\"25dp\"\n            android:layout_height=\"25dp\"\n            android:layout_alignParentTop=\"true\"\n            android:layout_alignParentEnd=\"true\"\n            android:layout_marginTop=\"4dp\"\n            android:layout_marginRight=\"13dp\"\n            android:background=\"#ECECEC\"\n            android:scaleType=\"fitXY\"\n            android:src=\"@drawable/edit\" />\n\n        <TextView\n            android:id=\"@+id/navnAnsatt\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"Navn:\"\n            android:textAllCaps=\"false\"\n            android:textColor=\"@color/black\"\n            android:textSize=\"18sp\" />\n\n        <TextView\n            android:id=\"@+id/emailAnsatt\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_below=\"@+id/navnAnsatt\"\n            android:text=\"Mail:\"\n            android:textAllCaps=\"false\"\n            android:textColor=\"@color/black\"\n            android:textSize=\"18sp\" />\n\n    </RelativeLayout>\n\n    <LinearLayout\n        android:id=\"@+id/l5\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_margin=\"10dp\"\n        android:layout_marginTop=\"120dp\"\n        android:background=\"@drawable/rounded_corner_view\"\n        android:orientation=\"vertical\"\n        android:paddingLeft=\"10dp\"\n        android:paddingTop=\"10dp\"\n        android:paddingBottom=\"10dp\"\n        app:layout_constraintHorizontal_bias=\"0.473\"\n        app:layout_constraintLeft_toLeftOf=\"parent\"\n        app:layout_constraintRight_toRightOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@+id/l1\">\n\n        <TextView\n            android:id=\"@+id/rolleAnsatt\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"Roller:\"\n            android:textAllCaps=\"false\"\n            android:textColor=\"@color/black\"\n            android:textSize=\"18sp\" />\n\n    </LinearLayout>\n\n    <Button\n        android:id=\"@+id/edit_employee_password_button\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"0dp\"\n        android:layout_below=\"@+id/l6\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_marginLeft=\"20dp\"\n        android:layout_marginTop=\"120dp\"\n        android:layout_marginRight=\"20dp\"\n        android:backgroundTint=\"#666666\"\n        android:text=\"Endre passord\"\n        android:textAllCaps=\"false\"\n        android:textColor=\"#FFFFFF\"\n        android:textSize=\"20sp\"\n        app:layout_constraintLeft_toLeftOf=\"parent\"\n        app:layout_constraintRight_toRightOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@+id/l5\" />\n\n\n\n\n\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/profile_fragment_ansatt_fragment.xml	(revision 6206a4e08ef8d4b8267313110272b1d7e4b99a5c)
++++ app/src/main/res/layout/profile_fragment_ansatt_fragment.xml	(date 1621100426000)
+@@ -4,7 +4,8 @@
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    tools:context=".ui.ansatt_interface.ansatt_profile.ProfileFragmentAnsatt">
++    tools:context=".ui.ansatt_interface.ansatt_profile.ProfileFragmentAnsatt"
++    android:background="@color/fragment_background">
+ 
+     <RelativeLayout
+         android:id="@+id/l1"
+@@ -19,7 +20,9 @@
+         app:layout_constraintHorizontal_bias="0.473"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+-        tools:layout_editor_absoluteY="10dp">
++        tools:layout_editor_absoluteY="10dp"
++        android:backgroundTint="@color/card_background"
++        tools:ignore="MissingConstraints">
+ 
+ 
+         <ImageButton
+@@ -69,7 +72,8 @@
+         app:layout_constraintHorizontal_bias="0.473"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/l1">
++        app:layout_constraintTop_toBottomOf="@+id/l1"
++        android:backgroundTint="@color/card_background">
+ 
+         <TextView
+             android:id="@+id/rolleAnsatt"
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<resources>\n    <color name=\"purple_200\">#FFBB86FC</color>\n    <color name=\"purple_500\">#FF6200EE</color>\n    <color name=\"purple_700\">#FF3700B3</color>\n    <color name=\"teal_200\">#FF03DAC5</color>\n    <color name=\"teal_700\">#FF018786</color>\n    <color name=\"black\">#FF000000</color>\n    <color name=\"white\">#FFFFFFFF</color>\n    <color name=\"button_yellow\">#FCBA5F</color>\n    <color name=\"text_grey\">#282F3E</color>\n    <color name=\"text_light\">#EEF0F4</color>\n    <color name =\"button_blue\">#1E6B9C</color>\n    <color name = \"login_blue\">#1E6B9C</color>\n    <color name = \"button_blue_text\">#FEEED7</color>\n    <color name = \"cancel_button_detail\">#CDD3DF</color>\n    <color name = \"fragment_background\">#DADEE7</color>\n    <color name = \"card_background\">#EEF0F4</color>\n    <color name = \"transparent\">#00FFFFFF</color>\n    <color name=\"grey_900\">#212121</color>\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/colors.xml	(revision 6206a4e08ef8d4b8267313110272b1d7e4b99a5c)
++++ app/src/main/res/values/colors.xml	(date 1621075329000)
+@@ -11,10 +11,12 @@
+     <color name="text_grey">#282F3E</color>
+     <color name="text_light">#EEF0F4</color>
+     <color name ="button_blue">#1E6B9C</color>
++    <color name="bar_color">#E8E9EC</color>
+     <color name = "login_blue">#1E6B9C</color>
+     <color name = "button_blue_text">#FEEED7</color>
+     <color name = "cancel_button_detail">#CDD3DF</color>
+     <color name = "fragment_background">#DADEE7</color>
++    <color name = "button_grey">#8F9CB7</color>
+     <color name = "card_background">#EEF0F4</color>
+     <color name = "transparent">#00FFFFFF</color>
+     <color name="grey_900">#212121</color>
+Index: app/src/main/java/com/example/team31/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.team31\n\nimport android.content.Context\nimport android.content.Intent\nimport androidx.appcompat.app.AppCompatActivity\nimport android.os.Bundle\nimport android.view.inputmethod.InputMethodManager\nimport java.io.Serializable\n\nclass MainActivity : AppCompatActivity() {\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        setContentView(R.layout.activity_main)\n        //startActivity2()\n        startActivityLogin()\n\n        /*\n\n        val knapp = findViewById<Button>(R.id.loginn_knapp)\n        val registrerKnapp = findViewById<Button>(R.id.registrer_knapp)\n\n        //val bruker1 = Bruker(\"1\", \"gregoraskjer1998@gmail.com\", \"team31\",  \"https://scontent.fosl4-2.fna.fbcdn.net/v/t1.0-9/20914600_1599415190131918_6973241602838320977_n.jpg?_nc_cat=109&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=u40y80CFTb4AX9ym_wJ&_nc_ht=scontent.fosl4-2.fna&oh=5050d239d40b315210e726be23efd012&oe=6080875B\", \"Gregor Askjer\")\n        //val bruker2 = Bruker(\"2\", \"erna@gmail.com\", \"team31\", \"https://media.snl.no/media/55190/standard_ernasolberg2_portrett.jpg\", \"Erna Solberg\")\n        //val bruker3 = Bruker(\"3\", \"jonas@gmail.com\", \"team31\", \"https://scontent.fosl4-2.fna.fbcdn.net/v/t1.0-9/25299036_1651451734877105_8386288601747239610_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=GZX3gMALj_wAX9454mm&_nc_ht=scontent.fosl4-2.fna&oh=6b87999d39614bb4a068c0628f8f0c36&oe=607F6F4F\", \"Jonas Erikstein\")\n        //val bruker4 = Bruker(\"4\", \"henrik@gmail.com\", \"team31\", \"https://media-exp1.licdn.com/dms/image/C5603AQErhUyvuP4IFg/profile-displayphoto-shrink_200_200/0/1517526098923?e=1618444800&v=beta&t=gR3iaoZIg8ZJnx-xXfrnmvwyiUtutQoBnCUzsh0bsdA\", \"Henrik Baardson\")\n\n        val brukere = mutableListOf<Bruker>()\n        //brukere.add(bruker1)\n       // brukere.add(bruker2)\n       //brukere.add(bruker3)\n        //brukere.add(bruker4)\n        val ref = FirebaseDatabase.getInstance().getReference(\"Users\")\n\n        // Henter brukere fra firebase\n        val UserListener = object : ValueEventListener {\n            override fun onDataChange(dataSnapshot: DataSnapshot) {\n                if(dataSnapshot.exists()){\n                    for(i in dataSnapshot.children){\n                        val user = i.getValue(Bruker::class.java)\n                        brukere.add(user!!)\n                    }\n                }\n            }\n\n            override fun onCancelled(databaseError: DatabaseError) {\n                // Getting Post failed, log a message\n                Log.w(\"message\", \"loadPost:onCancelled\", databaseError.toException())\n            }\n        }\n        ref.addValueEventListener(UserListener)\n\n        //val ansatt1 = Ansatt(null, \"gregor@gmail.com\",\"t\", \"Gregor Askjer\", \"Kokk\")\n\n        val email = findViewById<TextView>(R.id.email)\n        val passord = findViewById<TextView>(R.id.passord)\n\n        knapp.setOnClickListener {\n            val email_svar = email.text.toString()\n            val passord_svar = passord.text.toString()\n            if (email_svar.isBlank() || passord_svar.isBlank() ){\n                Toast.makeText(this, \"Ugyldig input!\", Toast.LENGTH_SHORT).show()\n                hideKeyboard()\n                return@setOnClickListener\n            }\n            //val user = brukere.email.find(email_svar)\n            val user: Bruker? = brukere.find { it.email == email_svar }\n\n            if (user != null) {\n                //Toast.makeText(this@MainActivity, user.navn, Toast.LENGTH_SHORT).show()\n\n                if (passord_svar == user.passord){\n                    startActivity2(user)\n                }\n                else {\n                    email.text = \"\"\n                    passord.text = \"\"\n                    Toast.makeText(this, \"Feil passord\", Toast.LENGTH_SHORT).show()\n                }\n            }\n            else {\n                Toast.makeText(this, \"Du er ikke registrert hos oss. Registrer deg nå!\", Toast.LENGTH_LONG).show()\n            }\n            hideKeyboard()\n        }\n\n        registrerKnapp.setOnClickListener {\n            startActivity3()\n            //leggTilAnsatt(brukere[0], ansatt1)\n        }*/\n\n    }\n\n\n\n    // starter Infoskjerm\n    /*\n    fun startActivity2(i:Bruker){\n        val intent = Intent(this, InfoSkjerm::class.java)\n        intent.putExtra(\"User\", i as Serializable)\n        startActivity(intent)\n    }*/\n\n    //Starter AdminActivity\n    fun startActivity2(){\n        val intent = Intent(this, AnsattActivity::class.java)\n        startActivity(intent)\n    }\n\n    fun startActivityLogin(){\n        val intent = Intent(this, Authentication::class.java)\n        startActivity(intent)\n    }\n\n\n    /*\n    fun leggTilAnsatt(admin:Bruker, ansatt: Ansatt){\n        val refAnsatt = FirebaseDatabase.getInstance().getReference(\"Ansatte\").child(admin.id)\n\n        val ansattId = refAnsatt.push().key\n        refAnsatt.child(ansattId!!).setValue(ansatt).addOnCompleteListener {\n            Toast.makeText(this, \"Ansatt registrert\", Toast.LENGTH_SHORT).show()\n        }\n\n\n\n    }\n*/\n    fun hideKeyboard() {\n        val view = this.currentFocus\n        if (view != null){\n            val hideMe = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager\n            hideMe.hideSoftInputFromWindow(view.windowToken,0)\n\n\n        }\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/team31/MainActivity.kt	(revision 6206a4e08ef8d4b8267313110272b1d7e4b99a5c)
++++ app/src/main/java/com/example/team31/MainActivity.kt	(date 1621101096000)
+@@ -5,15 +5,18 @@
+ import androidx.appcompat.app.AppCompatActivity
+ import android.os.Bundle
+ import android.view.inputmethod.InputMethodManager
++import android.widget.Toolbar
+ import java.io.Serializable
+ 
+ class MainActivity : AppCompatActivity() {
++
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_main)
+         //startActivity2()
+         startActivityLogin()
+ 
++
+         /*
+ 
+         val knapp = findViewById<Button>(R.id.loginn_knapp)
+Index: app/src/main/res/layout/location_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".authentication.location_fragment\"\n    android:background=\"@color/fragment_background\">\n\n\n    <TextView\n        android:id=\"@+id/textView\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n        android:text=\"Registrer posisjon\"\n        android:textSize=\"35dp\"\n        app:layout_constraintBottom_toTopOf=\"@+id/autocomplete_fragment1\"\n        app:layout_constraintStart_toStartOf=\"parent\" />\n\n    <LinearLayout\n        android:id=\"@+id/autocomplete_fragment1\"\n        android:layout_width=\"340dp\"\n        android:layout_height=\"50dp\"\n        tools:layout_editor_absoluteX=\"0dp\"\n        tools:layout_editor_absoluteY=\"283dp\"\n        android:background=\"@color/card_background\"\n        app:layout_constraintBottom_toBottomOf=\"@+id/textView\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.4\"\n        android:gravity=\"center\"\n        >\n\n        <fragment\n            android:id=\"@+id/autocomplete_fragment\"\n            android:name=\"com.google.android.libraries.places.widget.AutocompleteSupportFragment\"\n            android:layout_width=\"361dp\"\n            android:layout_height=\"24dp\"\n            android:layout_gravity=\"center\"\n            app:layout_constraintBottom_toBottomOf=\"@+id/textView\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toTopOf=\"parent\"\n            app:layout_constraintVertical_bias=\"0.4\" />\n    </LinearLayout>\n\n    <Button\n        android:id=\"@+id/registrer_knapp\"\n        android:layout_width=\"173dp\"\n        android:layout_height=\"51dp\"\n        android:layout_below=\"@+id/autocomplete_fragment1\"\n        android:layout_centerHorizontal=\"true\"\n        android:background=\"@drawable/rounded_corners_button\"\n        android:backgroundTint=\"@color/button_yellow\"\n        android:text=\"Lagre\"\n        android:textAllCaps=\"false\"\n        android:textColor=\"@color/text_grey\"\n        android:textSize=\"20sp\"\n        app:backgroundTint=\"@color/button_yellow\"\n        app:layout_constraintBottom_toBottomOf=\"@+id/textView\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@+id/autocomplete_fragment1\"\n        app:layout_constraintVertical_bias=\"0.36\" />\n\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/location_fragment.xml	(revision 6206a4e08ef8d4b8267313110272b1d7e4b99a5c)
++++ app/src/main/res/layout/location_fragment.xml	(date 1621114531000)
+@@ -1,42 +1,85 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     tools:context=".authentication.location_fragment"
+-    android:background="@color/fragment_background">
++    android:background="#E8E9EC"
++    >
++
++    <androidx.appcompat.widget.Toolbar
++        android:id="@+id/toolbar_location"
++        android:layout_width="411dp"
++        android:layout_height="76dp"
++        android:background="@color/fragment_background"
++        android:textAlignment="center"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:title="Fullfør registereing"
++        app:titleMarginStart="100dp"
++        app:titleTextColor="#282F3E"
++        android:padding="10dp"/>
+ 
+ 
+     <TextView
+         android:id="@+id/textView"
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent"
+-        android:text="Registrer posisjon"
+-        android:textSize="35dp"
+-        app:layout_constraintBottom_toTopOf="@+id/autocomplete_fragment1"
+-        app:layout_constraintStart_toStartOf="parent" />
++        android:layout_width="182dp"
++        android:layout_height="35dp"
++        android:layout_marginTop="100dp"
++        android:layout_marginLeft="25dp"
++        android:layout_marginRight="204dp"
++        android:layout_marginBottom="40dp"
++        android:text="Legg til posisjon"
++        android:textColor="#282F3E"
++        android:textSize="24dp"
++        android:textStyle="bold"
++        />
++
++    <TextView
++        android:id="@+id/textView2"
++        android:layout_width="364dp"
++        android:layout_height="50dp"
++        android:layout_marginLeft="25dp"
++        android:layout_below="@id/textView"
++        android:text="@string/location_text"
++        android:textSize="18dp"
++        android:textColor="#282F3E"
++        android:layout_marginBottom="10dp"/>
++
++    <TextView
++        android:id="@+id/textView3"
++        android:layout_width="364dp"
++        android:layout_height="30dp"
++        android:layout_below="@id/textView2"
++        android:text="@string/standard_profile_remainder"
++        android:layout_marginLeft="25dp"
++        android:textSize="14dp"
++        android:textColor="#282F3E"
++        android:layout_marginBottom="20dp"/>
++    
++
++
+ 
+     <LinearLayout
+         android:id="@+id/autocomplete_fragment1"
+         android:layout_width="340dp"
+-        android:layout_height="50dp"
++        android:layout_height="51dp"
+         tools:layout_editor_absoluteX="0dp"
+         tools:layout_editor_absoluteY="283dp"
+-        android:background="@color/card_background"
+-        app:layout_constraintBottom_toBottomOf="@+id/textView"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        app:layout_constraintVertical_bias="0.4"
++        android:layout_marginLeft="35dp"
++        android:background="#DADEE7"
++        android:layout_below="@id/textView3"
+         android:gravity="center"
++
+         >
+ 
+         <fragment
+             android:id="@+id/autocomplete_fragment"
+             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+-            android:layout_width="361dp"
+-            android:layout_height="24dp"
++            android:layout_width="210dp"
++            android:layout_height="22dp"
+             android:layout_gravity="center"
+             app:layout_constraintBottom_toBottomOf="@+id/textView"
+             app:layout_constraintEnd_toEndOf="parent"
+@@ -52,17 +95,15 @@
+         android:layout_below="@+id/autocomplete_fragment1"
+         android:layout_centerHorizontal="true"
+         android:background="@drawable/rounded_corners_button"
+-        android:backgroundTint="@color/button_yellow"
++        android:backgroundTint="@color/button_grey"
+         android:text="Lagre"
++
+         android:textAllCaps="false"
+         android:textColor="@color/text_grey"
+         android:textSize="20sp"
+         app:backgroundTint="@color/button_yellow"
+-        app:layout_constraintBottom_toBottomOf="@+id/textView"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/autocomplete_fragment1"
+-        app:layout_constraintVertical_bias="0.36" />
++        android:layout_marginTop="225dp"
++        />
+ 
+ 
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
++</RelativeLayout>
+\ No newline at end of file

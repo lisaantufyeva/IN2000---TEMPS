@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment">
+    tools:context=".ui.profile.ProfileFragment"
+    android:background="@color/fragment_background">
 
     <RelativeLayout
         android:id="@+id/l1"
@@ -13,14 +14,15 @@
         android:layout_margin="10dp"
         android:background="@drawable/rounded_corner_view"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@color/card_background">
 
 
         <ImageButton
@@ -30,16 +32,18 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="4dp"
-            android:layout_marginRight="13dp"
+            android:layout_marginEnd="13dp"
             android:background="#ECECEC"
             android:scaleType="fitXY"
-            android:src="@drawable/edit" />
+            android:src="@drawable/edit"
+            android:contentDescription="@string/edit" />
 
         <TextView
             android:id="@+id/navn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Navn:"
+            android:text="@string/name"
+            android:textStyle="bold"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp" />
@@ -49,7 +53,8 @@
             android:layout_below="@+id/navn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mail:"
+            android:text="@string/e_mail"
+            android:textStyle="bold"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp" />
@@ -62,14 +67,15 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:background= "@drawable/rounded_corner_view"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/l1">
+        app:layout_constraintTop_toBottomOf="@id/l1"
+        android:backgroundTint="@color/card_background">
 
         <ImageButton
             android:id="@+id/edit_pos"
@@ -78,20 +84,23 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="4dp"
-            android:layout_marginRight="13dp"
+            android:layout_marginEnd="13dp"
             android:src="@drawable/edit"
             android:scaleType="fitCenter"
-            android:background="#ECECEC"/>
+            android:background="#ECECEC"
+            android:contentDescription="@string/edit" />
 
 
         <TextView
             android:id="@+id/position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Posisjon:"
+            android:text="@string/posisjon"
+            android:textStyle="bold"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:backgroundTint="@color/card_background"/>
 
     </RelativeLayout>
 
@@ -101,33 +110,37 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:background= "@drawable/rounded_corner_view"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/l2">
+        app:layout_constraintTop_toBottomOf="@id/l2"
+        android:backgroundTint="@color/card_background"
+        >
+
 
         <ImageButton
             android:id="@+id/edit_work"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="4dp"
-            android:layout_marginRight="13dp"
+            android:layout_marginEnd="13dp"
             android:background="#ECECEC"
             android:scaleType="fitXY"
-            android:src="@drawable/edit" />
+            android:src="@drawable/edit"
+            android:contentDescription="@string/edit" />
 
 
         <TextView
             android:id="@+id/tekst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bemanning:"
+            android:text="@string/bemanning"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp"
@@ -137,7 +150,7 @@
             android:id="@+id/normal_bemanning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Normal bemanning:"
+            android:text="@string/normal_bemanning"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp"
@@ -148,7 +161,7 @@
             android:id="@+id/max_bemanning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Maksimal bemanning"
+            android:text="@string/maksimal_bemanning"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp"
@@ -165,31 +178,33 @@
         android:layout_margin="10dp"
         android:background= "@drawable/rounded_corner_view"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/l3">
+        app:layout_constraintTop_toBottomOf="@id/l3"
+        android:backgroundTint="@color/card_background">
 
         <ImageButton
             android:id="@+id/edit_weather"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="4dp"
-            android:layout_marginRight="13dp"
+            android:layout_marginEnd="13dp"
             android:background="#ECECEC"
             android:scaleType="fitXY"
-            android:src="@drawable/edit" />
+            android:src="@drawable/edit"
+            android:contentDescription="TODO" />
 
         <TextView
             android:id="@+id/tekst1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Værforhold:"
+            android:text="@string/v_rforhold"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp"
@@ -198,7 +213,7 @@
             android:id="@+id/trigger"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Temperatur under: "
+            android:text="@string/temperatur_under"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp"
@@ -208,7 +223,7 @@
             android:id="@+id/nedbor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nedbør: ja/nei"
+            android:text="@string/nedb_r_ja_nei"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp"
@@ -223,18 +238,20 @@
         android:layout_margin="10dp"
         android:background= "@drawable/rounded_corner_view"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/l4">
+        app:layout_constraintTop_toBottomOf="@id/l4"
+        android:backgroundTint="@color/card_background">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Roller:"
+            android:text="@string/roller"
+            android:textStyle="bold"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp" />
@@ -248,32 +265,35 @@
         android:layout_margin="10dp"
         android:background= "@drawable/rounded_corner_view"
         android:orientation="vertical"
-        android:paddingLeft="5dp"
+        android:paddingStart="5dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/l5">
+        app:layout_constraintTop_toBottomOf="@id/l5"
+        android:backgroundTint="@color/card_background">
 
         <ImageButton
             android:id="@+id/edit_opening"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="4dp"
-            android:layout_marginRight="13dp"
+            android:layout_marginEnd="13dp"
             android:background="#ECECEC"
             android:scaleType="fitXY"
-            android:src="@drawable/edit" />
+            android:src="@drawable/edit"
+            android:contentDescription="@string/edit" />
 
 
         <TextView
             android:id="@+id/aapning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Åpningstider: fra x til y"
+            android:text="@string/apningstider"
+            android:textStyle="bold"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp" />
@@ -282,25 +302,24 @@
 
     <Button
         android:id="@+id/edit_passord"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_width="173dp"
+        android:layout_height="51dp"
         android:layout_below="@+id/l6"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"
-        android:backgroundTint="#666666"
-        android:text="Endre passord"
+        android:background="@drawable/rounded_corners_button"
+        android:textStyle="bold"
+        app:backgroundTint="@color/button_yellow"
+        android:text="@string/endre_passord"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textColor="@color/text_grey"
+        android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/l6"/>
-
-
-
-
+        app:layout_constraintTop_toBottomOf="@id/l6"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

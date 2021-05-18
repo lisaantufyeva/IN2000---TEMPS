@@ -5,77 +5,126 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".authentication.location_fragment"
-    android:background="@color/fragment_background">
+    android:background="#E8E9EC">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_location"
+        android:layout_width="411dp"
+        android:layout_height="76dp"
+        android:background="@color/fragment_background"
+        android:padding="10dp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Fullfør registereing"
+        app:titleMarginStart="100dp"
+        app:titleTextColor="#282F3E"
+        />
 
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Registrer bemanning"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="60dp"
+        android:text="@string/legg_til_bemannings_kapasitet"
+        android:textColor="#282F3E"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.544" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="357dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/standard_profile_remainder"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/normal"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="357dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="15dp"
+        android:text="@string/manpower_text1"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
     <TextView
         android:id="@+id/normal"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="Normal bemanning:"
-        android:textSize="20sp"
+        android:layout_width="182dp"
+        android:layout_height="22dp"
+        android:text="@string/normal_bemanning"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/max"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintHorizontal_bias="0.133"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.908" />
+        app:layout_constraintVertical_bias="0.909" />
 
     <EditText
         android:id="@+id/normal_bemanning"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/normal"
+        android:layout_width="175dp"
+        android:layout_height="40dp"
         android:autofillHints="Antall ansatte"
-        android:background="@color/card_background"
+        android:backgroundTint="#DADEE7"
+        android:background="@drawable/rounded_corner_view"
         android:drawablePadding="10dp"
         android:inputType="number"
-        android:paddingBottom="20dp"
+
+        android:textColor="#282F3E"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/max_bemanning"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintHorizontal_bias="0.883"
         app:layout_constraintStart_toStartOf="@+id/normal"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.953" />
+        app:layout_constraintVertical_bias="0.933" />
 
     <TextView
         android:id="@+id/max"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="22dp"
         android:layout_below="@+id/normal_bemanning"
         android:layout_marginBottom="116dp"
-        android:text="Maksimal bemanning:"
-        android:textSize="20sp"
+        android:text="@string/maksimal_bemanning"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/max_bemanning"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
+        android:layout_width="175dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/max"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="104dp"
         android:autofillHints="Antall ansatte"
-        android:background="@color/card_background"
+        android:background="@drawable/rounded_corner_view"
+        android:backgroundTint="#DADEE7"
         android:drawablePadding="10dp"
         android:inputType="number"
-        android:paddingBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.712"
+        app:layout_constraintHorizontal_bias="0.902"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -85,7 +134,7 @@
         android:layout_below="@+id/max_bemanning"
         android:layout_centerHorizontal="true"
         android:background="@drawable/rounded_corners_button"
-        android:text="Lagre"
+        android:text="@string/lagre"
         android:textAllCaps="false"
         android:textColor="@color/text_grey"
         android:textSize="20sp"

@@ -1,70 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E8E9EC"
+
     tools:context=".authentication.location_fragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Oppdater temperatur" />
+        android:id="@+id/textView"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="204dp"
+        android:layout_marginBottom="40dp"
+        android:text="@string/legg_til_v_rforhold"
+        android:textColor="#282F3E"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="364dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/textView"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="-18dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/temp_text1"
+        android:textColor="#282F3E"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="364dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/textView2"
+        android:text="@string/standard_profile_remainder"
+        android:layout_marginStart="25dp"
+        android:textSize="14sp"
+        android:textColor="#282F3E"
+        android:layout_marginBottom="20dp"/>
 
 
     <TextView
         android:id="@+id/temp1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ny trigger temperatur:"
-        android:layout_marginLeft="10dp"
-        android:textStyle="bold"
-        android:layout_marginTop="100dp"
-        android:textSize="20sp"/>
+        android:layout_width="141dp"
+        android:layout_height="55dp"
+        android:layout_below="@id/textView3"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+        android:layout_toStartOf="@+id/trigger_temp"
+        android:text="@string/temperatur_over"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/trigger_temp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/temp1"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:autofillHints="Temperatur i celsius"
+        android:layout_width="91dp"
+        android:layout_height="51dp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignEnd="@+id/textView3"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="124dp"
+        android:background="@drawable/rounded_corner_view"
+        android:backgroundTint="#DADEE7"
         android:drawablePadding="10dp"
+        android:inputType="number"
         android:paddingBottom="20dp"
-        android:inputType = "number"/>
+
+
+        android:textColor="#282F3E"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/nedbor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/trigger_temp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="18dp"
-        android:text="Nedbør (ja/nei):"
-        android:textSize="20sp"
+        android:layout_width="63dp"
+        android:layout_height="22dp"
+        android:layout_below="@+id/temp1"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+
+        android:text="@string/nedb_r"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <CheckBox
         android:id="@+id/checkBox1"
-        android:layout_below="@+id/nedbor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:text="Ja/nei" />
+        android:layout_below="@+id/trigger_temp"
+        android:layout_alignEnd="@+id/trigger_temp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="-24dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toEndOf="@+id/nedbor"
+        android:text="@string/ja_nei" />
+
     <Button
         android:id="@+id/save"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/checkBox1"
+        android:layout_width="173dp"
+        android:layout_height="51dp"
+        android:layout_below="@id/nedbor"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="20dp"
-        android:backgroundTint="#666666"
-        android:text="Lagre"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/rounded_corners_button"
+        android:backgroundTint="@color/button_grey"
+        android:text="@string/lagre"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+        android:textColor="@color/text_grey"
+        android:textSize="20sp"
+        app:backgroundTint="@color/button_yellow" />
+
 
 
 </RelativeLayout>

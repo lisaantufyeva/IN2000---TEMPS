@@ -13,15 +13,15 @@
         style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
         android:layout_width="225dp"
         android:layout_height="103dp"
-        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="6dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
+
         android:text="@string/addEmployeeBtn"
         android:textAllCaps="false"
         android:textColor="@color/text_grey"
         android:textSize="18sp"
         app:backgroundTint="#EEF0F4"
+        android:background="@drawable/rounded_corner_view"
         app:icon="@drawable/group"
         app:iconGravity="textStart"
         app:iconTint="@null"
@@ -32,13 +32,13 @@
         android:id="@+id/tekstAnsatte"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp"
         android:layout_width="330dp"
         android:layout_height="26dp"
         android:layout_below="@+id/leggtilknapp"
-        android:text="Dine ansatte"
+        android:text="@string/dine_ansatte"
         android:textColor="#282F3E"
-        android:textSize="22dp"
+        android:textSize="22sp"
         android:textStyle="bold"
         android:visibility="visible" />
 
@@ -57,16 +57,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="Dine ansatte"
-
+        android:text="@string/dine_ansatte"
         android:textColor="#282F3E"
         android:textSize="22sp"
         android:textStyle="bold"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        />
 
 
 </RelativeLayout>

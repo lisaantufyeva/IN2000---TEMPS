@@ -20,6 +20,7 @@
         android:layout_width="376dp"
         android:layout_height="150dp"
         android:background="#EEF0F4"
+
         android:orientation="vertical"
         android:rotation="0"
         android:rotationX="0">

@@ -5,18 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#EEF0F4"
     tools:context=".ui.employees.addMyEmployee.AddMyEmpoyeeFragment"
         tools:ignore="MissingDefaultResource">
 
 
+    <TextView
+        android:id="@+id/updateemployee"
+        android:layout_width="330dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/legg_til_en_ansatt"
+        android:textColor="#282F3E"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
 
-    <LinearLayout
-    android:id="@+id/topLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:layout_marginTop="40dp"
-    android:orientation="vertical">
+
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -25,19 +32,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
-        android:hint="Navn"
+
+        android:hint="@string/hint_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topLayout">
+        app:layout_constraintStart_toStartOf="parent">
 
         <EditText
             android:id="@+id/et_navn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#DADEE7"
+            android:background="@drawable/rounded_corner_view"
             android:inputType="text"
-            android:textSize="15dp" />
+            android:textSize="15sp"
+            android:autofillHints="Navn" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -48,7 +58,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="E-mail"
+        android:hint="@string/hint_e_mail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_navn">
@@ -57,8 +67,12 @@
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="E-mail"
+            android:backgroundTint="#DADEE7"
+            android:background="@drawable/rounded_corner_view"
             android:inputType="text"
-            android:textSize="15dp" />
+            android:textSize="15sp"
+            tools:ignore="TextFields" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -69,7 +83,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Rolle"
+        android:hint="@string/hint_rolle"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_email">
@@ -78,26 +93,29 @@
             android:id="@+id/et_rolle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="Rolle"
+            android:backgroundTint="#DADEE7"
+            android:background="@drawable/rounded_corner_view"
             android:inputType="text"
-            android:textSize="15dp" />
+            android:textSize="15sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btn_add_employee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/rounded_corners_button"
-        android:foreground="?attr/selectableItemBackground"
-        android:gravity="center"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:text="@string/addEmployeeBtn"
-        android:textAllCaps="false"
-        android:textColor="@color/text_grey"
-        android:textSize="18sp"
-        app:backgroundTint="@color/button_yellow" />
+            android:id="@+id/btn_add_employee"
+            android:layout_width="173dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/rounded_corners_button"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="@string/legg_til_button"
+            android:textAllCaps="false"
+            android:textColor="@color/text_grey"
+            android:textSize="20sp"
+            app:backgroundTint="@color/button_yellow"  />
 </LinearLayout>
-</LinearLayout>
+
 

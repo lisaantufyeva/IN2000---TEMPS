@@ -21,6 +21,21 @@
     <string name="varsel_sendt_mottatt">Sendt: %1$s/Tatt: %2$s </string>
     <string name ="degrees_symbol"> %1$s °</string>
 
+    <!--Admin: Detail fragment card-->
+    <string name="detail_precipitation">Nedbør: %1$s mm</string>
+
+    <!--Admin: Detail fragment body-->
+    <string name="title_detail">Oversikt over bemanning</string>
+    <string name="detail_staffing">Din bemanning</string>
+    <string name="detail_current_staffing">Normal bemanning: %1$s ansatte</string>
+    <string name="detail_extra_staffing">Estimert ekstra bemanning: %1$s ansatte</string>
+    <string name="detail_button_send">Send varsel</string>
+    <string name="current_staffing_value">0</string>
+    <string name="extra_staffing_value">0</string>
+    <string name="precipitation_number">0</string>
+    <string name="cancel_button">Avbryt</string>
+
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -42,19 +57,7 @@
     <string name="err_msg_enter_email">Skriv email.</string>
     <string name="err_msg_select_rolle">Velg rolle.</string>
 
-    <!--Admin: Detail fragment card-->
-    <string name="detail_precipitation">Nedbør</string>
 
-    <!--Admin: Detail fragment body-->
-    <string name="title_detail">Oversikt over bemanning</string>
-    <string name="detail_staffing">Din bemanning</string>
-    <string name="detail_current_staffing">Normal bemanning:</string>
-    <string name="detail_extra_staffing">Estimert ekstra bemanning:</string>
-    <string name="detail_button_send">Send varsel</string>
-    <string name="current_staffing_value">0</string>
-    <string name="extra_staffing_value">0</string>
-    <string name="precipitation_number">0</string>
-    <string name="cancel_button">Avbryt</string>
 
     <!--Ansatt: My shifts card-->
     <string name="accepted_label">Godtatt</string>

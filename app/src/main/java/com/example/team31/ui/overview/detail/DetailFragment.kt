@@ -16,6 +16,8 @@ import com.example.team31.R
 import com.example.team31.Varsel
 import com.example.team31.databinding.DetailFragmentBinding
 import com.example.team31.ui.overview.week_overview.RefinedForecast
+import com.example.team31.ui.overview.week_overview.getAcceptedShifts
+import com.example.team31.ui.overview.week_overview.getNumberOfAlerts
 
 
 class DetailFragment : Fragment() {
@@ -46,9 +48,14 @@ class DetailFragment : Fragment() {
         binding.apply {
             date.text = forecastObject.time
             temp.text = forecastObject.temp
-            precipitation.text = forecastObject.precipitation
-            extraStaffValue.text = args.extraStaff.toString()
-            currentStaffValue.text = admin.normalBemanning
+            precipitation.text = this@DetailFragment.getString(R.string.detail_precipitation,
+                    forecastObject.precipitation)
+
+            //precipitation.text = forecastObject.precipitation
+            extraStaff.text = this@DetailFragment.getString(R.string.detail_extra_staffing,
+                    args.extraStaff.toString())
+            currentStaff.text = this@DetailFragment.getString(R.string.detail_current_staffing,
+                    admin.normalBemanning)
             val currentImageId = context?.resources?.getIdentifier("@drawable/"+forecastObject.symbol, "drawable",
                 context?.packageName)
             val currentDrawable = currentImageId?.let { context?.let { it1 -> ContextCompat.getDrawable(it1,it) } }

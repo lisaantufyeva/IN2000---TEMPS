@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.example.team31.AdminActivity
 import com.example.team31.Authentication
 import com.example.team31.Bruker
 import com.example.team31.R
@@ -43,6 +44,12 @@ class bemanning_fragment : Fragment() {
             user.normalBemanning = normal.text.toString()
             user.maxBemanning = max.text.toString()
 
+            //Added check to ensure maxBemanning greater than normalBemanning
+            if (user.normalBemanning!!.toInt() > user.maxBemanning!!.toInt()) {
+                Toast.makeText(activity, "Ugyldig input! Krav: Max > Normal!!", Toast.LENGTH_SHORT).show()
+                (activity as Authentication?)!!.hideKeyboard()
+                return@setOnClickListener
+            }
 
             val action = bemanning_fragmentDirections.actionBemanningFragmentToWeatherRegistrationFragment(user)
             Navigation.findNavController(root).navigate(action)

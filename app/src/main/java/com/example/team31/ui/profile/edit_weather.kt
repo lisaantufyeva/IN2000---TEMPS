@@ -42,7 +42,7 @@ class edit_weather : Fragment() {
         knapp.setOnClickListener {
             if (trigger.text.isBlank()) {
                 Toast.makeText(activity, "Ugyldig input!", Toast.LENGTH_SHORT).show()
-                (activity as Authentication?)!!.hideKeyboard()
+                (activity as AdminActivity?)!!.hideKeyboard()
                 return@setOnClickListener
             }
 
@@ -51,6 +51,12 @@ class edit_weather : Fragment() {
             }
 
             val triggerTemp = trigger.text.toString()
+
+            if (triggerTemp.toInt() > 60){
+                Toast.makeText(activity, " Ugyldig triggertemp. Max temp målt på jorda er 58!", Toast.LENGTH_SHORT).show()
+                (activity as AdminActivity?)!!.hideKeyboard()
+                return@setOnClickListener
+            }
 
             profileViewModel.update_weather(triggerTemp,nedbor,userId)
 

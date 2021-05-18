@@ -46,6 +46,12 @@ class weather_registration_fragment : Fragment() {
             }
 
             user.triggerTemp = trigger.text.toString()
+            if (user.triggerTemp!!.toInt() > 60){
+                Toast.makeText(activity, " Ugyldig triggertemp. Max temp målt på jorda er 58!", Toast.LENGTH_SHORT).show()
+                (activity as Authentication?)!!.hideKeyboard()
+                return@setOnClickListener
+            }
+
 
             val action = weather_registration_fragmentDirections.actionWeatherRegistrationFragmentToAapningstiderFragment(user)
             Navigation.findNavController(root).navigate(action)

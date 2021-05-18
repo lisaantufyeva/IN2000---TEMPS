@@ -11,10 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
-import com.example.team31.Authentication
-import com.example.team31.Bruker
-import com.example.team31.R
-import com.example.team31.Varsel
+import com.example.team31.*
 
 
 class aapningstider_fragment : Fragment() {
@@ -44,6 +41,22 @@ class aapningstider_fragment : Fragment() {
             }
             user.aapenFra = start.text.toString()
             user.aapenTil = slutt.text.toString()
+
+            if (user.aapenFra!!.toInt() < 0 || user.aapenFra!!.toInt() > 24){
+                Toast.makeText(activity, "Ugyldig input!", Toast.LENGTH_SHORT).show()
+                (activity as Authentication?)!!.hideKeyboard()
+                return@setOnClickListener
+            }
+            if (user.aapenTil!!.toInt() < 0 || user.aapenTil!!.toInt() > 24){
+                Toast.makeText(activity, "Ugyldig input!", Toast.LENGTH_SHORT).show()
+                (activity as Authentication?)!!.hideKeyboard()
+                return@setOnClickListener
+            }
+            if (user.aapenFra!!.toInt() > user.aapenTil!!.toInt()){
+                Toast.makeText(activity, "Ugyldig input!", Toast.LENGTH_SHORT).show()
+                (activity as Authentication?)!!.hideKeyboard()
+                return@setOnClickListener
+            }
 
             val liste = mutableListOf<Varsel>()
             val varsel1 = Varsel(null,"24.04.20",true,null,null)

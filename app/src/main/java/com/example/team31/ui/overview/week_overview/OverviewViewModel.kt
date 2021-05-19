@@ -27,8 +27,6 @@ class OverviewViewModel @Inject constructor(
 
     private val ref = FirebaseDatabase.getInstance().getReference("Users")
 
-
-
     fun getForecastList(lat: String, lon: String) {
         viewModelScope.launch {
             val result = repository.fetchLocationForecast(lat, lon)
@@ -121,11 +119,21 @@ fun checkCreatedAlerts(date:String, alertList: MutableList<Varsel>):Boolean{
     }
     return false
 }
+fun checkAcceptedAlerts(date: String, accepted: MutableList<Varsel>):Boolean{
+    for (i in accepted){
+        if (i.date == date) return true
+    }
+    return false
+}
 
 fun getNumberOfAlerts(date: String, alertList: MutableList<Varsel>):Int{
     return alertList.filter { it.date == date }.count()
 }
-
+fun getcreatedTotal(date: String, alertList: MutableList<Varsel>, acceptedList: MutableList<Varsel>):Int{
+    val accepted = acceptedList.filter { it.date == date }.count()
+    val notAccepted = alertList.filter { it.date == date }.count()
+    return accepted + notAccepted
+}
 
 fun getAcceptedShifts(date: String, acceptedList: MutableList<Varsel>):Int{
     return acceptedList.filter { it.date == date }.count()

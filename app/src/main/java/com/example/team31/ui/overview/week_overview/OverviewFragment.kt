@@ -57,7 +57,10 @@ class OverviewFragment : Fragment() {
 
             withContext(Dispatchers.Main){
                 availableAlerts = availableShifts
+                Log.i ("available: ", availableAlerts.toString())
                 acceptedAlerts = acceptedShifts
+                Log.i("accepted:", acceptedAlerts.toString())
+
                 viewModel.forecastList.observe(viewLifecycleOwner,  { forecastList ->
                     viewBinding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
                     Handler(Looper.getMainLooper()).postDelayed({

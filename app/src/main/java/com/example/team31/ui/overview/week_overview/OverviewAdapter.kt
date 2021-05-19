@@ -1,6 +1,7 @@
 package com.example.team31.ui.overview.week_overview
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,10 +49,12 @@ class OverviewAdapter(private val forecastList: List<RefinedForecast>, val conte
         val drawable = ContextCompat.getDrawable(context, iconId)
         holder.icon.setImageDrawable(drawable)
 
-        if (checkCreatedAlerts(forecastList[position].time, availableAlerts)){
+        if (checkCreatedAlerts(forecastList[position].time, availableAlerts) or checkAcceptedAlerts(forecastList[position].time, acceptedAlerts)){
             holder.alertLable.text = context.getString(R.string.varsel_sendt_mottatt,
-                    getNumberOfAlerts(forecastList[position].time, availableAlerts).toString(),
+                getcreatedTotal(forecastList[position].time, availableAlerts, acceptedAlerts).toString(),
                     getAcceptedShifts(forecastList[position].time, acceptedAlerts).toString())
+            Log.i ("number of alert:", getNumberOfAlerts(forecastList[position].time, availableAlerts).toString() )
+            Log.i ( "number of shifts: ", getAcceptedShifts(forecastList[position].time, acceptedAlerts).toString())
             holder.alertLable.isVisible = true
         } else {
             var extraStaff = 0

@@ -50,8 +50,6 @@ class DetailFragment : Fragment() {
             temp.text = forecastObject.temp
             precipitation.text = this@DetailFragment.getString(R.string.detail_precipitation,
                     forecastObject.precipitation)
-
-            //precipitation.text = forecastObject.precipitation
             extraStaff.text = this@DetailFragment.getString(R.string.detail_extra_staffing,
                     args.extraStaff.toString())
             currentStaff.text = this@DetailFragment.getString(R.string.detail_current_staffing,

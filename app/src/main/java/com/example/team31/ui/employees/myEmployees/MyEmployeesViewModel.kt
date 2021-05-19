@@ -45,6 +45,15 @@ class MyEmployeesViewModel : ViewModel() {
         refAnsatt.addValueEventListener(UserListener)
     }
 
+    fun editAnsatt(adminId:String, ansattId:String, email: String, rolle:String, name:String){
+        val ref = FirebaseDatabase.getInstance().getReference("Ansatte").child(adminId).child(ansattId)
+        val hashMap =  hashMapOf<String, Any?>()
+        hashMap.put("email",email)
+        hashMap.put("navn", name)
+        hashMap.put("rolle", rolle)
+
+        ref.updateChildren(hashMap)
+    }
     fun leggTilAnsatt(admin: Bruker, myEmployee: Ansatt) {
         val refAnsatt = FirebaseDatabase.getInstance().getReference("Ansatte").child(admin.id!!)
 

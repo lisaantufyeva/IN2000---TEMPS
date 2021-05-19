@@ -7,22 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavArgs
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.team31.AdminActivity
 import com.example.team31.R
 import com.example.team31.databinding.FragmentEditEmployeeBinding
+import com.example.team31.ui.employees.my_employees.MyEmployeesViewModel
 
 
+class EditEmployee : Fragment(){
 
-class editEmployee : Fragment(){
-
-    private val modelMy: MyEmployeesViewModel by activityViewModels()
+    private lateinit var modelMy: MyEmployeesViewModel
 
     private lateinit var mBinding: FragmentEditEmployeeBinding
     private lateinit var userId:String
-    private val args by navArgs<editEmployeeArgs>()
+    private val args by navArgs<EditEmployeeArgs>()
     private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +35,9 @@ class editEmployee : Fragment(){
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         mBinding = FragmentEditEmployeeBinding.inflate(layoutInflater)
+
+        modelMy = ViewModelProvider(this).get(MyEmployeesViewModel::class.java)
+
 
 
         userId = (activity as AdminActivity?)!!.getUserId()

@@ -26,12 +26,12 @@
         <action
             android:id="@+id/action_navigation_employees_to_addMyEmpoyeeFragment2"
             app:destination="@id/addMyEmpoyeeFragment" />
-        <action
-            android:id="@+id/action_navigation_employees_to_editEmployee"
-            app:destination="@id/editEmployee" />
         <argument
             android:name="ansattId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_navigation_employees_to_EditEmployee"
+            app:destination="@id/EditEmployee" />
     </fragment>
 
     <fragment
@@ -137,8 +137,8 @@
         android:label="Ansatte"
         tools:layout="@layout/addmyemployee_fragment" />
     <fragment
-        android:id="@+id/editEmployee"
-        android:name="com.example.team31.ui.employees.my_employees.editEmployee"
+        android:id="@+id/EditEmployee"
+        android:name="com.example.team31.ui.employees.myEmployees.EditEmployee"
         android:label="Ansatte"
         tools:layout="@layout/fragment_edit_employee" >
         <argument

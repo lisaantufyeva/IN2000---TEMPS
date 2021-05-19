@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 //import com.bumptech.glide.Glide
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
@@ -129,7 +130,8 @@ class ProfileFragment : Fragment() {
 
         val logOut = root.findViewById<Button>(R.id.logg_ut)
         logOut.setOnClickListener {
-            (activity as MainActivity).startActivityLogin()
+            val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
         }
 
         //val user = profileViewModel.getUser("-MZsDmQd0-ZhRrUNdbzn")

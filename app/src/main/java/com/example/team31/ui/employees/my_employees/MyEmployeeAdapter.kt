@@ -45,7 +45,6 @@ class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : Mu
 
         holder.editButton.setOnClickListener {
             edit(it, ansatt.ansattId!!)
-
         }
 
 

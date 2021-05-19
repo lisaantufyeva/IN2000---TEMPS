@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.team31.AdminActivity
@@ -20,9 +21,9 @@ import com.google.android.gms.common.api.Status
 
 class edit_pos : Fragment() {
 
-    lateinit var stedNavn: String
-    lateinit var latitude: String
-    lateinit var longitude: String
+    private var stedNavn: String = ""
+    private var latitude: String = ""
+    private var longitude: String = ""
     private lateinit var profileViewModel: ProfileViewModel
 
     override fun onCreateView(
@@ -85,6 +86,7 @@ class edit_pos : Fragment() {
         knapp.setOnClickListener {
             if (stedNavn == "" || latitude == "") {
                 Log.i("FEIL", "Kunne ikke oppdatere bruker")
+                Toast.makeText(activity, "Velg nytt sted", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             profileViewModel.updatePos(latitude,longitude,stedNavn,userId)

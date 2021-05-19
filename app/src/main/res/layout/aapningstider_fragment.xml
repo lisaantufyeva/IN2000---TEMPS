@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".authentication.location_fragment"
-    android:background="#E8E9EC">
+    android:background="@color/bar_edit_color">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_location"
@@ -17,7 +17,6 @@
         android:textAlignment="center"
         app:title="Fullfør registereing"
         app:titleMarginStart="100dp"
-
         app:titleTextColor="#282F3E" />
 
     <TextView
@@ -80,6 +79,8 @@
         android:layout_marginEnd="211dp"
         android:background="@drawable/rounded_corner_view"
         android:backgroundTint="#DADEE7"
+        android:textAlignment="center"
+        android:padding="10dp"
         android:drawablePadding="10dp"
 
         android:importantForAutofill="no"
@@ -113,6 +114,8 @@
         android:background="@drawable/rounded_corner_view"
         android:backgroundTint="#DADEE7"
         android:drawablePadding="10dp"
+        android:padding="10dp"
+        android:textAlignment="center"
         android:inputType="number"
         android:paddingBottom="10dp"
 

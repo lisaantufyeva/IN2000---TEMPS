@@ -17,8 +17,9 @@
         android:layout_marginTop="60dp"
         android:drawablePadding="10dp"
         android:backgroundTint="#DADEE7"
+        android:padding="10dp"
         android:background="@drawable/rounded_corner_view"
-        android:hint="  Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:autofillHints="" />
 
@@ -33,7 +34,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
         android:drawablePadding="10dp"
-        android:hint="  Navn"
+        android:hint="@string/name"
+        android:padding="10dp"
         android:backgroundTint="#DADEE7"
         android:background="@drawable/rounded_corner_view"
         android:inputType="textEmailAddress"

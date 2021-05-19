@@ -23,7 +23,7 @@ class EditEmployee : Fragment(){
 
     private lateinit var mBinding: FragmentEditEmployeeBinding
     private lateinit var userId:String
-    private val args by navArgs<EditEmployeeArgs>()
+   // private val args by navArgs<EditEmployeeArgs>()
     private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,12 +36,12 @@ class EditEmployee : Fragment(){
         // Inflate the layout for this fragment
         mBinding = FragmentEditEmployeeBinding.inflate(layoutInflater)
 
-        modelMy = ViewModelProvider(this).get(MyEmployeesViewModel::class.java)
-
-
-
-        userId = (activity as AdminActivity?)!!.getUserId()
-        val ansattId = args.ansattId
+//        modelMy = ViewModelProvider(this).get(MyEmployeesViewModel::class.java)
+//
+//
+//
+//        userId = (activity as AdminActivity?)!!.getUserId()
+//        //val ansattId = args.ansattId
 
         val emailInput = mBinding.etEmailEdit
         val nameInput = mBinding.etNavnEdit
@@ -49,24 +49,24 @@ class EditEmployee : Fragment(){
 
 
 
-        mBinding.saveButton.setOnClickListener {
-            if (emailInput.text.toString().isBlank() || nameInput.text.toString().isBlank() || rolleInput.text.toString().isBlank()) {
-                Toast.makeText(activity, "Fyll ut alle feltene", Toast.LENGTH_SHORT).show()
-                (activity as AdminActivity?)!!.hideKeyboard()
-                return@setOnClickListener
-            }
-            if(emailInput.text.toString().trim().matches(emailPattern.toRegex())){
-            Log.i("ID", ansattId)
-            modelMy.editAnsatt(userId, ansattId, emailInput.text.toString(), rolleInput.text.toString(),nameInput.text.toString())
-
-            Navigation.findNavController(it).navigate(R.id.navigation_employees)
-            }
-            else{
-                Toast.makeText(activity, "Emailen er ikke gyldig", Toast.LENGTH_SHORT).show()
-                (activity as AdminActivity?)!!.hideKeyboard()
-                return@setOnClickListener
-            }
-        }
+//        mBinding.saveButton.setOnClickListener {
+//            if (emailInput.text.toString().isBlank() || nameInput.text.toString().isBlank() || rolleInput.text.toString().isBlank()) {
+//                Toast.makeText(activity, "Fyll ut alle feltene", Toast.LENGTH_SHORT).show()
+//                (activity as AdminActivity?)!!.hideKeyboard()
+//                return@setOnClickListener
+//            }
+//            if(emailInput.text.toString().trim().matches(emailPattern.toRegex())){
+//            Log.i("ID", ansattId)
+//            modelMy.editAnsatt(userId, ansattId, emailInput.text.toString(), rolleInput.text.toString(),nameInput.text.toString())
+//
+//            Navigation.findNavController(it).navigate(R.id.navigation_employees)
+//            }
+//            else{
+//                Toast.makeText(activity, "Emailen er ikke gyldig", Toast.LENGTH_SHORT).show()
+//                (activity as AdminActivity?)!!.hideKeyboard()
+//                return@setOnClickListener
+//            }
+//        }
 
 
         return mBinding.root

@@ -143,9 +143,7 @@
     <string name="nedb_r_ja_nei">Nedbør: ja/nei</string>
     <string name="temperatur_under">Temperatur under:</string>
     <string name="v_rforhold">Værforhold:</string>
-
-
-
+    <string name="vent">Vent</string>
 
 
 </resources>

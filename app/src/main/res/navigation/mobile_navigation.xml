@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/navigation_employees"
-        android:name="com.example.team31.ui.employees.myEmployees.MyEmployeeFragment"
+        android:name="com.example.team31.ui.employees.my_employees.MyEmployeeFragment"
         android:label="@string/title_employees"
         tools:layout="@layout/employees_fragment" >
         <action
@@ -133,12 +133,12 @@
     </fragment>
     <fragment
         android:id="@+id/addMyEmpoyeeFragment"
-        android:name="com.example.team31.ui.employees.addMyEmployee.AddMyEmpoyeeFragment"
+        android:name="com.example.team31.ui.employees.add_my_employee.AddMyEmpoyeeFragment"
         android:label="Ansatte"
         tools:layout="@layout/addmyemployee_fragment" />
     <fragment
         android:id="@+id/editEmployee"
-        android:name="com.example.team31.ui.employees.myEmployees.editEmployee"
+        android:name="com.example.team31.ui.employees.my_employees.editEmployee"
         android:label="Ansatte"
         tools:layout="@layout/fragment_edit_employee" >
         <argument

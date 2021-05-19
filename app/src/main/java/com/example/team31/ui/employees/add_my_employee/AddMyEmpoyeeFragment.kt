@@ -1,9 +1,10 @@
-package com.example.team31.ui.employees.addMyEmployee
+package com.example.team31.ui.employees.add_my_employee
 
 import android.app.Dialog
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,11 +17,9 @@ import com.example.team31.*
 import com.example.team31.databinding.AddmyemployeeFragmentBinding
 
 import com.example.team31.databinding.DialogCustomListBinding
-import com.example.team31.ui.employees.JobTitleListItemAdapter
+
 
 import com.example.team31.Ansatt
-import com.google.firebase.database.FirebaseDatabase
-import java.util.regex.Pattern.compile
 
 class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
 
@@ -32,7 +31,7 @@ class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
     private lateinit var user: Bruker
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View{
         mBinding = AddmyemployeeFragmentBinding.inflate(layoutInflater)
         mBinding.etRolle.setOnClickListener(this)
         mBinding.btnAddEmployee.setOnClickListener(this)
@@ -91,16 +90,6 @@ class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
 
         }    }
 
-//email validation
-    private val emailRegex = compile(
-        "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
-                "\\@" +
-                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
-                "(" +
-                "\\." +
-                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
-                ")+"
-    )
 
     override fun onClick(v: View?) {
         if (v != null) {
@@ -134,7 +123,7 @@ class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
                             ).show()
                         }
 
-                        TextUtils.isEmpty(email)-> {
+                        TextUtils.isEmpty(email) || (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) -> {
                             Toast.makeText(
                                 activity,
                                     resources.getString(R.string.err_msg_enter_email),
@@ -142,6 +131,7 @@ class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
                             ).show()
 
                         }
+
 
                         TextUtils.isEmpty(rolle) -> {
                             Toast.makeText(
@@ -151,6 +141,7 @@ class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
                             ).show()
                         }
                         else ->{
+
                             val ansatt = Ansatt(null,email, "temps31",name, rolle, user.id)
                             viewModel.leggTilAnsatt(user,ansatt)
 

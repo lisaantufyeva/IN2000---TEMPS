@@ -1,6 +1,5 @@
-package com.example.team31.ui.employees.myEmployees
+package com.example.team31.ui.employees.my_employees
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -13,9 +12,7 @@ import com.example.team31.AdminActivity
 import com.example.team31.Bruker
 import com.example.team31.Ansatt
 import com.example.team31.R
-import com.example.team31.authentication.AuthenticationViewModel
 import com.example.team31.databinding.EmployeesFragmentBinding
-import java.io.Serializable
 
 class MyEmployeeFragment : Fragment() {
 
@@ -26,14 +23,6 @@ class MyEmployeeFragment : Fragment() {
     private lateinit var mBinding: EmployeesFragmentBinding
     private var users = mutableListOf<Ansatt>()
     private lateinit var admin:Bruker
-
-    //val henrik = Ansatt("henrik", "henrik@gmail.com", "Serviør")
-    //val lisz = Ansatt("Liza", "Liza@gmail.com", "Vaktsjef")
-    //val greogor = Ansatt("Gregor", "gregor@gmail.com", "Vaktsjef")
-    //val katerina = Ansatt("Katerina", "kat@gmail.com", "Vaktsjef")
-    //val dragana = Ansatt("dragana", "dragana@email.com", "Kokk")
-
-
 
 
 
@@ -52,19 +41,8 @@ class MyEmployeeFragment : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
-        //admin = (activity as AdminActivity?)!!.getUser()
-        //model.getUsers(admin)
-        //users = model.getEmployees()
-        // Log.i("message",users.toString())
-//        employeesViewModel =
-//            ViewModelProvider(this).get(EmployeesViewModel::class.java)
-//        val root = inflater.inflate(R.layout.employees_fragment, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_employees)
-//
-//        employeesViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
+    ): View {
+
 
         mBinding = EmployeesFragmentBinding.inflate(inflater, container, false)
         val leggTIl = mBinding.leggtilknapp
@@ -81,10 +59,6 @@ class MyEmployeeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //add(dragana)
-        //add(greogor)
-        //add(lisz)
-        //add(henrik)
 
         // Set the LayoutManager that this RecyclerView will use.
         mBinding.rvAnsattList.layoutManager = GridLayoutManager(requireActivity(), 1)
@@ -123,11 +97,6 @@ class MyEmployeeFragment : Fragment() {
 //        return super.onOptionsItemSelected(item)
 //    }
 //
-//    fun startActivity1(user:Bruker){
-//        val intent = Intent(requireContext(), LeggTilRedigerAnsatt::class.java)
-//        intent.putExtra("User", user as Serializable)
-//        startActivity(intent)
-//    }
 //}
 
 

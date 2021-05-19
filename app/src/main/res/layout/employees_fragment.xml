@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.employees.myEmployees.MyEmployeeFragment"
+    tools:context=".ui.employees.my_employees.MyEmployeeFragment"
     android:background="#DADEE7">
 
 

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/login_blue"
-    >
+    android:background="@color/login_blue">
 
 <!--
     <androidx.appcompat.widget.Toolbar
@@ -47,7 +45,8 @@
         app:layout_constraintBottom_toTopOf="@+id/passord1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/info_text"/>
+        app:layout_constraintTop_toBottomOf="@id/info_text"
+        android:importantForAutofill="no" />
 
     <EditText
 
@@ -65,7 +64,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        android:importantForAutofill="no" />
 
     <EditText
 
@@ -83,7 +83,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passord1" />
+        app:layout_constraintTop_toBottomOf="@+id/passord1"
+        android:importantForAutofill="no" />
 
     <EditText
 
@@ -101,7 +102,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passord2" />
+        app:layout_constraintTop_toBottomOf="@+id/passord2"
+        android:importantForAutofill="no" />
 
     <Button
 

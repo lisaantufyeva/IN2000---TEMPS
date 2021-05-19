@@ -1,4 +1,4 @@
-package com.example.team31.ui.employees.myEmployees
+package com.example.team31.ui.employees.my_employees
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team31.Ansatt
-import com.example.team31.R
 import com.example.team31.databinding.EmployeeCardBinding
+
 
 class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : MutableList<Ansatt> ):RecyclerView.Adapter<MyEmployeeAdapter.ViewHolder>() {
 
@@ -30,14 +30,18 @@ class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : Mu
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val namePlaceholder = "Navn: "
+        val emailPlaceholder="E-mail: "
+        val rollePlaceholder = "Rolle: "
 
-        val ansatt = ansatte.get(position)
 
-            holder.name.text = "Navn: ${ansatt.navn}"
+        val ansatt = ansatte[position]
 
-            holder.email.text = "E-mail: ${ansatt.email}"
+            holder.name.text =namePlaceholder + ansatt.navn
 
-            holder.rolle.text = "Rolle: ${ansatt.rolle}"
+            holder.email.text = emailPlaceholder + ansatt.email
+
+            holder.rolle.text = rollePlaceholder +ansatt.rolle
 
         holder.editButton.setOnClickListener {
             edit(it, ansatt.ansattId!!)
@@ -49,7 +53,7 @@ class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : Mu
 
     }
 
-    fun edit(root: View, ansattId:String){
+    private fun edit(root: View, ansattId:String){
         val action = MyEmployeeFragmentDirections.actionNavigationEmployeesToEditEmployee(ansattId)
         Navigation.findNavController(root).navigate(action)
     }
@@ -57,11 +61,6 @@ class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : Mu
     override fun getItemCount(): Int {
         return ansatte.size
     }
-
-//    fun add(ansatt: Ansatt) {
-//        ansatte.add(ansatt)
-//       notifyDataSetChanged()
-//    }
 
 }
 

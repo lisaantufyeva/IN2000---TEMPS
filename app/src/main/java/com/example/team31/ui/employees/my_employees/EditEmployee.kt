@@ -1,4 +1,4 @@
-package com.example.team31.ui.employees.myEmployees
+package com.example.team31.ui.employees.my_employees
 
 import android.os.Bundle
 import android.util.Log
@@ -7,13 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.compose.navArgument
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.team31.AdminActivity
 import com.example.team31.R
-import com.example.team31.authentication.location_fragmentArgs
-import com.example.team31.databinding.AddmyemployeeFragmentBinding
 import com.example.team31.databinding.FragmentEditEmployeeBinding
 
 

@@ -1,5 +1,6 @@
 package com.example.team31.ui.ansatt_interface.ansatt_profile
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -10,9 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.Navigation
-import com.example.team31.AdminActivity
-import com.example.team31.AnsattActivity
-import com.example.team31.R
+import com.example.team31.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -44,7 +43,6 @@ class ProfileFragmentAnsatt : Fragment() {
                 emailAnsatt.text="Email: "+user.email
                 val rolleAnsatt:TextView = root.findViewById(R.id.rolleAnsatt)
                 rolleAnsatt.text="Rolle: "+user.rolle
-
                 (activity as AnsattActivity?)!!.updateUser(user)
             }
 
@@ -53,6 +51,12 @@ class ProfileFragmentAnsatt : Fragment() {
         val edit_employee_password_temp = root.findViewById<Button>(R.id.edit_employee_password_button)
         edit_employee_password_temp.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.action_navigation_profile_ansatt_to_edit_employee_password)
+        }
+
+        val logOut = root.findViewById<Button>(R.id.logg_ut)
+        logOut.setOnClickListener {
+            val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
         }
 
         return root

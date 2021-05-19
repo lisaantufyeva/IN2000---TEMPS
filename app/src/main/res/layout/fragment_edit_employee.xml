@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background ="#EEF0F4"
-    tools:context=".ui.employees.myEmployees.editEmployee">
+    tools:context=".ui.employees.add_my_employee.editEmployee">
 
 
 
@@ -61,10 +61,11 @@
                 android:id="@+id/et_email_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#DADEE7"
                 android:background="@drawable/rounded_corner_view"
-                android:inputType="text"
-                android:textSize="15sp" />
+                android:backgroundTint="#DADEE7"
+                android:inputType="textEmailAddress"
+                android:textSize="15sp"
+                tools:inputType="date" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout

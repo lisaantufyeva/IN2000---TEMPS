@@ -1,13 +1,12 @@
-package com.example.team31.ui.employees
+package com.example.team31.ui.employees.add_my_employee
 
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team31.databinding.ItemCustomListLayoutBinding
-import com.example.team31.ui.employees.addMyEmployee.AddMyEmpoyeeFragment
+import com.example.team31.ui.employees.add_my_employee.AddMyEmpoyeeFragment
 
 
 class JobTitleListItemAdapter(

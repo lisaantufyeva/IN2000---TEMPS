@@ -1,4 +1,4 @@
-package com.example.team31.ui.employees.addMyEmployee
+package com.example.team31.ui.employees.add_my_employee
 
 object JobTitleConstants {
 
@@ -8,7 +8,7 @@ object JobTitleConstants {
     fun rolleType(): ArrayList<String>{
         val list = ArrayList<String>()
         list.add("Kokk")
-        list.add("Servirør")
+        list.add("Servitør")
         list.add("Bartender")
         list.add("Vaktsjef")
 

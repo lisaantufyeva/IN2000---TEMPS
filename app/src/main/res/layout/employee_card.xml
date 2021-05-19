@@ -32,9 +32,10 @@
             android:layout_margin="10dp"
             android:gravity="center_vertical"
             android:textColor="@color/grey_900"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            tools:text="Navn:" />
+            tools:text="Navn: "
+             />
         <ImageButton
             android:id="@+id/edit_button"
             android:layout_width="25dp"
@@ -42,10 +43,11 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="4dp"
-            android:layout_marginRight="13dp"
+            android:layout_marginEnd="13dp"
             android:src="@drawable/edit"
             android:scaleType="fitCenter"
-            android:background="#ECECEC"/>
+            android:background="#ECECEC"
+            android:contentDescription="@string/edit" />
         <TextView
             android:id="@+id/tv_rolle"
             android:layout_width="250dp"
@@ -53,7 +55,7 @@
             android:layout_margin="10dp"
             android:gravity="center_vertical"
             android:textColor="@color/grey_900"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold"
             tools:text="Rolle: "
             android:layout_below="@id/tv_name"/>
@@ -65,7 +67,7 @@
             android:layout_margin="10dp"
             android:gravity="center_vertical"
             android:textColor="@color/grey_900"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold"
             tools:text="E-mail:"
             android:layout_below="@id/tv_rolle"/>

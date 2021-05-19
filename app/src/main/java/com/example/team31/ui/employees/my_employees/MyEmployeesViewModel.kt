@@ -1,4 +1,4 @@
-package com.example.team31.ui.employees.myEmployees
+package com.example.team31.ui.employees.my_employees
 
 import android.util.Log
 import androidx.lifecycle.LiveData

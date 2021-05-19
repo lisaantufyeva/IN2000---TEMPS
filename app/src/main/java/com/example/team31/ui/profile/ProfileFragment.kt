@@ -15,9 +15,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
-import com.example.team31.AdminActivity
-import com.example.team31.Bruker
-import com.example.team31.R
+import com.example.team31.*
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -127,6 +125,11 @@ class ProfileFragment : Fragment() {
         val edit_password = root.findViewById<Button>(R.id.edit_passord)
         edit_password.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.action_navigation_profile_to_edit_password)
+        }
+
+        val logOut = root.findViewById<Button>(R.id.logg_ut)
+        logOut.setOnClickListener {
+            (activity as MainActivity).startActivityLogin()
         }
 
         //val user = profileViewModel.getUser("-MZsDmQd0-ZhRrUNdbzn")

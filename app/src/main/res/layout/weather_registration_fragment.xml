@@ -66,6 +66,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="20dp"
         android:layout_toStartOf="@+id/trigger_temp"
+        android:labelFor="@id/trigger_temp"
         android:text="@string/temperatur_over"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -86,7 +87,8 @@
         android:paddingBottom="20dp"
 
         android:textColor="#282F3E"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/nedbor"

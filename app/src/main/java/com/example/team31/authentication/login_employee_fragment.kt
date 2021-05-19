@@ -53,6 +53,8 @@ class login_employee_fragment : Fragment() {
             val ansatt = model.loginAnsatt(email,passord)
             if(ansatt != null){
                 Log.i("bruker:", ansatt.toString())
+                e1.text = ""
+                p1.text = ""
                 (activity as Authentication?)!!.startAnsattActivity(ansatt)
             }
             else{

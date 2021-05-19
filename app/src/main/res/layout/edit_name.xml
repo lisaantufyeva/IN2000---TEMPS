@@ -1,28 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E8E9EC">
 
 
-<!--    <androidx.appcompat.widget.Toolbar-->
-
-<!--        android:id="@+id/toolbar_login"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="#FFFFFF"-->
-<!--        app:title="Oppdater navn"-->
-<!--        app:titleTextColor="#000000"-->
-<!--        android:backgroundTint="@color/fragment_background"/>-->
 
     <EditText
 
         android:id="@+id/email"
         android:layout_width="300dp"
         android:layout_height="51dp"
-        android:layout_below="@+id/toolbar_login"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="60dp"
@@ -31,7 +20,7 @@
         android:background="@drawable/rounded_corner_view"
         android:hint="  Email"
         android:inputType="textEmailAddress"
-        />
+        android:autofillHints="" />
 
 
     <EditText
@@ -48,13 +37,12 @@
         android:backgroundTint="#DADEE7"
         android:background="@drawable/rounded_corner_view"
         android:inputType="textEmailAddress"
-        />
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/lagre"
         android:layout_width="173dp"
         android:layout_height="51dp"
-        android:layout_below="@+id/max_bemanning"
         android:layout_alignBottom="@+id/name"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="119dp"
@@ -65,6 +53,6 @@
         android:textColor="@color/text_grey"
         android:textSize="20sp"
         app:backgroundTint="@color/button_yellow" />
-    />
+
 
 </RelativeLayout>

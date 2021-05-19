@@ -1,4 +1,4 @@
-package com.example.team31.ui.employees.addMyEmployee
+package com.example.team31.ui.employees.add_my_employee
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

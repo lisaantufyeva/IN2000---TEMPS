@@ -57,7 +57,7 @@
         android:layout_marginTop="25dp"
         android:text="Glemt passord"
         android:textColor="#8F8686"
-        android:textSize="15dp" />
+        android:textSize="15sp" />
     <RadioButton
 
         android:id="@+id/remember_password"
@@ -68,7 +68,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="Husk passord"
-        android:textSize="12dp"
+        android:textSize="12sp"
         android:checked="false"/>
 
     <Button
@@ -82,7 +82,7 @@
         android:layout_marginRight="20dp"
         android:text="Logg inn"
         android:textColor="#FFFFFF"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textAllCaps="false"
         android:backgroundTint="#72bcd4" />
     <Button
@@ -96,7 +96,7 @@
         android:layout_marginRight="20dp"
         android:text="Registrer deg"
         android:textColor="#FFFFFF"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textAllCaps="false"
         android:backgroundTint="#72bcd4" />
 

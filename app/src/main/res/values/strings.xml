@@ -37,26 +37,33 @@
 
 
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <!-- MyEmloyee: Detail fragment body-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="action_add_employee">Legg til ansatt</string>
-
     <string name="name">Navn</string>
     <string name="email">E-mail</string>
     <string name="Rolle">Rolle</string>
     <string name="addEmployeeBtn">Legg til ansatt</string>
 
-
+    <!-- My emloyee edit: Detail fragment body-->
     <string name="store_button">Lagre</string>
     <string name="name_edit">Navn</string>
     <string name="email_edit">E-mail</string>
     <string name="Rolle_edit">Rolle</string>
 
+
+    <!-- AddmyEmployee fragment: Detail fragment body-->
+
     <string name="err_msg_select_name">Skriv navn.</string>
     <string name="err_msg_enter_email">Skriv email.</string>
     <string name="err_msg_select_rolle">Velg rolle.</string>
 
+    <string name="rediger_ansattinformasjon">Rediger ansattinformasjon</string>
+    <string name="rolle">Rolle</string>
+    <string name="navn">Navn</string>
+    <string name="e_mail">E-mail</string>
+    <string name="roller">Roller:</string>
 
 
     <!--Ansatt: My shifts card-->
@@ -66,61 +73,79 @@
     <string name="accept_shift_button">Godta vakt</string>
     <string name="accepted_shift_label">Vakten er din!</string>
 
+    <!--Profile:  : -->
 
-    <string name="location_text">Velg posisjon for din arbeidsplass, slik at det vises riktig værmeldig.</string>
     <string name="standard_profile_remainder">Du kan gjøre endringer senere under din Profil.</string>
-
     <string name="manpower_text1">Definer antall ansatte du pleier å ha normalt, og maks antall ansatte du kan ha i løpet av en dag.</string>
     <string name="manpower_edit_text1">Rediger antall ansatte du pleier å ha normalt, og maks antall ansatte du kan ha i løpet av en dag.</string>
     <string name="temp_text1">Velg hvilken værforhold som gjør at du trenger ekstra bemanning.</string>
     <string name="openhours_text">Legg til åpningstiden for din bedrift.</string>
+
+
+    <!--Reusable strings-->
+
+    <string name="lagre">Lagre</string>
+    <string name="edit">Edit button</string>
+    <string name="dine_ansatte">Dine ansatte</string>
     <string name="hint_name">Navn</string>
     <string name="hint_e_mail">E-mail</string>
     <string name="hint_rolle">Rolle</string>
+
     <string name="legg_til_button">Legg til</string>
     <string name="legg_til_en_ansatt">Legg til en ansatt</string>
-    <string name="antall_ansatte">Antall ansatte</string>
-    <string name="legg_til_bemannings_kapasitet">Legg til bemannings kapasitet</string>
-    <string name="maksimal_bemanning">Maksimal bemanning:</string>
-    <string name="normal_bemanning">Normal bemanning:</string>
-    <string name="til">Til</string>
-    <string name="lagre">Lagre</string>
-    <string name="legg_til_aningstider">Legg til åpningstider</string>
-    <string name="fra">Fra</string>
-    <string name="rediger_ansattinformasjon">Rediger ansattinformasjon</string>
-    <string name="rolle">Rolle</string>
-    <string name="navn">Navn</string>
-    <string name="e_mail">E-mail</string>
-    <string name="legg_til_posisjon">Legg til posisjon</string>
-    <string name="roller">Roller:</string>
-    <string name="apningstider">Åpningstider:</string>
-    <string name="endre_passord">Endre passord</string>
-    <string name="nedb_r_ja_nei">Nedbør: ja/nei</string>
-    <string name="temperatur_under">Temperatur under:</string>
-    <string name="v_rforhold">Værforhold:</string>
 
-    <string name="posisjon">Posisjon:</string>
-    <string name="edit">Edit button</string>
-    <string name="bemanning">Bemanning:</string>
-    <string name="dine_ansatte">Dine ansatte</string>
 
+    <!--Registration/log in fragment-->
 
     <string name="ansatt">Ansatt</string>
-
     <string name="logg_inn">Logg inn</string>
     <string name="admin">Admin</string>
     <string name="glemt_passord">Glemt passord?</string>
     <string name="husk_passord">Husk passord</string>
-
     <string name="passord">Passord</string>
     <string name="bekreft_passord">Bekreft passord</string>
     <string name="registrer_deg">Registrer deg</string>
-    <string name="legg_til_v_rforhold">Legg til værforhold</string>
-    <string name="temperatur_over">Temperatur over:</string>
-    <string name="nedb_r">Nedbør:</string>
+    <string name="endre_passord">Endre passord</string>
+    <string name="logg_ut">Logg ut</string>
+    <string name="n_v_rende_passord">Nåværende passord</string>
+    <string name="ditt_n_v_rende_passord">Ditt nåværende passord:</string>
+    <string name="nytt_passord">Nytt passord</string>
 
-    <string name="ja_nei">Ja/nei</string>
+
+    <!--Manpower fragment-->
+    <string name="bemanning">Bemanning:</string>
+    <string name="antall_ansatte">Antall ansatte</string>
+    <string name="legg_til_bemannings_kapasitet">Legg til bemannings kapasitet</string>
+    <string name="maksimal_bemanning">Maksimal bemanning:</string>
+    <string name="normal_bemanning">Normal bemanning:</string>
+
+
+    <!--Location fragment-->
+    <string name="location_text">Velg posisjon for din arbeidsplass, slik at det vises riktig værmeldig.</string>
+    <string name="posisjon">Posisjon:</string>
     <string name="endre_posisjon">Endre posisjon</string>
+    <string name="legg_til_posisjon">Legg til posisjon</string>
+
+
+    <!--Openhour fragment-->
     <string name="endre_pningstider">Endre åpningstider</string>
+    <string name="apningstider">Åpningstider:</string>
+    <string name="legg_til_aningstider">Legg til åpningstider</string>
+    <string name="fra">Fra</string>
+    <string name="til">Til</string>
+
+
+    <!--Temperature trigger fragment-->
+    <string name="nedb_r">Nedbør:</string>
+    <string name="ja_nei">Ja/nei</string>
+    <string name="temperatur_over">Temperatur over:</string>
+    <string name="legg_til_v_rforhold">Legg til værforhold</string>
+    <string name="nedb_r_ja_nei">Nedbør: ja/nei</string>
+    <string name="temperatur_under">Temperatur under:</string>
+    <string name="v_rforhold">Værforhold:</string>
+
+
+
+
 
 </resources>

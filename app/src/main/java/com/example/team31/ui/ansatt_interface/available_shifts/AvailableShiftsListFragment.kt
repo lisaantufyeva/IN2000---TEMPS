@@ -24,10 +24,7 @@ import kotlinx.coroutines.withContext
 
 class AvailableShiftsListFragment : Fragment() {
 
-    private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: AvailableShiftsListViewModel
-
-    //private lateinit var alerts: MutableList<Varsel>
     private lateinit var viewBinding: AvailableShiftsListFragmentBinding
 
     override fun onCreateView(
@@ -35,60 +32,24 @@ class AvailableShiftsListFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View {
         viewBinding = AvailableShiftsListFragmentBinding.inflate(inflater, container, false)
-        return viewBinding.root//inflater.inflate(R.layout.available_shifts_list_fragment, container, false)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val ansattUser = (activity as AnsattActivity?)!!.getUser()
-
-
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(AvailableShiftsListViewModel::class.java)
-        //recyclerView = view.findViewById(R.id.recyclerview)
 
         viewModel.getMyAlerts(ansattUser.adminId!!, ansattUser.ansattId!!)
         viewModel.alertList.observe(viewLifecycleOwner, { alertList ->
             viewBinding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
             Handler(Looper.getMainLooper()).postDelayed({
                 viewBinding.recyclerview.setHasFixedSize(true)
-                val availableShiftsadapter = AvailableShiftsAdapter(alertList, requireContext(), ansattUser)
-                viewBinding.recyclerview.adapter = availableShiftsadapter
-                availableShiftsadapter.notifyDataSetChanged()
+                val availableShiftsAdapter = AvailableShiftsAdapter(alertList, requireContext(), ansattUser)
+                viewBinding.recyclerview.adapter = availableShiftsAdapter
+                availableShiftsAdapter.notifyDataSetChanged()
             }, 500)
-            //display(alerts, ansattUser)
         })
     }
 }
-        //GlobalScope.launch(Dispatchers.IO){
-            //val recentAccepted =viewModel.getAcceptedShifts(ansattUser.adminId!!)
-            //val recentAlerts = viewModel.getMyAlerts(ansattUser.adminId, recentAccepted, ansattUser.ansattId!! )
-
-/* withContext(Dispatchers.Main){
-     //alerts = recentAlerts
-     //Log.i("VarselListe:", alerts.toString())
-/*
-     viewModel.alerist.observe(viewLifecycleOwner,  { alertList ->
-         viewBinding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
-         Handler(Looper.getMainLooper()).postDelayed({
-             viewBinding.recyclerview.setHasFixedSize(true)
-             val availableShiftsadapter = AvailableShiftsAdapter(alertList, requireContext(), ansattUser)
-             viewBinding.recyclerview.adapter = availableShiftsadapter
-             availableShiftsadapter.notifyDataSetChanged()
-         }, 500)
-     //display(alerts, ansattUser)
-     })
- }
-
-}*/
-/*
-private fun display(list: MutableList<Varsel>, ansattUser: Ansatt){
- recyclerView.also {
- recyclerView.setHasFixedSize(true)
- recyclerView.layoutManager = LinearLayoutManager(requireContext())
- recyclerView.adapter = AvailableShiftsAdapter(list, requireContext(), ansattUser)
-}
-}*/
-
-}
-}*/

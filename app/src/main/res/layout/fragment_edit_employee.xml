@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background ="#EEF0F4"
-    tools:context=".ui.employees.add_my_employee.editEmployee">
+    tools:context=".ui.employees.myEmployees.EditEmployee">
 
 
 
@@ -32,9 +32,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="@string/navn"
-
-           >
+            android:hint="@string/navn">
 
             <EditText
                 android:id="@+id/et_navn_edit"

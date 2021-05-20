@@ -14,7 +14,6 @@ import com.example.team31.data.repositories.ForecastRepository
 import com.example.team31.databinding.OverviewFragmentBinding
 import android.os.Handler
 import android.os.Looper
-import androidx.lifecycle.observe
 import com.example.team31.Varsel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -71,9 +70,12 @@ class OverviewFragment : Fragment() {
                         overviewAdapter.notifyDataSetChanged()
                     }, 500)
                 })
+
             }
         }
+
     }
+
 }
 
 

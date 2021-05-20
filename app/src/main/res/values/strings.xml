@@ -3,9 +3,8 @@
     <string name="app_name">Team31</string>
 
     <!--Navigation Menu Admin-->
-    <string name="title_overview">Oversikt</string>
-    <string name="title_employees">Ansatte</string>
-    <string name="title_settings">Instillinger</string>
+    <string name="title_overview">Ukeoversikt</string>
+    <string name="title_employees">Mine ansatte</string>
     <string name="title_profile">Profil</string>
 
     <!--Navigation Menu Ansatt-->

@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavArgs
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.team31.AdminActivity
@@ -20,10 +19,9 @@ import com.example.team31.ui.employees.my_employees.MyEmployeesViewModel
 class EditEmployee : Fragment(){
 
     private lateinit var modelMy: MyEmployeesViewModel
-
+    private val args: EditEmployeeArgs by navArgs()
     private lateinit var mBinding: FragmentEditEmployeeBinding
     private lateinit var userId:String
-    private val args by navArgs<EditEmployeeArgs>()
     private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,3 +76,4 @@ class EditEmployee : Fragment(){
 
 
 }
+

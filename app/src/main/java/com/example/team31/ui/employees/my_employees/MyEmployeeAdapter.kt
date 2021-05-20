@@ -54,6 +54,7 @@ class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : Mu
 
     private fun edit(root: View, ansattId:String){
         val action = MyEmployeeFragmentDirections.actionNavigationEmployeesToEditEmployee(ansattId)
+
         Navigation.findNavController(root).navigate(action)
     }
 

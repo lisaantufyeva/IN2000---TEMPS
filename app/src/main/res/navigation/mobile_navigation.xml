@@ -125,7 +125,7 @@
     <fragment
         android:id="@+id/edit_password"
         android:name="com.example.team31.ui.profile.edit_password"
-        android:label="edit_password"
+        android:label="Endre password"
         tools:layout="@layout/edit_password" >
         <action
             android:id="@+id/action_edit_password_to_navigation_profile"
@@ -138,7 +138,7 @@
         tools:layout="@layout/addmyemployee_fragment" />
     <fragment
         android:id="@+id/EditEmployee"
-        android:name="com.example.team31.ui.employees.myEmployees.EditEmployee"
+        android:name="com.example.team31.ui.employees.my_employees.EditEmployee"
         android:label="Ansatte"
         tools:layout="@layout/fragment_edit_employee" >
         <argument

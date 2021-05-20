@@ -43,7 +43,7 @@ class MyEmployeeFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View {
 
-
+    //button to add an employee
         mBinding = EmployeesFragmentBinding.inflate(inflater, container, false)
         val leggTIl = mBinding.leggtilknapp
 
@@ -60,7 +60,7 @@ class MyEmployeeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        // Set the LayoutManager that this RecyclerView will use.
+        // set the layout manager that this RecyclerView will use.
         mBinding.rvAnsattList.layoutManager = GridLayoutManager(requireActivity(), 1)
         // Adapter class is initialized and list is passed in the param.
         Handler().postDelayed({
@@ -80,23 +80,5 @@ class MyEmployeeFragment : Fragment() {
 
 
 }
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        inflater.inflate(R.menu.add_employee, menu)
-//        super.onCreateOptionsMenu(menu, inflater)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//
-//        when (item.itemId) {
-//            R.id.action_add_employee -> {
-//                //startActivity(Intent(requireActivity(), LeggTilRedigerAnsatt::class.java))
-//                startActivity1(admin)
-//                return true
-//            }
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
-//
-//}
 
 

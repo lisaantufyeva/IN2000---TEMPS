@@ -16,15 +16,14 @@ private val selection: String
 ) : RecyclerView.Adapter<JobTitleListItemAdapter.ViewHolder>() {
 
         //Inflates the item view for roles
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val binding: ItemCustomListLayoutBinding =
                     ItemCustomListLayoutBinding.inflate(LayoutInflater.from(activity.context), parent, false)
             return ViewHolder(binding)
         }
 
 
-
+//binds each item in the ArrayList to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val item = listItems[position]
@@ -40,14 +39,14 @@ private val selection: String
         }
 
     }
-
+//gets the number of items in the llist
     override fun getItemCount(): Int {
         return listItems.size
     }
 
 
             class ViewHolder(view: ItemCustomListLayoutBinding) : RecyclerView.ViewHolder(view.root) {
-                // Holds the TextView that will add each item to
+                // holds the textView that will add each item to
                 val tvText = view.tvText
             }
         }

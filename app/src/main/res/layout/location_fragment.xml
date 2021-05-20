@@ -17,7 +17,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Fullfør registereing"
+        app:title="Fullfør registrering"
+        app:titleTextAppearance="@style/yourstyle"
         app:titleMarginStart="100dp"
         app:titleTextColor="#282F3E"
         android:padding="10dp"/>

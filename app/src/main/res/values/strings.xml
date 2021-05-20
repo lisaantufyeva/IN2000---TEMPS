@@ -143,8 +143,8 @@
     <string name="temperatur_under">Temperatur under:</string>
     <string name="v_rforhold">Værforhold:</string>
 
-
-
+    <!--Processbar-->
+    <string name="vent">Vent</string>
 
 
 </resources>

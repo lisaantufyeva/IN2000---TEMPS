@@ -21,12 +21,15 @@ import com.example.team31.databinding.DialogCustomListBinding
 
 import com.example.team31.Ansatt
 
+//Fragment to add an employee
 class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
 
 
 
     private lateinit var viewModel: AddMyEmployeeViewModel
     private lateinit var mBinding : AddmyemployeeFragmentBinding
+
+    //global variabel for jobtitle
     private lateinit var mCustomListDialog: Dialog
     private lateinit var user: Bruker
 
@@ -57,7 +60,7 @@ class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
 
 
 
-    private fun customItemsListDialog(title: String, itemsList: List<String>, selection: String) {
+    private fun jobTiitleItemsListDialog(title: String, itemsList: List<String>, selection: String) {
 
         mCustomListDialog = Dialog(requireActivity())
 
@@ -67,23 +70,24 @@ class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
         mCustomListDialog.setContentView(binding.root)
 
         binding.tvTitle.text = title
-
+      //seting up layout manager that recyclerview will use
         binding.rvList.layoutManager = LinearLayoutManager(requireActivity())
 
         val adapter = JobTitleListItemAdapter(this, itemsList, selection)
-
+    // adapter instance is set to the recyclerview
         binding.rvList.adapter = adapter
         //start dialog
         mCustomListDialog.show()
     }
 
 
-
+//A function to set the selected item to the view.
     fun selectedListItem(item: String, selection: String) {
 
         when (selection) {
 
             JobTitleConstants.JOB_TITLE-> {
+                //dialog window dismissed when a titile is chosen
                 mCustomListDialog.dismiss()
                 mBinding.etRolle.setText(item)
             }
@@ -97,7 +101,7 @@ class AddMyEmpoyeeFragment : Fragment() , View.OnClickListener{
 
 
                 R.id.et_rolle -> {
-                    customItemsListDialog(
+                    jobTiitleItemsListDialog(
                             resources.getString(R.string.Rolle),
                             JobTitleConstants.rolleType(),
                             JobTitleConstants.JOB_TITLE

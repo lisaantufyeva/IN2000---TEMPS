@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.team31.Ansatt
 import com.example.team31.databinding.EmployeeCardBinding
 
-
+//displays each employee cards in recycleview
 class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : MutableList<Ansatt> ):RecyclerView.Adapter<MyEmployeeAdapter.ViewHolder>() {
 
 
@@ -21,6 +21,7 @@ class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : Mu
         var editButton = view.editButton
 
     }
+    //Inflates the cardview which is designed in the employee_card.xml
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: EmployeeCardBinding =
@@ -28,8 +29,9 @@ class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : Mu
         return ViewHolder(binding)
     }
 
-
+ //binds each item in the ArrayList to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        //place holders
         val namePlaceholder = "Navn: "
         val emailPlaceholder="E-mail: "
         val rollePlaceholder = "Rolle: "
@@ -47,17 +49,15 @@ class MyEmployeeAdapter(private val fragment: Fragment, private val ansatte : Mu
             edit(it, ansatt.ansattId!!)
         }
 
-
-
-
     }
 
+//fuction use to naviget to edit_Employee fragment
     private fun edit(root: View, ansattId:String){
         val action = MyEmployeeFragmentDirections.actionNavigationEmployeesToEditEmployee(ansattId)
 
         Navigation.findNavController(root).navigate(action)
     }
-
+    //gets number of items on the list
     override fun getItemCount(): Int {
         return ansatte.size
     }

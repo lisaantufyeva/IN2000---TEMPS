@@ -13,11 +13,11 @@
         android:layout_width="411dp"
         android:layout_height="76dp"
         android:background="@color/fragment_background"
-        android:padding="10dp"
+        android:padding="20dp"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Fullfør registereing"
+        app:title="Fullfør registrering"
         app:titleMarginStart="100dp"
         app:titleTextColor="#282F3E"
         />

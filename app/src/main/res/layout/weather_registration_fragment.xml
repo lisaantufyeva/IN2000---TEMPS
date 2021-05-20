@@ -17,6 +17,7 @@
         android:textAlignment="center"
         app:title="Fullfør registereing"
         app:titleMarginStart="100dp"
+        app:titleTextAppearance="@style/yourstyle"
 
         app:titleTextColor="#282F3E" />
 
@@ -84,7 +85,7 @@
         android:background="@drawable/rounded_corner_view"
         android:drawablePadding="10dp"
         android:inputType="number"
-        android:paddingBottom="20dp"
+        android:textAlignment="center"
 
         android:textColor="#282F3E"
         android:textSize="18sp"

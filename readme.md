@@ -19,3 +19,5 @@ The TEMPS application stores the data in a cloudbased database (Firebase).
 The script is based on and aims for MVVM architecture.
 
 The development team hope that you can enjoy the app!
+
+Prototype in Sketch:https://www.sketch.com/s/4d5dbc76-afb3-43ef-8427-9e3bf175e44d/a/1KPyAWn/play
